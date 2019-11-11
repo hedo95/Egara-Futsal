@@ -3,20 +3,20 @@ import 'dart:ffi';
 import 'dart:io' show File;
 import 'dart:convert' show json;
 import 'dart:io';
+import 'package:egarafutsal/Logic/BO/EgaraBO.dart';
+import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
 
 class Player
 {
-  // Professional data (Rest of players)
+  // Professional data
   String position, name, surname, nationality;
   int id, dorsal;
 
-  // Personal data (Our players)
+  // Personal data
   DateTime birthday;
   double height, weight;
   String dni, ss, address, phone, mail;
-  
-  
-  // Constructors
+
   Player
   (
     this.id, this.name, this.surname, this.dorsal, this.position,
@@ -24,15 +24,24 @@ class Player
     this.dni, this.ss, this.address, this.phone, this.mail
   );
 
-  Player.professional
-  (
-    this.id, this.name, this.surname, this.dorsal, this.position
-  );
+  Player.def()
+  {
+    this.id = getId(getAllPlayersData());
+    this.name = "";
+    this.surname = "";
+    this.dorsal = 0;
+    this.position = "";
+    this.nationality = "";
+    this.birthday = DateTime.parse('0000-00-00 00:00:00');
+    this.height = 0;
+    this.weight = 0;
+    this.dni = "";
+    this.ss = "";
+    this.address = "";
+    this.phone = "";
+    this.mail = "";
+  }
 
-  
-  
-  
-  // from Object to Json
   toJson()
   {
     return 
@@ -54,21 +63,6 @@ class Player
     };
   }
 
-  toJsonProfessional()
-  {
-    return
-    {
-      'id': this.id,
-      'name': this.name,
-      'surname': this.surname,
-      'dorsal': this.dorsal,
-      'position': this.position
-    };
-  }
-
-  
-  
-  // Print the object 
   toPrint()
   {
     print("Id: " + this.id.toString() + "\n");
@@ -88,7 +82,7 @@ class Player
     print('');
   }
 
-  toPrintProfessionalData()
+  toPrintThem()
   {
     print("Id: " + this.id.toString() + "\n");
     print("Name: " + this.name + "\n");
@@ -117,14 +111,6 @@ class Player
                   json['phone'] as String,
                   json['mail'] as String);
   }
-  
-  
-  factory Player.fromJsonProfessional(Map<String,dynamic> json)
-  {
-    return new Player.professional(json['id'] as int,
-                  json['name'] as String,
-                  json['surname'] as String, 
-                  json['dorsal'] as int, 
-                  json['position'] as String);
-  }
+
+
 }
