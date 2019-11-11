@@ -4,39 +4,40 @@ import 'dart:io' show File;
 import 'dart:convert' show json;
 import 'dart:io';
 
-class OurPlayer
+class Player
 {
-  // Professional data
+  // Professional data (Rest of players)
   String position, name, surname, nationality;
-  int dorsal;
+  int id, dorsal;
 
-  // Personal data
+  // Personal data (Our players)
   DateTime birthday;
   double height, weight;
   String dni, ss, address, phone, mail;
-
-  OurPlayer
+  
+  
+  // Constructors
+  Player
   (
-    this.name, this.surname, this.dorsal, this.position,
+    this.id, this.name, this.surname, this.dorsal, this.position,
     this.nationality, this.birthday, this.height, this.weight,
     this.dni, this.ss, this.address, this.phone, this.mail
   );
 
-  OurPlayer.professional
+  Player.professional
   (
-    this.name, this.surname, this.dorsal, this.position
+    this.id, this.name, this.surname, this.dorsal, this.position
   );
 
-  OurPlayer.personal
-  (
-    this.nationality, this.birthday, this.height, this.weight, 
-    this.dni, this.ss, this.address, this.phone, this.mail
-  );
-
+  
+  
+  
+  // from Object to Json
   toJson()
   {
     return 
     {
+      'id': this.id,
       'name': this.name,
       'surname': this.surname,
       'dorsal': this.dorsal,
@@ -53,4 +54,77 @@ class OurPlayer
     };
   }
 
+  toJsonProfessional()
+  {
+    return
+    {
+      'id': this.id,
+      'name': this.name,
+      'surname': this.surname,
+      'dorsal': this.dorsal,
+      'position': this.position
+    };
+  }
+
+  
+  
+  // Print the object 
+  toPrint()
+  {
+    print("Id: " + this.id.toString() + "\n");
+    print("Name: " + this.name + "\n");
+    print("Surname: " + this.surname + "\n");
+    print("Dorsal: " + this.dorsal.toString() + "\n");
+    print("Position: " + this.position.toString() + "\n");
+    print("Nationality: " + this.nationality + "\n");
+    print("Birthday : " + this.birthday.toString().substring(0,this.birthday.toString().length - 13) + "\n");
+    print("Height: " + this.height.toString() + "\n");
+    print("Weight: " + this.weight.toString() + "\n");
+    print("Dni/Nif: " + this.dni + "\n");
+    print("SS: " + this.ss + "\n");
+    print("Address: " + this.address + "\n");
+    print("Phone: " + this.phone + "\n");
+    print("Mail: " + this.mail + "\n");
+    print('');
+  }
+
+  toPrintProfessionalData()
+  {
+    print("Id: " + this.id.toString() + "\n");
+    print("Name: " + this.name + "\n");
+    print("Surname: " + this.surname + "\n");
+    print("Dorsal: " + this.dorsal.toString() + "\n");
+    print("Position: " + this.position.toString() + "\n");
+    print('');
+  }
+
+
+  //Convert from Json to Object
+  factory Player.fromJson(Map<String,dynamic> json)
+  {
+    return new Player(json['id'] as int,
+                  json['name'] as String,
+                  json['surname'] as String, 
+                  json['dorsal'] as int, 
+                  json['position'] as String, 
+                  json['nationality'] as String,
+                  DateTime.parse(json['birthday']), 
+                  json['height'] as double,
+                  json['weight'] as double,
+                  json['dni'] as String,
+                  json['ss'] as String,
+                  json['address'] as String,
+                  json['phone'] as String,
+                  json['mail'] as String);
+  }
+  
+  
+  factory Player.fromJsonProfessional(Map<String,dynamic> json)
+  {
+    return new Player.professional(json['id'] as int,
+                  json['name'] as String,
+                  json['surname'] as String, 
+                  json['dorsal'] as int, 
+                  json['position'] as String);
+  }
 }
