@@ -38,11 +38,13 @@ Player createUpdatePlayer({int id, Player player})
       data.removeAt(index);
       data.add(player);
       exportPlayersData(data);
+      return player;
     }
     else
     {
       data.add(player);
       exportPlayersData(data);
+      return player;
     }
   }
 }
