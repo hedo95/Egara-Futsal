@@ -47,5 +47,21 @@ Player createUpdatePlayer({int id, Player player})
       return player;
     }
   }
+  
+  bool deletePlayer(Player player)
+  {
+    var data = getAllPlayersData();
+    try
+    {
+      Player item = data.firstWhere((item) => item.id == player.id);
+      data.remove(item);
+      exportPlayersData(data);
+      return true;
+    }
+    catch (Exception)
+    {
+      return false;
+    }
+  }
 }
 
