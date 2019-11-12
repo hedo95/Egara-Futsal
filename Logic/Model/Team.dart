@@ -16,7 +16,7 @@ class Team
   Team(this.id, this.name, this.shield, this.address, this.location, 
        this.zipcode, this.province, this.fieldname, this.fieldtype, List<dynamic> playersid)
   {
-    this.players = new List<int>.from(playersid.map((item) => int.parse(item)))
+    playersid = new List<int>.from(playersid.map((item) => int.parse(item)));
     playersid.forEach((player) => this.players.add(getAllPlayersData().firstWhere((item) => item.id == player)));
   }
 
