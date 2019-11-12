@@ -1,12 +1,15 @@
 import 'dart:convert';
+import 'dart:core' as prefix0;
+import 'dart:core';
 import 'dart:ffi';
 import 'dart:io' show File;
 import 'dart:convert' show json;
 import 'dart:io';
 import 'package:egarafutsal/Logic/Model/Player.dart';
+import 'package:egarafutsal/Logic/Model/Team.dart';
 import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
 
-int getId(var data)
+int getId(var data) 
 {
   return data[data.length-1].id + 1;
 }
@@ -47,21 +50,74 @@ Player createUpdatePlayer({int id, Player player})
       return player;
     }
   }
-  
-  bool deletePlayer(Player player)
+}
+
+Team createUpdateTeam({int id, Team team})
+{
+  if (id == null && team == null)
   {
-    var data = getAllPlayersData();
+    return createUpdateTeam(team: new Team.def());
+  }
+  else if(id != null && team == null)
+  {
     try
     {
-      Player item = data.firstWhere((item) => item.id == player.id);
-      data.remove(item);
-      exportPlayersData(data);
-      return true;
+      Team foundTeam = getAllTeamsData().firstWhere((item) => item.id == id);
+      return createUpdateTeam(team: foundTeam);
     }
     catch (Exception)
     {
-      return false;
+      return Exception('No se ha encontrado el equipo con id: ' + id.toString() + '\n');
+    }
+  }
+  else 
+  {
+    var data = getAllTeamsData();
+    if (data.any((item) => item.id == team.id))
+    {
+      int index = data.indexWhere((item) => item.id == team.id);
+      data.removeAt(index);
+      data.add(team);
+      exportTeamsData(data);
+      return team;
+    }
+    else
+    {
+      data.add(team);
+      exportTeamsData(data);
+      return team;
     }
   }
 }
 
+bool deletePlayer(Player player)
+{
+  var data = getAllPlayersData();
+  try
+  {
+    Player item = data.firstWhere((item) => item.id == player.id);
+    data.remove(item);
+    exportPlayersData(data);
+    return true;
+  }
+  catch (Exception)
+  {
+    return false;
+  }
+}
+
+bool deleteTeam(Team team)
+{
+  var data = getAllTeamsData();
+  try
+  {
+    Team item = data.firstWhere((item) => item.id == team.id);
+    data.remove(item);
+    exportTeamsData(data);
+    return true;
+  }
+  catch (Exception)
+  {
+    return false;
+  }
+}
