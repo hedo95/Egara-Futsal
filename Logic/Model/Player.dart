@@ -9,8 +9,9 @@ import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
 class Player
 {
   // Professional data
-  String position, name, surname, nationality;
+  String position, name, surname, nationality, function;
   int id, dorsal;
+  
 
   // Personal data
   DateTime birthday;
@@ -19,9 +20,9 @@ class Player
 
   Player
   (
-    this.id, this.name, this.surname, this.dorsal, this.position,
-    this.nationality, this.birthday, this.height, this.weight,
-    this.dni, this.ss, this.address, this.phone, this.mail
+    this.id, this.name, this.surname, this.function, this.dorsal,
+    this.position, this.nationality, this.birthday, this.height, 
+    this.weight, this.dni, this.ss, this.address, this.phone, this.mail
   );
 
   Player.def()
@@ -29,6 +30,7 @@ class Player
     this.id = getId(getAllPlayersData());
     this.name = "";
     this.surname = "";
+    this.function = "";
     this.dorsal = 0;
     this.position = "";
     this.nationality = "";
@@ -49,6 +51,7 @@ class Player
       'id': this.id,
       'name': this.name,
       'surname': this.surname,
+      'function': this.function,
       'dorsal': this.dorsal,
       'position': this.position,
       'nationality': this.nationality,
@@ -63,11 +66,12 @@ class Player
     };
   }
 
-  toPrint()
+  toPrintAll()
   {
     print("Id: " + this.id.toString() + "\n");
     print("Name: " + this.name + "\n");
     print("Surname: " + this.surname + "\n");
+    print("Function: " + this.function + "\n");
     print("Dorsal: " + this.dorsal.toString() + "\n");
     print("Position: " + this.position.toString() + "\n");
     print("Nationality: " + this.nationality + "\n");
@@ -82,14 +86,26 @@ class Player
     print('');
   }
 
-  toPrintThem()
+  toPrint()
   {
-    print("Id: " + this.id.toString() + "\n");
-    print("Name: " + this.name + "\n");
-    print("Surname: " + this.surname + "\n");
-    print("Dorsal: " + this.dorsal.toString() + "\n");
-    print("Position: " + this.position.toString() + "\n");
-    print('');
+    if(this.function == "Player")
+    {
+      print("Id: " + this.id.toString() + "\n");
+      print("Name: " + this.name + "\n");
+      print("Surname: " + this.surname + "\n");
+      print("Function: " + this.function + "\n");
+      print("Dorsal: " + this.dorsal.toString() + "\n");
+      print("Position: " + this.position.toString() + "\n");
+      print('');
+    }
+    else
+    {
+      print("Id: " + this.id.toString() + "\n");
+      print("Name: " + this.name + "\n");
+      print("Surname: " + this.surname + "\n");
+      print("Function: " + this.function + "\n");
+      print('');
+    }
   }
 
 
@@ -98,7 +114,8 @@ class Player
   {
     return new Player(json['id'] as int,
                   json['name'] as String,
-                  json['surname'] as String, 
+                  json['surname'] as String,
+                  json['function'] as String, 
                   json['dorsal'] as int, 
                   json['position'] as String, 
                   json['nationality'] as String,
