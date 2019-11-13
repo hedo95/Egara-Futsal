@@ -1,0 +1,50 @@
+[
+    {
+        "id": "10000",
+        "name": "Oumaima",
+        "surname": "Beddouh",
+        "dorsal": 3,
+        "position": "Defending",
+        "nationality": "",
+        "birthday": "0000-00-00 00:00:00",
+        "height": 0.0,
+        "weight": 0.0,
+        "dni": "",
+        "ss": "",
+        "address": "",
+        "phone": "",
+        "mail": ""
+    },
+    {
+        "id": "10001",
+        "name": "Oumaima",
+        "surname": "Beddouh",
+        "dorsal": 3,
+        "position": "Defending",
+        "nationality": "",
+        "birthday": "0000-00-00 00:00:00",
+        "height": 0.0,
+        "weight": 0.0,
+        "dni": "",
+        "ss": "",
+        "address": "",
+        "phone": "",
+        "mail": ""
+    },
+    {
+        "id": "10002",
+        "name": "Oumaima",
+        "surname": "Beddouh",
+        "dorsal": 3,
+        "position": "Defending",
+        "nationality": "",
+        "birthday": "0000-00-00 00:00:00",
+        "height": 0.0,
+        "weight": 0.0,
+        "dni": "",
+        "ss": "",
+        "address": "",
+        "phone": "",
+        "mail": ""
+    }
+]
