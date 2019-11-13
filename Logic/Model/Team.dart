@@ -13,9 +13,10 @@ class Team
   String name, shield, address, location, zipcode, province, fieldname, fieldtype;
   List<Player> players;
 
-  Team(this.id, this.name, this.shield, this.address, this.location, 
+  Team(this.name, this.shield, this.address, this.location, 
        this.zipcode, this.province, this.fieldname, this.fieldtype, List<dynamic> playersid)
   {
+    this.id = getId(getAllTeamsData());
     playersid = new List<int>.from(playersid.map((item) => int.parse(item)));
     playersid.forEach((player) => this.players.add(getAllPlayersData().firstWhere((item) => item.id == player)));
   }
@@ -51,10 +52,27 @@ class Team
     };
   }
 
+  toPrint()
+  {
+    print("Id: " + this.id.toString() + "\n");
+    print("Name: " + this.name + "\n");
+    print("Address: " + this.address + "\n");
+    print("Location: " + this.location + "\n");
+    print("Zipcode: " + this.zipcode + "\n");
+    print("Province: " + this.province + "\n");
+    print("Fieldname: " + this.fieldname + "\n");
+    print("Fieldtype: " + this.fieldtype + "\n");
+    print("Players: " + "\n")
+    for(var player in this.players)
+    {
+      print(player.name + ' ' + player.surname + "\n");
+    }
+    print(' ');
+  }
+
   factory Team.fromJson(Map<String,dynamic> json)
   {
-    return new Team(json['id'] as int,
-                  json['name'] as String,
+    return new Team(json['name'] as String,
                   json['shield'] as String,
                   json['address'] as String, 
                   json['location'] as String, 
