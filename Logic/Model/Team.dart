@@ -62,7 +62,7 @@ class Team
     print("Province: " + this.province + "\n");
     print("Fieldname: " + this.fieldname + "\n");
     print("Fieldtype: " + this.fieldtype + "\n");
-    print("Players: " + "\n")
+    print("Players: " + "\n");
     for(var player in this.players)
     {
       print(player.name + ' ' + player.surname + "\n");
