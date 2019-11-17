@@ -7,6 +7,7 @@ import 'dart:convert' show json;
 import 'dart:io';
 import 'package:egarafutsal/Logic/Model/Player.dart';
 import 'package:egarafutsal/Logic/Model/Team.dart';
+import 'package:egarafutsal/Logic/Model/Game.dart';
 import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
 
 int getId(var data) 
@@ -114,6 +115,22 @@ bool deleteTeam(Team team)
     Team item = data.firstWhere((item) => item.id == team.id);
     data.remove(item);
     exportTeamsData(data);
+    return true;
+  }
+  catch (Exception)
+  {
+    return false;
+  }
+}
+
+bool deleteGame(Game match)
+{
+  var data = getAllGamesData();
+  try
+  {
+    Game item = data.firstWhere((item) => item.id == match.id);
+    data.remove(item);
+    exportGamesData(data);
     return true;
   }
   catch (Exception)
