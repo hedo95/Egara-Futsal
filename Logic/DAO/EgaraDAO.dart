@@ -5,10 +5,15 @@ import 'dart:convert' show json;
 import 'dart:io';
 import 'package:egarafutsal/Logic/Model/Player.dart';
 import 'package:egarafutsal/Logic/Model/Team.dart';
+import 'package:egarafutsal/Logic/Model/Game.dart';
 
 String path = '/Users/jesushedo/Flutter/egarafutsal/Data/',
        playersfile = path + 'Players.json',
-       teamsfile = path + 'Teams.json';
+       teamsfile = path + 'Teams.json',
+       gamesfile = path + 'Games.json';
+
+
+
 
 List<Player> getAllPlayersData()
 {
@@ -23,6 +28,16 @@ List<Team> getAllTeamsData()
   List jsonData = json.decode(jsonString);
   return new List<Team>.from(jsonData.map((item) => new Team.fromJson(item)).toList());
 }
+
+List<Game> getAllGamesData()
+{
+  var jsonString = File(gamesfile).readAsStringSync();
+  List jsonData = json.decode(jsonString);
+  return new List<Game>.from(jsonData.map((item) => new Game.fromJson(item)).toList());
+}
+
+
+
 
 void exportPlayersData(List<Player> data)
 {
@@ -40,23 +55,43 @@ void exportTeamsData(List<Team> data)
   File(teamsfile).writeAsStringSync(jsonData.toString());
 }
 
-void appendPlayer(Player player)
+void exportGamesData(List<Game> data)
+{
+  data.sort((a,b) => a.id.compareTo(b.id));
+  List<dynamic> jsonData = [];
+  data.forEach((item) => jsonData.add(json.encode(item.toJson())));
+  File(gamesfile).writeAsStringSync(jsonData.toString());
+}
+
+
+
+
+void appendPlayer(Player obj)
 {
   var data = getAllPlayersData();
-  if (!data.any((item) => item.id == player.id))
+  if (!data.any((item) => item.id == obj.id))
   {
-    data.add(player);
+    data.add(obj);
     exportPlayersData(data);
   }
 }
 
-void appendTeam(Team team)
+void appendTeam(Team obj)
 {
   var data = getAllTeamsData();
-  if (!data.any((item) => item.id == team.id))
+  if (!data.any((item) => item.id == obj.id))
   {
-    data.add(team);
+    data.add(obj);
     exportTeamsData(data);
   }
 }
 
+void appendGame(Game obj)
+{
+  var data = getAllGamesData();
+  if (!data.any((item) => item.id == obj.id))
+  {
+    data.add(obj);
+    exportGamesData(data);
+  }
+}
