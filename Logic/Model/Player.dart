@@ -6,55 +6,88 @@ import 'dart:io';
 import 'package:egarafutsal/Logic/BO/EgaraBO.dart';
 import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
 
-class Game
+class Player
 {
-  String localTeam, awayTeam;
-  int id,localGoals, awayGoals;
-  String fieldname;
-  List<List<dynamic>> events; // events.forEach((event) => event[0] = "What"; event[1] = "Who" ; event[2] = Minute);
+  // Professional data
+  String position, name, surname, function;
+  int id, dorsal, goals, yellowcards, redcards;
 
-  Game(this.localTeam, this.awayTeam, this.localGoals, this.awayGoals, List<dynamic> actions)
+  Player
+  (
+    this.id, this.name, this.surname, 
+    this.function, this.dorsal,this.position,
+    this.goals, this.yellowcards, this.redcards
+  );
+
+
+  Player.def()
   {
-    this.id = getId(getAllGamesData());
-
-    for(var action in actions)
-    {
-      this.events.add(action);
-    }
-  }
-
-  Game.def()
-  {
-    this.localTeam = "";
-    this.awayTeam = "";
-    this.localGoals = 0;
-    this.awayGoals = 0;
-    this.events = [];
+    this.id = getId(getAllPlayersData());
+    this.name = "";
+    this.surname = "";
+    this.function = "";
+    this.dorsal = 0;
+    this.position = "";
+    this.goals = 0;
+    this.yellowcards = 0;
+    this.redcards = 0;
   }
 
   toJson()
   {
-    return
+    return 
     {
-      'localTeam': this.localTeam,
-      'awayTeam': this.awayTeam,
-      'localGoals': this.localGoals,
-      'awayGoals': this.awayGoals,
-      'events': this.events
+      'id': this.id,
+      'name': this.name,
+      'surname': this.surname,
+      'function': this.function,
+      'dorsal': this.dorsal,
+      'position': this.position,
+      'goals': this.goals,
+      'yellowcards': this.yellowcards,
+      'redcards': this.redcards
     };
   }
 
   toPrint()
   {
-    print("Id: " + this.id.toString() + "\n");
-    print("Local team: " + this.localTeam + "\n");
-    print("Away team: " + this.awayTeam + "\n");
-    print("Local goals: " + this.localGoals.toString() + "\n");
-    print("Away goals: " + this.awayGoals.toString() + "\n");
-    for(var event in this.events)
+    if(this.function == "Player")
     {
-      print(event[0] + ' ' + event[1] + " minuto " + event[2].toString() + "\n");
+      print("Id: " + this.id.toString() + "\n");
+      print("Name: " + this.name + "\n");
+      print("Surname: " + this.surname + "\n");
+      print("Function: " + this.function + "\n");
+      print("Dorsal: " + this.dorsal.toString() + "\n");
+      print("Position: " + this.position.toString() + "\n");
+      print("Goals: " + this.goals.toString() + "\n");
+      print("Yellow cards: " + this.yellowcards.toString() + "\n");
+      print("Red cards: " + this.redcards.toString() + "\n");
+      print('');
     }
-    print(' ');
+    else // function == "Coach"
+    {
+      print("Id: " + this.id.toString() + "\n");
+      print("Name: " + this.name + "\n");
+      print("Surname: " + this.surname + "\n");
+      print("Function: " + this.function + "\n");
+      print('');
+    }
   }
-}
+
+
+  //Convert from Json to Object
+  factory Player.fromJson(Map<String,dynamic> json)
+  {
+    return new Player
+    (
+      json['id'] as int,
+      json['name'] as String,
+      json['surname'] as String,
+      json['function'] as String, 
+      json['dorsal'] as int, 
+      json['position'] as String,
+      json['goals'] as int,
+      json['yellowcards'] as int,
+      json['redcards'] as int
+    );
+  }
