@@ -17,8 +17,7 @@ class Team
 
   Team
   (
-    this.id, this.name, this.points, this.goals, this.concededGoals,
-    this.yellowcards,this.redcards, this.shield, this.address,
+    this.id, this.name, this.points, this.shield, this.address,
     this.location, this.zipcode, this.province, this.fieldname, 
     this.fieldtype, List<dynamic> playersid
   )
@@ -50,10 +49,6 @@ class Team
     {
       'id': this.id,
       'name': this.name,
-      'goals': this.goals,
-      'concededGoals': this.concededGoals,
-      'yellowcards': this.yellowcards,
-      'redcards': this.redcards,
       'shield': this.shield,
       'address': this.address,
       'location': this.location,
@@ -90,10 +85,6 @@ class Team
       json['id'] as int,
       json['name'] as String,
       json['points'] as int,
-      json['goals'] as int,
-      json['concededGoals'] as int,
-      json['yellowcards'] as int,
-      json['redcards'] as int,
       json['shield'] as String,
       json['address'] as String, 
       json['location'] as String, 
