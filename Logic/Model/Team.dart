@@ -13,7 +13,8 @@ class Team
   String name, shield, address, location, zipcode, province, fieldname, fieldtype;
   List<Player> players;
 
-  int points, goals, concededGoals, yellowcards, redcards;
+  int points, goals, concededGoals, yellowcards, redcards,
+      wonGames, drawGames, lostGames;
 
   Team
   (
@@ -30,7 +31,7 @@ class Team
   {
     this.id = getId(getAllTeamsData());
     this.name = "";
-    this.points = 0;
+    this.points = -1;
     this.goals = 0;
     this.concededGoals = 0;
     this.shield = "";
