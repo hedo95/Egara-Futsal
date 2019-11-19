@@ -15,53 +15,53 @@ class Game
   Map<double,String> goalScorers; 
   Map<double,String> yellowCards;
   Map<double,String> redCards;
+  List<String> localSquad, awaySquad;
 
   Game
   (
     this.id, this.localTeam, this.awayTeam, 
     this.localGoals,this.awayGoals, this.goalScorers, 
-    this.yellowCards,this.redCards
-  );
-
-
-  Game.def()
-  {
-    this.localTeam = "";
-    this.awayTeam = "";
-    this.localGoals = 0;
-    this.awayGoals = 0;
-    this.goalScorers = {};
-    this.yellowCards = {};
-    this.redCards = {};
-  }
-
-  // Constructor that update teams and players data from the game
-  Game.add
-  (
-    this.localTeam, this.awayTeam, this.localGoals,
-    this.awayGoals, this.goalScorers, this.yellowCards,
-    this.redCards
+    this.yellowCards,this.redCards, 
+    List<dynamic> localSquad, List<dynamic> awaySquad
   )
   {
-    var teams = getAllTeamsData();
-    teams.firstWhere((item) => item.name == this.localTeam).goals += this.localGoals;
-    teams.firstWhere((item) => item.name == this.awayTeam).goals += this.awayGoals;
-
-    if(this.localGoals > this.awayGoals)
+    this.localSquad = new List<String>.from(localSquad.map((item) => item.toString())).toList();
+    this.awaySquad = new List<String>.from(awaySquad.map((item) => item.toString())).toList();
+    Team localTeam = getAllTeamsData().firstWhere((item) => item.name == this.localTeam);
+    Team awayTeam = getAllTeamsData().firstWhere((item) => item.name == this.awayTeam);
+    localTeam.goals += this.localGoals;
+    awayTeam.goals += this.awayGoals;
+    
+    if (whosWiner(localTeam, awayTeam).points == -1)
     {
-      teams.firstWhere((item) => item.name == this.localTeam).points += 3;
-    }
-    else if (this.localGoals < this.awayGoals)
-    {
-      teams.firstWhere((item) => item.name == this.awayTeam).points += 3;
+      localTeam.points ++; awayTeam.points++;
+      localTeam.drawGames++; awayTeam.drawGames++;
     }
     else
     {
-      teams.firstWhere((item) => item.name == this.localTeam).points += 1;
-      teams.firstWhere((item) => item.name == this.awayTeam).points += 1;
+      if(whosWiner(localTeam, awayTeam) == localTeam)
+      {
+        localTeam.points += 3; localTeam.wonGames++;
+        awayTeam.lostGames++;
+      }
+      else
+      {
+        awayTeam.points += 3; awayTeam.wonGames++;
+        localTeam.lostGames++;
+      }
     }
+    
+    createUpdateTeam
+    (
+        id: localTeam.id,
+        team: localTeam
+    );
 
-    exportTeamsData(teams);
+    createUpdateTeam
+    (
+        id: awayTeam.id,
+        team: awayTeam
+    );
 
     var localPlayers = getAllTeamsData().firstWhere((item) => item.name == this.localTeam).players.toList();
     var awayPlayers = getAllTeamsData().firstWhere((item) => item.name == this.awayTeam).players.toList();
@@ -131,6 +131,175 @@ class Game
         );
       }
     }
+
+    for (var player in this.localSquad)
+    {
+      localTeam.players.firstWhere((item) => item.name == player).playedGames++;
+      createUpdatePlayer
+      (
+        id: awayPlayers.firstWhere((item) => item.name == player).id,
+        player: awayPlayers.firstWhere((item) => item.name == player)
+      );
+    }
+
+    for (var player in this.awaySquad)
+    {
+      awayTeam.players.firstWhere((item) => item.name == player).playedGames++;
+      createUpdatePlayer
+      (
+        id: awayPlayers.firstWhere((item) => item.name == player).id,
+        player: awayPlayers.firstWhere((item) => item.name == player)
+      );
+    }
+  }
+
+
+  Game.def()
+  {
+    this.localTeam = "";
+    this.awayTeam = "";
+    this.localGoals = 0;
+    this.awayGoals = 0;
+    this.goalScorers = {};
+    this.yellowCards = {};
+    this.redCards = {};
+  }
+
+  // Constructor that update teams and players data from the game
+  Game.add
+  (
+    this.localTeam, this.awayTeam, this.localGoals,
+    this.awayGoals, this.goalScorers, this.yellowCards,
+    this.redCards, this.localSquad, this.awaySquad
+  )
+  {
+    this.id = getId(getAllGamesData());
+    Team localTeam = getAllTeamsData().firstWhere((item) => item.name == this.localTeam);
+    Team awayTeam = getAllTeamsData().firstWhere((item) => item.name == this.awayTeam);
+    localTeam.goals += this.localGoals;
+    awayTeam.goals += this.awayGoals;
+    
+    if (whosWiner(localTeam, awayTeam).points == -1)
+    {
+      localTeam.points ++; awayTeam.points++;
+      localTeam.drawGames++; awayTeam.drawGames++;
+    }
+    else
+    {
+      if(whosWiner(localTeam, awayTeam) == localTeam)
+      {
+        localTeam.points += 3; localTeam.wonGames++;
+        awayTeam.lostGames++;
+      }
+      else
+      {
+        awayTeam.points += 3; awayTeam.wonGames++;
+        localTeam.lostGames++;
+      }
+    }
+    
+    createUpdateTeam
+    (
+        id: localTeam.id,
+        team: localTeam
+    );
+
+    createUpdateTeam
+    (
+        id: awayTeam.id,
+        team: awayTeam
+    );
+
+    var localPlayers = getAllTeamsData().firstWhere((item) => item.name == this.localTeam).players.toList();
+    var awayPlayers = getAllTeamsData().firstWhere((item) => item.name == this.awayTeam).players.toList();
+
+    for (var value in this.goalScorers.values)
+    {
+      if (localPlayers.any((item) => item.name == value))
+      {
+        localPlayers.firstWhere((item) => item.name == value).goals += 1;
+        createUpdatePlayer
+        (
+          id: localPlayers.firstWhere((item) => item.name == value).id,
+          player: localPlayers.firstWhere((item) => item.name == value)
+        );
+      }
+      else
+      {
+        awayPlayers.firstWhere((item) => item.name == value).goals += 1;
+        createUpdatePlayer
+        (
+          id: awayPlayers.firstWhere((item) => item.name == value).id,
+          player: awayPlayers.firstWhere((item) => item.name == value)
+        );
+      }
+    }
+
+    for (var value in this.yellowCards.values)
+    {
+      if (localPlayers.any((item) => item.name == value))
+      {
+        localPlayers.firstWhere((item) => item.name == value).yellowcards += 1;
+        createUpdatePlayer
+        (
+          id: localPlayers.firstWhere((item) => item.name == value).id,
+          player: localPlayers.firstWhere((item) => item.name == value)
+        );
+      }
+      else
+      {
+        awayPlayers.firstWhere((item) => item.name == value).yellowcards += 1;
+        createUpdatePlayer
+        (
+          id: awayPlayers.firstWhere((item) => item.name == value).id,
+          player: awayPlayers.firstWhere((item) => item.name == value)
+        );
+      }
+    }
+
+    for (var value in this.redCards.values)
+    {
+      if (localPlayers.any((item) => item.name == value))
+      {
+        localPlayers.firstWhere((item) => item.name == value).redcards += 1;
+        createUpdatePlayer
+        (
+          id: localPlayers.firstWhere((item) => item.name == value).id,
+          player: localPlayers.firstWhere((item) => item.name == value)
+        );
+      }
+      else
+      {
+        awayPlayers.firstWhere((item) => item.name == value).redcards += 1;
+        createUpdatePlayer
+        (
+          id: awayPlayers.firstWhere((item) => item.name == value).id,
+          player: awayPlayers.firstWhere((item) => item.name == value)
+        );
+      }
+    }
+
+    for (var player in this.localSquad)
+    {
+      localTeam.players.firstWhere((item) => item.name == player).playedGames++;
+      createUpdatePlayer
+      (
+        id: awayPlayers.firstWhere((item) => item.name == player).id,
+        player: awayPlayers.firstWhere((item) => item.name == player)
+      );
+    }
+
+    for (var player in this.awaySquad)
+    {
+      awayTeam.players.firstWhere((item) => item.name == player).playedGames++;
+      createUpdatePlayer
+      (
+        id: awayPlayers.firstWhere((item) => item.name == player).id,
+        player: awayPlayers.firstWhere((item) => item.name == player)
+      );
+    }
+
+    appendGame(this);
   }
 
   toJson()
@@ -143,7 +312,9 @@ class Game
       'awayGoals': this.awayGoals,
       'goalScorers': this.goalScorers,
       'yellowcards': this.yellowCards,
-      'redcards': this.redCards
+      'redcards': this.redCards,
+      'localsquad': this.localSquad,
+      'awaysquad': this.awaySquad
     };
   }
 
@@ -175,6 +346,8 @@ class Game
       json['goalScorers'] as Map<double,String>,
       json['yellowCards'] as Map<double,String>,
       json['redCards'] as Map<double,String>,
+      json['localsquad'] as List<dynamic>,
+      json['awaysquad'] as List<dynamic>
     );
   }
 
