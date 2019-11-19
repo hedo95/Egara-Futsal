@@ -10,13 +10,13 @@ class Player
 {
   // Professional data
   String position, name, surname, function;
-  int id, dorsal, goals, yellowcards, redcards;
+  int id, dorsal, goals, yellowcards, redcards, playedGames;
 
   Player
   (
-    this.id, this.name, this.surname, 
-    this.function, this.dorsal,this.position,
-    this.goals, this.yellowcards, this.redcards
+    this.id, this.name, this.surname, this.function, 
+    this.dorsal,this.position, this.goals, 
+    this.yellowcards, this.redcards, this.playedGames
   );
 
 
@@ -31,6 +31,7 @@ class Player
     this.goals = 0;
     this.yellowcards = 0;
     this.redcards = 0;
+    this.playedGames = 0;
   }
 
   toJson()
@@ -45,7 +46,8 @@ class Player
       'position': this.position,
       'goals': this.goals,
       'yellowcards': this.yellowcards,
-      'redcards': this.redcards
+      'redcards': this.redcards,
+      'playedgames': this.playedGames
     };
   }
 
@@ -62,6 +64,7 @@ class Player
       print("Goals: " + this.goals.toString() + "\n");
       print("Yellow cards: " + this.yellowcards.toString() + "\n");
       print("Red cards: " + this.redcards.toString() + "\n");
+      print("Played games: " + this.playedGames.toString() + "\n");
       print('');
     }
     else // function == "Coach"
@@ -88,6 +91,9 @@ class Player
       json['position'] as String,
       json['goals'] as int,
       json['yellowcards'] as int,
-      json['redcards'] as int
+      json['redcards'] as int,
+      json['playedgames'] as int
     );
   }
+
+}
