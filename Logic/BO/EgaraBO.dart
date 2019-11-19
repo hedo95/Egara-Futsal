@@ -15,6 +15,25 @@ int getId(var data)
   return data[data.length-1].id + 1;
 }
 
+Team whosWiner(Team localTeam, Team awayTeam)
+{
+  if (localTeam.goals > awayTeam.goals)
+  {
+     return localTeam;
+  }
+
+  else if (localTeam.goals < awayTeam.goals)
+  {
+    return awayTeam;
+  }
+
+  else
+  {
+    return new Team.def();
+  }
+
+}
+
 Player createUpdatePlayer({int id, Player player})
 {
   if (id == null && player == null)
@@ -138,3 +157,5 @@ bool deleteGame(Game match)
     return false;
   }
 }
+
+
