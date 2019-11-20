@@ -20,16 +20,15 @@ class Team
   (
     this.id, this.name, this.points, this.shield, this.address,
     this.location, this.zipcode, this.province, this.fieldname, 
-    this.fieldtype, List<dynamic> playersid
+    this.fieldtype
   )
   {
-    playersid = new List<int>.from(playersid.map((item) => int.parse(item)));
-    playersid.forEach((player) => this.players.add(getAllPlayersData().firstWhere((item) => item.id == player)));
+    this.players = getAllPlayersData().where((item) => item.idteam == this.id).toList();
   }
 
   Team.def()
   {
-    this.id = getId(getAllTeamsData());
+    this.id = getTeamId(getAllTeamsData());
     this.name = "";
     this.points = -1;
     this.goals = 0;
@@ -41,7 +40,6 @@ class Team
     this.province = "";
     this.fieldname = "";
     this.fieldtype = "";
-    this.players = [];
   }
 
   toJson()
@@ -57,7 +55,6 @@ class Team
       'province': this.province,
       'fieldname': this.fieldname,
       'fieldtype': this.fieldtype,
-      'players': this.players.map((player) => player.id).toList()
     };
   }
 
@@ -72,10 +69,6 @@ class Team
     print("Fieldname: " + this.fieldname + "\n");
     print("Fieldtype: " + this.fieldtype + "\n");
     print("Players: " + "\n");
-    for(var player in this.players)
-    {
-      print(player.name + ' ' + player.surname + "\n");
-    }
     print(' ');
   }
 
@@ -93,7 +86,6 @@ class Team
       json['province'] as String, 
       json['fieldname'] as String,
       json['fieldtype'] as String,
-      json['players'] as List<dynamic>
     );
   }
 }
