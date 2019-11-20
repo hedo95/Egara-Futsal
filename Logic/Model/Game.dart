@@ -10,7 +10,7 @@ import 'package:egarafutsal/Logic/Model/Team.dart';
 class Game
 {
   String localTeam, awayTeam;
-  int id,localGoals, awayGoals;
+  int id,localGoals, awayGoals, journey;
   String fieldname;
   Map<double,String> goalScorers; 
   Map<double,String> yellowCards;
@@ -19,7 +19,7 @@ class Game
 
   Game
   (
-    this.id, this.localTeam, this.awayTeam, 
+    this.id, this.journey, this.localTeam, this.awayTeam, 
     this.localGoals,this.awayGoals, this.goalScorers, 
     this.yellowCards,this.redCards, 
     List<dynamic> localSquad, List<dynamic> awaySquad
@@ -63,8 +63,8 @@ class Game
         team: awayTeam
     );
 
-    var localPlayers = getAllTeamsData().firstWhere((item) => item.name == this.localTeam).players.toList();
-    var awayPlayers = getAllTeamsData().firstWhere((item) => item.name == this.awayTeam).players.toList();
+    var localPlayers = getAllPlayersData().where((item) => item.idteam == localTeam.id).toList();
+    var awayPlayers = getAllPlayersData().where((item) => item.idteam == awayTeam.id).toList();
 
     for (var value in this.goalScorers.values)
     {
@@ -156,6 +156,8 @@ class Game
 
   Game.def()
   {
+    this.id = getId(getAllGamesData());
+    this.journey = maxJourney(getAllGamesData()) +1;
     this.localTeam = "";
     this.awayTeam = "";
     this.localGoals = 0;
@@ -339,6 +341,7 @@ class Game
     return new Game
     (
       json['id'] as int,
+      json['journey'] as int,
       json['localTeam'] as String,
       json['awayTeam'] as String,
       json['localGoals'] as int,
