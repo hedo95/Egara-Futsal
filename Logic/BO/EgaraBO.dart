@@ -15,6 +15,24 @@ int getId(var data)
   return data[data.length-1].id + 1;
 }
 
+int getTeamId(List<Team> teams)
+{
+  return teams[teams.length-1].id + 1;
+}
+
+int maxJourney(List<Game> games)
+{
+  int max = 0;
+  for(var game in games)
+  {
+    if (game.journey > max)
+    {
+      max = game.journey;
+    }
+  }
+  return max;
+}
+
 Team whosWiner(Team localTeam, Team awayTeam)
 {
   if (localTeam.goals > awayTeam.goals)
