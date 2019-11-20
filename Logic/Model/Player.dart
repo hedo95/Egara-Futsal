@@ -10,12 +10,12 @@ class Player
 {
   // Professional data
   String position, name, surname, function;
-  int id, dorsal, goals, yellowcards, redcards, playedGames;
+  int id, idteam, dorsal, goals, yellowcards, redcards, playedGames;
 
   Player
   (
-    this.id, this.name, this.surname, this.function, 
-    this.dorsal,this.position, this.goals, 
+    this.id, this.idteam,this.name, this.surname, 
+    this.function, this.dorsal,this.position, this.goals, 
     this.yellowcards, this.redcards, this.playedGames
   );
 
@@ -23,6 +23,7 @@ class Player
   Player.def()
   {
     this.id = getId(getAllPlayersData());
+    this.idteam = -1;
     this.name = "";
     this.surname = "";
     this.function = "";
@@ -39,6 +40,7 @@ class Player
     return 
     {
       'id': this.id,
+      'idteam': this.idteam,
       'name': this.name,
       'surname': this.surname,
       'function': this.function,
@@ -53,11 +55,13 @@ class Player
 
   toPrint()
   {
+    String teamName = getAllTeamsData().firstWhere((item) => item.id == this.idteam).name;
     if(this.function == "Player")
     {
       print("Id: " + this.id.toString() + "\n");
       print("Name: " + this.name + "\n");
       print("Surname: " + this.surname + "\n");
+      print("Team: " +  teamName + '\n');
       print("Function: " + this.function + "\n");
       print("Dorsal: " + this.dorsal.toString() + "\n");
       print("Position: " + this.position.toString() + "\n");
@@ -72,6 +76,7 @@ class Player
       print("Id: " + this.id.toString() + "\n");
       print("Name: " + this.name + "\n");
       print("Surname: " + this.surname + "\n");
+      print("Team: " +  teamName + '\n');
       print("Function: " + this.function + "\n");
       print('');
     }
@@ -84,6 +89,7 @@ class Player
     return new Player
     (
       json['id'] as int,
+      json['idteam'] as int,
       json['name'] as String,
       json['surname'] as String,
       json['function'] as String, 
@@ -95,5 +101,6 @@ class Player
       json['playedgames'] as int
     );
   }
+
 
 }
