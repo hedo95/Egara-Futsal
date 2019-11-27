@@ -11,28 +11,55 @@ class Team
 {
   int id;
   String name, shield, address, location, zipcode, province, fieldname, fieldtype;
-  List<Player> players;
+  List<Player> players = [];
 
-  int points, goals, concededGoals, yellowcards, redcards,
-      wonGames, drawGames, lostGames;
+  int points = 0, goals = 0, concededGoals = 0, yellowcards = 0, redcards = 0,
+      wonGames = 0, drawnGames = 0, lostGames = 0, totalgames = 0;
 
   Team
   (
-    this.id, this.name, this.points, this.shield, this.address,
-    this.location, this.zipcode, this.province, this.fieldname, 
-    this.fieldtype
+    this.id, this.name, this.shield, this.address, this.location, this.zipcode,
+    this.province, this.fieldname, this.fieldtype
   )
   {
-    this.players = getAllPlayersData().where((item) => item.idteam == this.id).toList();
+    this.points = 0;
+    this.concededGoals = 0;
+    this.yellowcards = 0;
+    this.redcards = 0;
+    this.wonGames = 0;
+    this.drawnGames = 0;
+    this.lostGames = 0;
+    this.totalgames = 0;
+  }
+
+  Team.fromGame
+  (
+    this.id, this.name
+  )
+  {
+    this.points = 0;
+    this.concededGoals = 0;
+    this.yellowcards = 0;
+    this.redcards = 0;
+    this.wonGames = 0;
+    this.drawnGames = 0;
+    this.lostGames = 0;
+    this.totalgames = 0;
   }
 
   Team.def()
   {
-    this.id = getTeamId(getAllTeamsData());
+    this.id = getId(getAllTeamsData());
     this.name = "";
-    this.points = -1;
+    this.points = 0;
     this.goals = 0;
     this.concededGoals = 0;
+    this.wonGames = 0;
+    this.lostGames = 0;
+    this.drawnGames = 0;
+    this.yellowcards = 0;
+    this.redcards = 0;
+    this.totalgames = 0;
     this.shield = "";
     this.address = "";
     this.location = "";
@@ -78,7 +105,6 @@ class Team
     (
       json['id'] as int,
       json['name'] as String,
-      json['points'] as int,
       json['shield'] as String,
       json['address'] as String, 
       json['location'] as String, 
