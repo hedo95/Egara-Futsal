@@ -6,8 +6,11 @@ import 'dart:io';
 import 'package:egarafutsal/Logic/Model/Player.dart';
 import 'package:egarafutsal/Logic/Model/Team.dart';
 import 'package:egarafutsal/Logic/Model/Game.dart';
+import 'package:egarafutsal/Logic/Model/Journey.dart';
+import 'package:egarafutsal/Logic/Model/User.dart';
+import 'package:egarafutsal/Logic/BO/BO.dart';
 
-String path = '/Users/jesushedo/Flutter/egarafutsal/Data/',
+String path = '/Users/jesushedo/Desktop/Q7/Android/Lib/EF_Backend/Data/',
        playersfile = path + 'Players.json',
        teamsfile = path + 'Teams.json',
        gamesfile = path + 'Games.json';
@@ -17,6 +20,7 @@ String path = '/Users/jesushedo/Flutter/egarafutsal/Data/',
 
 List<Player> getAllPlayersData()
 {
+  exportPlayersFromGames();
   var jsonString = File(playersfile).readAsStringSync();
   List jsonData = json.decode(jsonString);
   return new List<Player>.from(jsonData.map((item) => new Player.fromJson(item)).toList());
@@ -33,10 +37,8 @@ List<Game> getAllGamesData()
 {
   var jsonString = File(gamesfile).readAsStringSync();
   List jsonData = json.decode(jsonString);
-  return new List<Game>.from(jsonData.map((item) => new Game.fromJson(item)).toList());
+  return new List<Game>.from(jsonData.map((item) => new Game.fromJson(item))).toList();
 }
-
-
 
 
 void exportPlayersData(List<Player> data)
@@ -52,7 +54,10 @@ void exportTeamsData(List<Team> data)
   data.sort((a,b) => a.id.compareTo(b.id));
   List<dynamic> jsonData = [];
   data.forEach((item) => jsonData.add(json.encode(item.toJson())));
-  File(teamsfile).writeAsStringSync(jsonData.toString());
+  for(int n = 0; n < jsonData.length; n++)
+  {
+    File(teamsfile).writeAsStringSync(jsonData[n].toString(), mode: FileMode.append);
+  }
 }
 
 void exportGamesData(List<Game> data)
@@ -60,7 +65,10 @@ void exportGamesData(List<Game> data)
   data.sort((a,b) => a.id.compareTo(b.id));
   List<dynamic> jsonData = [];
   data.forEach((item) => jsonData.add(json.encode(item.toJson())));
-  File(gamesfile).writeAsStringSync(jsonData.toString());
+  for(int n = 0; n < jsonData.length; n++)
+  {
+    File(gamesfile).writeAsStringSync(jsonData[n].toString(), mode: FileMode.append);
+  }
 }
 
 
@@ -68,8 +76,8 @@ void exportGamesData(List<Game> data)
 
 void appendPlayer(Player obj)
 {
-  var data = getAllPlayersData();
-  if (!data.any((item) => item.id == obj.id))
+  List<Player> data = getAllPlayersData();
+  if (!data.any((item) => (item.id == obj.id) || (item.dorsal == obj.dorsal)))
   {
     data.add(obj);
     exportPlayersData(data);
@@ -78,8 +86,8 @@ void appendPlayer(Player obj)
 
 void appendTeam(Team obj)
 {
-  var data = getAllTeamsData();
-  if (!data.any((item) => item.id == obj.id))
+  List<Team> data = getAllTeamsData();
+  if (!data.any((item) => (item.id == obj.id) || (item.name == obj.name)))
   {
     data.add(obj);
     exportTeamsData(data);
@@ -88,7 +96,7 @@ void appendTeam(Team obj)
 
 void appendGame(Game obj)
 {
-  var data = getAllGamesData();
+  List<Game> data = getAllGamesData();
   if (!data.any((item) => item.id == obj.id))
   {
     data.add(obj);
