@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'dart:io' show File;
 import 'dart:convert' show json;
 import 'dart:io';
+import 'package:egarafutsal/Logic/Model/Player.dart';
 
 class Journey
 {
