@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:egarafutsal/Logic/BO/EgaraBO.dart';
 import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
 import 'package:egarafutsal/Logic/Model/Team.dart';
+import 'package:egarafutsal/Logic/Model/Player.dart';
 
 class Game
 {
