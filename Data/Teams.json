@@ -1,0 +1,134 @@
+[
+    {
+        "id": 20000,
+        "name": "Gadex Club Esportiu, A",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20001,
+        "name": "Pou Escorial, A",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20002,
+        "name": "Fundació Terrassa FC 1906, A",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20003,
+        "name": "Escola Pia Sabadell, C.E, A",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20004,
+        "name": "Futsal Terrassa Les Saveurs Club Esportiu, A",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20005,
+        "name": "Oar Gràcia Sbd, E.F., A",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20006,
+        "name": "Horta Futbol Sala Club, A",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20007,
+        "name": "Acció Sant Martí, A",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20008,
+        "name": "Egara Futsal 2019, C.F. SALA",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20009,
+        "name": "Penya Barça Barbera del Valles",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20010,
+        "name": "CFS Les Glòries 2014, B",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    },
+    {
+        "id": 20011,
+        "name": "Castellbisbal, F.S, B",
+        "shield": "",
+        "address": "",
+        "location": "",
+        "zipcode": "",
+        "province": "",
+        "fieldname": "",
+        "fieldtype": ""
+    }
+]
