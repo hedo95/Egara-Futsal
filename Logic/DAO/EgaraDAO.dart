@@ -8,7 +8,7 @@ import 'package:egarafutsal/Logic/Model/Team.dart';
 import 'package:egarafutsal/Logic/Model/Game.dart';
 import 'package:egarafutsal/Logic/Model/Journey.dart';
 import 'package:egarafutsal/Logic/Model/User.dart';
-import 'package:egarafutsal/Logic/BO/BO.dart';
+import 'package:egarafutsal/Logic/BO/EgaraBO.dart';
 
 String path = '/Users/jesushedo/Desktop/Q7/Android/Lib/EF_Backend/Data/',
        playersfile = path + 'Players.json',
