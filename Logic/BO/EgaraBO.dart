@@ -1,44 +1,6 @@
-import 'dart:convert';
-import 'dart:core' as prefix0;
-import 'dart:core';
-import 'dart:ffi';
-import 'dart:io' show File;
-import 'dart:convert' show json;
-import 'dart:io';
-import 'package:egarafutsal/Logic/Model/Player.dart';
-import 'package:egarafutsal/Logic/Model/Team.dart';
-import 'package:egarafutsal/Logic/Model/Game.dart';
-import 'package:egarafutsal/Logic/Model/Journey.dart';
-import 'package:egarafutsal/Logic/Model/User.dart';
-import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
+// BO
 
-void exportPlayersFromGames()
-{
-  List<Game> games = getAllGamesData();
-  List<Player> allplayers = [];
-  for(var game in games)
-  {
-    for (var player in game.localSquad)
-    {
-      // Hacemos una especie de .distinct() para los jugadores de los encuentros
-      if (!allplayers.any((item) => item.name == player.name && player.surname == player.surname && player.dorsal == item.dorsal))
-      {
-        allplayers.add(player);
-      }
-    }
-    for (var player in game.awaySquad)
-    {
-      if (!allplayers.any((item) => item.name == player.name && player.surname == player.surname && player.dorsal == item.dorsal))
-      {
-        allplayers.add(player);
-      }
-    }
-  }
-
-  exportPlayersData(toAssignId(allplayers));
-}
-
-List<Player> toAssignId(List<Player> players)
+List<Player> toAssignId(List<Player> players) // Funciona
 {
   for(int n = 0; n < players.length; n++)
   {
@@ -48,12 +10,12 @@ List<Player> toAssignId(List<Player> players)
   return players;
 }
 
-int twolastResultsComparative()
+int twolastResultsComparative() // Funciona
 {
   String egarafutsal = "Egara Futsal 2019, C.F. SALA";
   // Asignamos con numeros que ha hecho el egarafutsal en cada jornada, si ha ganado es un 1, si ha empatado 0, si ha perdido -1
   int one, two;
-  List<Journey> calendar = getCalendar(getAllGamesData());
+  List<Journey> calendar = getCalendar(getAllGamesFromFile());
   // Cogemos las dos ultimas jornadas
   Journey present = calendar[calendar.length - 1];
   Journey past = calendar[calendar.length - 2];
@@ -117,37 +79,158 @@ int twolastResultsComparative()
   }
 }
 
+int catchArrow() // Devuelve un 1, un 0 o un -1.
+{
+  List<Journey> journeys = getAllTeamsData();
+  int journeyB = journeys[journeys.length - 1].journey;
+  int journeyA = journeys[journeys.length - 2].journey;
+  int currentPosition = journeys.firstWhere((item) => item.journey == journeyB).teams.firstWhere((item) => item.id == 20008).position;
+  int lastPosition = journeys.firstWhere((item) => item.journey == journeyA).teams.firstWhere((item) => item.id == 20008).position;
+  if (currentPosition > lastPosition) { return 1; }
+  else if (currentPosition == lastPosition) { return 0; }
+  else { return -1; }
+}
+
+// Asignar automaticamente un 'id', cogiendo el anterior sumandole 1.
 int getId(var data) 
 {
   return data[data.length-1].id++;
 }
 
-int getTeamId(List<Team> teams)
-{
-  return teams[teams.length-1].id + 1;
-}
-
 int getIdfromTeam(Team team) => team.id; 
 
-int gamesCounter(Team team)
+//Cogemos los equipos con los datos personales de su fichero, y datos estadisticos del fichero de los partidos.
+List<Journey> getAllTeamsData() // Funciona
 {
-  return team.wonGames + team.drawnGames + team.lostGames;
-}
-
-int maxJourney(List<Game> games)
-{
-  int max = 0;
-  for(var game in games)
+  List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty).toList(); // Partidods jugados
+  List<Team> teams = getAllTeamsFromFile().toList();
+  List<Journey> journeys = getCalendar(games);
+  for(var journey in journeys)
   {
-    if (game.journey > max)
+    for(var match in journey.games)
     {
-      max = game.journey;
+      Team localTeam = teams.firstWhere((item) => item.name == match.localTeam.name);
+      Team awayTeam = teams.firstWhere((item) => item.name == match.awayTeam.name);
+      localTeam.totalgames++;
+      awayTeam.totalgames++;
+      localTeam.goals += match.localGoals;
+      localTeam.concededGoals += match.awayGoals;
+      awayTeam.goals += match.localGoals;
+      awayTeam.concededGoals += match.localGoals;
+      for(MapEntry<Player,List<int>> map in match.yellowCards.entries)
+      {
+        if (map.key.idteam == localTeam.id)
+        {
+          localTeam.yellowcards++;
+        }
+        else
+        {
+          awayTeam.yellowcards++;
+        }
+      }
+      for(MapEntry<Player,List<int>> map in match.redCards.entries)
+      {
+        if (map.key.idteam == localTeam.id)
+        {
+          localTeam.redcards++;
+        }
+        else
+        {
+          awayTeam.redcards++;
+        }
+      }
+      String result = whosWinner(match.localGoals, match.awayGoals);
+      if(result == "1")
+      {
+        localTeam.points += 3; 
+        localTeam.wonGames++;
+        awayTeam.lostGames++;
+      }
+      else if(result == "2")
+      {
+        awayTeam.points += 3;
+        awayTeam.wonGames++;
+        localTeam.lostGames;;
+      }
+      else
+      {
+        localTeam.points++; awayTeam.points++;
+        localTeam.drawnGames++; awayTeam.drawnGames++;
+      }
+
+      int localTeamindex = teams.indexOf(localTeam);
+      teams.removeAt(localTeamindex);
+      teams.add(localTeam);
+      
+      int awayTeamindex = teams.indexOf(awayTeam);
+      teams.removeAt(awayTeamindex);
+      teams.add(awayTeam);
     }
+    teams.sort((b,a) => a.points.compareTo(b.points)); // Ordenamos por puntos
+    for(int k = 0; k < teams.length; k++)
+    {
+      teams[k].position = k+1; // Asignamos posición de la tabla 
+    }
+    journey.addTeams(teams);
   }
-  return max;
+  
+  return journeys;
 }
 
-List<Player> getPlayersRepeats(List<Game> games)
+// Cogemos los jugadores con los datos personales de su fichero, y datos estadisticos del fichero de los partidos.
+List<Journey> getAllPlayersData()
+{
+  List<Game> games = getAllGamesFromFile();
+  List<Player> players = getAllPlayersFromFile();
+  var journeys = getCalendar(games);
+  for(var journey in journeys)
+  {
+    for(var match in journey.games)
+    {
+      for(var player in match.localSquad)
+      {
+        players.firstWhere((item) => item.dorsal == player.dorsal && item.idteam == player.idteam).playedGames++;
+      }
+      for(var player in match.awaySquad)
+      {
+        players.firstWhere((item) => item.dorsal == player.dorsal && item.idteam == player.idteam).playedGames++;
+      }
+      for(MapEntry<Player,List<int>> map in match.yellowCards.entries)
+      {
+        players.firstWhere((item) => item.dorsal == map.key.dorsal && item.idteam == map.key.idteam).yellowcards++;
+      }
+      for(MapEntry<Player,List<int>> map in match.redCards.entries)
+      {
+        players.firstWhere((item) => item.dorsal == map.key.dorsal && item.idteam == map.key.idteam).redcards++;
+      }
+      for(MapEntry<Player,List<int>> map in match.goalScorers.entries)
+      {
+        players.firstWhere((item) => item.dorsal == map.key.dorsal && item.idteam == map.key.idteam).goals++;
+      }
+    }
+    players.sort((b,a) => a.goals.compareTo(b.goals));
+    journey.addPlayers(players);
+  }
+  return journeys;
+}
+
+
+List<Journey> getAllJourneys()
+{
+  var result = getAllTeamsData(); // Aquí tenemos partidos y equipos mapeados.
+  for(var journey in result)
+  {
+    List<Player> players = getAllPlayersData().firstWhere((item) => item.journey == journey.journey).players;
+    journey.addPlayers(players);  // Introducimos juagodres mapeados
+  }
+  return result; // Lista por jornadas de todos los datos de la App mapeados: Partidos, equipos y jugadores clasificados por jornadas. 
+}
+
+// Funciona 
+int maxJourney(List<Game> games)  => games.firstWhere((item) => item.localSquad.isEmpty).journey - 1;
+
+
+List<Player> getPlayersRepeats(List<Game> games) // Funciona, para cuando se cuela algún string repeat en games.json
 {
   List<Player> players = [];
   games.sort((a,b) => a.journey.compareTo(b.journey));
@@ -182,6 +265,7 @@ List<Player> getPlayersRepeats(List<Game> games)
   return result;
 }
 
+// Clasificamos los partidis por jornadas.
 List<Journey> getCalendar(List<Game> games)
 {
   List<Journey> result = [];
@@ -195,9 +279,10 @@ List<Journey> getCalendar(List<Game> games)
   return result;
 }
 
+// Determina el ganador, para asignar puntos por encuentro
 String whosWinner(int localGoals, int awayGoals)
 {
-  if (localGoals> awayGoals)
+  if (localGoals > awayGoals)
   {
      return "1";
   }
@@ -214,24 +299,6 @@ String whosWinner(int localGoals, int awayGoals)
 
 }
 
-Map<String,List<int>> gettingMappedMaps(Map<String,dynamic> obj)
-{
-    var mappedMap = new Map<String,List<int>>();
-    for(MapEntry<String,dynamic> map in obj.entries)
-    {
-      List<int> values = new List<int>.from(map.value);
-      if (mappedMap == null)
-      {
-        mappedMap = {map.key : values};
-      }
-      else
-      {
-        mappedMap.addAll({map.key : values});
-      }
-    }
-
-    return mappedMap;
-}
 
 Map<Player,List<int>> mappingDataFromMaps(Map<String,dynamic> obj, List<Player> localsquad, List<Player> awaysquad)
 {
@@ -256,8 +323,8 @@ List<Player> mappingDataFromSquad(List<dynamic> squad, Team team)
 
   for(String player in squad)
   {
-    String name = getNamesSurnames(player)[0];
-    String surname = getNamesSurnames(player)[1];
+    String name = getNamesSurnamesFromSquad(player)[0];
+    String surname = getNamesSurnamesFromSquad(player)[1];
     int dorsal = getDorsal(player);
     int idteam = team.id;
     result.add(new Player.game(name, surname, dorsal, idteam));
@@ -292,7 +359,7 @@ List<String> getNamesFromMap(String fullname)
   return result;
 }
 
-List<String> getNamesSurnames(String fullname)
+List<String> getNamesSurnamesFromSquad(String fullname)
 {
   List<String> result = [];
 
@@ -319,6 +386,26 @@ List<String> getNamesSurnames(String fullname)
   return result;
 }
 
+List<Team> getHomepageLeagueContainer()
+{
+  List<Journey> journeys = getAllTeamsData();
+  int index = journeys.length - 1;
+  List<Team> teams = journeys[index].teams;
+  int pos = teams.indexWhere((item) => item.id == 20008); // Sacamos el indice del Egara futsal
+  if(pos == 0)
+  {
+    return [teams[pos], teams[pos+1], teams[pos+2]];
+  }
+  else if(pos == (getAllTeamsData().length - 1))
+  {
+    return [teams[pos-2], teams[pos-1], teams[pos]];
+  }
+  else
+  {
+    return [teams[pos-1], teams[pos], teams[pos+1]];
+  }
+}
+
 Player createUpdatePlayer({int id, Player player})
 {
   if (id == null && player == null)
@@ -329,7 +416,7 @@ Player createUpdatePlayer({int id, Player player})
   {
     try
     {
-      Player foundPlayer = getAllPlayersData().firstWhere((item) => item.id == id);
+      Player foundPlayer = getAllPlayersFromFile().firstWhere((item) => item.id == id);
       return createUpdatePlayer(player: foundPlayer);
     }
     catch (Exception)
@@ -339,7 +426,7 @@ Player createUpdatePlayer({int id, Player player})
   }
   else 
   {
-    var data = getAllPlayersData();
+    var data = getAllPlayersFromFile();
     if (data.any((item) => item.id == player.id))
     {
       int index = data.indexWhere((item) => item.id == player.id);
@@ -367,7 +454,7 @@ Team createUpdateTeam({int id, Team team})
   {
     try
     {
-      Team foundTeam = getAllTeamsData().firstWhere((item) => item.id == id);
+      Team foundTeam = getAllTeamsFromFile().firstWhere((item) => item.id == id);
       return createUpdateTeam(team: foundTeam);
     }
     catch (Exception)
@@ -377,7 +464,7 @@ Team createUpdateTeam({int id, Team team})
   }
   else 
   {
-    var data = getAllTeamsData();
+    var data = getAllTeamsFromFile();
     if (data.any((item) => item.id == team.id))
     {
       int index = data.indexWhere((item) => item.id == team.id);
@@ -397,7 +484,7 @@ Team createUpdateTeam({int id, Team team})
 
 bool deletePlayer(Player player)
 {
-  var data = getAllPlayersData();
+  var data = getAllPlayersFromFile();
   try
   {
     Player item = data.firstWhere((item) => item.id == player.id);
@@ -413,7 +500,7 @@ bool deletePlayer(Player player)
 
 bool deleteTeam(Team team)
 {
-  var data = getAllTeamsData();
+  var data = getAllTeamsFromFile();
   try
   {
     Team item = data.firstWhere((item) => item.id == team.id);
@@ -429,7 +516,7 @@ bool deleteTeam(Team team)
 
 bool deleteGame(Game match)
 {
-  var data = getAllGamesData();
+  var data = getAllGamesFromFile();
   try
   {
     Game item = data.firstWhere((item) => item.id == match.id);
@@ -442,6 +529,4 @@ bool deleteGame(Game match)
     return false;
   }
 }
-
-
 
