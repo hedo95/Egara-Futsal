@@ -71,7 +71,30 @@ void exportGamesData(List<Game> data)
   }
 }
 
-
+void exportPlayersFromGames() // Funciona
+{
+  List<Game> games = getAllGamesFromFile();
+  List<Player> allplayers = [];
+  for(var game in games)
+  {
+    for (var player in game.localSquad)
+    {
+      // Hacemos una especie de .distinct() para los jugadores de los encuentros
+      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname  && player.dorsal == item.dorsal ))
+      {
+        allplayers.add(player);
+      }
+    }
+    for (var player in game.awaySquad)
+    {
+      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname && player.dorsal == item.dorsal))
+      {
+        allplayers.add(player);
+      }
+    }
+  }
+  exportPlayersData(toAssignId(allplayers));
+}
 
 
 void appendPlayer(Player obj)
