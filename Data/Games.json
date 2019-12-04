@@ -24,7 +24,7 @@
         "localsquad":
         [
             "3 SANTISTEBAN CLARET, ALBA",
-            "7 SANCHEZ CHANA, PAULA",
+            "8 SANCHEZ CHANA, PAULA",
             "9 GARCIA SANCHEZ, CRISTINA",
             "10 CRUZ CORDON, LAURA",
             "13 CASAS OLIVER, JUDIT",
@@ -128,7 +128,7 @@
         "localsquad":
         [
             "1 ALONSO BADIA, MARIA",
-            "2 POZO GARCIA RAYO, ARIADNA",
+            "21 POZO GARCIA RAYO, ARIADNA",
             "3 GALINDO BACH, ALTAIR JIN",
             "5 TELLEZ MERINO, LIDIA",
             "8 GONZALEZ CABALLERO, ANDREA",
@@ -184,12 +184,12 @@
         [
             "1 CANALES BAECHLER, ANDREA",
             "3 ESCALER PENELLA, IOANA", 
-            "4 GARCIA RODRIGUEZ, ANDREA",
+            "17 GARCIA RODRIGUEZ, ANDREA",
             "5 RUBIO RODRIGUEZ, ANNA", 
             "9 TARRASON LARA, ARIADNA", 
             "11 RUBIO RODRIGUEZ, JUDIT",
-            "14 PARDO SANTOS, LUCIA",
-            "19 ALCALDE CARRERAS, CRISTINA"
+            "23 PARDO SANTOS, LUCIA",
+            "7 ALCALDE CARRERAS, CRISTINA"
         ]
     },
     {
@@ -226,13 +226,13 @@
         ],
         "awaysquad":
         [
-            "12 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
-            "2 EL FILALI, ABIR", 
+            "1 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
+            "9 EL FILALI, ABIR", 
             "3 BEDDOUH, OUMAIMA",
             "7 MONTCUSI ARCOS, SARA", 
             "10 MONTCUSI ARCOS, LUCIA", 
             "8 GARCIA, SOFIA NOEMI",
-            "9 EL KARIA, FATIMA"
+            "6 EL KARIA, FATIMA"
         ]
     },
     {
@@ -270,7 +270,7 @@
             "8 STARRENBURG, JESSIE",
             "10 SABATÉ LLECHA, CRISTINA", 
             "14 ROVIRA PIBERNAT, MARIA", 
-            "4 LABORDA DEL TORO, SANDRA",
+            "6 LABORDA DEL TORO, SANDRA",
             "5 DE LA CALLE ARGELES, LAIA",
             "12 VILLAR MUÑOZ, SARA",
             "13 FADURDO MODESTO, ALBA",
@@ -299,17 +299,17 @@
         "redCards":{},
         "localsquad":
         [
-            "12 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
-            "2 EL FILALI, ABIR", 
+            "1 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
+            "9 EL FILALI, ABIR", 
             "3 BEDDOUH, OUMAIMA",
             "7 MONTCUSI ARCOS, SARA", 
             "10 MONTCUSI ARCOS, LUCIA", 
             "8 GARCIA, SOFIA NOEMI",
-            "9 EL KARIA, FATIMA"
+            "6 EL KARIA, FATIMA"
         ],
         "awaysquad":
         [
-            "7 SANCHEZ CHANA, PAULA",
+            "8 SANCHEZ CHANA, PAULA",
             "9 GARCIA SANCHEZ, CRISTINA",
             "10 CRUZ CORDON, LAURA",
             "11 MESTRE SINUES, SARA",
@@ -401,12 +401,12 @@
         [
             "1 CANALES BAECHLER, ANDREA",
             "3 ESCALER PENELLA, IOANA", 
-            "4 GARCIA RODRIGUEZ, ANDREA",
+            "17 GARCIA RODRIGUEZ, ANDREA",
             "5 RUBIO RODRIGUEZ, ANNA", 
             "9 TARRASON LARA, ARIADNA", 
             "11 RUBIO RODRIGUEZ, JUDIT",
-            "14 PARDO SANTOS, LUCIA",
-            "19 ALCALDE CARRERAS, CRISTINA",
+            "23 PARDO SANTOS, LUCIA",
+            "7 ALCALDE CARRERAS, CRISTINA",
             "10 PRAT MATIFOLL, LAURA",
             "19 HERRANDO SPALACCI, NOEMI",
             "22 FOLCH GUILLEN, BERTA"
@@ -504,10 +504,10 @@
         [
             "1 VERGÉS UBACH, MARTA",
             "7 VÁZQUEZ CEDILLO, SUSANA", 
-            "8 STARRENBURG , JESSIE",
-            "14 ALONSO PEREZ, JULIA",
+            "8 STARRENBURG, JESSIE",
+            "7 ALONSO PEREZ, JULIA",
             "10 SABATÉ LLECHA, CRISTINA",
-            "4 LABORDA DEL TORO, SANDRA", 
+            "6 LABORDA DEL TORO, SANDRA", 
             "14 ROVIRA PIBERNAT, MARIA", 
             "6 JOVÉ AMOR, CLÀUDIA",
             "5 DE LA CALLE ARGELES, LAIA",
@@ -519,7 +519,7 @@
         "awaysquad":
         [
             "1 ALONSO BADIA, MARIA",
-            "2 POZO GARCIA RAYO, ARIADNA",
+            "21 POZO GARCIA RAYO, ARIADNA",
             "3 GALINDO BACH, ALTAIR JIN",
             "5 TELLEZ MERINO, LIDIA",
             "8 GONZALEZ CABALLERO, ANDREA",
@@ -563,7 +563,7 @@
             "61 MARTINEZ COSTA, ANDREA",
             "77 PEY NASARRE, QUERALT",
             "33 SANCHEZ HUGUET, GALA",
-            "66 FONT BURRULL, GEMMA",
+            "67 FONT BURRULL, GEMMA",
             "99 TRALLERO ROLDAN, JARA"
         ],
         "awaysquad":
@@ -617,12 +617,12 @@
         [
             "1 CANALES BAECHLER, ANDREA",
             "3 ESCALER PENELLA, IOANA", 
-            "4 GARCIA RODRIGUEZ, ANDREA",
+            "17 GARCIA RODRIGUEZ, ANDREA",
             "5 RUBIO RODRIGUEZ, ANNA", 
             "9 TARRASON LARA, ARIADNA", 
             "11 RUBIO RODRIGUEZ, JUDIT",
-            "14 PARDO SANTOS, LUCIA",
-            "19 ALCALDE CARRERAS, CRISTINA",
+            "23 PARDO SANTOS, LUCIA",
+            "7 ALCALDE CARRERAS, CRISTINA",
             "10 PRAT MATIFOLL, LAURA",
             "19 HERRANDO SPALACCI, NOEMI",
             "22 FOLCH GUILLEN, BERTA"
@@ -657,7 +657,7 @@
         "localsquad":
         [
             "3 SANTISTEBAN CLARET, ALBA",
-            "7 SANCHEZ CHANA, PAULA",
+            "8 SANCHEZ CHANA, PAULA",
             "9 GARCIA SANCHEZ, CRISTINA",
             "10 CRUZ CORDON, LAURA",
             "13 CASAS OLIVER, JUDIT",
@@ -766,13 +766,13 @@
         ],
         "awaysquad":
         [
-            "12 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
-            "2 EL FILALI, ABIR", 
+            "1 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
+            "9 EL FILALI, ABIR", 
             "3 BEDDOUH, OUMAIMA",
             "7 MONTCUSI ARCOS, SARA", 
             "10 MONTCUSI ARCOS, LUCIA", 
             "8 GARCIA, SOFIA NOEMI",
-            "9 EL KARIA, FATIMA",
+            "6 EL KARIA, FATIMA",
             "8 GALVEZ LOZANO, NEREA"
         ]
         
@@ -813,7 +813,7 @@
             "8 STARRENBURG, JESSIE",
             "10 SABATÉ LLECHA, CRISTINA", 
             "14 ROVIRA PIBERNAT, MARIA", 
-            "4 LABORDA DEL TORO, SANDRA",
+            "6 LABORDA DEL TORO, SANDRA",
             "5 DE LA CALLE ARGELES, LAIA",
             "12 VILLAR MUÑOZ, SARA",
             "13 FADURDO MODESTO, ALBA",
@@ -856,13 +856,367 @@
         ],
         "awaysquad":
         [
-            "2 POZO GARCIA RAYO, ARIADNA",
+            "21 POZO GARCIA RAYO, ARIADNA",
             "3 GALINDO BACH, ALTAIR JIN",
             "5 TELLEZ MERINO, LIDIA",
             "7 VACHOR LARA, JASMINE",
             "11 LATORRE CAMACHO, CINTIA",
             "13 PARADA MENDEZ, DAYLI IVON",
             "15 SANTIN ROMERO, NOELIA DE JESUS"
+        ]
+        
+    },
+    {
+        "id": 30118,
+        "season": [2019, 2020],
+        "date": "2020-10-26 18:00:00.000",
+        "journey": 4,
+        "localTeam": "Horta Futbol Sala Club, A",
+        "awayTeam": "Penya Barça Barbera del Valles",
+        "localGoals": 0,
+        "awayGoals": 3,
+        "goalScorers":
+        {
+            "OLIETE TRAPERO, MONICA": [7],
+            "GASCÓN RUIZ, ANDREA": [42],
+            "ORTIGOSA CARRASQUER, MARTA":[49]
+        },
+        "yellowCards":
+        {
+            "SANTMARTI SELLE, LAIA": [29]
+        },
+        "redCards":
+        {
+
+        },
+        "localsquad":
+        [
+            "1 PAREDES MARTINEZ, ROSA MARIA",
+            "3 ESCALER PENELLA, IOANA",
+            "4 LOPEZ LECHUGA, IRIS",
+            "5 RUBIO RODRIGUEZ, ANNA",
+            "19 HERRANDO SPALACCI, NOEMI",
+            "7 ALCALDE CARRERAS, CRISTINA",
+            "9 TARRASON LARA, ARIADNA",
+            "11 RUBIO RODRIGUEZ, JUDIT",
+            "14 LOPEZ SANCHEZ, IRINA",
+            "17 GARCIA RODRIGUEZ, ANDREA",
+            "23 PARDO SANTOS, LUCIA"
+
+        ],
+        "awaysquad":
+        [
+            "1 ZAMORANO ALCAUT, AMALIA",
+            "2 GARCIA CERVERA, NATALIA",
+            "4 SANTMARTI SELLE, LAIA",
+            "5 OLIETE TRAPERO, MONICA",
+            "6 ORTIGOSA CARRASQUER, MARTA",
+            "9 ALVAREZ MERINO, JASMINE",
+            "10 GASCÓN RUIZ, ANDREA"
+        ]
+        
+    },
+    {
+        "id": 30119,
+        "season": [2019, 2020],
+        "date": "2020-10-27 11:00:00.000",
+        "journey": 4,
+        "localTeam": "Oar Gràcia Sbd, E.F., A",
+        "awayTeam": "Castellbisbal, F.S, B",
+        "localGoals": 8,
+        "awayGoals": 0,
+        "goalScorers":
+        {
+            "TRALLERO ROLDAN, JARA": [1,47],
+            "FONT BURRULL, GEMMA": [2,6,8,30],
+            "FLORES SAFONT, MIREIA": [5],
+            "ROSA LOPEZ, CLAUDIA": [40]
+
+        },
+        "yellowCards":
+        {
+            "LAO MATA, MARINA": [23]
+        },
+        "redCards":
+        {
+
+        },
+        "localsquad":
+        [
+            "95 MARCO BOADA, ANDREA",
+            "61 MARTINEZ COSTA, ANDREA",
+            "93 FLORES SAFONT, MIREIA",
+            "97 ROSA LOPEZ, CLAUDIA",
+            "99 TRALLERO ROLDAN, JARA",
+            "67 FONT BURRULL, GEMMA",
+            "77 PEY NASARRE, QUERALT"
+
+        ],
+        "awaysquad":
+        [
+            "13 GAYA BANUS, MARTA",
+            "5 ISABEL",
+            "9 AREGALL VENTURA, MAR",
+            "20 BRAVO CARRASCO, JESSICA",
+            "32 LAHTI, ANNI AINO MARGARETA",
+            "2 GRAGERA HERMOSO, RAQUEL",
+            "4 LAO MATA, MARINA",
+            "22 JUARROS MENÉNDEZ, LAIA"
+        ]
+        
+    },
+    {
+        "id": 30120,
+        "season": [2019, 2020],
+        "date": "2020-10-27 11:00:00.000",
+        "journey": 4,
+        "localTeam": "Futsal Terrassa Les Saveurs Club Esportiu, A",
+        "awayTeam": "Acció Sant Martí, A",
+        "localGoals": 4,
+        "awayGoals": 1,
+        "goalScorers":
+        {
+            "ANTONIO AGUILA, PATRICIA":[10],
+            "POZO GARCIA RAYO, ARIADNA":[13,20,40],
+            "LATORRE CAMACHO, CINTIA":[22]
+
+        },
+        "yellowCards":
+        {
+            "ANTONIO AGUILA, PATRICIA": [22]
+        },
+        "redCards":
+        {
+
+        },
+        "localsquad":
+        [
+            "15 SANTIN ROMERO, NOELIA DE JESUS",
+            "3 GALINDO BACH, ALTAIR JIN",
+            "5 TELLEZ MERINO, LIDIA",
+            "7 VACHOR LARA, JASMINE",
+            "8 GONZALEZ CABALLERO, ANDREA",
+            "11 LATORRE CAMACHO, CINTIA",
+            "13 PARADA MENDEZ, DAYLI IVON",
+            "21 POZO GARCIA RAYO, ARIADNA"
+
+        ],
+        "awaysquad":
+        [
+            "99 ZAMBRANA GONZALEZ, ROCIO",
+            "7 CABELLO HERMOSILLA, MELANIA",
+            "10 KHATIB LEDO, AMAL",
+            "11 ANTONIO AGUILA, PATRICIA",
+            "16 MOYA MARTINEZ, ANA ROCIO"
+        ]
+        
+    },
+    {
+        "id": 30121,
+        "season": [2019, 2020],
+        "date": "2020-10-27 11:15:00.000",
+        "journey": 4,
+        "localTeam": "Pou Escorial, A",
+        "awayTeam": "Escola Pia Sabadell, C.E, A",
+        "localGoals": 1,
+        "awayGoals": 2,
+        "goalScorers":
+        {
+           "MARIN REINA, CORINA":[14],
+           "PUJOL GIMENEZ, GEORGINA":[26],
+           "CLARA FERNANDEZ, LLUNA":[33]
+
+        },
+        "yellowCards":
+        {
+            "CORBERA CASAS, SILVIA":[14],
+            "MARINEL-LO GOMEZ, LAURA":[23]
+        },
+        "redCards":
+        {
+
+        },
+        "localsquad":
+        [
+            "13 CAMARGO ALCAIDE, LORENA",
+            "5 MARIN REINA, CORINA",
+            "7 PINERO ORTIZ, ANA MARIA",
+            "8 TAUSTE SABALETE, CRISTINA",
+            "10 GARCIA NICOLAS, RAQUEL",
+            "4 ALFONSO ESPINOSA, BERTA",
+            "15 GARCIA ARMENTEROS, PATRICIA",
+            "16 BARRENA IGLESIAS, ALEJANDRA",
+            "18 ALFONSO ESPINOSA, CLARA ISABEL",
+            "70 ARDILLA GARCIA, ISABEL",
+            "88 VIGARA CUENCA, ANA ISABEL"
+        ],
+        "awaysquad":
+        [
+            "1 GARCIA BAHAMONDE, ANDREA",
+            "2 SENSARRICH VIAPLANA, LAURA",
+            "3 COMAS SALA, ANNA",
+            "4 CLARA FERNANDEZ, LLUNA",
+            "6 AGUAVIVA VILA, LAIA",
+            "8 MARINEL-LO GOMEZ, LAURA",
+            "10 PUJOL GIMENEZ, GEORGINA",
+            "13 CORBERA CASAS, SILVIA",
+            "14 BENITEZ OLIVARES, SONIA"
+        ]
+        
+    },
+    {
+        "id": 30122,
+        "season": [2019, 2020],
+        "date": "2020-10-27 17:15:00.000",
+        "journey": 4,
+        "localTeam": "CFS Les Glòries 2014, B",
+        "awayTeam": "Gadex Club Esportiu, A",
+        "localGoals": 8,
+        "awayGoals": 0,
+        "goalScorers":
+        {
+            "STARRENBURG, JESSIE":[15,35],
+            "JULIÀ I ROSELL, ÀGATA":[23,46],
+            "JOVÉ AMOR, CLÀUDIA":[26,40],
+            "LOPEZ GOMEZ, MARIA":[35],
+            "SABATÉ LLECHA, CRISTINA":[45]
+        },
+        "yellowCards":
+        {
+            "RODRIGUEZ GOMEZ, CRISTINA":[15]
+        },
+        "redCards":
+        {
+
+        },
+        "localsquad":
+        [
+            "1 PARDELL SALLERAS, LLUM",
+            "4 JOVÉ AMOR, CLÀUDIA",
+            "5 DE LA CALLE ARGELES, LAIA",
+            "6 LABORDA DEL TORO, SANDRA",
+            "8 STARRENBURG, JESSIE",
+            "7 ALONSO PEREZ, JULIA",
+            "10 SABATÉ LLECHA, CRISTINA",
+            "12 VILLAR MUÑOZ, SARA",
+            "13 FADURDO MODESTO, ALBA",
+            "19 JULIÀ I ROSELL, ÀGATA",
+            "28 LOPEZ GOMEZ, MARIA"
+        ],
+        "awaysquad":
+        [
+            "13 CASAS OLIVER, JUDIT",
+            "3 SANTISTEBAN CLARET, ALBA",
+            "9 GARCIA SANCHEZ, CRISTINA",
+            "14 RUIZ DENGRA, ROCIO",
+            "23 RODRIGUEZ GOMEZ, CRISTINA",
+            "8 SANCHEZ CHANA, PAULA",
+            "10 CRUZ CORDON, LAURA",
+            "11 MESTRE SINUES, SARA",
+            "22 FERNANDEZ ORELLANA, LAIA"
+        ]
+        
+    },
+    {
+        "id": 30122,
+        "season": [2019, 2020],
+        "date": "2020-10-27 17:15:00.000",
+        "journey": 4,
+        "localTeam": "CFS Les Glòries 2014, B",
+        "awayTeam": "Gadex Club Esportiu, A",
+        "localGoals": 8,
+        "awayGoals": 0,
+        "goalScorers":
+        {
+            "STARRENBURG, JESSIE":[15,35],
+            "JULIÀ I ROSELL, ÀGATA":[23,46],
+            "JOVÉ AMOR, CLÀUDIA":[26,40],
+            "LOPEZ GOMEZ, MARIA":[35],
+            "SABATÉ LLECHA, CRISTINA":[45]
+        },
+        "yellowCards":
+        {
+            "RODRIGUEZ GOMEZ, CRISTINA":[15]
+        },
+        "redCards":
+        {
+
+        },
+        "localsquad":
+        [
+            "1 PARDELL SALLERAS, LLUM",
+            "4 JOVÉ AMOR, CLÀUDIA",
+            "5 DE LA CALLE ARGELES, LAIA",
+            "6 LABORDA DEL TORO, SANDRA",
+            "8 STARRENBURG, JESSIE",
+            "7 ALONSO PEREZ, JULIA",
+            "10 SABATÉ LLECHA, CRISTINA",
+            "12 VILLAR MUÑOZ, SARA",
+            "13 FADURDO MODESTO, ALBA",
+            "19 JULIÀ I ROSELL, ÀGATA",
+            "28 LOPEZ GOMEZ, MARIA"
+        ],
+        "awaysquad":
+        [
+            "13 CASAS OLIVER, JUDIT",
+            "3 SANTISTEBAN CLARET, ALBA",
+            "9 GARCIA SANCHEZ, CRISTINA",
+            "14 RUIZ DENGRA, ROCIO",
+            "23 RODRIGUEZ GOMEZ, CRISTINA",
+            "8 SANCHEZ CHANA, PAULA",
+            "10 CRUZ CORDON, LAURA",
+            "11 MESTRE SINUES, SARA",
+            "22 FERNANDEZ ORELLANA, LAIA"
+        ]
+        
+    },
+    {
+        "id": 30123,
+        "season": [2019, 2020],
+        "date": "2020-10-27 18:20:00.000",
+        "journey": 4,
+        "localTeam": "Egara Futsal 2019, C.F. SALA",
+        "awayTeam": "Fundació Terrassa FC 1906, A",
+        "localGoals": 4,
+        "awayGoals": 1,
+        "goalScorers":
+        {
+            "MONTCUSI ARCOS, SARA":[2,43],
+            "BEDDOUH, OUMAIMA":[38],
+            "MONTCUSI ARCOS, LUCIA":[50],
+            "FETIAN BEN TAQUIT, LAILA":[46]
+        },
+        "yellowCards":
+        {
+
+        },
+        "redCards":
+        {
+
+        },
+        "localsquad":
+        [
+            "1 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
+            "3 BEDDOUH, OUMAIMA",
+            "7 MONTCUSI ARCOS, SARA",
+            "9 EL FILALI, ABIR",
+            "10 MONTCUSI ARCOS, LUCIA",
+            "6 EL KARIA, FATIMA",
+            "4 TASCONES CASELLAS, MIREYA",
+            "8 GALVEZ LOZANO, NEREA"
+        ],
+        "awaysquad":
+        [
+            "9 GONZALEZ MARTINEZ, ANA",
+            "4 RUIZ MATA, JUDIT",
+            "6 RAMIREZ PORRAS, JENNIFER",
+            "8 SÁNCHEZ MUÑIZ, ANDREA", 
+            "10 NUÑEZ JAIME, ANA",
+            "2 ALBAREDA MARCO, NÚRIA",
+            "5 BAEZA FERRÓN, SARA",
+            "7 ALCAYDE GUZMAN, ANABEL",
+            "11 FETIAN BEN TAQUIT, LAILA",
+            "28 COLOMER COMELLAS, ANNA"
         ]
         
     }
