@@ -307,7 +307,7 @@ Map<Player,List<int>> mappingDataFromMaps(Map<String,dynamic> obj, List<Player> 
   players.addAll(localsquad + awaysquad);
   for(MapEntry<String,dynamic> map in obj.entries)
   { 
-    List<int> value = new List<int>.from(map.value.whereType<List<dynamic>>()).toList();
+    List<int> value = new List<int>.from(map.value.whereType<dynamic>()).toList();
     String name = getNamesFromMap(map.key)[0];
     String surname = getNamesFromMap(map.key)[1];
     Player player = players.firstWhere((item) => (item.name == name && item.surname == surname) || (item.name == name && item.surname == ""));
@@ -384,6 +384,44 @@ List<String> getNamesSurnamesFromSquad(String fullname)
     result.add(surname);
   }
   return result;
+}
+
+List<int> getlast5results()
+{
+  List<Game> games = getAllGamesFromFile();
+  List<int> list = [];
+  List<Game> egaraGames = games.where((item) => (item.localTeam.id == 20008 || item.awayTeam.id == 20008) && (item.localSquad.isNotEmpty)).toList(); // Partidos del egara jugados.
+  for(var game in egaraGames)
+  {
+    String result = whosWinner(game.localGoals, game.awayGoals);
+    if(result == "1")
+    {
+      if(game.localTeam.id == 20008)
+      {
+        list.add(1);
+      }
+      else
+      {
+        list.add(-1);
+      }
+    }
+    else if(result == "2")
+    {
+      if(game.awayTeam.id == 20008)
+      {
+        list.add(1);
+      }
+      else
+      {
+        list.add(-1);
+      }
+    }
+    else
+    {
+      list.add(0);
+    }
+  }
+  return list;
 }
 
 List<Team> getHomepageLeagueContainer()
