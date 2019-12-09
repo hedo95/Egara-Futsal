@@ -1,5 +1,3 @@
-// BO
-
 List<Player> toAssignId(List<Player> players) // Funciona
 {
   for(int n = 0; n < players.length; n++)
@@ -81,11 +79,11 @@ int twolastResultsComparative() // Funciona
 
 int catchArrow() // Devuelve un 1, un 0 o un -1.
 {
-  List<Journey> journeys = getAllTeamsData();
-  int journeyB = journeys[journeys.length - 1].journey;
-  int journeyA = journeys[journeys.length - 2].journey;
-  int currentPosition = journeys.firstWhere((item) => item.journey == journeyB).teams.firstWhere((item) => item.id == 20008).position;
-  int lastPosition = journeys.firstWhere((item) => item.journey == journeyA).teams.firstWhere((item) => item.id == 20008).position;
+  List<Journey> journeys = getAllTeamsDataByJourney();
+  int journeyB = journeys[journeys.length - 1].journey; // Ultima jornada
+  int journeyA = journeys[journeys.length - 2].journey; // Penultima jornada
+  int currentPosition = journeys.firstWhere((item) => item.journey == journeyB).teams.firstWhere((item) => item.id == 20008).position; // Posición en la ultima jornada
+  int lastPosition = journeys.firstWhere((item) => item.journey == journeyA).teams.firstWhere((item) => item.id == 20008).position; // Posición en la penultima jornada
   if (currentPosition > lastPosition) { return 1; }
   else if (currentPosition == lastPosition) { return 0; }
   else { return -1; }
@@ -97,10 +95,8 @@ int getId(var data)
   return data[data.length-1].id++;
 }
 
-int getIdfromTeam(Team team) => team.id; 
-
 //Cogemos los equipos con los datos personales de su fichero, y datos estadisticos del fichero de los partidos.
-List<Journey> getAllTeamsData() // Funciona
+List<Journey> getAllTeamsDataByJourney() // Funciona
 {
   List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty).toList(); // Partidods jugados
   List<Team> teams = getAllTeamsFromFile().toList();
@@ -171,14 +167,14 @@ List<Journey> getAllTeamsData() // Funciona
     {
       teams[k].position = k+1; // Asignamos posición de la tabla 
     }
-    journey.addTeams(teams);
+    journey.addTeams(teams); // Tenemos cada jornada actualizada.
   }
   
   return journeys;
 }
 
 // Cogemos los jugadores con los datos personales de su fichero, y datos estadisticos del fichero de los partidos.
-List<Journey> getAllPlayersData()
+List<Journey> getAllPlayersDataByJourney()
 {
   List<Game> games = getAllGamesFromFile();
   List<Player> players = getAllPlayersFromFile();
@@ -205,7 +201,7 @@ List<Journey> getAllPlayersData()
       }
       for(MapEntry<Player,List<int>> map in match.goalScorers.entries)
       {
-        players.firstWhere((item) => item.dorsal == map.key.dorsal && item.idteam == map.key.idteam).goals++;
+        players.firstWhere((item) => item.dorsal == map.key.dorsal && item.idteam == map.key.idteam).goals += map.value.length;
       }
     }
     players.sort((b,a) => a.goals.compareTo(b.goals));
@@ -217,53 +213,29 @@ List<Journey> getAllPlayersData()
 
 List<Journey> getAllJourneys()
 {
-  var result = getAllTeamsData(); // Aquí tenemos partidos y equipos mapeados.
+  var result = getAllTeamsDataByJourney(); // Aquí tenemos partidos y equipos mapeados.
   for(var journey in result)
   {
-    List<Player> players = getAllPlayersData().firstWhere((item) => item.journey == journey.journey).players;
+    List<Player> players = getAllPlayersDataByJourney().firstWhere((item) => item.journey == journey.journey).players;
     journey.addPlayers(players);  // Introducimos juagodres mapeados
   }
   return result; // Lista por jornadas de todos los datos de la App mapeados: Partidos, equipos y jugadores clasificados por jornadas. 
 }
 
+List<Player> getAllPlayersData()
+{
+  return getAllPlayersDataByJourney()[getAllPlayersDataByJourney().length - 1].players;
+}
+
+List<Player> getAllPlayersFromAteam(Team team)
+{
+  int id = team.id;
+  return getAllPlayersData().where((item) => item.idteam == id).toList();
+}
+
 // Funciona 
 int maxJourney(List<Game> games)  => games.firstWhere((item) => item.localSquad.isEmpty).journey - 1;
 
-
-List<Player> getPlayersRepeats(List<Game> games) // Funciona, para cuando se cuela algún string repeat en games.json
-{
-  List<Player> players = [];
-  games.sort((a,b) => a.journey.compareTo(b.journey));
-  int max = games[games.length-1].journey;
-  for(var game in games)
-  {
-    game.localSquad.forEach((item) => players.add(item));
-    game.awaySquad.forEach((item) => players.add(item));
-  }
-
-  players.sort((a,b) => a.surname.compareTo(b.surname));
-  int count = 0;
-  String name = players[0].name, surname = players[0].surname;
-  count++;
-  List<Player> result = [];
-  for(int n = 1; n < players.length; n++)
-  {
-    if(players[n].name == name && players[n].surname == surname)
-    {
-      count++;
-    }
-    else
-    {
-      count = 0;
-    }
-    if (count > max)
-    {
-      result.add(players[n]);
-    }
-  }
-
-  return result;
-}
 
 // Clasificamos los partidis por jornadas.
 List<Journey> getCalendar(List<Game> games)
@@ -298,7 +270,6 @@ String whosWinner(int localGoals, int awayGoals)
   }
 
 }
-
 
 Map<Player,List<int>> mappingDataFromMaps(Map<String,dynamic> obj, List<Player> localsquad, List<Player> awaysquad)
 {
@@ -386,6 +357,26 @@ List<String> getNamesSurnamesFromSquad(String fullname)
   return result;
 }
 
+List<Team> getHomepageLeagueContainer()
+{
+  List<Journey> journeys = getAllTeamsDataByJourney();
+  int index = journeys.length - 1;
+  List<Team> teams = journeys[index].teams;
+  int pos = teams.indexWhere((item) => item.id == 20008); // Sacamos el indice del Egara futsal
+  if(pos == 0)
+  {
+    return [teams[pos], teams[pos+1], teams[pos+2]];
+  }
+  else if(pos == (getAllTeamsDataByJourney().length - 1))
+  {
+    return [teams[pos-2], teams[pos-1], teams[pos]];
+  }
+  else
+  {
+    return [teams[pos-1], teams[pos], teams[pos+1]];
+  }
+}
+
 List<int> getlast5results()
 {
   List<Game> games = getAllGamesFromFile();
@@ -424,25 +415,7 @@ List<int> getlast5results()
   return list;
 }
 
-List<Team> getHomepageLeagueContainer()
-{
-  List<Journey> journeys = getAllTeamsData();
-  int index = journeys.length - 1;
-  List<Team> teams = journeys[index].teams;
-  int pos = teams.indexWhere((item) => item.id == 20008); // Sacamos el indice del Egara futsal
-  if(pos == 0)
-  {
-    return [teams[pos], teams[pos+1], teams[pos+2]];
-  }
-  else if(pos == (getAllTeamsData().length - 1))
-  {
-    return [teams[pos-2], teams[pos-1], teams[pos]];
-  }
-  else
-  {
-    return [teams[pos-1], teams[pos], teams[pos+1]];
-  }
-}
+
 
 Player createUpdatePlayer({int id, Player player})
 {
@@ -567,4 +540,3 @@ bool deleteGame(Game match)
     return false;
   }
 }
-
