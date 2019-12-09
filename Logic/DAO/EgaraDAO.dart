@@ -18,7 +18,7 @@ String path = '/Users/jesushedo/Desktop/Q7/Android/Lib/EF_Backend/Data/',
 
 
 
-List<Player> getAllPlayersData()
+List<Player> getAllPlayersFromFile()
 {
   exportPlayersFromGames();
   var jsonString = File(playersfile).readAsStringSync();
@@ -26,20 +26,44 @@ List<Player> getAllPlayersData()
   return new List<Player>.from(jsonData.map((item) => new Player.fromJson(item)).toList());
 }
 
-List<Team> getAllTeamsData()
+List<Team> getAllTeamsFromFile()
 {
   var jsonString = File(teamsfile).readAsStringSync();
   List jsonData = json.decode(jsonString);
   return new List<Team>.from(jsonData.map((item) => new Team.fromJson(item)).toList());
 }
 
-List<Game> getAllGamesData()
+List<Game> getAllGamesFromFile()
 {
   var jsonString = File(gamesfile).readAsStringSync();
   List jsonData = json.decode(jsonString);
   return new List<Game>.from(jsonData.map((item) => new Game.fromJson(item))).toList();
 }
 
+void exportPlayersFromGames() // Funciona
+{
+  List<Game> games = getAllGamesFromFile();
+  List<Player> allplayers = [];
+  for(var game in games)
+  {
+    for (var player in game.localSquad)
+    {
+      // Hacemos una especie de .distinct() para los jugadores de los encuentros
+      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname  && player.dorsal == item.dorsal ))
+      {
+        allplayers.add(player);
+      }
+    }
+    for (var player in game.awaySquad)
+    {
+      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname && player.dorsal == item.dorsal))
+      {
+        allplayers.add(player);
+      }
+    }
+  }
+  exportPlayersData(toAssignId(allplayers));
+}
 
 void exportPlayersData(List<Player> data)
 {
@@ -71,35 +95,9 @@ void exportGamesData(List<Game> data)
   }
 }
 
-void exportPlayersFromGames() // Funciona
-{
-  List<Game> games = getAllGamesFromFile();
-  List<Player> allplayers = [];
-  for(var game in games)
-  {
-    for (var player in game.localSquad)
-    {
-      // Hacemos una especie de .distinct() para los jugadores de los encuentros
-      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname  && player.dorsal == item.dorsal ))
-      {
-        allplayers.add(player);
-      }
-    }
-    for (var player in game.awaySquad)
-    {
-      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname && player.dorsal == item.dorsal))
-      {
-        allplayers.add(player);
-      }
-    }
-  }
-  exportPlayersData(toAssignId(allplayers));
-}
-
-
 void appendPlayer(Player obj)
 {
-  List<Player> data = getAllPlayersData();
+  List<Player> data = getAllPlayersFromFile();
   if (!data.any((item) => (item.id == obj.id) || (item.dorsal == obj.dorsal)))
   {
     data.add(obj);
@@ -109,7 +107,7 @@ void appendPlayer(Player obj)
 
 void appendTeam(Team obj)
 {
-  List<Team> data = getAllTeamsData();
+  List<Team> data = getAllTeamsFromFile();
   if (!data.any((item) => (item.id == obj.id) || (item.name == obj.name)))
   {
     data.add(obj);
@@ -119,10 +117,11 @@ void appendTeam(Team obj)
 
 void appendGame(Game obj)
 {
-  List<Game> data = getAllGamesData();
+  List<Game> data = getAllGamesFromFile();
   if (!data.any((item) => item.id == obj.id))
   {
     data.add(obj);
     exportGamesData(data);
   }
 }
+
