@@ -62,12 +62,12 @@ void exportPlayersFromGames() // Funciona
       }
     }
   }
-  exportPlayersData(toAssignId(allplayers));
+  exportPlayersData(allplayers);
 }
 
 void exportPlayersData(List<Player> data)
 {
-  data.sort((a,b) => a.id.compareTo(b.id));
+  data.sort((a,b) => a.surname.compareTo(b.surname));
   List<dynamic> jsonData = [];
   data.forEach((item) => jsonData.add(json.encode(item.toJson())));
   File(playersfile).writeAsStringSync(jsonData.toString());
@@ -98,7 +98,7 @@ void exportGamesData(List<Game> data)
 void appendPlayer(Player obj)
 {
   List<Player> data = getAllPlayersFromFile();
-  if (!data.any((item) => (item.id == obj.id) || (item.dorsal == obj.dorsal)))
+  if (!data.any((item) => (item.idteam == obj.idteam) && (item.dorsal == obj.dorsal)))
   {
     data.add(obj);
     exportPlayersData(data);
@@ -124,4 +124,3 @@ void appendGame(Game obj)
     exportGamesData(data);
   }
 }
-
