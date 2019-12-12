@@ -10,56 +10,92 @@ class Player
 {
   // Professional data
   String name, surname;
-  int id, idteam, dorsal, goals , yellowcards, redcards, playedGames;
+  int idteam, dorsal; /*goals , yellowcards, redcards, playedGames; */ 
+
+  int get goals
+  {
+    List<Game> games = getAllGamesFromFile().where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();
+    int goals = 0;
+    for(var game in games)
+    {
+      for(MapEntry<Player,List<int>> map in game.goalScorers.entries)
+      {
+        if(map.key.dorsal == this.dorsal && map.key.idteam == this.idteam)
+        {
+          goals += map.value.length;
+        }
+      }
+    }
+    return goals;
+  }
+
+  int get ycards
+  {
+    List<Game> games = getAllGamesFromFile().where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
+    int ycards = 0;
+    for(var game in games)
+    {
+      for(MapEntry<Player,List<int>> map in game.yellowCards.entries)
+      {
+        if(map.key.dorsal == this.dorsal && map.key.idteam == this.idteam)
+        {
+          ycards += map.value.length;
+        }
+      }
+    }
+    return ycards;
+  }
+
+  int get rcards
+  {
+    List<Game> games = getAllGamesFromFile().where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
+    int rcards = 0;
+    for(var game in games)
+    {
+      for(MapEntry<Player,List<int>> map in game.redCards.entries)
+      {
+        if(map.key.dorsal == this.dorsal && map.key.idteam == this.idteam)
+        {
+          rcards += map.value.length;
+        }
+      }
+    }
+    return rcards;
+  }
+
+  int get playedgames
+  {
+    List<Game> games = getAllGamesFromFile().where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
+    int played = 0;
+    for(var game in games)
+    {
+      if(game.localSquad.any((item) => item.dorsal == this.dorsal) || game.awaySquad.any((item) => item.dorsal == this.dorsal))
+      {
+        played++;
+      }
+    }
+    return played;
+  }
 
   Player
   (
-    this.id, this.idteam,this.name, this.surname, 
-    this.dorsal //this.totalgames
-  )
-  {
-    this.goals = 0;
-    this.yellowcards = 0;
-    this.redcards = 0;
-    this.playedGames = 0;
-  }
-
-  Player.game
-  (
-    String name, String surname, int dorsal, int idteam
-  )
-  {
-    this.id = 10000;
-    this.idteam = idteam;
-    this.name = name;
-    this.surname = surname;
-    this.dorsal = dorsal;
-    this.goals = 0;
-    this.yellowcards = 0;
-    this.redcards = 0;
-    this.playedGames = 0;
-    //this.totalgames = maxJourney(getAllGamesFromFile());
-  }
-
+    this.idteam,this.name, this.surname, 
+    this.dorsal 
+  );
 
   Player.def()
   {
-    this.id = getId(getAllPlayersFromFile());
     this.idteam = -1;
     this.name = "";
     this.surname = "";
     this.dorsal = 0;
-    this.goals = 0;
-    this.yellowcards = 0;
-    this.redcards = 0;
-    this.playedGames = 0;
   }
+
 
   toJson()
   {
     return 
     {
-      'id': this.id,
       'idteam': this.idteam,
       'name': this.name,
       'surname': this.surname,
@@ -71,15 +107,14 @@ class Player
   {
     String teamName = getAllTeamsFromFile().firstWhere((item) => item.id == this.idteam).name;
     {
-      print("Id: " + this.id.toString() + "\n");
       print("Name: " + this.name + "\n");
       print("Surname: " + this.surname + "\n");
       print("Team: " +  teamName + '\n');
       print("Dorsal: " + this.dorsal.toString() + "\n");
       print("Goals: " + this.goals.toString() + "\n");
-      print("Yellow cards: " + this.yellowcards.toString() + "\n");
-      print("Red cards: " + this.redcards.toString() + "\n");
-      print("Played games: " + this.playedGames.toString() + "\n");
+      print("Yellow cards: " + this.ycards.toString() + "\n");
+      print("Red cards: " + this.rcards.toString() + "\n");
+      print("Played games: " + this.playedgames.toString() + "\n");
       print('');
     }
   }
@@ -90,7 +125,6 @@ class Player
   {
     return new Player
     (
-      json['id'] as int,
       json['idteam'] as int,
       json['name'] as String,
       json['surname'] as String, 
