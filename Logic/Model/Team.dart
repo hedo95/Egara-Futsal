@@ -7,59 +7,196 @@ import 'package:egarafutsal/Logic/BO/EgaraBO.dart';
 import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
 import 'package:egarafutsal/Logic/Model/Player.dart';
 
-class Team
-{
-  int id;
+int id;
   String name, shield, address, location, zipcode, province, fieldname, fieldtype;
-  List<Player> players = [];
 
-  int points = 0, goals = 0, concededGoals = 0, yellowcards = 0, redcards = 0,
-      wonGames = 0, drawnGames = 0, lostGames = 0, totalgames = 0;
+  // Nos interesa coger los puntos y posición de las dos ultimas jornadas, para el container de la vista Principal.    
+  int get currentPoints
+  {
+    int points = 0;
+    List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    for(var game in games)
+    {
+      String result = whosWinner(game.localGoals, game.awayGoals);
+      if(result == "1" && game.localTeam.id == this.id)
+      {
+        points += 3;
+      }
+      else if(result == "2" && game.awayTeam.id == this.id)
+      {
+        points += 3;
+      }
+      else
+      {
+        points++;
+      }
+    }
+    return points;
+  }
+  
+  int get currentPosition
+  {
+    List<Team> teams = getAllTeamsFromFile();
+    teams.sort((b,a) => a.currentPoints.compareTo(b.currentPoints));
+    var egara = teams.firstWhere((item) => item.id == this.id);
+    return teams.indexOf(egara) + 1;
+  }
+
+  int get lastCurrentPoints
+  {
+    int points = 0;
+    int journeyWanted = getAllGamesFromFile().firstWhere((item) => item.localSquad.isEmpty).journey - 2;
+    List<Game> games = getAllGamesFromFile().where((item) => item.journey <= journeyWanted && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    for(var game in games)
+    {
+      String result = whosWinner(game.localGoals, game.awayGoals);
+      if(result == "1" && game.localTeam.id == this.id)
+      {
+        points += 3;
+      }
+      else if(result == "2" && game.awayTeam.id == this.id)
+      {
+        points += 3;
+      }
+      else
+      {
+        points++;
+      }
+    }
+    return points;
+  }
+
+  int get lastCurrentPosition
+  {
+    List<Team> teams = getAllTeamsFromFile();
+    teams.sort((b,a) => a.lastCurrentPoints.compareTo(b.lastCurrentPoints));
+    var egara = teams.firstWhere((item) => item.id == this.id);
+    return teams.indexOf(egara) + 1;
+  }
+  
+  int get currentGoals
+  {
+    int goals = 0;
+    List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    for(var game in games)
+    {
+      for(MapEntry<Player,List<int>> map in game.goalScorers.entries)
+      {
+        if(map.key.idteam == this.id)
+        {
+          goals += map.value.length;
+        }
+      }
+    }
+    return goals;
+  }
+
+  int get currentConcededGoals
+  {
+    int goals = 0;
+    List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    for(var game in games)
+    {
+      for(MapEntry<Player,List<int>> map in game.goalScorers.entries)
+      {
+        if(map.key.idteam != this.id)
+        {
+          goals += map.value.length;
+        }
+      }
+    }
+    return goals;
+  }
+
+  int get currentYcards
+  {
+    int ycards = 0;
+    List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    for(var game in games)
+    {
+      for(MapEntry<Player,List<int>> map in game.yellowCards.entries)
+      {
+        if(map.key.idteam == this.id)
+        {
+          ycards += map.value.length;
+        }
+      }
+    }
+    return ycards;
+  }
+
+  int get currentRcards
+  {
+    int rcards = 0;
+    List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    for(var game in games)
+    {
+      for(MapEntry<Player,List<int>> map in game.redCards.entries)
+      {
+        if(map.key.idteam == this.id)
+        {
+          rcards += map.value.length;
+        }
+      }
+    }
+    return rcards;
+  }
+
+  int get totalGames
+  {
+    List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    return games.length;
+  }
+
+  int get wonGames
+  {
+    int wongames = 0;
+    List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    for(var game in games)
+    {
+      String result = whosWinner(game.localGoals, game.awayGoals);
+      if(result == "1" && game.localTeam.id == this.id)
+      {
+        wongames++;
+      }
+      if(result == "2" && game.awayTeam.id == this.id)
+      {
+        wongames++;
+      }
+    }
+    return wongames;
+  }
+
+  int get drawnGames
+  {
+    int drawngames = 0;
+    List<Game> games = getAllGamesFromFile().where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    for(var game in games)
+    {
+      String result = whosWinner(game.localGoals, game.awayGoals);
+      if(result == "X")
+      {
+        drawngames++;
+      }
+    }
+    return drawngames;
+  }
+  
+  int get lostGames
+  {
+    return this.totalGames - (this.wonGames + this.drawnGames);
+  }
 
   Team
   (
     this.id, this.name, this.shield, this.address, this.location, this.zipcode,
     this.province, this.fieldname, this.fieldtype
-  )
-  {
-    this.points = 0;
-    this.concededGoals = 0;
-    this.yellowcards = 0;
-    this.redcards = 0;
-    this.wonGames = 0;
-    this.drawnGames = 0;
-    this.lostGames = 0;
-    this.totalgames = 0;
-  }
-
-  Team.fromGame
-  (
-    this.id, this.name
-  )
-  {
-    this.points = 0;
-    this.concededGoals = 0;
-    this.yellowcards = 0;
-    this.redcards = 0;
-    this.wonGames = 0;
-    this.drawnGames = 0;
-    this.lostGames = 0;
-    this.totalgames = 0;
-  }
+  );
 
   Team.def()
   {
-    this.id = getId(getAllTeamsData());
+    this.id == getAllTeamsFromFile()[getAllTeamsFromFile().length - 1].id + 1;
     this.name = "";
-    this.points = 0;
-    this.goals = 0;
-    this.concededGoals = 0;
-    this.wonGames = 0;
-    this.lostGames = 0;
-    this.drawnGames = 0;
-    this.yellowcards = 0;
-    this.redcards = 0;
-    this.totalgames = 0;
     this.shield = "";
     this.address = "";
     this.location = "";
@@ -87,15 +224,7 @@ class Team
 
   toPrint()
   {
-    print("Id: " + this.id.toString() + "\n");
-    print("Name: " + this.name + "\n");
-    print("Address: " + this.address + "\n");
-    print("Location: " + this.location + "\n");
-    print("Zipcode: " + this.zipcode + "\n");
-    print("Province: " + this.province + "\n");
-    print("Fieldname: " + this.fieldname + "\n");
-    print("Fieldtype: " + this.fieldtype + "\n");
-    print("Players: " + "\n");
+    print(this.name + ' => ' +this.currentPoints.toString() + ' points, ' + this.wonGames.toString() + ' won games, ' + this.lostGames.toString() + ' lost games, ' + this.drawnGames.toString() + ' drawn games, '+  this.currentGoals.toString() + ' goals and ' + this.currentConcededGoals.toString() + ' conceded goals. ' + "\n");
     print(' ');
   }
 
