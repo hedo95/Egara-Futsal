@@ -47,9 +47,6 @@ class PlayerView extends StatelessWidget{
                     Tab(
                         icon: Icon(FontAwesomeIcons.chartPie,
                             color: Colors.pink[200])),
-                    // Tab(
-                    //     icon: Icon(FontAwesomeIcons.chartLine,
-                    //         color: Colors.pink[200]))
                   ],
                 ),
                 title: Text(player.name + ' ' + player.surname),
