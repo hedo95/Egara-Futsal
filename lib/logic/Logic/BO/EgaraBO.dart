@@ -1,10 +1,34 @@
-
 import '../DAO/EgaraDAO.dart';
 import '../Model/Game.dart';
 import '../Model/Journey.dart';
 import '../Model/Player.dart';
 import '../Model/Team.dart';
 
+
+List<Player> getAllPlayers(List<Game> games)
+{
+  List<Player> allplayers = [];
+  for(var game in games)
+  {
+    for (var player in game.localSquad)
+    {
+      // Hacemos una especie de .distinct() para los jugadores de los encuentros
+      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname  && player.dorsal == item.dorsal ))
+      {
+        allplayers.add(player);
+      }
+    }
+    for (var player in game.awaySquad)
+    {
+      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname && player.dorsal == item.dorsal))
+      {
+        allplayers.add(player);
+      }
+    }
+  }
+  allplayers.sort((a,b) => a.idteam.compareTo(b.idteam));
+  return allplayers;
+}
 
 int catchArrow() // Devuelve un 1, un 0 o un -1.
 {
@@ -17,16 +41,18 @@ int catchArrow() // Devuelve un 1, un 0 o un -1.
 }
 
 
-List<Player> getAllPlayersFromAteam(Team team)
+List<Player> getAllPlayersFromAteam(Team team, List<Game> games)
 {
-  int id = team.id;
-  return getAllPlayersFromFile().where((item) => item.idteam == id).toList();
+  return getAllPlayers(games).where((item) => item.idteam == team.id).toList();
 }
 
 // Funciona 
-int maxPlayedJourney()
+int maxPlayedJourney(List<Game> games)
 {
-  return getAllGamesFromFile()[getAllGamesFromFile().length - 2].journey;
+  // DateTime today = DateTime.now();
+  // games.sort((b,a) => a.id.compareTo(b.id));
+  // return games.firstWhere((item) => item.awaySquad.isEmpty && item.date.compareTo(today) > 0).journey - 1;
+  return games[games.length-1].journey;
 }
 
 List<Player> topScorers()
@@ -80,6 +106,26 @@ String whosWinner(int localGoals, int awayGoals)
     return "X";
   }
 
+}
+
+Map<Player,List<int>> mappingDataFromMaps2(Map<dynamic,dynamic> obj, List<Player> localsquad, List<Player> awaysquad)
+{
+  Map<Player,List<int>> result = {};
+  List<Player> players = [];
+  players.addAll(localsquad + awaysquad);
+  if(obj != null)
+  {
+    for(MapEntry<dynamic,dynamic> map in obj.entries)
+    { 
+      List<int> value = new List<int>.from(map.value.whereType<dynamic>()).toList();
+      String key = map.key;
+      String name = getNamesFromMap(key)[0];
+      String surname = getNamesFromMap(key)[1];
+      Player player = players.firstWhere((item) => (item.name == name && item.surname == surname) || (item.name == name && item.surname == ""));
+      result.addAll({player :  value});
+    } 
+  }
+  return result; 
 }
 
 Map<Player,List<int>> mappingDataFromMaps(Map<String,dynamic> obj, List<Player> localsquad, List<Player> awaysquad)

@@ -1,13 +1,15 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../BO/EgaraBO.dart';
 import '../DAO/EgaraDAO.dart';
 import 'Game.dart';
 import 'Player.dart';
 
 
-class Team{
- int id;
-  String name, shield, address, location, zipcode, province, fieldname, fieldtype;
+class Team
+{
+  int id;
+  String name, shield, address, location, zipcode, 
+         province, fieldname, fieldtype, documentID;
 
   // Nos interesa coger los puntos y posición de las dos ultimas jornadas, para el container de la vista Principal.    
   int get currentPoints
@@ -192,9 +194,15 @@ class Team{
     this.province, this.fieldname, this.fieldtype
   );
 
+  Team.db
+  (
+    this.id, this.name, this.shield, this.address, this.location, this.zipcode,
+    this.province, this.fieldname, this.fieldtype, this.documentID
+  );
+
   Team.def()
   {
-    this.id == getAllTeamsFromFile()[getAllTeamsFromFile().length - 1].id + 1;
+    this.id = getAllTeamsFromFile()[getAllTeamsFromFile().length - 1].id + 1;
     this.name = "";
     this.shield = "";
     this.address = "";
@@ -221,9 +229,22 @@ class Team{
     };
   }
 
+  toDocument()
+  {
+    toJson();
+  }
+
   toPrint()
   {
+    //print("Id: " + this.id.toString() + "\n");
     print(this.name + ' => ' +this.currentPoints.toString() + ' points, ' + this.wonGames.toString() + ' won games, ' + this.lostGames.toString() + ' lost games, ' + this.drawnGames.toString() + ' drawn games, '+  this.currentGoals.toString() + ' goals and ' + this.currentConcededGoals.toString() + ' conceded goals. ' + "\n");
+    //print("Address: " + this.address + "\n");
+    //print("Location: " + this.location + "\n");
+    // print("Zipcode: " + this.zipcode + "\n");
+    // print("Province: " + this.province + "\n");
+    // print("Fieldname: " + this.fieldname + "\n");
+    // print("Fieldtype: " + this.fieldtype + "\n");
+    // print("Players: " + "\n");
     print(' ');
   }
 
@@ -240,6 +261,23 @@ class Team{
       json['province'] as String, 
       json['fieldname'] as String,
       json['fieldtype'] as String,
+    );
+  }
+
+  static Team fromSnapshot(DocumentSnapshot snap)
+  {
+    return new Team.db
+    (
+      snap['id'] as int,
+      snap['name'] as String,
+      snap['shield'] as String,
+      snap['address'] as String, 
+      snap['location'] as String, 
+      snap['zipcode'] as String, 
+      snap['province'] as String, 
+      snap['fieldname'] as String,
+      snap['fieldtype'] as String,
+      snap.documentID
     );
   }
 }
