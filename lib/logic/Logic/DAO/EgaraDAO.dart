@@ -31,9 +31,14 @@ List<Team> getAllTeamsFromFile()
 
 List<Game> getAllGamesFromFile()
 {
+
   var jsonString = File(gamesfile).readAsStringSync();
   List jsonData = json.decode(jsonString);
   return new List<Game>.from(jsonData.map((item) => new Game.fromJson(item))).toList();
+  // List<Game> result = [];
+  // var db = new FirebaseContext();
+  // db.loadGames2().then((item) => result = item);
+  // return result;
 }
 
 void exportPlayersFromGames() // Funciona
@@ -120,3 +125,4 @@ void appendGame(Game obj)
     exportGamesData(data);
   }
 }
+
