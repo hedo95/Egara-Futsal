@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>380353242136-aa3o88rj2ap5tav7bk51vf8cebl6l301.apps.googleusercontent.com</string>
+	<string>311840330225-9j0j7v5atul0oukuho3ofscdlurhqrd3.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.380353242136-aa3o88rj2ap5tav7bk51vf8cebl6l301</string>
+	<string>com.googleusercontent.apps.311840330225-9j0j7v5atul0oukuho3ofscdlurhqrd3</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBGZ4m1zeOBN1Xq04pAH0pqNmza15GK0ow</string>
+	<string>AIzaSyD2ImUzEzMnJKUsBx3Wnqq-Xhh5XNV95ms</string>
 	<key>GCM_SENDER_ID</key>
-	<string>380353242136</string>
+	<string>311840330225</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.egaradefinitiu</string>
 	<key>PROJECT_ID</key>
-	<string>egara4-a468c</string>
+	<string>egarafutsal-d687f</string>
 	<key>STORAGE_BUCKET</key>
-	<string>egara4-a468c.appspot.com</string>
+	<string>egarafutsal-d687f.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:380353242136:ios:2c2d781054eb5785b20f6d</string>
+	<string>1:311840330225:ios:066ca201145305e5c4b450</string>
 	<key>DATABASE_URL</key>
-	<string>https://egara4-a468c.firebaseio.com</string>
+	<string>https://egarafutsal-d687f.firebaseio.com</string>
 </dict>
 </plist>
