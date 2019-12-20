@@ -3,20 +3,16 @@ import 'dart:ffi';
 import 'dart:io' show File;
 import 'dart:convert' show json;
 import 'dart:io';
-import 'package:egarafutsal/Logic/Model/Player.dart';
-import 'package:egarafutsal/Logic/Model/Team.dart';
-import 'package:egarafutsal/Logic/Model/Game.dart';
-import 'package:egarafutsal/Logic/Model/Journey.dart';
-import 'package:egarafutsal/Logic/Model/User.dart';
-import 'package:egarafutsal/Logic/BO/EgaraBO.dart';
 
-String path = '/Users/jesushedo/Desktop/Q7/Android/Lib/EF_Backend/Data/',
+import '../Model/Game.dart';
+import '../Model/Player.dart';
+import '../Model/Team.dart';
+
+
+String path = '../lib/logic/Data',
        playersfile = path + 'Players.json',
        teamsfile = path + 'Teams.json',
        gamesfile = path + 'Games.json';
-
-
-
 
 List<Player> getAllPlayersFromFile()
 {

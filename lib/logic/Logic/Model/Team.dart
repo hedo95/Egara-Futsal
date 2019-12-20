@@ -1,13 +1,12 @@
-import 'dart:convert';
-import 'dart:ffi';
-import 'dart:io' show File;
-import 'dart:convert' show json;
-import 'dart:io';
-import 'package:egarafutsal/Logic/BO/EgaraBO.dart';
-import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
-import 'package:egarafutsal/Logic/Model/Player.dart';
 
-int id;
+import '../BO/EgaraBO.dart';
+import '../DAO/EgaraDAO.dart';
+import 'Game.dart';
+import 'Player.dart';
+
+
+class Team{
+ int id;
   String name, shield, address, location, zipcode, province, fieldname, fieldtype;
 
   // Nos interesa coger los puntos y posición de las dos ultimas jornadas, para el container de la vista Principal.    

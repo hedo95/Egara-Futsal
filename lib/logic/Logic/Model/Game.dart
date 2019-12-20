@@ -1,12 +1,8 @@
-import 'dart:convert';
-import 'dart:ffi';
-import 'dart:io' show File;
-import 'dart:convert' show json;
-import 'dart:io';
-import 'package:egarafutsal/Logic/BO/EgaraBO.dart';
-import 'package:egarafutsal/Logic/DAO/EgaraDAO.dart';
-import 'package:egarafutsal/Logic/Model/Team.dart';
-import 'package:egarafutsal/Logic/Model/Player.dart';
+
+import '../BO/EgaraBO.dart';
+import '../DAO/EgaraDAO.dart';
+import 'Player.dart';
+import 'Team.dart';
 
 class Game
 {
@@ -34,8 +30,8 @@ class Game
     this.season = new List<int>.from(season.whereType<List<dynamic>>()).toList();
     this.localSquad = []; this.awaySquad = [];
 
-    this.localTeam = getAllTeamsData().firstWhere((item) => item.name == localteam);
-    this.awayTeam = getAllTeamsData().firstWhere((item) => item.name == awayteam);
+    this.localTeam = getAllTeamsFromFile().firstWhere((item) => item.name == localteam);
+    this.awayTeam = getAllTeamsFromFile().firstWhere((item) => item.name == awayteam);
 
     this.localSquad = mappingDataFromSquad(localsquad, localTeam);
     this.awaySquad = mappingDataFromSquad(awaysquad, awayTeam);

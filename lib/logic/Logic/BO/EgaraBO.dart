@@ -1,4 +1,11 @@
 
+import '../DAO/EgaraDAO.dart';
+import '../Model/Game.dart';
+import '../Model/Journey.dart';
+import '../Model/Player.dart';
+import '../Model/Team.dart';
+
+
 int catchArrow() // Devuelve un 1, un 0 o un -1.
 {
   Team egara = getAllTeamsFromFile().firstWhere((item) => item.id == 20008);
