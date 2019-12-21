@@ -7,7 +7,7 @@
         "location": "Sabadell",
         "zipcode": "08203",
         "province": "Barcelona",
-        "coordenadas": [2.118533,41.539074],
+        "coordinates": [2.118533,41.539074],
         "fieldname": "Pabellón municipal de Sabadell",
         "fieldtype": "Pabellón",
         "parking":true
@@ -20,7 +20,7 @@
         "location": "Sabadell",
         "zipcode": "08207",
         "province": "Barcelona",
-        "coordenadas":[2.096659,41.566868],
+        "coordinates":[2.096659,41.566868],
         "fieldname": "Pabellón Municipal Norte",
         "fieldtype": "Pabellón",
         "parking":true
@@ -33,7 +33,7 @@
         "location": "Terrassa",
         "zipcode": "08224",
         "province": "Barcelona",
-        "coordenadas":[1.993297,41.563021],
+        "coordinates":[1.993297,41.563021],
         "fieldname": "Pabellón municipal La Maurina",
         "fieldtype": "Pabellón",
         "parking":true
@@ -46,7 +46,7 @@
         "location": "Sabadell",
         "zipcode": "08201",
         "province": "Barcelona",
-        "coordenadas":[2.102916,41.549486],
+        "coordinates":[2.102916,41.549486],
         "fieldname": "Pabellón Escola Pia Sabadell",
         "fieldtype": "Pabellón",
         "parking":true
@@ -59,7 +59,7 @@
         "location": "Terrassa",
         "zipcode": "08227",
         "province": "Barcelona",
-        "coordenadas":[2.039165,41.572243],
+        "coordinates":[2.039165,41.572243],
         "fieldname": "Pista municipal de Les Arenes (2)",
         "fieldtype": "Pista",
         "parking":true
@@ -72,7 +72,7 @@
         "location": "Sabadell",
         "zipcode": "08192",
         "province": "Barcelona",
-        "coordenadas":[2.098224,41.534488],
+        "coordinates":[2.098224,41.534488],
         "fieldname": "Pabellón municipal Oar Gràcia Sabadell",
         "fieldtype": "Pabellón",
         "parking":true
@@ -84,7 +84,7 @@
         "address": "C/ d'Olympe de Gouges, s/n",
         "location": "Barcelona",
         "zipcode": "08035",
-        "coordenadas":[2.142869,41.435953],
+        "coordinates":[2.142869,41.435953],
         "province": "Barcelona",
         "fieldname": "Pabellón CEM Mundet",
         "fieldtype": "Pabellón",
@@ -98,7 +98,7 @@
         "location": "Barcelona",
         "zipcode": "08030",
         "province": "Barcelona",
-        "coordenadas":[2.202232,41.438374],
+        "coordinates":[2.202232,41.438374],
         "fieldname": "Pabellón CEM Bon Pastor",
         "fieldtype": "Pabellón",
         "parking": true
@@ -112,7 +112,7 @@
         "location": "Terrassa",
         "zipcode": "08225",
         "province": "Barcelona",
-        "coordenadas":[2.017124, 41.591618],
+        "coordinates":[2.017124, 41.591618],
         "fieldname": "Pabellón Club Egara Hockey",
         "fieldtype": "Pabellón",
         "parking":true
@@ -125,7 +125,7 @@
         "location": "Barberà del Vallès",
         "zipcode": "08210",
         "province": "Barcelona",
-        "coordenadas":[2.121308,41.511839],
+        "coordinates":[2.121308,41.511839],
         "fieldname": "Pabellón municipal Elisa Badia",
         "fieldtype": "",
         "parking":true
@@ -138,7 +138,7 @@
         "location": "Barcelona",
         "zipcode": "08027",
         "province": "Barcelona",
-        "coordenadas":[2.190692,41.419632],
+        "coordinates":[2.190692,41.419632],
         "fieldname": "Pista cubierta municipal La Segrera",
         "fieldtype": "Polideportivo",
         "parking": true
@@ -151,7 +151,7 @@
         "location": "Castellbisbal",
         "zipcode": "08755",
         "province": "Barcelona",
-        "coordenadas":[1.978514,41.47868],
+        "coordinates":[1.978514,41.47868],
         "fieldname": "Pabellón municipal de Castellbisbal",
         "fieldtype": "Pabellón",
         "parking": true
