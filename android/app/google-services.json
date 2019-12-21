@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "311840330225",
+    "firebase_url": "https://egarafutsal-d687f.firebaseio.com",
+    "project_id": "egarafutsal-d687f",
+    "storage_bucket": "egarafutsal-d687f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311840330225:android:a666d65c79aefc40c4b450",
+        "android_client_info": {
+          "package_name": "com.example.egaradefinitiu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311840330225-uj7gn1lbh3j50iof8ph8t8tofb1etv82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHnzukrG88jdjXKGiSKSGTU7Zo_0JoAXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311840330225-uj7gn1lbh3j50iof8ph8t8tofb1etv82.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "311840330225-9j0j7v5atul0oukuho3ofscdlurhqrd3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.egaradefinitiu"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
