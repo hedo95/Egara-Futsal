@@ -54,8 +54,7 @@ class Game
     [this.id, this.documentID]
   )
   {
-    this.season = [];
-    season.forEach((item) => this.season.add(item));
+    this.season = season.cast<int>();
     this.localSquad = []; this.awaySquad = [];
 
     this.localTeam = getAllTeamsFromFile().firstWhere((item) => item.name == localteam);

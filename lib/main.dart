@@ -33,11 +33,13 @@ class MyApp extends StatelessWidget {
 
 */
 
+import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'logic/Logic/DAO/FirebaseContext.dart';
 import 'logic/Logic/Model/Game.dart';
+import 'logic/Logic/Model/Team.dart';
 
 
 void main() => runApp(MyApp());
@@ -64,6 +66,12 @@ class MyApp extends StatelessWidget {
                     list.sort((a,b) => a.id.compareTo(b.id));
                     list.forEach((item) => print(item.id.toString()));
                   });
+
+                  // var db = new FirebaseContext();
+                  // List<Team> teams = getAllTeamsFromFile();
+                  // db.addTeamsOverWritting(teams);
+
+
                 }
               ),
               Text('hola Mundo',

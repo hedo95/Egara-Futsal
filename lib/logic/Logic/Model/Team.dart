@@ -10,6 +10,8 @@ class Team
   int id;
   String name, shield, address, location, zipcode, 
          province, fieldname, fieldtype, documentID;
+  List<double> coordenadas;
+  bool parking;
 
   // Nos interesa coger los puntos y posición de las dos ultimas jornadas, para el container de la vista Principal.    
   int get currentPoints
@@ -191,8 +193,12 @@ class Team
   Team
   (
     this.id, this.name, this.shield, this.address, this.location, this.zipcode,
-    this.province, this.fieldname, this.fieldtype
-  );
+    this.province, List<dynamic> coordenadas, this.fieldname, this.fieldtype,
+    this.parking
+  )
+  {
+    this.coordenadas = coordenadas.cast<double>();
+  }
 
   Team.db
   (
@@ -215,6 +221,8 @@ class Team
 
   toJson()
   {
+    List<dynamic> coordenadas = [];
+    this.coordenadas.forEach((coordenada) => coordenadas.add(coordenada));
     return 
     {
       'id': this.id,
@@ -224,8 +232,10 @@ class Team
       'location': this.location,
       'zipcode': this.zipcode,
       'province': this.province,
+      'coordenadas': coordenadas,
       'fieldname': this.fieldname,
       'fieldtype': this.fieldtype,
+      'parking': this.parking
     };
   }
 
@@ -259,8 +269,10 @@ class Team
       json['location'] as String, 
       json['zipcode'] as String, 
       json['province'] as String, 
+      json['coordenadas'] as List<dynamic>,
       json['fieldname'] as String,
       json['fieldtype'] as String,
+      json['parking'] as bool
     );
   }
 
