@@ -10,7 +10,7 @@ class Team
   int id;
   String name, shield, address, location, zipcode, 
          province, fieldname, fieldtype, documentID;
-  List<double> coordenadas;
+  List<double> coordinates;
   bool parking;
 
   // Nos interesa coger los puntos y posición de las dos ultimas jornadas, para el container de la vista Principal.    
@@ -193,18 +193,22 @@ class Team
   Team
   (
     this.id, this.name, this.shield, this.address, this.location, this.zipcode,
-    this.province, List<dynamic> coordenadas, this.fieldname, this.fieldtype,
+    this.province, List<dynamic> coordinates, this.fieldname, this.fieldtype,
     this.parking
   )
   {
-    this.coordenadas = coordenadas.cast<double>();
+    this.coordinates = coordinates.cast<double>();
   }
 
   Team.db
   (
     this.id, this.name, this.shield, this.address, this.location, this.zipcode,
-    this.province, this.fieldname, this.fieldtype, this.documentID
-  );
+    this.province, List<dynamic> coordinates, this.fieldname, this.fieldtype, 
+    this.parking, this.documentID
+  )
+  {
+    this.coordinates = coordinates.cast<double>();
+  }
 
   Team.def()
   {
@@ -221,8 +225,6 @@ class Team
 
   toJson()
   {
-    List<dynamic> coordenadas = [];
-    this.coordenadas.forEach((coordenada) => coordenadas.add(coordenada));
     return 
     {
       'id': this.id,
@@ -232,7 +234,7 @@ class Team
       'location': this.location,
       'zipcode': this.zipcode,
       'province': this.province,
-      'coordenadas': coordenadas,
+      'coordinates': coordinates,
       'fieldname': this.fieldname,
       'fieldtype': this.fieldtype,
       'parking': this.parking
@@ -241,7 +243,20 @@ class Team
 
   toDocument()
   {
-    toJson();
+    return 
+    {
+      'id': this.id,
+      'name': this.name,
+      'shield': this.shield,
+      'address': this.address,
+      'location': this.location,
+      'zipcode': this.zipcode,
+      'province': this.province,
+      'coordinates': this.coordinates.cast<dynamic>(),
+      'fieldname': this.fieldname,
+      'fieldtype': this.fieldtype,
+      'parking': this.parking
+    };
   }
 
   toPrint()
@@ -269,7 +284,7 @@ class Team
       json['location'] as String, 
       json['zipcode'] as String, 
       json['province'] as String, 
-      json['coordenadas'] as List<dynamic>,
+      json['coordinates'] as List<dynamic>,
       json['fieldname'] as String,
       json['fieldtype'] as String,
       json['parking'] as bool
@@ -286,9 +301,11 @@ class Team
       snap['address'] as String, 
       snap['location'] as String, 
       snap['zipcode'] as String, 
-      snap['province'] as String, 
+      snap['province'] as String,
+      snap['coordinates'] as List<dynamic>,
       snap['fieldname'] as String,
       snap['fieldtype'] as String,
+      snap['parking'] as bool,
       snap.documentID
     );
   }

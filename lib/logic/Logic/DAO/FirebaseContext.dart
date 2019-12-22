@@ -43,20 +43,16 @@ class FirebaseContext
     }
   }
 
-  Future<void> addGamesOverWritting(List<Game> items) async
+  Future<void> addAllGames(List<Game> items) async
   {
-    for(int n = 0; n < items.length; n++)
-    {
-      addNewGame(items[n]);
-    }
+      items.sort((a,b) => a.id.compareTo(b.id));
+      items.forEach((item) => addNewGame(item));
   }
 
-  Future<void> addTeamsOverWritting(List<Team> items) async
+  Future<void> addAllTeams(List<Team> items) async
   {
-    for(int n = 0; n < items.length; n++)
-    {
-      addNewTeam(items[n]);
-    }
+    items.sort((a,b) => a.id.compareTo(b.id));
+    items.forEach((item) => addNewTeam(item));
   }
 
   Future<void> deleteGame(Game item) async

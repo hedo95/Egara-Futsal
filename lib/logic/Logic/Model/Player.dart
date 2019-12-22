@@ -75,6 +75,11 @@ class Player
     return played;
   }
 
+  int get totalgames
+  {
+     return getAllGamesFromFile().where((item) => (item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam) && (item.awaySquad.isNotEmpty || item.localSquad.isNotEmpty)).toList().length;
+  }
+  
   Player
   (
     this.idteam,this.name, this.surname, 

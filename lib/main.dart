@@ -65,11 +65,8 @@ class MyApp extends StatelessWidget {
                 color: Colors.blue[500],
                 onPressed: ()
                 {
-                  var db = new FirebaseContext();
-                  db.loadGames().then((list){
-                    list.sort((a,b) => a.id.compareTo(b.id));
-                    list.forEach((item) => print(item.id.toString()));
-                  });
+                  exportPlayersFromGames();
+                  print('ok');
                 }
               ),
               Text('hola Mundo',
@@ -81,3 +78,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
