@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/Clasificacion': (BuildContext context) => Clasificacion(),
         
       },
+      
       theme: ThemeData(
         primaryColor: primaryColor,
         backgroundColor: backgroundColor,
