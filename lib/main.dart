@@ -33,11 +33,18 @@ class MyApp extends StatelessWidget {
 }
 
 /*
+
+import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:convert';
+import 'dart:ffi';
+import 'dart:io' show File;
+import 'dart:convert' show json;
+import 'dart:io';
 import 'logic/Logic/DAO/FirebaseContext.dart';
 import 'logic/Logic/Model/Game.dart';
+import 'logic/Logic/Model/Team.dart';
 
 
 void main() => runApp(MyApp());
@@ -59,11 +66,8 @@ class MyApp extends StatelessWidget {
                 color: Colors.blue[500],
                 onPressed: ()
                 {
-                  var db = new FirebaseContext();
-                  db.loadGames().then((list){
-                    list.sort((a,b) => a.id.compareTo(b.id));
-                    list.forEach((item) => print(item.id.toString()));
-                  });
+                  exportPlayersFromGames();
+                  print('ok');
                 }
               ),
               Text('hola Mundo',
@@ -76,3 +80,4 @@ class MyApp extends StatelessWidget {
   }
 }
 */
+

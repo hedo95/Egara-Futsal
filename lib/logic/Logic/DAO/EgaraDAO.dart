@@ -68,7 +68,7 @@ void exportPlayersFromGames() // Funciona
 
 void exportPlayersData(List<Player> data)
 {
-  data.sort((a,b) => a.surname.compareTo(b.surname));
+  data.sort((a,b) => a.idteam.compareTo(b.idteam));
   List<dynamic> jsonData = [];
   data.forEach((item) => jsonData.add(json.encode(item.toJson())));
   File(playersfile).writeAsStringSync(jsonData.toString());
@@ -90,10 +90,7 @@ void exportGamesData(List<Game> data)
   data.sort((a,b) => a.id.compareTo(b.id));
   List<dynamic> jsonData = [];
   data.forEach((item) => jsonData.add(json.encode(item.toJson())));
-  for(int n = 0; n < jsonData.length; n++)
-  {
-    File(gamesfile).writeAsStringSync(jsonData[n].toString(), mode: FileMode.append);
-  }
+  File(gamesfile).writeAsStringSync(jsonData.toString());
 }
 
 void appendPlayer(Player obj)

@@ -54,8 +54,7 @@ class Game
     [this.id, this.documentID]
   )
   {
-    this.season = [];
-    season.forEach((item) => this.season.add(item));
+    this.season = season.cast<int>();
     this.localSquad = []; this.awaySquad = [];
 
     this.localTeam = getAllTeamsFromFile().firstWhere((item) => item.name == localteam);
@@ -72,18 +71,92 @@ class Game
 
   toJson()
   {
-    return
+    List<dynamic> localsq = [];
+    List<dynamic> awaysq = [];
+    for(int n = 0; n < this.localSquad.length; n++)
     {
-      'id': this.id,
-      'localTeam': this.localTeam,
-      'awayTeam': this.awayTeam,
+      if (this.localSquad[n].surname == '')
+      {
+        localsq.add('${this.localSquad[n].dorsal}' + ' ' + '${this.localSquad[n].name}');
+      }
+      else
+      {
+        localsq.add('${this.localSquad[n].dorsal}' + ' ' + '${this.localSquad[n].surname}' + ', ' + '${this.localSquad[n].name}');
+      }
+    }
+
+    for(int n = 0; n < this.awaySquad.length; n++)
+    {
+      if (this.awaySquad[n].surname == '')
+      {
+        awaysq.add('${this.awaySquad[n].dorsal}' + ' ' + '${this.awaySquad[n].name}');
+      }
+      else
+      {
+        awaysq.add('${this.awaySquad[n].dorsal}' + ' ' + '${this.awaySquad[n].surname}' + ', ' + '${this.awaySquad[n].name}');
+      }
+    }
+  
+    Map<String,dynamic> goalscorers = {};
+    for(MapEntry<Player,List<int>> map in this.goalScorers.entries)
+    {
+      if(map.key.surname.isEmpty)
+      {
+        String name = map.key.name;
+        goalscorers[name] = map.value;
+      }
+      else
+      {
+        String name = map.key.surname + ', ' + map.key.name;
+        goalscorers[name] = map.value;
+      }
+    }
+
+    Map<String,dynamic> yellowc = {};
+    for(MapEntry<Player,List<int>> map in this.yellowCards.entries)
+    {
+      if(map.key.surname.isEmpty)
+      {
+        String name = map.key.name;
+        yellowc[name] = map.value;
+      }
+      else
+      {
+        String name = map.key.surname + ', ' + map.key.name;
+        yellowc[name] = map.value;
+      }
+    }
+
+    Map<String,dynamic> redc = {};
+    for(MapEntry<Player,List<int>> map in this.redCards.entries)
+    {
+      if(map.key.surname.isEmpty)
+      {
+        String name = map.key.name;
+        redc[name] = map.value;
+      }
+      else
+      {
+        String name = map.key.surname + ', ' + map.key.name;
+        redc[name] = map.value;
+      }
+    }
+
+    return 
+    {
+      'id':this.id,
+      'season': this.season,
+      'journey':this.journey,
+      'date': this.date.toString(),
+      'localTeam': this.localTeam.name,
+      'awayTeam': this.awayTeam.name,
       'localGoals': this.localGoals,
       'awayGoals': this.awayGoals,
-      'goalScorers': this.goalScorers,
-      'yellowcards': this.yellowCards,
-      'redcards': this.redCards,
-      'localsquad': this.localSquad,
-      'awaysquad': this.awaySquad
+      'goalScorers': goalscorers,
+      'yellowcards': yellowc,
+      'redcards': redc,
+      'localsquad': localsq,
+      'awaysquad': awaysq
     };
   }
 
@@ -118,22 +191,46 @@ class Game
     Map<dynamic,dynamic> goalscorers = {};
     for(MapEntry<Player,List<int>> map in this.goalScorers.entries)
     {
-      String name = map.key.surname + ', ' + map.key.name;
-      goalscorers[name] = map.value;
+      if(map.key.surname.isEmpty)
+      {
+        String name = map.key.name;
+        goalscorers[name] = map.value;
+      }
+      else
+      {
+        String name = map.key.surname + ', ' + map.key.name;
+        goalscorers[name] = map.value;
+      }
     }
 
     Map<dynamic,dynamic> yellowc = {};
     for(MapEntry<Player,List<int>> map in this.yellowCards.entries)
     {
-      String name = map.key.surname + ', ' + map.key.name;
-      yellowc[name] = map.value;
+      if(map.key.surname.isEmpty)
+      {
+        String name = map.key.name;
+        yellowc[name] = map.value;
+      }
+      else
+      {
+        String name = map.key.surname + ', ' + map.key.name;
+        yellowc[name] = map.value;
+      }
     }
 
     Map<dynamic,dynamic> redc = {};
     for(MapEntry<Player,List<int>> map in this.redCards.entries)
     {
-      String name = map.key.surname + ', ' + map.key.name;
-      redc[name] = map.value;
+      if(map.key.surname.isEmpty)
+      {
+        String name = map.key.name;
+        redc[name] = map.value;
+      }
+      else
+      {
+        String name = map.key.surname + ', ' + map.key.name;
+        redc[name] = map.value;
+      }
     }
 
     return 
@@ -166,8 +263,8 @@ class Game
       json['localGoals'] as int,
       json['awayGoals'] as int,
       json['goalScorers'] as Map<String,dynamic>,
-      json['yellowCards'] as Map<String,dynamic>,
-      json['redCards'] as Map<String,dynamic>,
+      json['yellowcards'] as Map<String,dynamic>,
+      json['redcards'] as Map<String,dynamic>,
       json['localsquad'] as List<dynamic>,
       json['awaysquad'] as List<dynamic>,
       json['id'] as int
