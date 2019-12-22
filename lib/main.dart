@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+// 
 /*
 
 import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
