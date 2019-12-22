@@ -1,4 +1,4 @@
-/*
+
 import 'package:egaradefinitiu/screens/Clasificacion.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/subscreens/Graficos_jugadoras.dart';
@@ -31,8 +31,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-*/
-
+/*
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -75,3 +74,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+*/
