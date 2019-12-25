@@ -28,25 +28,21 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<Game>>( // Primer StreamBuilder para cargar los partidos de Firebase
       stream: db.loadGames(),
-      builder: (context, snapshot) {
-        if(!snapshot.hasData){
-          return Center( child: CircularProgressIndicator());
-        }
-        else if(snapshot.hasError){
-          return Center(child: Text(snapshot.error));
-        }else{
-            ChangeNotifierProvider provider1 = ChangeNotifierProvider(create: (context) => GameProvider(snapshot.data)); // Los metemos en su provider
-            ChangeNotifierProvider provider2 = ChangeNotifierProvider(create: (context) => PlayerProvider(snapshot.data)); // Provider3 es de jugadores, y no cargamos nada porque los sacamos de todos los partidos, en el constuctor ya llamamos una función del EgaraBO que nos saca todos los distintos jugadores de los partidos.
+      builder: (context, snapshot1) {
             return StreamBuilder<List<Team>>( // Segundo StreamBuilder para cargar los equipos de Firebase
               stream: db.loadTeams(),
-              builder: (context, snapshot) {
-                if(!snapshot.hasData){
+              builder: (context, snapshot2) {
+                if(!snapshot1.hasData || !snapshot2.hasData){
                   return Center( child: CircularProgressIndicator());
                 }
-                else if(snapshot.hasError){
-                  return Center(child: Text(snapshot.error));
+                else if(snapshot1.hasError){
+                  return Center(child: Text(snapshot1.error));
+                }else if(snapshot2.hasError){
+                  return Center(child: Text(snapshot2.error));
                 }else{
-                  ChangeNotifierProvider provider3 = ChangeNotifierProvider(create: (context) => TeamProvider(snapshot.data)); // Lo metemos en su provider
+                  ChangeNotifierProvider provider1 = ChangeNotifierProvider(create: (context) => GameProvider(snapshot1.data)); // Los metemos en su provider
+                  ChangeNotifierProvider provider2 = ChangeNotifierProvider(create: (context) => TeamProvider(snapshot2.data)); // Lo metemos en su provider
+                  ChangeNotifierProvider provider3 = ChangeNotifierProvider(create: (context) => PlayerProvider(snapshot1.data)); // Provider3 es de jugadores, y no cargamos nada porque los sacamos de todos los partidos, en el constuctor ya llamamos una función del EgaraBO que nos saca todos los distintos jugadores de los partidos.
                   return MultiProvider(
                     providers: [provider1, provider2, provider3], // Metemos los 3 providers en un Multiproviders
                     child: MaterialApp( // Empieza la App.
@@ -83,7 +79,6 @@ class _MyAppState extends State<MyApp> {
                 }
           }
       );
-        }
       }
     );
   }
