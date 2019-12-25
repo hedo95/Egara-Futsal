@@ -15,7 +15,7 @@ class TeamProvider with ChangeNotifier{
   }
 
   set teams(List<Team> teams){
-    this.teams = teams;
+    this._teams = teams;
     notifyListeners();
   }
 
