@@ -6,8 +6,8 @@ class GameProvider with ChangeNotifier{
 
   List<Game> _games;
 
-  GameProvider(List<Game> games){
-    this._games = games;
+  GameProvider(List<Game> items){
+    this.games = items;
   }
 
   List<Game> get games {

@@ -8,8 +8,8 @@ class PlayerProvider with ChangeNotifier{
 
   List<Player> _players;
 
-  PlayerProvider(List<Game> games){
-    this._players = getAllPlayers(games);
+  PlayerProvider(List<Game> items){
+    this.players = getAllPlayers(items);
   }
 
   List<Player> get players {

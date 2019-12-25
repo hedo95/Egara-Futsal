@@ -6,8 +6,8 @@ class TeamProvider with ChangeNotifier{
 
   List<Team> _teams;
 
-  TeamProvider(List<Team> teams){
-    this.teams = teams;
+  TeamProvider(List<Team> items){
+    this.teams = items;
   }
 
   List<Team> get teams {
