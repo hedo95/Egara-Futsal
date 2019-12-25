@@ -12,7 +12,7 @@ class PlayerProvider with ChangeNotifier{
     this._players = getAllPlayers(games);
   }
 
-  get players {
+  List<Player> get players {
     return this._players;
   }
 

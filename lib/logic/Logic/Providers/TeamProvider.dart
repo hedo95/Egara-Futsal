@@ -10,7 +10,7 @@ class TeamProvider with ChangeNotifier{
     this.teams = teams;
   }
 
-  get teams {
+  List<Team> get teams {
     return _teams;
   }
 
