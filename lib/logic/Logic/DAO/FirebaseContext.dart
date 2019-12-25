@@ -107,13 +107,27 @@ class FirebaseContext
     }
   }
 
-  Future<List<Game>> loadGames() async
+  Future<List<Game>> loadGames2() async
   {
     QuerySnapshot qShot = await gamesCollection.getDocuments();
     return qShot.documents.map((game) => Game.fromSnapshot(game)).toList();
   }
 
-  Future<List<Team>> loadTeams() async
+  Stream<List<Game>> loadGames()
+  {
+    return gamesCollection.snapshots().map((snapshot) {
+      return snapshot.documents.map((game) => Game.fromSnapshot(game)).toList();
+    });
+  }
+
+  Stream<List<Team>> loadTeams()
+  {
+    return teamsCollection.snapshots().map((snapshot) {
+      return snapshot.documents.map((team) => Team.fromSnapshot(team)).toList();
+    });
+  }
+
+  Future<List<Team>> loadTeams2() async
   {
     QuerySnapshot qShot = await teamsCollection.getDocuments();
     return qShot.documents.map((team) => Team.fromSnapshot(team)).toList();
@@ -123,7 +137,7 @@ class FirebaseContext
   {
     try
     {
-      loadTeams().then((onValue){
+      loadTeams().listen((onValue){
         onValue.sort((a,b) => a.id.compareTo(b.id));
         List<dynamic> jsonData = [];
         onValue.forEach((item) => jsonData.add(json.encode(item.toJson())));

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
                 {
                   var db = new FirebaseContext();
                   List<Game> games =  [];
-                  db.loadGames().then((list){
+                  db.loadGames().listen((list){
                     games.addAll(list);
                     games.sort((a,b) => a.id.compareTo(b.id));
                     games.forEach((item) => print(item.id.toString()));
