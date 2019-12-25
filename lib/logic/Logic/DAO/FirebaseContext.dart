@@ -107,11 +107,11 @@ class FirebaseContext
     }
   }
 
-  Future<List<Game>> loadGames2() async
-  {
-    QuerySnapshot qShot = await gamesCollection.getDocuments();
-    return qShot.documents.map((game) => Game.fromSnapshot(game)).toList();
-  }
+  // Future<List<Game>> loadGames2() async
+  // {
+  //   QuerySnapshot qShot = await gamesCollection.getDocuments();
+  //   return qShot.documents.map((game) => Game.fromSnapshot(game)).toList();
+  // }
 
   Stream<List<Game>> loadGames()
   {
@@ -127,11 +127,11 @@ class FirebaseContext
     });
   }
 
-  Future<List<Team>> loadTeams2() async
-  {
-    QuerySnapshot qShot = await teamsCollection.getDocuments();
-    return qShot.documents.map((team) => Team.fromSnapshot(team)).toList();
-  }
+  // Future<List<Team>> loadTeams2() async
+  // {
+  //   QuerySnapshot qShot = await teamsCollection.getDocuments();
+  //   return qShot.documents.map((team) => Team.fromSnapshot(team)).toList();
+  // }
 
   Future<void> exportTeamsToLocal() async
   {
