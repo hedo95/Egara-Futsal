@@ -166,9 +166,9 @@ class _MyAppState extends State<MyApp> {
                 }else if(snapshot2.hasError){
                   return Center(child: Text(snapshot2.error));
                 }else{
-                  ChangeNotifierProvider provider1 = ChangeNotifierProvider(create: (context) => GameProvider(snapshot1.data)); // Los metemos en su provider
-                  ChangeNotifierProvider provider2 = ChangeNotifierProvider(create: (context) => TeamProvider(snapshot2.data)); // Lo metemos en su provider
-                  ChangeNotifierProvider provider3 = ChangeNotifierProvider(create: (context) => PlayerProvider(snapshot1.data)); // Provider3 es de jugadores, y no cargamos nada porque los sacamos de todos los partidos, en el constuctor ya llamamos una función del EgaraBO que nos saca todos los distintos jugadores de los partidos.
+                  ChangeNotifierProvider provider1 = ChangeNotifierProvider<GameProvider>.value(value: GameProvider(snapshot1.data)); //(create: (context) => GameProvider(snapshot1.data)); // Los metemos en su provider
+                  ChangeNotifierProvider provider2 = ChangeNotifierProvider<TeamProvider>(create: (context) => TeamProvider(snapshot2.data)); // Lo metemos en su provider
+                  ChangeNotifierProvider provider3 = ChangeNotifierProvider<PlayerProvider>.value(value: PlayerProvider(snapshot1.data)); //(create: (context) => PlayerProvider(snapshot1.data)); // Provider3 es de jugadores, y no cargamos nada porque los sacamos de todos los partidos, en el constuctor ya llamamos una función del EgaraBO que nos saca todos los distintos jugadores de los partidos.
                   return MultiProvider(
                     providers: [provider1, provider2, provider3], // Metemos los 3 providers en un Multiproviders
                     child: MaterialApp( // Empieza la App.
