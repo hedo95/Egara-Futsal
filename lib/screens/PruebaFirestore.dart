@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
                               IconButton(
                                 icon: Icon(Icons.add),
                                 color: Colors.blue[500],
-                                onPressed: ()
+                                onPressed: () // Cargamos los 3 providers, y printamos algo del primer elemento de cada provider para ver que realmente funciona.
                                 {
                                   var games = Provider.of<GameProvider>(context).games;
                                   var teams = Provider.of<TeamProvider>(context).teams;
