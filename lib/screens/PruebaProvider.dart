@@ -1,4 +1,4 @@
-'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
+import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/screens/Clasificacion.dart';
