@@ -122,9 +122,6 @@ class _EquiposState extends State<Equipos> {
                         ),
                         child: Jugadora(),
                       ),
-
-                      
-
                     ],
                   ),
                 ),

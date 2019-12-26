@@ -98,7 +98,7 @@ class Team
   int currentConcededGoals(List<Game> games)
   {
     int goals = 0;
-    games = games.where((item) => item.localSquad.isNotEmpty && (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
+    games = games.where((item) => (item.localTeam.id == this.id || item.awayTeam.id == this.id)).toList();
     for(var game in games)
     {
       for(MapEntry<Player,List<int>> map in game.goalScorers.entries)

@@ -107,12 +107,6 @@ class FirebaseContext
     }
   }
 
-  // Future<List<Game>> loadGames2() async
-  // {
-  //   QuerySnapshot qShot = await gamesCollection.getDocuments();
-  //   return qShot.documents.map((game) => Game.fromSnapshot(game)).toList();
-  // }
-
   Stream<List<Game>> loadGames()
   {
     return gamesCollection.snapshots().map((snapshot) {
@@ -152,12 +146,5 @@ class FirebaseContext
   }
 }
 
-
- // Stream<List<Game>> loadGames()
-  // {
-  //   return gamesCollection.snapshots().map((snapshot) {
-  //     return snapshot.documents.map((game) => Game.fromSnapshot(game)).toList();
-  //   });
-  // }
 
 
