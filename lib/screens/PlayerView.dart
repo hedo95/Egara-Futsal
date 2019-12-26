@@ -1,5 +1,6 @@
 import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
 import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
 class PlayerView extends StatelessWidget{
 
   final Player player;
+  final List<Game> games = getAllGamesFromFile();
   PlayerView(this.player);
 
   @override
@@ -54,7 +56,7 @@ class PlayerView extends StatelessWidget{
                 title: Text(player.name + ' ' + player.surname),
               ),
               body:
-               Games(player.playedgames, player.totalgames, player.goals, player.ycards, player.rcards),
+               Games(player.playedgames(games), player.totalgames(games), player.goals(games), player.ycards(games), player.rcards(games)),
                   ),
               )
     );

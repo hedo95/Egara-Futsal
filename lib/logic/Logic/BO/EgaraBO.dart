@@ -30,11 +30,11 @@ List<Player> getAllPlayers(List<Game> games)
   return allplayers;
 }
 
-int catchArrow() // Devuelve un 1, un 0 o un -1.
+int catchArrow(List<Team> teams, List<Game> games) // Devuelve un 1, un 0 o un -1.
 {
-  Team egara = getAllTeamsFromFile().firstWhere((item) => item.id == 20008);
-  int currentPosition = egara.currentPosition;
-  int lastPosition = egara.lastCurrentPosition;
+  Team egara = teams.firstWhere((item) => item.id == 20008);
+  int currentPosition = egara.currentPosition(teams,games);
+  int lastPosition = egara.lastCurrentPosition(teams,games);
   if (currentPosition > lastPosition) { return 1; }
   else if (currentPosition == lastPosition) { return 0; }
   else { return -1; }
@@ -55,10 +55,9 @@ int maxPlayedJourney(List<Game> games)
   return games[games.length-1].journey;
 }
 
-List<Player> topScorers()
+List<Player> topScorers(List<Game> games)
 {
   List<Player> result = [];
-  List<Game> games = getAllGamesFromFile();
   for(var game in games)
   {
     for(var player in game.goalScorers.keys.toList())
@@ -70,7 +69,7 @@ List<Player> topScorers()
       }
     }
   }
-  result.sort((b,a) => a.goals.compareTo(b.goals));
+  result.sort((b,a) => a.goals(games).compareTo(b.goals(games)));
   return result;
 }
 
@@ -214,28 +213,27 @@ List<String> getNamesSurnamesFromSquad(String fullname)
   return result;
 }
 
-List<Team> getHomepageLeagueContainer()
+List<Team> getHomepageLeagueContainer(List<Team> teams, List<Game> games)
 { 
-  List<Team> teams = getAllTeamsFromFile();
-  Team egara = getAllTeamsFromFile().firstWhere((item) => item.id == 20008);
-  int pos = egara.currentPosition; 
+  Team egara = teams.firstWhere((item) => item.id == 20008);
+  int pos = egara.currentPosition(teams,games); 
   Team teamA, teamB;
   if(pos == 1)
   {
-    teamA = teams.firstWhere((item) => item.currentPosition == pos + 1);
-    teamB = teams.firstWhere((item) => item.currentPosition == pos + 2);
+    teamA = teams.firstWhere((item) => item.currentPosition(teams,games) == pos + 1);
+    teamB = teams.firstWhere((item) => item.currentPosition(teams,games) == pos + 2);
     return [egara, teamA, teamB];
   }
   else if(pos == 12)
   {
-    teamA = teams.firstWhere((item) => item.currentPosition == pos - 1);
-    teamB = teams.firstWhere((item) => item.currentPosition == pos - 2);
+    teamA = teams.firstWhere((item) => item.currentPosition(teams,games) == pos - 1);
+    teamB = teams.firstWhere((item) => item.currentPosition(teams,games) == pos - 2);
     return [teamB, teamA, egara];
   }
   else
   {
-    teamA = teams.firstWhere((item) => item.currentPosition == pos - 1);
-    teamB = teams.firstWhere((item) => item.currentPosition == pos + 1);
+    teamA = teams.firstWhere((item) => item.currentPosition(teams,games) == pos - 1);
+    teamB = teams.firstWhere((item) => item.currentPosition(teams,games) == pos + 1);
     return [teamA, egara, teamB];
   }
 }

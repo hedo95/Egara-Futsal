@@ -182,7 +182,7 @@
             "13 GAYA BANUS, MARTA",
             "2 GRAGERA HERMOSO, RAQUEL",
             "5 ISABEL",
-            "9 AREGALL VENTURA, MAR",
+            "17 AREGALL VENTURA, MAR",
             "10 OLIVER PALOL, NURIA",
             "4 LAO MATA, MARINA",
             "14 JUDIT",
@@ -395,7 +395,7 @@
             "13 GAYA BANUS, MARTA",
             "2 GRAGERA HERMOSO, RAQUEL",
             "5 ISABEL",
-            "9 AREGALL VENTURA, MAR",
+            "17 AREGALL VENTURA, MAR",
             "10 OLIVER PALOL, NURIA",
             "4 LAO MATA, MARINA",
             "14 JUDIT",
@@ -802,7 +802,7 @@
             "13 GAYA BANUS, MARTA",
             "2 GRAGERA HERMOSO, RAQUEL",
             "5 ISABEL",
-            "9 AREGALL VENTURA, MAR",
+            "17 AREGALL VENTURA, MAR",
             "10 OLIVER PALOL, NURIA",
             "4 LAO MATA, MARINA",
             "14 JUDIT",
@@ -982,9 +982,9 @@
         "awaysquad": [
             "13 GAYA BANUS, MARTA",
             "5 ISABEL",
-            "9 AREGALL VENTURA, MAR",
+            "17 AREGALL VENTURA, MAR",
             "20 BRAVO CARRASCO, JESSICA",
-            "32 LAHTI, ANNI AINO MARGARETA",
+            "20 LAHTI, ANNI AINO MARGARETA",
             "2 GRAGERA HERMOSO, RAQUEL",
             "4 LAO MATA, MARINA",
             "22 JUARROS MENÉNDEZ, LAIA"
@@ -1491,7 +1491,7 @@
         "localsquad": [
             "13 GAYA BANUS, MARTA",
             "2 GRAGERA HERMOSO, RAQUEL",
-            "9 AREGALL VENTURA, MAR",
+            "17 AREGALL VENTURA, MAR",
             "5 ISABEL",
             "20 BRAVO CARRASCO, JESSICA",
             "4 LAO MATA, MARINA",
@@ -1777,13 +1777,43 @@
         "date": "2019-12-16 21:00:00.000",
         "localTeam": "Escola Pia Sabadell, C.E, A",
         "awayTeam": "Oar Gràcia Sbd, E.F., A",
-        "localGoals": 0,
-        "awayGoals": 0,
-        "goalScorers": {},
-        "yellowcards": {},
+        "localGoals": 1,
+        "awayGoals": 1,
+        "goalScorers": {
+            "SANCHEZ HUGUET, GALA":[
+                32
+            ],
+            "PUJOL GIMENEZ, GEORGINA":[
+                49
+            ]
+        },
+        "yellowcards": {
+            "PUJOL GIMENEZ, GEORGINA":[
+                49
+            ]
+        },
         "redcards": {},
-        "localsquad": [],
-        "awaysquad": []
+        "localsquad": [
+            "13 CORBERA CASAS, SILVIA",
+            "2 SENSARRICH VIAPLANA, LAURA",
+            "3 COMAS SALA, ANNA",
+            "4 CLARA FERNANDEZ, LLUNA",
+            "6 BITRIAN SAN PABLO, MIREIA",
+            "7 AGUAVIVA VILA, LAIA",
+            "8 MARINEL-LO GOMEZ, LAURA",
+            "10 PUJOL GIMENEZ, GEORGINA",
+            "11 COZAR MAYORAL, ANDREA"
+        ],
+        "awaysquad": [
+            "95 MARCO BOADA, ANDREA",
+            "61 MARTINEZ COSTA, ANDREA",
+            "77 PEY NASARRE, QUERALT",
+            "93 FLORES SAFONT, MIREIA",
+            "99 TRALLERO ROLDAN, JARA",
+            "25 MARTINEZ COSTA, NEREA",
+            "33 SANCHEZ HUGUET, GALA",
+            "97 ROSA LOPEZ, CLAUDIA"
+        ]
     },
     {
         "id": 30136,
@@ -2021,7 +2051,7 @@
             "4 LAO MATA, MARINA",
             "5 ISABEL",
             "20 AGUILERA SUBIRANA, ELENA",
-            "9 AREGALL VENTURA, MAR",
+            "17 AREGALL VENTURA, MAR",
             "20 BRAVO CARRASCO, JESSICA"
         ],
         "awaysquad": [
@@ -2043,15 +2073,44 @@
         ],
         "journey": 7,
         "date": "2019-12-22 18:00:00.000",
-        "localTeam": "Egara Futsal 2019, C.F. SALA",
-        "awayTeam": "Pou Escorial, A",
-        "localGoals": 0,
-        "awayGoals": 0,
-        "goalScorers": {},
+        "localTeam": "Pou Escorial, A",
+        "awayTeam": "Egara Futsal 2019, C.F. SALA",
+        "localGoals": 4,
+        "awayGoals": 1,
+        "goalScorers": {
+            "TAUSTE SABALETE, CRISTINA":[
+                7,9,26
+            ],
+            "BEDDOUH, OUMAIMA":[
+                11
+            ],
+            "GARCIA NICOLAS, RAQUEL":[
+                11
+            ]
+        },
         "yellowcards": {},
         "redcards": {},
-        "localsquad": [],
-        "awaysquad": []
+        "localsquad": [
+            "13 CAMARGO ALCAIDE, LORENA",
+            "4 ALFONSO ESPINOSA, BERTA",
+            "5 MARIN REINA, CORINA",
+            "7 PINERO ORTIZ, ANA MARIA",
+            "8 TAUSTE SABALETE, CRISTINA",
+            "10 GARCIA NICOLAS, RAQUEL",
+            "11 SILVIA",
+            "15 GARCIA ARMENTEROS, PATRICIA",
+            "18 ALFONSO ESPINOSA, CLARA ISABEL",
+            "70 ARDILA GARCIA, ISABEL"
+        ],
+        "awaysquad": [
+            "1 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
+            "3 BEDDOUH, OUMAIMA",
+            "4 TASCONES CASELLAS, MIREYA",
+            "5 AL KAHIAL, DOUNIA",
+            "6 EL KARIA, FATIMA",
+            "8 GARCIA, SOFIA NOEMI",
+            "10 MONTCUSI ARCOS, LUCIA"
+        ]
     },
     {
         "id": 30142,
@@ -2094,7 +2153,7 @@
             "13 GAYA BANUS, MARTA",
             "3 MARIN GONZALEZ, VERONICA",
             "5 ISABEL",
-            "9 AREGALL VENTURA, MAR",
+            "17 AREGALL VENTURA, MAR",
             "20 BRAVO CARRASCO, JESSICA",
             "4 LAO MATA, MARINA",
             "10 OLIVER PALOL, NURIA",
@@ -2358,6 +2417,297 @@
         ],
         "journey": 9,
         "date": "2019-12-14 18:00:00.000",
+        "localTeam": "Fundació Terrassa FC 1906, A",
+        "awayTeam": "Gadex Club Esportiu, A",
+        "localGoals": 0,
+        "awayGoals": 0,
+        "goalScorers": {},
+        "yellowcards": {},
+        "redcards": {},
+        "localsquad": [],
+        "awaysquad": []
+    },
+    {
+        "id": 30149,
+        "season": [
+            2019,
+            2020
+        ],
+        "journey": 9,
+        "date": "2019-12-14 19:30:00.000",
+        "localTeam": "Horta Futbol Sala Club, A",
+        "awayTeam": "Futsal Terrassa Les Saveurs Club Esportiu, A",
+        "localGoals": 1,
+        "awayGoals": 2,
+        "goalScorers": {
+            "PARADA MENDEZ, DAYLI IVON":[
+                14
+            ],
+            "GALINDO BACH, ALTAIR JIN":[
+                30
+            ],
+            "LOPEZ SANCHEZ, IRINA":[
+                37
+            ]
+        },
+        "yellowcards": {},
+        "redcards": {},
+        "localsquad": [
+            "13 AINZUA ISTURIZ, AINARA",
+            "3 ESCALER PENELLA, IOANA",
+            "4 LOPEZ LECHUGA, IRIS",
+            "5 RUBIO RODRIGUEZ, ANNA",
+            "7 ALCALDE CARRERAS, CRISTINA",
+            "9 TARRASON LARA, ARIADNA",
+            "5 RUBIO RODRIGUEZ, ANNA",
+            "14 LOPEZ SANCHEZ, IRINA",
+            "17 GARCIA RODRIGUEZ, ANDREA",
+            "1 PAREDES MARTINEZ, ROSA MARIA"
+        ],
+        "awaysquad": [
+            "15 SANTIN ROMERO, NOELIA DE JESUS",
+            "3 GALINDO BACH, ALTAIR JIN",
+            "5 TELLEZ MERINO, LIDIA",
+            "8 GONZALEZ CABALLERO, ANDREA",
+            "10 ROZAS MORENO, ELISABET",
+            "11 LATORRE CAMACHO, CINTIA",
+            "13 PARADA MENDEZ, DAYLI IVON",
+            "21 POZO GARCIA RAYO, ARIADNA"
+        ]
+    },
+    {
+        "id": 30150,
+        "season": [
+            2019,
+            2020
+        ],
+        "journey": 9,
+        "date": "2019-12-15 11:00:00.000",
+        "localTeam": "Egara Futsal 2019, C.F. SALA",
+        "awayTeam": "Oar Gràcia Sbd, E.F., A",
+        "localGoals": 2,
+        "awayGoals": 4,
+        "goalScorers": {
+            "MONTCUSI ARCOS, SARA":[
+                27
+            ],
+            "MONTCUSI ARCOS, LUCIA":[
+                48
+            ],
+            "FLORES SAFONT, MIREIA":[
+                5
+            ],
+            "MARTINEZ COSTA, NEREA":[
+                12
+            ],
+            "TRALLERO ROLDAN, JARA":[
+                33
+            ],
+            "SANCHEZ HUGUET, GALA":[
+                45
+            ]
+        },
+        "yellowcards": {
+            "MONTCUSI ARCOS, SARA":[
+                49
+            ]
+        },
+        "redcards": {
+            "MONTCUSI ARCOS, SARA":[
+                49
+            ]
+        },
+        "localsquad": [
+            "1 EXPÓSITO MARTÍNEZ, MARIA ANGELES",
+            "4 TASCONES CASELLAS, MIREYA",
+            "5 AL KAHIAL, DOUNIA",
+            "6 EL KARIA, FATIMA",
+            "7 MONTCUSI ARCOS, SARA",
+            "10 MONTCUSI ARCOS, LUCIA",
+            "9 EL FILALI, ABIR"
+        ],
+        "awaysquad": [
+            "95 MARCO BOADA, ANDREA",
+            "25 MARTINEZ COSTA, NEREA",
+            "61 MARTINEZ COSTA, ANDREA",
+            "93 FLORES SAFONT, MIREIA",
+            "99 TRALLERO ROLDAN, JARA",
+            "33 SANCHEZ HUGUET, GALA",
+            "77 PEY NASARRE, QUERALT",
+            "97 ROSA LOPEZ, CLAUDIA"
+        ]
+    },
+    {
+        "id": 30151,
+        "season": [
+            2019,
+            2020
+        ],
+        "journey": 9,
+        "date": "2019-12-15 11:15:00.000",
+        "localTeam": "Pou Escorial, A",
+        "awayTeam": "CFS Les Glòries 2014, B",
+        "localGoals": 2,
+        "awayGoals": 4,
+        "goalScorers": {
+            "JOVÉ AMOR, CLÀUDIA":[
+                3,33
+            ],
+            "ARDILA GARCIA, ISABEL":[
+                13
+            ],
+            "JULIÀ I ROSELL, ÀGATA":[
+                17
+            ],
+            "ROVIRA PIBERNAT, MARIA":[
+                24
+            ],
+            "GARCIA ARMENTEROS, PATRICIA":[
+                40
+            ]
+        },
+        "yellowcards": {
+            "MARIN REINA, CORINA":[
+                36
+            ],
+            "LOPEZ GOMEZ, MARIA":[
+                42
+            ],
+            "JOVÉ AMOR, CLÀUDIA":[
+                48
+            ]
+        },
+        "redcards": {
+
+        },
+        "localsquad": [
+           "13 CAMARGO ALCAIDE, LORENA",
+           "4 ALFONSO ESPINOSA, BERTA",
+           "5 MARIN REINA, CORINA",
+           "6 VASQUEZ RUEDA, LADY ALEXANDRA",
+           "8 TAUSTE SABALETE, CRISTINA",
+           "10 GARCIA NICOLAS, RAQUEL",
+           "11 SILVIA",
+           "15 GARCIA ARMENTEROS, PATRICIA",
+           "18 ALFONSO ESPINOSA, CLARA ISABEL",
+           "70 ARDILA GARCIA, ISABEL"
+        ],
+        "awaysquad": [
+            "1 PARDELL SALLERAS, LLUM",
+            "4 JOVÉ AMOR, CLÀUDIA",
+            "5 DE LA CALLE ARGELES, LAIA",
+            "6 LABORDA DEL TORO, SANDRA",
+            "7 ALONSO PEREZ, JULIA",
+            "10 SABATÉ LLECHA, CRISTINA",
+            "13 FADURDO MODESTO, ALBA",
+            "14 ROVIRA PIBERNAT, MARIA",
+            "18 VAZQUEZ CEDILLO, SUSANA",
+            "19 JULIÀ I ROSELL, ÀGATA",
+            "28 LOPEZ GOMEZ, MARIA"
+        ]
+    },
+    {
+        "id": 30152,
+        "season": [
+            2019,
+            2020
+        ],
+        "journey": 9,
+        "date": "2019-12-15 12:45:00.000",
+        "localTeam": "Escola Pia Sabadell, C.E, A",
+        "awayTeam": "Acció Sant Martí, A",
+        "localGoals": 2,
+        "awayGoals": 2,
+        "goalScorers": {
+            "PUJOL GIMENEZ, GEORGINA":[
+                17
+            ],
+            "MARINEL-LO GOMEZ, LAURA":[
+                18
+            ],
+            "KHATIB LEDO, AMAL":[
+                20
+            ],
+            "ANTONIO AGUILA, PATRICIA":[
+                46
+            ]
+        },
+        "yellowcards": {},
+        "redcards": {},
+        "localsquad": [
+            "13 CORBERA CASAS, SILVIA",
+            "2 SENSARRICH VIAPLANA, LAURA",
+            "3 COMAS SALA, ANNA",
+            "4 CLARA FERNANDEZ, LLUNA",
+            "6 BITRIAN SAN PABLO, MIREIA",
+            "1 GARCIA BAHAMONDE, ANDREA",
+            "7 AGUAVIVA VILA, LAIA",
+            "8 MARINEL-LO GOMEZ, LAURA",
+            "10 PUJOL GIMENEZ, GEORGINA"
+        ],
+        "awaysquad": [
+            "99 ZAMBRANA GONZALEZ, ROCIO",
+            "5 GALLARDO ARCHS, MIREIA",
+            "10 KHATIB LEDO, AMAL",
+            "14 TABERO FUENTES, SONIA",
+            "16 MOYA MARTINEZ, ANA ROCIO",
+            "11 ANTONIO AGUILA, PATRICIA"
+        ]
+    },
+    {
+        "id": 30153,
+        "season": [
+            2019,
+            2020
+        ],
+        "journey": 9,
+        "date": "2019-12-15 18:17:00.000",
+        "localTeam": "Penya Barça Barbera del Valles",
+        "awayTeam": "Castellbisbal, F.S, B",
+        "localGoals": 4,
+        "awayGoals": 0,
+        "goalScorers": {
+            "OLIETE TRAPERO, MONICA":[
+                13,27
+            ],
+            "ORTIGOSA CARRASQUER, MARTA":[
+                26
+            ],
+            "GASCÓN RUIZ, ANDREA":[
+                46
+            ]
+        },
+        "yellowcards": {},
+        "redcards": {},
+        "localsquad": [
+            "1 ZAMORANO ALCAUT, AMALIA",
+            "2 GARCIA CERVERA, NATALIA",
+            "4 SANTMARTI SELLE, LAIA",
+            "5 OLIETE TRAPERO, MONICA",
+            "6 ORTIGOSA CARRASQUER, MARTA",
+            "9 ALVAREZ MERINO, JASMINE",
+            "10 GASCÓN RUIZ, ANDREA"
+        ],
+        "awaysquad": [
+            "20 BRAVO CARRASCO, JESSICA",
+            "3 MARIN GONZALEZ, VERONICA",
+            "2 GRAGERA HERMOSO, RAQUEL",
+            "5 ISABEL",
+            "11 FUENTES GUTIERREZ, AGATA",
+            "9 NARVÁEZ MARTOS, MONICA",
+            "17 AREGALL VENTURA, MAR",
+            "20 LAHTI, ANNI AINO MARGARETA",
+            "32 FERNANDEZ COCOA, ESTER"
+        ]
+    },
+    {
+        "id": 30154,
+        "season": [
+            2019,
+            2020
+        ],
+        "journey": 10,
+        "date": "2019-12-23 20:45:00.000",
         "localTeam": "Fundació Terrassa FC 1906, A",
         "awayTeam": "Gadex Club Esportiu, A",
         "localGoals": 0,

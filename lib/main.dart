@@ -136,7 +136,7 @@ class MyApp extends StatelessWidget {
 }
 
 
-*/
+
 
 import 'dart:async';
 import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
@@ -154,6 +154,7 @@ import 'package:egaradefinitiu/logic/Logic/Providers/PlayerProvider.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:sentry/sentry.dart';
+
 
 
 void main() {
@@ -234,3 +235,100 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+*/
+
+import 'dart:async';
+import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
+import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
+import 'package:egaradefinitiu/screens/Clasificacion.dart';
+import 'package:egaradefinitiu/style/Theme.dart';
+import 'package:egaradefinitiu/subscreens/Graficos_jugadoras.dart';
+import 'package:egaradefinitiu/widgets/BottomMenu.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:egaradefinitiu/logic/Logic/Providers/GameProvider.dart';
+import 'package:egaradefinitiu/logic/Logic/Providers/TeamProvider.dart';
+import 'package:egaradefinitiu/logic/Logic/Providers/PlayerProvider.dart';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:sentry/sentry.dart';
+
+import 'logic/Logic/BO/EgaraBO.dart';
+import 'logic/Logic/Model/Player.dart';
+
+
+void main(){ 
+  FlutterError.onError = (FlutterErrorDetails details){
+    FlutterError.dumpErrorToConsole(details);
+    if (kReleaseMode)
+      exit(1);
+  };
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Welcome to Flutter'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                iconSize: 40,
+                icon: Icon(Icons.add),
+                color: Colors.blue[500],
+                onPressed: ()
+                {
+                  // Vemos que funciona la conexión con Firebase
+                  // var db = new FirebaseContext();
+                  // var games = db.loadGames();
+                  // games.listen((onData){
+                  //   onData.sort((a,b) => a.id.compareTo(b.id));
+                  //   onData.forEach((element) => print(element.id.toString()));
+                  // });
+
+                  List<Game> games = getAllGamesFromFile();
+                  games.sort((a,b) => a.id.compareTo(b.id));
+
+                  // Printamos los metodos de equipo:
+                  // List<Team> teams = getAllTeamsFromFile();
+                  // Team egara = teams.firstWhere((item) => item.id == 20008);
+                  // print(' ');
+                  // print('Current goals: '+egara.currentGoals(games).toString());
+                  // print('Current conceded goals: '+egara.currentConcededGoals(games).toString());
+                  // print('Current position: ' + egara.currentPosition(teams, games).toString());
+                  // print('Last current position: ' + egara.lastCurrentPosition(teams,games).toString() + '\n');
+                  // print('Current points: '+egara.currentPoints(games).toString());
+                  // print('Last current points: ' + egara.lastCurrentPoints(games).toString());
+
+                  // Printamos los metodos de jugador
+                  // Player oumaima = getAllPlayers(games).firstWhere((item) => item.surname == "BEDDOUH");
+                  // print('');
+                  // print('Goals: ' + oumaima.goals(games).toString());
+                  // print('Played games: ' + oumaima.playedgames(games).toString());
+                  // print('Total games: ' + oumaima.totalgames(games).toString());
+                  // print('Yellow cards: '+ oumaima.ycards(games).toString());
+                  // print('Red cards: ' + oumaima.rcards(games).toString());
+                }
+              ),
+              Text('Push me',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.blue[500]
+                ),
+              )
+            ]
+          )
+        ),
+      ),
+    );
+  }
+}

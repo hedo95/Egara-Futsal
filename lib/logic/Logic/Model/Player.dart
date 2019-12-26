@@ -10,9 +10,9 @@ class Player
   String name, surname;
   int idteam, dorsal; /*goals , yellowcards, redcards, playedGames; */ 
 
-  int get goals
+  int goals(List<Game> games)
   {
-    List<Game> games = getAllGamesFromFile().where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();
+    games = games.where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();
     int goals = 0;
     for(var game in games)
     {
@@ -27,9 +27,9 @@ class Player
     return goals;
   }
 
-  int get ycards
+  int ycards(List<Game> games)
   {
-    List<Game> games = getAllGamesFromFile().where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
+    games = games.where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
     int ycards = 0;
     for(var game in games)
     {
@@ -44,9 +44,9 @@ class Player
     return ycards;
   }
 
-  int get rcards
+  int rcards(List<Game> games)
   {
-    List<Game> games = getAllGamesFromFile().where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
+    games = games.where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
     int rcards = 0;
     for(var game in games)
     {
@@ -61,9 +61,9 @@ class Player
     return rcards;
   }
 
-  int get playedgames
+  int playedgames(List<Game> games)
   {
-    List<Game> games = getAllGamesFromFile().where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
+    games = games.where((item) => item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam).toList();;
     int played = 0;
     for(var game in games)
     {
@@ -75,9 +75,9 @@ class Player
     return played;
   }
 
-  int get totalgames
+  int totalgames(List<Game> games)
   {
-     return getAllGamesFromFile().where((item) => (item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam) && (item.awaySquad.isNotEmpty || item.localSquad.isNotEmpty)).toList().length;
+     return games.where((item) => (item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam) && (item.awaySquad.isNotEmpty || item.localSquad.isNotEmpty)).toList().length;
   }
   
   Player
