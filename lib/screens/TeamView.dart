@@ -117,7 +117,7 @@ class _GamesState extends State<Games> {
   List<charts.Series<Task, String>> _seriesPieData;
   List<charts.Series<GamesData, String>> _seriesEventsData;
   List<Player> players = [];
-  final List<Game> games = getAllGamesFromFile();
+  List<Game> games = getAllGamesFromFile();
   final Team team;
   final int points,
       playedgames,
@@ -130,7 +130,7 @@ class _GamesState extends State<Games> {
   _GamesState(this.team,this.position, this.points, this.playedgames, this.wongames,
       this.drawngames, this.lostgames, this.goals, this.concededgoals){
         players = getAllPlayersFromAteam(team, games);
-        players.sort((a,b) => a.dorsal.compareTo(b.dorsal));
+        players.sort((b,a) => a.goals(games).compareTo(b.goals(games)));
       }
 
   _generateData() {

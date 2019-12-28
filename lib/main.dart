@@ -375,7 +375,7 @@ class _GamesState extends State<Games> {
   _GamesState(this.team,this.position, this.points, this.playedgames, this.wongames,
       this.drawngames, this.lostgames, this.goals, this.concededgoals){
         players = getAllPlayersFromAteam(team, games);
-        players.sort((a,b) => a.dorsal.compareTo(b.dorsal));
+        players.sort((b,a) => a.goals(games).compareTo(b.goals(games)));
       }
 
   _generateData() {
