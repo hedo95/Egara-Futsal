@@ -8,6 +8,8 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/src/rendering/box.dart';
 
+import 'PlayerView.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -61,6 +63,7 @@ class TeamView extends StatelessWidget {
           title: Text(this.team.name),
         ),
         body: Games(
+            team,
             team.currentPosition(teams, games),
             team.currentPoints(games),
             team.totalGames(games),
@@ -83,9 +86,11 @@ class Games extends StatefulWidget {
       lostgames,
       goals,
       concededgoals;
-  Games(this.position, this.points, this.playedgames, this.wongames,
+  final Team team;
+  Games(this.team,this.position, this.points, this.playedgames, this.wongames,
       this.drawngames, this.lostgames, this.goals, this.concededgoals);
   _GamesState createState() => _GamesState(
+      this.team,
       this.position,
       this.points,
       this.playedgames,
@@ -99,6 +104,9 @@ class Games extends StatefulWidget {
 class _GamesState extends State<Games> {
   List<charts.Series<Task, String>> _seriesPieData;
   List<charts.Series<GamesData, String>> _seriesEventsData;
+  List<Player> players = [];
+  final List<Game> games = getAllGamesFromFile();
+  final Team team;
   final int points,
       playedgames,
       wongames,
@@ -107,8 +115,11 @@ class _GamesState extends State<Games> {
       goals,
       concededgoals,
       position;
-  _GamesState(this.position, this.points, this.playedgames, this.wongames,
-      this.drawngames, this.lostgames, this.goals, this.concededgoals);
+  _GamesState(this.team,this.position, this.points, this.playedgames, this.wongames,
+      this.drawngames, this.lostgames, this.goals, this.concededgoals){
+        players = getAllPlayersFromAteam(team, games);
+        players.sort((a,b) => a.dorsal.compareTo(b.dorsal));
+      }
 
   _generateData() {
     var eventsData = [
@@ -119,6 +130,7 @@ class _GamesState extends State<Games> {
           'Partidos empatados', 'PE', this.drawngames, Colors.yellow[700]),
       new GamesData('Partidos perdidos', 'PP', this.lostgames, Colors.red[800]),
     ];
+
 
     _seriesEventsData.add(charts.Series(
         data: eventsData,
@@ -162,7 +174,7 @@ class _GamesState extends State<Games> {
     return TabBarView(
       children: [
         Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(10.0),
             child: Container(
                 child: Center(
                     child: Column(children: <Widget>[
@@ -174,7 +186,7 @@ class _GamesState extends State<Games> {
                     this.position.toString(),
                 style: TextStyle(
                     color: Colors.purple[900],
-                    fontSize: 24.0,
+                    fontSize: 30.0,
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20.0),
@@ -209,7 +221,7 @@ class _GamesState extends State<Games> {
                     'Goles',
                     style: TextStyle(
                         color: Colors.purple[900],
-                        fontSize: 34.0,
+                        fontSize: 30.0,
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 20.0),
@@ -248,14 +260,54 @@ class _GamesState extends State<Games> {
           )
         ),
         Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Center(
-            child: Text(' Insertar \n\ GridView  \n\ Jugadoras',
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.purple[900]
-              )
-            ),
+          padding: EdgeInsets.all(2),
+          child: Scrollbar(
+            child: GridView.builder(
+              padding: EdgeInsets.all(22),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Columnas
+                childAspectRatio: 1, // H/W
+                crossAxisSpacing: 60, // separacion vertical entre items
+                mainAxisSpacing: 50 // Separacion horiontal entre items
+              ),
+              itemCount: players.length,
+              itemBuilder: (context,index){
+                return Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => PlayerView(players[index])
+                            ));
+                        },
+                        child: Container(
+                          alignment: Alignment.topCenter,
+                          child: Text(players[index].dorsal.toString(),
+                            style: TextStyle(
+                              color: Colors.purple[900],
+                              fontSize: 75
+                            )
+                          )
+                        )
+                      ),
+                      Text(players[index].name,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.purple[900],
+                          fontSize:15
+                        ),
+                      )
+                    ],
+                  )
+                );
+              },
+            )
           )
         ),
         Padding(
