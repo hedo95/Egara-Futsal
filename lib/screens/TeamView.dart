@@ -12,8 +12,13 @@ import 'PlayerView.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   List<Team> teams = getAllTeamsFromFile();
 
   @override
@@ -29,11 +34,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TeamView extends StatelessWidget {
+class TeamView extends StatefulWidget {
   final Team team;
+
+  TeamView(this.team);
+
+  @override
+  _TeamViewState createState() => _TeamViewState();
+}
+
+class _TeamViewState extends State<TeamView> {
   final List<Game> games = getAllGamesFromFile();
   List<Team> teams = getAllTeamsFromFile();
-  TeamView(this.team);
 
   @override
   Widget build(BuildContext context) {
@@ -60,18 +72,18 @@ class TeamView extends StatelessWidget {
                       color: Colors.pink[200]))
             ],
           ),
-          title: Text(this.team.name),
+          title: Text(this.widget.team.name),
         ),
         body: Games(
-            team,
-            team.currentPosition(teams, games),
-            team.currentPoints(games),
-            team.totalGames(games),
-            team.wonGames(games),
-            team.drawnGames(games),
-            team.lostGames(games),
-            team.currentGoals(games),
-            team.currentConcededGoals(games)),
+            widget.team,
+            widget.team.currentPosition(teams, games),
+            widget.team.currentPoints(games),
+            widget.team.totalGames(games),
+            widget.team.wonGames(games),
+            widget.team.drawnGames(games),
+            widget.team.lostGames(games),
+            widget.team.currentGoals(games),
+            widget.team.currentConcededGoals(games)),
       ),
     ));
   }
