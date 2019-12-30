@@ -3,8 +3,8 @@
 import 'Game.dart';
 
 class Journey {
-int id, journey;
-  List<Game> games;
+  int id, journey;
+  List<Game> games = [];
 
   Journey(this.games)
   {

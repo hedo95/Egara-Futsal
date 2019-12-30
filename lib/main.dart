@@ -4,6 +4,7 @@ import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/screens/Clasificacion.dart';
+import 'package:egaradefinitiu/screens/Jornadas.dart';
 import 'package:egaradefinitiu/screens/PlayerView.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/subscreens/Graficos_jugadoras.dart';
@@ -25,6 +26,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 /*
 
 
+
+// Prueba provider con menú real 
 
 void main(){ 
   FlutterError.onError = (FlutterErrorDetails details){
@@ -96,6 +99,33 @@ class MyApp extends StatelessWidget {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Prueba provider
 
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -179,6 +209,34 @@ class _MyAppState extends State<MyApp> {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Prueba firebase
+
+
 void main(){ 
   FlutterError.onError = (FlutterErrorDetails details){
     FlutterError.dumpErrorToConsole(details);
@@ -253,7 +311,62 @@ class MyApp extends StatelessWidget {
   }
 }
 
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Team View() : 
+
 
 void main() => runApp(MyApp());
 
@@ -275,13 +388,12 @@ class _MyAppState extends State<MyApp> {
           primaryColor: Colors.purple[900],
         ),
         home: TeamView(
-            getAllTeamsFromFile().firstWhere((item) => item.id == 20008)));
+            getAllTeamsFromFile().firstWhere((item) => item.id == 20010)));
   }
 }
 
 class TeamView extends StatefulWidget {
   final Team team;
-
   TeamView(this.team);
 
   @override
@@ -599,3 +711,79 @@ class GamesData {
 
   GamesData(this.event, this.labelx, this.value, this.color);
 }
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Jornadas
+
+
+void main(){ 
+  FlutterError.onError = (FlutterErrorDetails details){
+    FlutterError.dumpErrorToConsole(details);
+    if (kReleaseMode)
+      exit(1);
+  };
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  final List<Game> games = getAllGamesFromFile();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Jornadas',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Jornadas'),
+          backgroundColor: Colors.purple[900],
+        ),
+        body: Jornadas()
+      ),
+    );
+  }
+}
+

@@ -41,6 +41,14 @@ int catchArrow(List<Team> teams, List<Game> games) // Devuelve un 1, un 0 o un -
 }
 
 
+
+int currentJourney(List<Game> games){
+  
+  List<Journey> journeys = getCalendar(games);
+  int result = journeys.lastWhere((item) => !item.games.any((item) => (item.localSquad.isEmpty || item.awaySquad.isEmpty))).journey + 1;
+  return result;
+}
+
 List<Player> getAllPlayersFromAteam(Team team, List<Game> games)
 {
   return getAllPlayers(games).where((item) => item.idteam == team.id).toList();

@@ -30,13 +30,12 @@ class _MyAppState extends State<MyApp> {
           primaryColor: Colors.purple[900],
         ),
         home: TeamView(
-            getAllTeamsFromFile().firstWhere((item) => item.id == 20008)));
+            getAllTeamsFromFile().firstWhere((item) => item.id == 20010)));
   }
 }
 
 class TeamView extends StatefulWidget {
   final Team team;
-
   TeamView(this.team);
 
   @override
@@ -117,7 +116,7 @@ class _GamesState extends State<Games> {
   List<charts.Series<Task, String>> _seriesPieData;
   List<charts.Series<GamesData, String>> _seriesEventsData;
   List<Player> players = [];
-  List<Game> games = getAllGamesFromFile();
+  final List<Game> games = getAllGamesFromFile();
   final Team team;
   final int points,
       playedgames,
