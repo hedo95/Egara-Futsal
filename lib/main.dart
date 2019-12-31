@@ -770,7 +770,6 @@ void main(){
 }
 
 class MyApp extends StatelessWidget {
-  final List<Game> games = getAllGamesFromFile();
 
   @override
   Widget build(BuildContext context) {
