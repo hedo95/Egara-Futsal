@@ -85,14 +85,15 @@ class _JornadasState extends State<Jornadas> {
               ),
               Expanded(
                 child: Scrollbar(
-                  child: ListView.builder(
-                    itemCount: journeyGames.length,
-                    itemBuilder: (context,index){
-                      return JornadaContainer(journeyGames[index]);
-                    },
-                  )
-                )
-              )
+                    child: ListView.builder(
+                  itemCount: journeyGames.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: JornadaContainer(journeyGames[index]));
+                  },
+                )),
+              ),
             ],
           ),
         ));
@@ -106,24 +107,51 @@ class JornadaContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-            onTap: () {
-              print('Navigator to ActaPartido()!');
-              // Navigator.of(context).push(
-              //               MaterialPageRoute(
-              //                 builder: (context) => ActaPartido(journeyGames[index]);
-              //               ));
-            },
-            child: Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white24,
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: Text(
-                    game.localGoals.toString() +
-                        ' - ' +
-                        game.awayGoals.toString(),
-                    style: TextStyle(color: Colors.purple[900], fontSize: 140))),
-      );
-    }
+        onTap: () {
+          print('Navigator to ActaPartido()!');
+          // Navigator.of(context).push(
+          //               MaterialPageRoute(
+          //                 builder: (context) => ActaPartido(game);
+          //               ));
+        },
+        child: Container(
+          alignment: Alignment.center,
+          decoration: ShapeDecoration(
+            color: Colors.white24,
+            shape: StadiumBorder(
+                side: BorderSide(color: Colors.white24, width: 3)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: Text(game.localTeam.name,
+                        style:
+                            TextStyle(color: Colors.purple[900], fontSize: 20)),
+                  ),
+                  Expanded(
+                    child: Column(children: <Widget>[
+                      Text(
+                          game.localGoals.toString() +
+                              ' - ' +
+                              game.awayGoals.toString(),
+                          style: TextStyle(
+                              color: Colors.purple[900], fontSize: 30))
+                    ]),
+                  ),
+                  Expanded(
+                    child: Text(game.awayTeam.name,
+                        style:
+                            TextStyle(color: Colors.purple[900], fontSize: 20)),
+                  )
+                ],
+              )
+            ],
+          ),
+        ));
+  }
 }
