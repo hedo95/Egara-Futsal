@@ -107,7 +107,7 @@ class JornadaContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
             onTap: () {
-              print('Navigator.of(context).push(MaterialPageRoute(builder:(context) => ActaPartido(journeyGames[index])));');
+              print('Navigator to ActaPartido()!');
               // Navigator.of(context).push(
               //               MaterialPageRoute(
               //                 builder: (context) => ActaPartido(journeyGames[index]);
