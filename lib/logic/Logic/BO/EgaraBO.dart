@@ -4,91 +4,89 @@ import '../Model/Journey.dart';
 import '../Model/Player.dart';
 import '../Model/Team.dart';
 
-
-List<Player> getAllPlayers(List<Game> games)
-{
+List<Player> getAllPlayers(List<Game> games) {
   List<Player> allplayers = [];
-  for(var game in games)
-  {
-    for (var player in game.localSquad)
-    {
+  for (var game in games) {
+    for (var player in game.localSquad) {
       // Hacemos una especie de .distinct() para los jugadores de los encuentros
-      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname  && player.dorsal == item.dorsal ))
-      {
+      if (!allplayers.any((item) =>
+          item.name == player.name &&
+          item.surname == player.surname &&
+          player.dorsal == item.dorsal)) {
         allplayers.add(player);
       }
     }
-    for (var player in game.awaySquad)
-    {
-      if (!allplayers.any((item) => item.name == player.name && item.surname == player.surname && player.dorsal == item.dorsal))
-      {
+    for (var player in game.awaySquad) {
+      if (!allplayers.any((item) =>
+          item.name == player.name &&
+          item.surname == player.surname &&
+          player.dorsal == item.dorsal)) {
         allplayers.add(player);
       }
     }
   }
-  allplayers.sort((a,b) => a.idteam.compareTo(b.idteam));
+  allplayers.sort((a, b) => a.idteam.compareTo(b.idteam));
   return allplayers;
 }
 
-int catchArrow(List<Team> teams, List<Game> games) // Devuelve un 1, un 0 o un -1.
+int catchArrow(
+    List<Team> teams, List<Game> games) // Devuelve un 1, un 0 o un -1.
 {
   Team egara = teams.firstWhere((item) => item.id == 20008);
-  int currentPosition = egara.currentPosition(teams,games);
-  int lastPosition = egara.lastCurrentPosition(teams,games);
-  if (currentPosition > lastPosition) { return 1; }
-  else if (currentPosition == lastPosition) { return 0; }
-  else { return -1; }
+  int currentPosition = egara.currentPosition(teams, games);
+  int lastPosition = egara.lastCurrentPosition(teams, games);
+  if (currentPosition > lastPosition) {
+    return 1;
+  } else if (currentPosition == lastPosition) {
+    return 0;
+  } else {
+    return -1;
+  }
 }
 
-
-
-int currentJourney(List<Game> games){
-  
+int currentJourney(List<Game> games) {
   List<Journey> journeys = getCalendar(games);
-  int result = journeys.lastWhere((item) => !item.games.any((item) => (item.localSquad.isEmpty || item.awaySquad.isEmpty))).journey + 1;
+  int result = journeys
+          .lastWhere((item) => !item.games.any(
+              (item) => (item.localSquad.isEmpty || item.awaySquad.isEmpty)))
+          .journey +
+      1;
   return result;
 }
 
-List<Player> getAllPlayersFromAteam(Team team, List<Game> games)
-{
+List<Player> getAllPlayersFromAteam(Team team, List<Game> games) {
   return getAllPlayers(games).where((item) => item.idteam == team.id).toList();
 }
 
-// Funciona 
-int maxPlayedJourney(List<Game> games)
-{
+// Funciona
+int maxPlayedJourney(List<Game> games) {
   // DateTime today = DateTime.now();
   // games.sort((b,a) => a.id.compareTo(b.id));
   // return games.firstWhere((item) => item.awaySquad.isEmpty && item.date.compareTo(today) > 0).journey - 1;
-  return games[games.length-1].journey;
+  return games[games.length - 1].journey;
 }
 
-List<Player> topScorers(List<Game> games)
-{
+List<Player> topScorers(List<Game> games) {
   List<Player> result = [];
-  for(var game in games)
-  {
-    for(var player in game.goalScorers.keys.toList())
-    {
+  for (var game in games) {
+    for (var player in game.goalScorers.keys.toList()) {
       // El siguiente if es un distinct para no introducir jugadores repetidos en la lista final
-      if (!result.any((item) => item.idteam == player.idteam && item.dorsal == player.dorsal))
-      {
+      if (!result.any((item) =>
+          item.idteam == player.idteam && item.dorsal == player.dorsal)) {
         result.add(player);
       }
     }
   }
-  result.sort((b,a) => a.goals(games).compareTo(b.goals(games)));
+  result.sort((b, a) => a.goals(games).compareTo(b.goals(games)));
   return result;
 }
 
 // Clasificamos los partidis por jornadas.
-List<Journey> getCalendar(List<Game> games)
-{
+List<Journey> getCalendar(List<Game> games) {
   List<Journey> result = [];
-  games.sort((a,b) => a.journey.compareTo(b.journey));
+  games.sort((a, b) => a.journey.compareTo(b.journey));
   int max = games[games.length - 1].journey;
-  for(int n = 1; n <= max; n++)
-  {
+  for (int n = 1; n <= max; n++) {
     result.add(new Journey(games.where((item) => item.journey == n).toList()));
   }
 
@@ -96,68 +94,60 @@ List<Journey> getCalendar(List<Game> games)
 }
 
 // Determina el ganador, para asignar puntos por encuentro
-String whosWinner(int localGoals, int awayGoals)
-{
-  if (localGoals > awayGoals)
-  {
-     return "1";
-  }
-
-  else if (localGoals < awayGoals)
-  {
+String whosWinner(int localGoals, int awayGoals) {
+  if (localGoals > awayGoals) {
+    return "1";
+  } else if (localGoals < awayGoals) {
     return "2";
-  }
-
-  else
-  {
+  } else {
     return "X";
   }
-
 }
 
-Map<Player,List<int>> mappingDataFromMaps2(Map<dynamic,dynamic> obj, List<Player> localsquad, List<Player> awaysquad)
-{
-  Map<Player,List<int>> result = {};
+Map<Player, List<int>> mappingDataFromMaps2(Map<dynamic, dynamic> obj,
+    List<Player> localsquad, List<Player> awaysquad) {
+  Map<Player, List<int>> result = {};
   List<Player> players = [];
   players.addAll(localsquad + awaysquad);
-  if(obj != null)
-  {
-    for(MapEntry<dynamic,dynamic> map in obj.entries)
-    { 
-      List<int> value = new List<int>.from(map.value.whereType<dynamic>()).toList();
+  if (obj != null) {
+    for (MapEntry<dynamic, dynamic> map in obj.entries) {
+      List<int> value =
+          new List<int>.from(map.value.whereType<dynamic>()).toList();
       String key = map.key;
       String name = getNamesFromMap(key)[0];
       String surname = getNamesFromMap(key)[1];
-      Player player = players.firstWhere((item) => (item.name == name && item.surname == surname) || (item.name == name && item.surname == ""));
-      result.addAll({player :  value});
-    } 
+      Player player = players.firstWhere((item) =>
+          (item.name == name && item.surname == surname) ||
+          (item.name == name && item.surname == ""));
+      result.addAll({player: value});
+    }
   }
-  return result; 
+  return result;
 }
 
-Map<Player,List<int>> mappingDataFromMaps(Map<String,dynamic> obj, List<Player> localsquad, List<Player> awaysquad)
-{
-  Map<Player,List<int>> result = {};
+Map<Player, List<int>> mappingDataFromMaps(
+    Map<String, dynamic> obj, List<Player> localsquad, List<Player> awaysquad) {
+  Map<Player, List<int>> result = {};
   List<Player> players = [];
   players.addAll(localsquad + awaysquad);
-  for(MapEntry<String,dynamic> map in obj.entries)
-  { 
-    List<int> value = new List<int>.from(map.value.whereType<dynamic>()).toList();
+  for (MapEntry<String, dynamic> map in obj.entries) {
+    List<int> value =
+        new List<int>.from(map.value.whereType<dynamic>()).toList();
     String name = getNamesFromMap(map.key)[0];
     String surname = getNamesFromMap(map.key)[1];
-    Player player = players.firstWhere((item) => (item.name == name && item.surname == surname) || (item.name == name && item.surname == ""));
-    result.addAll({player :  value});
-  } 
+    Player player = players.firstWhere((item) =>
+        (item.name == name && item.surname == surname) ||
+        (item.name == name && item.surname == ""));
+    result.addAll({player: value});
+  }
 
-  return result; 
+  return result;
 }
 
-List<Player> mappingDataFromSquad(List<dynamic> squad, Team team)
-{
+List<Player> mappingDataFromSquad(List<dynamic> squad, Team team) {
   List<Player> result = [];
 
-  for(String player in squad)
-  {
+  for (String player in squad) {
     String name = getNamesSurnamesFromSquad(player)[0];
     String surname = getNamesSurnamesFromSquad(player)[1];
     int dorsal = getDorsal(player);
@@ -168,24 +158,19 @@ List<Player> mappingDataFromSquad(List<dynamic> squad, Team team)
   return result;
 }
 
-int getDorsal(String fullname)
-{
+int getDorsal(String fullname) {
   int index = fullname.indexOf(' ');
-  return int.parse(fullname.substring(0,index));
+  return int.parse(fullname.substring(0, index));
 }
 
-List<String> getNamesFromMap(String fullname)
-{
+List<String> getNamesFromMap(String fullname) {
   List<String> result = [];
   int index = fullname.indexOf(',');
-  if(index == -1)
-  {
+  if (index == -1) {
     result.add(fullname);
     result.add("");
-  }
-  else
-  {
-    String name = fullname.substring(index+2, fullname.length);
+  } else {
+    String name = fullname.substring(index + 2, fullname.length);
     result.add(name);
     String surname = fullname.substring(0, index);
     result.add(surname);
@@ -194,127 +179,155 @@ List<String> getNamesFromMap(String fullname)
   return result;
 }
 
-List<String> getNamesSurnamesFromSquad(String fullname)
-{
+List<String> getNamesSurnamesFromSquad(String fullname) {
   List<String> result = [];
 
   int index = fullname.indexOf(',');
 
-  if(index == -1)
-  {
+  if (index == -1) {
     index = fullname.indexOf(' ') + 1;
     String name = fullname.substring(index, fullname.length);
     String surname = "";
     result.add(name);
     result.add(surname);
-
-  }
-
-  else
-  {
-    int begin = fullname.indexOf(' ')+1;
-    String name = fullname.substring(index+2, fullname.length);
-    result.add(name); 
+  } else {
+    int begin = fullname.indexOf(' ') + 1;
+    String name = fullname.substring(index + 2, fullname.length);
+    result.add(name);
     String surname = fullname.substring(begin, index);
     result.add(surname);
   }
   return result;
 }
 
-List<Team> getHomepageLeagueContainer(List<Team> teams, List<Game> games)
-{ 
+List<Team> getHomepageLeagueContainer(List<Team> teams, List<Game> games) {
   Team egara = teams.firstWhere((item) => item.id == 20008);
-  int pos = egara.currentPosition(teams,games); 
+  int pos = egara.currentPosition(teams, games);
   Team teamA, teamB;
-  if(pos == 1)
-  {
-    teamA = teams.firstWhere((item) => item.currentPosition(teams,games) == pos + 1);
-    teamB = teams.firstWhere((item) => item.currentPosition(teams,games) == pos + 2);
+  if (pos == 1) {
+    teamA = teams
+        .firstWhere((item) => item.currentPosition(teams, games) == pos + 1);
+    teamB = teams
+        .firstWhere((item) => item.currentPosition(teams, games) == pos + 2);
     return [egara, teamA, teamB];
-  }
-  else if(pos == 12)
-  {
-    teamA = teams.firstWhere((item) => item.currentPosition(teams,games) == pos - 1);
-    teamB = teams.firstWhere((item) => item.currentPosition(teams,games) == pos - 2);
+  } else if (pos == 12) {
+    teamA = teams
+        .firstWhere((item) => item.currentPosition(teams, games) == pos - 1);
+    teamB = teams
+        .firstWhere((item) => item.currentPosition(teams, games) == pos - 2);
     return [teamB, teamA, egara];
-  }
-  else
-  {
-    teamA = teams.firstWhere((item) => item.currentPosition(teams,games) == pos - 1);
-    teamB = teams.firstWhere((item) => item.currentPosition(teams,games) == pos + 1);
+  } else {
+    teamA = teams
+        .firstWhere((item) => item.currentPosition(teams, games) == pos - 1);
+    teamB = teams
+        .firstWhere((item) => item.currentPosition(teams, games) == pos + 1);
     return [teamA, egara, teamB];
   }
 }
 
-List<int> getlast5results()
-{
+List<int> getlast5results() {
   List<Game> games = getAllGamesFromFile();
   List<int> list = [];
-  List<Game> egaraGames = games.where((item) => (item.localTeam.id == 20008 || item.awayTeam.id == 20008) && (item.localSquad.isNotEmpty)).toList(); // Partidos del egara jugados.
-  for(var game in egaraGames)
-  {
+  List<Game> egaraGames = games
+      .where((item) =>
+          (item.localTeam.id == 20008 || item.awayTeam.id == 20008) &&
+          (item.localSquad.isNotEmpty))
+      .toList(); // Partidos del egara jugados.
+  for (var game in egaraGames) {
     String result = whosWinner(game.localGoals, game.awayGoals);
-    if(result == "1")
-    {
-      if(game.localTeam.id == 20008)
-      {
+    if (result == "1") {
+      if (game.localTeam.id == 20008) {
         list.add(1);
-      }
-      else
-      {
+      } else {
         list.add(-1);
       }
-    }
-    else if(result == "2")
-    {
-      if(game.awayTeam.id == 20008)
-      {
+    } else if (result == "2") {
+      if (game.awayTeam.id == 20008) {
         list.add(1);
-      }
-      else
-      {
+      } else {
         list.add(-1);
       }
-    }
-    else
-    {
+    } else {
       list.add(0);
     }
   }
   return list;
 }
 
-Player createUpdatePlayer({int id, Player player})
-{
-  if (id == null && player == null)
-  {
+String add0(int digit){
+  if(digit < 10 && digit > -10){
+    return '0$digit';
+  }else{
+    return '$digit';
+  }
+}
+String getJourneyResult(Game game){
+  if(game.localSquad.isEmpty || game.awaySquad.isEmpty){
+    String hour = add0(game.date.hour);
+    String minute = add0(game.date.minute);
+    Map<int,String> weekdaysMap = {};
+    weekdaysMap[1] = 'L'; weekdaysMap[2] = 'M';
+    weekdaysMap[3] = 'X'; weekdaysMap[4] = 'J';
+    weekdaysMap[5] = 'V'; weekdaysMap[6] = 'S';
+    weekdaysMap[7] = 'D';
+    String weekday = weekdaysMap[game.date.weekday];
+    return '$weekday $hour:$minute';
+  }else{
+    int localg = game.localGoals;
+    int awayg = game.awayGoals;
+    return '$localg-$awayg';
+  }
+}
+
+String getJourneyDate(List<Game> journeyGames){
+  journeyGames.sort((a,b) => a.date.compareTo(b.date));
+  Map<int,String> months = {};
+  months[1] = 'Enero'; months[2] = 'Febrero';
+  months[3] = 'Marzo'; months[4] = 'Abril';
+  months[5] = 'Mayo'; months[6] = 'Junio';
+  months[7] = 'Julio'; months[8] = 'Agosto';
+  months[9] = 'Setiembre'; months[10] = 'Octubre';
+  months[11] = 'Noviembre'; months[12] = 'Diciembre';
+  DateTime startDate = journeyGames[0].date;
+  DateTime endDate = journeyGames[journeyGames.length-1].date; 
+  String startDay = add0(startDate.day);
+  if(endDate.difference(startDate).inDays > 1){
+    // Por si contiene algún partido jugado en otra fecha, le sumamos un dia a la fecha inicial.
+    DateTime endDate = startDate.add(new Duration(days: 1));
+    String endDay = add0(endDate.day);
+    String month = months[endDate.month];
+    return '$startDay-$endDay $month';
+  }else{
+    String endDay = add0(endDate.day);
+    String month = months[endDate.month];
+    return '$startDay-$endDay $month';
+  }
+}
+
+
+Player createUpdatePlayer({int id, Player player}) {
+  if (id == null && player == null) {
     return createUpdatePlayer(player: new Player.def());
-  }
-  else if(id != null && player == null)
-  {
-    try
-    {
-      Player foundPlayer = getAllPlayersFromFile().firstWhere((item) => item.idteam == player.idteam && item.dorsal == player.dorsal);
+  } else if (id != null && player == null) {
+    try {
+      Player foundPlayer = getAllPlayersFromFile().firstWhere((item) =>
+          item.idteam == player.idteam && item.dorsal == player.dorsal);
       return createUpdatePlayer(player: foundPlayer);
+    } catch (Exception) {
+      return Exception(
+          'No se ha encontrado el modelo con id: ' + id.toString() + '\n');
     }
-    catch (Exception)
-    {
-      return Exception('No se ha encontrado el modelo con id: ' + id.toString() + '\n');
-    }
-  }
-  else 
-  {
+  } else {
     var data = getAllPlayersFromFile();
-    if (data.any((item) => item.idteam == player.idteam && item.dorsal == player.dorsal))
-    {
-      int index = data.indexWhere((item) => item.idteam == player.idteam && item.dorsal == player.dorsal);
+    if (data.any((item) =>
+        item.idteam == player.idteam && item.dorsal == player.dorsal)) {
+      int index = data.indexWhere((item) =>
+          item.idteam == player.idteam && item.dorsal == player.dorsal);
       data.removeAt(index);
       data.add(player);
       exportPlayersData(data);
       return player;
-    }
-    else
-    {
+    } else {
       data.add(player);
       exportPlayersData(data);
       return player;
@@ -322,37 +335,27 @@ Player createUpdatePlayer({int id, Player player})
   }
 }
 
-Team createUpdateTeam({int id, Team team})
-{
-  if (id == null && team == null)
-  {
+Team createUpdateTeam({int id, Team team}) {
+  if (id == null && team == null) {
     return createUpdateTeam(team: new Team.def());
-  }
-  else if(id != null && team == null)
-  {
-    try
-    {
-      Team foundTeam = getAllTeamsFromFile().firstWhere((item) => item.id == id);
+  } else if (id != null && team == null) {
+    try {
+      Team foundTeam =
+          getAllTeamsFromFile().firstWhere((item) => item.id == id);
       return createUpdateTeam(team: foundTeam);
+    } catch (Exception) {
+      return Exception(
+          'No se ha encontrado el equipo con id: ' + id.toString() + '\n');
     }
-    catch (Exception)
-    {
-      return Exception('No se ha encontrado el equipo con id: ' + id.toString() + '\n');
-    }
-  }
-  else 
-  {
+  } else {
     var data = getAllTeamsFromFile();
-    if (data.any((item) => item.id == team.id))
-    {
+    if (data.any((item) => item.id == team.id)) {
       int index = data.indexWhere((item) => item.id == team.id);
       data.removeAt(index);
       data.add(team);
       exportTeamsData(data);
       return team;
-    }
-    else
-    {
+    } else {
       data.add(team);
       exportTeamsData(data);
       return team;
@@ -360,51 +363,41 @@ Team createUpdateTeam({int id, Team team})
   }
 }
 
-bool deletePlayer(Player player)
-{
+bool deletePlayer(Player player) {
   var data = getAllPlayersFromFile();
-  try
-  {
-    Player item = data.firstWhere((item) => item.idteam == player.idteam && item.dorsal == player.dorsal);
+  try {
+    Player item = data.firstWhere(
+        (item) => item.idteam == player.idteam && item.dorsal == player.dorsal);
     data.remove(item);
     exportPlayersData(data);
     return true;
-  }
-  catch (Exception)
-  {
+  } catch (Exception) {
     return false;
   }
 }
 
-bool deleteTeam(Team team)
-{
+bool deleteTeam(Team team) {
   var data = getAllTeamsFromFile();
-  try
-  {
+  try {
     Team item = data.firstWhere((item) => item.id == team.id);
     data.remove(item);
     exportTeamsData(data);
     return true;
-  }
-  catch (Exception)
-  {
+  } catch (Exception) {
     return false;
   }
 }
 
-bool deleteGame(Game match)
-{
+bool deleteGame(Game match) {
   var data = getAllGamesFromFile();
-  try
-  {
+  try {
     Game item = data.firstWhere((item) => item.id == match.id);
     data.remove(item);
     exportGamesData(data);
     return true;
-  }
-  catch (Exception)
-  {
+  } catch (Exception) {
     return false;
   }
 }
+
 
