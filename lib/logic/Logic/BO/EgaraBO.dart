@@ -266,19 +266,14 @@ String add0(int digit){
 }
 String getJourneyResult(Game game){
   if(game.localSquad.isEmpty || game.awaySquad.isEmpty){
-    String hour = add0(game.date.hour);
-    String minute = add0(game.date.minute);
     Map<int,String> weekdaysMap = {};
     weekdaysMap[1] = 'L'; weekdaysMap[2] = 'M';
     weekdaysMap[3] = 'X'; weekdaysMap[4] = 'J';
     weekdaysMap[5] = 'V'; weekdaysMap[6] = 'S';
     weekdaysMap[7] = 'D';
-    String weekday = weekdaysMap[game.date.weekday];
-    return '$weekday $hour:$minute';
+    return '${weekdaysMap[game.date.weekday]} ${add0(game.date.hour)}:${add0(game.date.minute)}';
   }else{
-    int localg = game.localGoals;
-    int awayg = game.awayGoals;
-    return '$localg-$awayg';
+    return '${game.localGoals}-${game.awayGoals}';
   }
 }
 
@@ -293,17 +288,12 @@ String getJourneyDate(List<Game> journeyGames){
   months[11] = 'Noviembre'; months[12] = 'Diciembre';
   DateTime startDate = journeyGames[0].date;
   DateTime endDate = journeyGames[journeyGames.length-1].date; 
-  String startDay = add0(startDate.day);
   if(endDate.difference(startDate).inDays > 1){
     // Por si contiene algún partido jugado en otra fecha, le sumamos un dia a la fecha inicial.
     DateTime endDate = startDate.add(new Duration(days: 1));
-    String endDay = add0(endDate.day);
-    String month = months[endDate.month];
-    return '$startDay-$endDay $month';
+    return '${add0(startDate.day)}-${add0(endDate.day)} ${months[endDate.month]}';
   }else{
-    String endDay = add0(endDate.day);
-    String month = months[endDate.month];
-    return '$startDay-$endDay $month';
+    return '${add0(startDate.day)}-${add0(endDate.day)} ${months[endDate.month]}';
   }
 }
 
