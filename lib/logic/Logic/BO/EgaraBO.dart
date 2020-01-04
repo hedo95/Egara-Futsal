@@ -225,14 +225,17 @@ List<Team> getHomepageLeagueContainer(List<Team> teams, List<Game> games) {
   }
 }
 
-List<int> getlast5results() {
-  List<Game> games = getAllGamesFromFile();
+List<int> getlast5results(List<Game> games) {
   List<int> list = [];
   List<Game> egaraGames = games
       .where((item) =>
           (item.localTeam.id == 20008 || item.awayTeam.id == 20008) &&
-          (item.localSquad.isNotEmpty))
+          (item.localSquad.isNotEmpty || item.awaySquad.isNotEmpty))
       .toList(); // Partidos del egara jugados.
+  egaraGames.sort((b,a) => a.id.compareTo(b.id));
+  if(egaraGames.length > 5){
+    egaraGames.removeRange(5, egaraGames.length);
+  }
   for (var game in egaraGames) {
     String result = whosWinner(game.localGoals, game.awayGoals);
     if (result == "1") {
