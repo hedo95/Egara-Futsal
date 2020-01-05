@@ -1,8 +1,14 @@
+import 'dart:collection';
+
 import '../DAO/EgaraDAO.dart';
 import '../Model/Game.dart';
 import '../Model/Journey.dart';
 import '../Model/Player.dart';
 import '../Model/Team.dart';
+import 'package:sortedmap/sortedmap.dart';
+
+
+
 
 List<Player> getAllPlayers(List<Game> games) {
   List<Player> allplayers = [];
@@ -10,47 +16,38 @@ List<Player> getAllPlayers(List<Game> games) {
     for (var player in game.localSquad) {
       // Hacemos una especie de .distinct() para los jugadores de los encuentros
       if (!allplayers.any((item) =>
-          item.name == player.name &&
-          item.surname == player.surname &&
+          item.idteam == player.idteam &&
           player.dorsal == item.dorsal)) {
         allplayers.add(player);
       }
     }
     for (var player in game.awaySquad) {
       if (!allplayers.any((item) =>
-          item.name == player.name &&
-          item.surname == player.surname &&
+          item.idteam == player.idteam &&
           player.dorsal == item.dorsal)) {
         allplayers.add(player);
       }
     }
   }
-  allplayers.sort((a, b) => a.idteam.compareTo(b.idteam));
+  allplayers.sort((a,b) => a.idteam.compareTo(b.idteam));
   return allplayers;
 }
 
 int catchArrow(
-    List<Team> teams, List<Game> games) // Devuelve un 1, un 0 o un -1.
+    List<Team> teams, List<Game> games) // Devuelve cuantas pos ha subido o bajado
 {
   Team egara = teams.firstWhere((item) => item.id == 20008);
   int currentPosition = egara.currentPosition(teams, games);
   int lastPosition = egara.lastCurrentPosition(teams, games);
-  if (currentPosition > lastPosition) {
-    return 1;
-  } else if (currentPosition == lastPosition) {
-    return 0;
-  } else {
-    return -1;
-  }
+  return lastPosition - currentPosition;
 }
 
 int currentJourney(List<Game> games) {
   List<Journey> journeys = getCalendar(games);
   int result = journeys
-          .lastWhere((item) => !item.games.any(
-              (item) => (item.localSquad.isEmpty || item.awaySquad.isEmpty)))
-          .journey +
-      1;
+          .lastWhere((journey) => !journey.games.any(
+              (game) => (game.localSquad.isEmpty || game.awaySquad.isEmpty)))
+          .journey + 1;
   return result;
 }
 
@@ -60,25 +57,33 @@ List<Player> getAllPlayersFromAteam(Team team, List<Game> games) {
 
 // Funciona
 int maxPlayedJourney(List<Game> games) {
-  // DateTime today = DateTime.now();
-  // games.sort((b,a) => a.id.compareTo(b.id));
-  // return games.firstWhere((item) => item.awaySquad.isEmpty && item.date.compareTo(today) > 0).journey - 1;
-  return games[games.length - 1].journey;
+  games.sort((a,b) => a.id.compareTo(b.id));
+  return games.lastWhere((item) => item.localSquad.isNotEmpty && item.awaySquad.isNotEmpty).journey;
 }
 
-List<Player> topScorers(List<Game> games) {
-  List<Player> result = [];
+Map<Player,int> topScorers(List<Game> games) {
+  Map<Player,int> result = {};
   for (var game in games) {
     for (var player in game.goalScorers.keys.toList()) {
       // El siguiente if es un distinct para no introducir jugadores repetidos en la lista final
-      if (!result.any((item) =>
-          item.idteam == player.idteam && item.dorsal == player.dorsal)) {
-        result.add(player);
+      if(!result.keys.any((item) => item.dorsal == player.dorsal && item.idteam == player.idteam)){
+        result.addAll({player:game.goalScorers[player].length});
+      }else{
+        Player obj = result.keys.firstWhere((item) => item.dorsal == player.dorsal && item.idteam == player.idteam);
+        result[obj] += game.goalScorers[player].length;
       }
     }
   }
-  result.sort((b, a) => a.goals(games).compareTo(b.goals(games)));
-  return result;
+  var goals = result.values.toSet().toList(); // Lista de goles irrepetidos. Lo metemos en una lista para tener el metodo 'sort()'.
+  goals.sort((b,a) => a.compareTo(b)); // Ordenamos de mayor a menor
+  goals.removeRange(3, goals.length); // Nos quedamos con los 3 maximos goles
+  result.removeWhere((k,v) => !goals.contains(v)); // Borramos jugadores que no hayan marcado los 3 maximos goles
+  var sortedKeys = result.keys.toList(growable:false) // Ordenamos los goleadores de mayor a menor por goles
+    ..sort((k2, k1) => result[k1].compareTo(result[k2]));
+  LinkedHashMap<Player,int> sortedMap = new LinkedHashMap<Player,int>
+    .fromIterable(sortedKeys, key: (k) => k, value: (k) => result[k]);
+
+  return sortedMap;
 }
 
 // Clasificamos los partidis por jornadas.
@@ -96,11 +101,11 @@ List<Journey> getCalendar(List<Game> games) {
 // Determina el ganador, para asignar puntos por encuentro
 String whosWinner(int localGoals, int awayGoals) {
   if (localGoals > awayGoals) {
-    return "1";
+    return '1';
   } else if (localGoals < awayGoals) {
-    return "2";
+    return '2';
   } else {
-    return "X";
+    return 'X';
   }
 }
 
@@ -308,7 +313,7 @@ Player createUpdatePlayer({int id, Player player}) {
       return createUpdatePlayer(player: foundPlayer);
     } catch (Exception) {
       return Exception(
-          'No se ha encontrado el modelo con id: ' + id.toString() + '\n');
+          'No se ha encontrado el modelo con id: $id' + '\n');
     }
   } else {
     var data = getAllPlayersFromFile();

@@ -22,6 +22,8 @@ import 'logic/Logic/Model/Player.dart';
 import 'package:sentry/sentry.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sortedmap/sortedmap.dart';
+
 
 /*
 
@@ -399,7 +401,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-*/
+
 
 
 
@@ -469,6 +471,7 @@ class _MyAppState extends State<MyApp> {
 
 
 
+*/
 
 
 
@@ -479,7 +482,83 @@ class _MyAppState extends State<MyApp> {
 
 
 
+// Prueba firebase
 
+
+void main(){ 
+  FlutterError.onError = (FlutterErrorDetails details){
+    FlutterError.dumpErrorToConsole(details);
+    if (kReleaseMode)
+      exit(1);
+  };
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Welcome to Flutter'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                iconSize: 40,
+                icon: Icon(Icons.add),
+                color: Colors.blue[500],
+                onPressed: ()
+                {
+                  // Vemos que funciona la conexión con Firebase
+                  // var db = new FirebaseContext();
+                  // var games = db.loadGames();
+                  // games.listen((onData){
+                  //   onData.sort((a,b) => a.id.compareTo(b.id));
+                  //   onData.forEach((element) => print(element.id.toString()));
+                  // });
+
+                  List<Game> games = getAllGamesFromFile();
+                  games.sort((a,b) => a.id.compareTo(b.id));
+                  topScorers(games).forEach((k,v) => print('${k.name} ${k.surname}: $v'));
+
+                  // Printamos los metodos de equipo:
+                  // List<Team> teams = getAllTeamsFromFile();
+                  // Team egara = teams.firstWhere((item) => item.id == 20008);
+                  // print(' ');
+                  // print('Current goals: '+egara.currentGoals(games).toString());
+                  // print('Current conceded goals: '+egara.currentConcededGoals(games).toString());
+                  // print('Current position: ' + egara.currentPosition(teams, games).toString());
+                  // print('Last current position: ' + egara.lastCurrentPosition(teams,games).toString() + '\n');
+                  // print('Current points: '+egara.currentPoints(games).toString());
+                  // print('Last current points: ' + egara.lastCurrentPoints(games).toString());
+
+                  // Printamos los metodos de jugador
+                  // Player oumaima = getAllPlayers(games).firstWhere((item) => item.surname == "BEDDOUH");
+                  // print('');
+                  // print('Goals: ' + oumaima.goals(games).toString());
+                  // print('Played games: ' + oumaima.playedgames(games).toString());
+                  // print('Total games: ' + oumaima.totalgames(games).toString());
+                  // print('Yellow cards: '+ oumaima.ycards(games).toString());
+                  // print('Red cards: ' + oumaima.rcards(games).toString());
+                }
+              ),
+              Text('Push me',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.blue[500]
+                ),
+              )
+            ]
+          )
+        ),
+      ),
+    );
+  }
+}
 
 
 
