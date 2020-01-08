@@ -277,6 +277,7 @@ class MyApp extends StatelessWidget {
 
                   List<Game> games = getAllGamesFromFile();
                   games.sort((a,b) => a.id.compareTo(b.id));
+                  topScorers(games).forEach((k,v) => print('${k.name} ${k.surname}: $v'));
 
                   // Printamos los metodos de equipo:
                   // List<Team> teams = getAllTeamsFromFile();
@@ -481,86 +482,85 @@ class _MyAppState extends State<MyApp> {
 
 
 
-
-// Prueba firebase
-
-
-void main(){ 
-  FlutterError.onError = (FlutterErrorDetails details){
+void main() {
+  FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
     if (kReleaseMode)
       exit(1);
   };
   runApp(MyApp());
 }
+  
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-class MyApp extends StatelessWidget {
+class _MyAppState extends State<MyApp> {
+  get bottomNavBarIndex => null;
+  var db = new FirebaseContext();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Welcome to Flutter',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Welcome to Flutter'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              IconButton(
-                iconSize: 40,
-                icon: Icon(Icons.add),
-                color: Colors.blue[500],
-                onPressed: ()
-                {
-                  // Vemos que funciona la conexión con Firebase
-                  // var db = new FirebaseContext();
-                  // var games = db.loadGames();
-                  // games.listen((onData){
-                  //   onData.sort((a,b) => a.id.compareTo(b.id));
-                  //   onData.forEach((element) => print(element.id.toString()));
-                  // });
-
-                  List<Game> games = getAllGamesFromFile();
-                  games.sort((a,b) => a.id.compareTo(b.id));
-                  topScorers(games).forEach((k,v) => print('${k.name} ${k.surname}: $v'));
-
-                  // Printamos los metodos de equipo:
-                  // List<Team> teams = getAllTeamsFromFile();
-                  // Team egara = teams.firstWhere((item) => item.id == 20008);
-                  // print(' ');
-                  // print('Current goals: '+egara.currentGoals(games).toString());
-                  // print('Current conceded goals: '+egara.currentConcededGoals(games).toString());
-                  // print('Current position: ' + egara.currentPosition(teams, games).toString());
-                  // print('Last current position: ' + egara.lastCurrentPosition(teams,games).toString() + '\n');
-                  // print('Current points: '+egara.currentPoints(games).toString());
-                  // print('Last current points: ' + egara.lastCurrentPoints(games).toString());
-
-                  // Printamos los metodos de jugador
-                  // Player oumaima = getAllPlayers(games).firstWhere((item) => item.surname == "BEDDOUH");
-                  // print('');
-                  // print('Goals: ' + oumaima.goals(games).toString());
-                  // print('Played games: ' + oumaima.playedgames(games).toString());
-                  // print('Total games: ' + oumaima.totalgames(games).toString());
-                  // print('Yellow cards: '+ oumaima.ycards(games).toString());
-                  // print('Red cards: ' + oumaima.rcards(games).toString());
+    return StreamBuilder<List<Game>>( // Primer StreamBuilder para cargar los partidos de Firebase
+      stream: db.loadGames(),
+      builder: (context, snapshot1) {
+            return StreamBuilder<List<Team>>( // Segundo StreamBuilder para cargar los equipos de Firebase
+              stream: db.loadTeams(),
+              builder: (context, snapshot2) {
+                if(!snapshot1.hasData || !snapshot2.hasData){
+                  return Center(child: CircularProgressIndicator());
                 }
-              ),
-              Text('Push me',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blue[500]
-                ),
-              )
-            ]
-          )
-        ),
-      ),
+                else if(snapshot1.hasError){
+                  return Center(child: Text(snapshot1.error));
+                }else if(snapshot2.hasError){
+                  return Center(child: Text(snapshot2.error));
+                }else{
+                  return MultiProvider(
+                    providers: [
+                      ChangeNotifierProvider<GameProvider>.value(value: GameProvider(snapshot1.data)),
+                      ChangeNotifierProvider<TeamProvider>.value(value: TeamProvider(snapshot2.data)),
+                      ChangeNotifierProvider<PlayerProvider>.value(value: PlayerProvider(snapshot1.data))
+                    ], // Metemos los 3 providers en un Multiproviders
+                    child: Consumer<GameProvider>(builder: (_, gameprovider, child){
+                       return Consumer<TeamProvider>(builder: (_, teamprovider, child){
+                        return MaterialApp( // Empieza la App.
+                          title: 'Welcome to Flutter',
+                          home: Scaffold(
+                            appBar: AppBar(
+                              title: Text('Welcome to Flutter'),
+                            ),
+                            body: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  IconButton(
+                                    icon: Icon(Icons.add),
+                                    color: Colors.blue[500],
+                                    onPressed: () // Cargamos los 3 providers, y printamos algo del primer elemento de cada provider para ver que realmente funciona.
+                                    {
+                                      var games = Provider.of<GameProvider>(context).games;
+                                      var teams = Provider.of<TeamProvider>(context).teams;
+                                      var players = Provider.of<PlayerProvider>(context).players;
+                                      print(games[0].id.toString());
+                                      print(teams[0].id.toString());
+                                      print(players[0].name + ' ' + players[0].surname);
+                                    }
+                                  ),
+                                  Text('hola Mundo',
+                                  )
+                                ]
+                              )
+                            ),
+                          ),
+                        );
+                       });
+                    })
+                  );
+                }
+          }
+      );
+      }
     );
   }
 }
-
-
-
-
-
