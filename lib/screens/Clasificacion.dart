@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+//
 class Clasificacion extends StatefulWidget {
   @override
   _ClasificacionState createState() => _ClasificacionState();
@@ -40,6 +40,7 @@ final List<Entry> data = <Entry>[
       Entry('Goles a favor:'),
       Entry('Goles en contra:'),
     ],
+    
   ),
   Entry(
     '2. Premiá ',
