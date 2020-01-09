@@ -24,13 +24,45 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sortedmap/sortedmap.dart';
 
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  get bottomNavBarIndex => null;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData(
+          primaryColor: primaryColor,
+          
+          //backgroundColor: prefix0.backgroundColor,
+        ),
+        home: BottomMenu());
+  }
+}
 
 /*
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  get bottomNavBarIndex => null;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData(
+          primaryColor: primaryColor,
+          
+          //backgroundColor: prefix0.backgroundColor,
+        ),
+        home: BottomMenu());
+  }
+}*/
 
 
 
 // Prueba provider con menú real 
-
+/*
 void main(){ 
   FlutterError.onError = (FlutterErrorDetails details){
     FlutterError.dumpErrorToConsole(details);
@@ -95,8 +127,8 @@ class MyApp extends StatelessWidget {
 
 
 
-
-
+*/
+/*
 
 
 
@@ -483,7 +515,7 @@ class _MyAppState extends State<MyApp> {
 
 
 // Prueba firebase
-
+/*
 
 void main(){ 
   FlutterError.onError = (FlutterErrorDetails details){
@@ -520,11 +552,11 @@ class MyApp extends StatelessWidget {
                   //   onData.sort((a,b) => a.id.compareTo(b.id));
                   //   onData.forEach((element) => print(element.id.toString()));
                   // });
-
+/*
                   List<Game> games = getAllGamesFromFile();
                   games.sort((a,b) => a.id.compareTo(b.id));
                   topScorers(games).forEach((k,v) => print('${k.name} ${k.surname}: $v'));
-
+*/
                   // Printamos los metodos de equipo:
                   // List<Team> teams = getAllTeamsFromFile();
                   // Team egara = teams.firstWhere((item) => item.id == 20008);
@@ -561,6 +593,6 @@ class MyApp extends StatelessWidget {
 }
 
 
-
+*/
 
 
