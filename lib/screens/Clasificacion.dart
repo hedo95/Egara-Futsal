@@ -72,7 +72,7 @@ class EntryItem extends StatelessWidget {
   const EntryItem(this.entry);
 
   final Entry entry;
-
+   
   Widget _buildTiles(Entry root) {
     if (root.children.isEmpty)
       return ListTile(
