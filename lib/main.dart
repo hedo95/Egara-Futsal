@@ -515,13 +515,6 @@ class _MyAppState extends State<MyApp> {
 
 
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-
-
-
-
 
 
 
@@ -575,7 +568,6 @@ void main() {
   
 class MyApp extends StatefulWidget {
   @override
-<<<<<<< HEAD
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to Flutter',
@@ -615,14 +607,6 @@ class MyApp extends StatefulWidget {
                   // print('Last current position: ' + egara.lastCurrentPosition(teams,games).toString() + '\n');
                   // print('Current points: '+egara.currentPoints(games).toString());
                   // print('Last current points: ' + egara.lastCurrentPoints(games).toString());
-=======
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  get bottomNavBarIndex => null;
-  var db = new FirebaseContext();
->>>>>>> 684fb0bfd5a806927e40c9c8c3f31cc36eb94ebb
 
   @override
   Widget build(BuildContext context) {
@@ -803,7 +787,3 @@ class MyApp extends StatelessWidget {
 */
 
 
-=======
-}
->>>>>>> 684fb0bfd5a806927e40c9c8c3f31cc36eb94ebb
->>>>>>> fdae750b64abe0b97bc17cfd811a519a54b6b504
