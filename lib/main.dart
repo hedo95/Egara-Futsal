@@ -498,68 +498,79 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   get bottomNavBarIndex => null;
-  var db = new FirebaseContext();
+  var db = new FirebaseContext(); // Mi class Firebase 
+  List<Game> games = [];
+  List<Player> players = [];
+  List<Team> teams = [];
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Game>>( // Primer StreamBuilder para cargar los partidos de Firebase
+    return StreamBuilder<List<Game>>( // First StreamBuilder to load games
       stream: db.loadGames(),
       builder: (context, snapshot1) {
-            return StreamBuilder<List<Team>>( // Segundo StreamBuilder para cargar los equipos de Firebase
-              stream: db.loadTeams(),
-              builder: (context, snapshot2) {
-                if(!snapshot1.hasData || !snapshot2.hasData){
-                  return Center(child: CircularProgressIndicator());
-                }
-                else if(snapshot1.hasError){
-                  return Center(child: Text(snapshot1.error));
-                }else if(snapshot2.hasError){
-                  return Center(child: Text(snapshot2.error));
-                }else{
-                  return MultiProvider(
-                    providers: [
-                      ChangeNotifierProvider<GameProvider>.value(value: GameProvider(snapshot1.data)),
-                      ChangeNotifierProvider<TeamProvider>.value(value: TeamProvider(snapshot2.data)),
-                      ChangeNotifierProvider<PlayerProvider>.value(value: PlayerProvider(snapshot1.data))
-                    ], // Metemos los 3 providers en un Multiproviders
-                    child: Consumer<GameProvider>(builder: (_, gameprovider, child){
-                       return Consumer<TeamProvider>(builder: (_, teamprovider, child){
-                        return MaterialApp( // Empieza la App.
-                          title: 'Welcome to Flutter',
-                          home: Scaffold(
-                            appBar: AppBar(
-                              title: Text('Welcome to Flutter'),
-                            ),
-                            body: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  IconButton(
-                                    icon: Icon(Icons.add),
-                                    color: Colors.blue[500],
-                                    onPressed: () // Cargamos los 3 providers, y printamos algo del primer elemento de cada provider para ver que realmente funciona.
-                                    {
-                                      var games = Provider.of<GameProvider>(context).games;
-                                      var teams = Provider.of<TeamProvider>(context).teams;
-                                      var players = Provider.of<PlayerProvider>(context).players;
-                                      print(games[0].id.toString());
-                                      print(teams[0].id.toString());
-                                      print(players[0].name + ' ' + players[0].surname);
-                                    }
-                                  ),
-                                  Text('hola Mundo',
-                                  )
-                                ]
-                              )
-                            ),
+        return StreamBuilder<List<Team>>( // Second StreamBuilder to load teams
+          stream: db.loadTeams(),
+          builder: (context, snapshot2) {
+            if(!snapshot1.hasData || !snapshot2.hasData){
+              return Center(child: CircularProgressIndicator());
+            }else if(snapshot1.hasError || snapshot2.hasError){
+              return Center(child: Text('Error reading data!'));
+            }else{
+              return MultiProvider(
+                providers: [
+                  // StreamProvider<List<Game>>.value(value: db.loadGames()),
+                  // StreamProvider<List<Team>>.value(value: db.loadTeams())
+                  ChangeNotifierProvider<GameProvider>.value(value: GameProvider(snapshot1.data)),
+                  ChangeNotifierProvider<TeamProvider>.value(value: TeamProvider(snapshot2.data)),
+                  ChangeNotifierProvider<PlayerProvider>.value(value: PlayerProvider(snapshot1.data))
+                ], 
+                child: MaterialApp( // Empieza la App.
+                  title: 'Welcome to Flutter',
+                  home: Scaffold(
+                    appBar: AppBar(
+                      title: Text('Welcome to Flutter'),
+                    ),
+                    body: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Consumer<GameProvider> (
+                            builder: (context, gameprovider, child){
+                              games = gameprovider.games;
+                              players = getAllPlayers(games);
+                              return Consumer<TeamProvider>(
+                                builder:(context, teamprovider, child){
+                                  teams = teamprovider.teams;
+                                  return Container(width: 0, height: 0);
+                                }
+                              );
+                            },
                           ),
-                        );
-                       });
-                    })
-                  );
-                }
+                          IconButton(
+                            icon: Icon(Icons.add),
+                            color: Colors.blue[500],
+                            onPressed: () {
+                              // Get the value of each provider (List<Object>) and print the first item of them all
+                              // List<Game> games = Provider.of<List<Game>>(context);
+                              // List<Team> teams = Provider.of<List<Team>>(context);
+                              // List<Player> players = getAllPlayers(games);
+                              print('Partido ${games[0].id}');
+                              print('${players[0].name} ${players[0].surname}');
+                              print('${teams[0].name}');
+                              print('hello');
+                            }
+                          ),
+                          Text('Press me',
+                          )
+                        ]
+                      )
+                    ),
+                  ),
+                )
+              );
+            }
           }
-      );
+       );
       }
     );
   }

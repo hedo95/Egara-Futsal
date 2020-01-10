@@ -121,16 +121,9 @@ class FirebaseContext
     });
   }
 
-  // Future<List<Team>> loadTeams2() async
-  // {
-  //   QuerySnapshot qShot = await teamsCollection.getDocuments();
-  //   return qShot.documents.map((team) => Team.fromSnapshot(team)).toList();
-  // }
-
   Future<void> exportTeamsToLocal() async
   {
-    try
-    {
+    try{
       loadTeams().listen((onValue){
         onValue.sort((a,b) => a.id.compareTo(b.id));
         List<dynamic> jsonData = [];
@@ -138,9 +131,7 @@ class FirebaseContext
         File('lib/Data/Games.json').writeAsStringSync(jsonData.toString(), mode: FileMode.write);
         print('Fichero exportado correctamente.');
       });
-    }
-    catch(e)
-    {
+    }catch(e){
       print('No se han podido migrar los equipos. ' + e);
     }
   }
