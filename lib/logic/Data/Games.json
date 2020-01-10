@@ -280,7 +280,7 @@
             "2 GARCIA CERVERA, NATALIA"
         ],
         "awaysquad": [
-            "25 VERGÉS UBACH, MARTA",
+            "1 VERGÉS UBACH, MARTA",
             "18 VAZQUEZ CEDILLO, SUSANA",
             "8 STARRENBURG, JESSIE",
             "10 SABATÉ LLECHA, CRISTINA",
@@ -457,7 +457,7 @@
             2020
         ],
         "journey": 2,
-        "date": "2019-10-05 13:30:00.000",
+        "date": "2019-10-13 13:30:00.000",
         "localTeam": "Escola Pia Sabadell, C.E, A",
         "awayTeam": "Penya Barça Barbera del Valles",
         "localGoals": 1,
@@ -497,7 +497,7 @@
             2020
         ],
         "journey": 2,
-        "date": "2019-10-05 17:10:00.000",
+        "date": "2019-10-13 17:10:00.000",
         "localTeam": "CFS Les Glòries 2014, B",
         "awayTeam": "Futsal Terrassa Les Saveurs Club Esportiu, A",
         "localGoals": 4,
@@ -532,7 +532,7 @@
         "yellowcards": {},
         "redcards": {},
         "localsquad": [
-            "25 VERGÉS UBACH, MARTA",
+            "1 VERGÉS UBACH, MARTA",
             "18 VAZQUEZ CEDILLO, SUSANA",
             "8 STARRENBURG, JESSIE",
             "7 ALONSO PEREZ, JULIA",
@@ -564,7 +564,7 @@
             2020
         ],
         "journey": 2,
-        "date": "2019-10-05 20:00:00.000",
+        "date": "2019-10-13 20:00:00.000",
         "localTeam": "Oar Gràcia Sbd, E.F., A",
         "awayTeam": "Acció Sant Martí, A",
         "localGoals": 4,
@@ -816,7 +816,7 @@
             "10 MONTCUSI ARCOS, LUCIA",
             "8 GARCIA, SOFIA NOEMI",
             "6 EL KARIA, FATIMA",
-            "15 GALVEZ LOZANO, NEREA"
+            "8 GALVEZ LOZANO, NEREA"
         ]
     },
     {
@@ -843,7 +843,7 @@
             "7 CABELLO HERMOSILLA, MELANIA"
         ],
         "awaysquad": [
-            "25 VERGÉS UBACH, MARTA",
+            "1 VERGÉS UBACH, MARTA",
             "18 VAZQUEZ CEDILLO, SUSANA",
             "8 STARRENBURG, JESSIE",
             "10 SABATÉ LLECHA, CRISTINA",
@@ -1181,7 +1181,7 @@
             "10 MONTCUSI ARCOS, LUCIA",
             "6 EL KARIA, FATIMA",
             "4 TASCONES CASELLAS, MIREYA",
-            "15 GALVEZ LOZANO, NEREA"
+            "8 GALVEZ LOZANO, NEREA"
         ],
         "awaysquad": [
             "9 GONZALEZ MARTINEZ, ANA",
@@ -1310,8 +1310,8 @@
             2019,
             2020
         ],
-        "journey": 5,
-        "date": "2019-11-10 12:15:00.000",
+        "journey": 6,
+        "date": "2019-11-16 12:15:00.000",
         "localTeam": "Horta Futbol Sala Club, A",
         "awayTeam": "Pou Escorial, A",
         "localGoals": 1,
@@ -1774,7 +1774,7 @@
             2020
         ],
         "journey": 6,
-        "date": "2019-12-16 21:00:00.000",
+        "date": "2019-11-17 21:00:00.000",
         "localTeam": "Escola Pia Sabadell, C.E, A",
         "awayTeam": "Oar Gràcia Sbd, E.F., A",
         "localGoals": 1,

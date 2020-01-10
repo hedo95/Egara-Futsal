@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
@@ -70,6 +71,11 @@ class _GamesState extends State<Games> {
             charts.ColorUtil.fromDartColor(event.color)));
   }
 
+=======
+import 'package:flutter/material.dart';
+//
+class Clasificacion extends StatefulWidget {
+>>>>>>> fdae750b64abe0b97bc17cfd811a519a54b6b504
   @override
   void initState() {
     super.initState();
@@ -79,6 +85,7 @@ class _GamesState extends State<Games> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Container(
@@ -116,16 +123,124 @@ class _GamesState extends State<Games> {
               ),
             ],
           ),
+=======
+    return Container(
+      color: Color(0xFF3D006A),
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) => EntryItem(
+          data[index],
+>>>>>>> fdae750b64abe0b97bc17cfd811a519a54b6b504
         ),
+        itemCount: data.length,
       ),
     );
   }
 }
 
+<<<<<<< HEAD
 class GoalandCards {
   final String event;
   final int value;
   final Color color;
 
   GoalandCards(this.event, this.value, this.color);
+=======
+// One entry in the multilevel list displayed by this app.
+class Entry {
+  Entry(this.title, [this.children = const <Entry>[]]);
+
+  final String title;
+  final List<Entry> children;
+}
+
+// The entire multilevel list displayed by this app.
+final List<Entry> data = <Entry>[
+  Entry(
+    '1. Egara futsal',
+    <Entry>[
+      Entry('partidos jugados:'),
+      Entry('Partidos ganados:'),
+      Entry('Partidos empatados:'),
+      Entry('Partidos perdidos:'),
+      Entry('Goles a favor:'),
+      Entry('Goles en contra:'),
+    ],
+    
+  ),
+  Entry(
+    '2. Premiá ',
+    <Entry>[
+      Entry('partidos jugados:'),
+      Entry('Partidos ganados:'),
+      Entry('Partidos empatados:'),
+      Entry('Partidos perdidos:'),
+      Entry('Goles a favor:'),
+      Entry('Goles en contra:'),
+    ],
+  ),
+  Entry(
+    '3. Terrassa F.C',
+    <Entry>[
+      Entry('partidos jugados:'),
+      Entry('Partidos ganados:'),
+      Entry('Partidos empatados:'),
+      Entry('Partidos perdidos:'),
+      Entry('Goles a favor:'),
+      Entry('Goles en contra:'),
+    ],
+  ),
+];
+
+// Displays one Entry. If the entry has children then it's displayed
+// with an ExpansionTile.
+class EntryItem extends StatelessWidget {
+  const EntryItem(this.entry);
+
+  final Entry entry;
+
+  Widget _buildTiles(Entry root) {
+    if (root.children.isEmpty)
+      return ListTile(
+        title: Text(
+          root.title,
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white60,
+          ),
+        ),
+        dense: true,
+        trailing: Text(
+          "2",
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white60,
+          ),
+        ),
+      );
+    return ExpansionTile(
+      key: PageStorageKey<Entry>(root),
+      title: Text(
+        root.title,
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.white70,
+        ),
+      ),
+      leading: Icon(Icons.add_circle),
+      trailing: Text(
+        "23pts",
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.white38,
+        ),
+      ),
+      children: root.children.map(_buildTiles).toList(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildTiles(entry);
+  }
+>>>>>>> fdae750b64abe0b97bc17cfd811a519a54b6b504
 }
