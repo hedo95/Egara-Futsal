@@ -34,22 +34,23 @@ class PlayerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.purple[900],
-          leading: Builder(
-            builder: (BuildContext context){
-              return IconButton(
-                icon: Icon(Icons.arrow_back_ios),
-                color: Colors.white,
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-              );
-            },),
-          title: Text(player.name + ' ' + player.surname),
+      appBar: AppBar(
+        backgroundColor: Colors.purple[900],
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              color: Colors.white,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
+          },
         ),
-        body: Games(player.playedgames(games), player.totalgames(games),
-            player.goals(games), player.ycards(games), player.rcards(games)),
+        title: Text(player.name + ' ' + player.surname),
+      ),
+      body: Games(player.playedgames(games), player.totalgames(games),
+          player.goals(games), player.ycards(games), player.rcards(games)),
     );
   }
 }
@@ -99,38 +100,45 @@ class _GamesState extends State<Games> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Container(
-            child: Center(
-                child: Column(children: <Widget>[
-          Text(
-            'Eventos de los partidos',
-            style: TextStyle(
-                color: Colors.purple[900],
-                fontSize: 34.0,
-                fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20.0),
-          Expanded(
-              child: charts.BarChart(
-            _seriesEventsData,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.grouped,
-            animationDuration: Duration(seconds: 2),
-            behaviors: [
-              new charts.DatumLegend(
-                outsideJustification: charts.OutsideJustification.endDrawArea,
-                horizontalFirst: false,
-                desiredMaxRows: 2,
-                cellPadding: new EdgeInsets.only(right: 20.0),
-                entryTextStyle: charts.TextStyleSpec(
-                    color: charts.MaterialPalette.purple.shadeDefault,
-                    fontFamily: 'Georgia',
-                    fontSize: 15),
-              )
+      padding: EdgeInsets.all(8.0),
+      child: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Eventos de los partidos',
+                style: TextStyle(
+                    color: Colors.purple[900],
+                    fontSize: 34.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20.0),
+              Expanded(
+                child: charts.BarChart(
+                  _seriesEventsData,
+                  animate: true,
+                  barGroupingType: charts.BarGroupingType.grouped,
+                  animationDuration: Duration(seconds: 2),
+                  behaviors: [
+                    new charts.DatumLegend(
+                      outsideJustification:
+                          charts.OutsideJustification.endDrawArea,
+                      horizontalFirst: false,
+                      desiredMaxRows: 2,
+                      cellPadding: new EdgeInsets.only(right: 20.0),
+                      entryTextStyle: charts.TextStyleSpec(
+                          color: charts.MaterialPalette.purple.shadeDefault,
+                          fontFamily: 'Georgia',
+                          fontSize: 15),
+                    )
+                  ],
+                ),
+              ),
             ],
-          ))
-        ]))));
+          ),
+        ),
+      ),
+    );
   }
 }
 

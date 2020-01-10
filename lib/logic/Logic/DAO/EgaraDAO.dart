@@ -9,10 +9,10 @@ import '../Model/Player.dart';
 import '../Model/Team.dart';
 
 
-String path = 'Egara-Futsal\lib\logic\Data',
-       playersfile = path + 'Players.json',
-       teamsfile = path + 'Teams.json',
-       gamesfile = path + 'Games.json';
+String path = '/Users/xavi/UPC/PrimerQuatri4t/Android/Projectes Flutter/Egara-Futsal/lib/logic/Data',
+       playersfile = path + '/Players.json',
+       teamsfile = path + '/Teams.json',
+       gamesfile = path + '/Games.json';
 
 List<Player> getAllPlayersFromFile()
 {
