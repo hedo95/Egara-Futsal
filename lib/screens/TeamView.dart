@@ -71,7 +71,9 @@ class _TeamViewState extends State<TeamView> {
                       color: Colors.pink[200]))
             ],
           ),
-          title: Text(this.widget.team.name),
+          title: Text(this.widget.team.name,
+            style: TextStyle(fontSize: 18)
+          ),
         ),
         body: Games(
             widget.team,
@@ -202,7 +204,7 @@ class _GamesState extends State<Games> {
               ),
               SizedBox(height: 20.0),
               Expanded(
-                  child: charts.BarChart(
+                child: charts.BarChart(
                 _seriesEventsData,
                 animate: true,
                 barGroupingType: charts.BarGroupingType.grouped,
@@ -225,7 +227,7 @@ class _GamesState extends State<Games> {
         Padding(
             padding: EdgeInsets.all(8.0),
             child: Container(
-                child: Center(
+             child: Center(
               child: Column(
                 children: <Widget>[
                   Text(
