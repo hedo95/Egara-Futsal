@@ -1,15 +1,14 @@
-import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
+import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
-import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
-import 'package:egaradefinitiu/logic/Logic/Model/Journey.dart';
 
 class Jornadas extends StatefulWidget {
-  final List<Game> games = getAllGamesFromFile();
+   final List<Game> games = getAllGamesFromFile();
   int journey;
+
   Jornadas({int journey}) {
     if (journey == null) {
       this.journey = currentJourney(games);
@@ -26,11 +25,13 @@ class _JornadasState extends State<Jornadas> {
   int currentJourney;
   final List<Game> games = getAllGamesFromFile();
   List<Game> journeyGames = [];
+
   _JornadasState(this.currentJourney) {
     this.journeyGames = getCalendar(games)
         .firstWhere((item) => item.journey == this.currentJourney)
         .games;
   }
+
   @override
   void initState() {
     super.initState();
@@ -192,7 +193,6 @@ class _JornadasState extends State<Jornadas> {
 
 class JornadaContainer extends StatelessWidget {
   final Game game;
-  
 
   JornadaContainer(this.game);
 

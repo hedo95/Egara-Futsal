@@ -1,10 +1,4 @@
-import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
-import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
-import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
-import 'package:egaradefinitiu/style/Theme.dart';
-import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
 
 class Clasificacion extends StatefulWidget {
   @override
@@ -46,7 +40,6 @@ final List<Entry> data = <Entry>[
       Entry('Goles a favor:'),
       Entry('Goles en contra:'),
     ],
-    
   ),
   Entry(
     '2. Premiá ',
@@ -78,7 +71,7 @@ class EntryItem extends StatelessWidget {
   const EntryItem(this.entry);
 
   final Entry entry;
-   
+
   Widget _buildTiles(Entry root) {
     if (root.children.isEmpty)
       return ListTile(
