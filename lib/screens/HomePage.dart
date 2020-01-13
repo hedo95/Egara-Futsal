@@ -1,10 +1,42 @@
-
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: backgroundColor,
+      child: SafeArea(
+        child: ListView(
+          children: <Widget>[
+            Cabecera(),
+            Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Container(
+                decoration: estiloContenedor,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      height: 200,
+                      width: 400,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right:200),
+                      child: Image.asset('assets/escudos/Egara_escudo.png'),
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+/*
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -420,3 +452,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+*/
