@@ -1,8 +1,6 @@
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
 
-
-
 class EstadisticaJugadora extends StatefulWidget {
   @override
   _EstadisticaJugadoraState createState() => _EstadisticaJugadoraState();

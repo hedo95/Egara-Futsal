@@ -1,58 +1,58 @@
 {
-    "name": "",
-    "css_prefix_text": "",
-    "css_use_suffix": false,
-    "hinting": true,
-    "units_per_em": 1000,
-    "ascent": 850,
-    "glyphs": [
-      {
-        "uid": "978aa8facd816df874039e139cb0cdde",
-        "css": "trophy",
-        "code": 59392,
-        "src": "entypo"
-      },
-      {
-        "uid": "d8813acae9d35ada76fda399a6000587",
-        "css": "soccer",
-        "code": 59447,
-        "src": "maki"
-      },
-      {
-        "uid": "7c638496e4c7e626bc48bb5d8e6adc1d",
-        "css": "home",
-        "code": 59393,
-        "src": "linearicons"
-      },
-      {
-        "uid": "22b319b290309744a15b5b9b907c1b29",
-        "css": "chevron-left",
-        "code": 59509,
-        "src": "linearicons"
-      },
-      {
-        "uid": "b75af8c5ac556bc6953f343d3ff5986b",
-        "css": "user",
-        "code": 59434,
-        "src": "linearicons"
-      },
-      {
-        "uid": "cdf7270e5dcec27c452fb33f334f8284",
-        "css": "list",
-        "code": 59506,
-        "src": "linearicons"
-      },
-      {
-        "uid": "296392e01d0f9a84f642c06d209a199d",
-        "css": "chart-bars",
-        "code": 59459,
-        "src": "linearicons"
-      },
-      {
-        "uid": "b083f07f47053abe90ffddbbc94bae42",
-        "css": "cog",
-        "code": 59408,
-        "src": "linearicons"
-      }
-    ]
-  }
+  "name": "",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "978aa8facd816df874039e139cb0cdde",
+      "css": "trophy",
+      "code": 59392,
+      "src": "entypo"
+    },
+    {
+      "uid": "d8813acae9d35ada76fda399a6000587",
+      "css": "soccer",
+      "code": 59447,
+      "src": "maki"
+    },
+    {
+      "uid": "7c638496e4c7e626bc48bb5d8e6adc1d",
+      "css": "home",
+      "code": 59393,
+      "src": "linearicons"
+    },
+    {
+      "uid": "22b319b290309744a15b5b9b907c1b29",
+      "css": "chevron-left",
+      "code": 59509,
+      "src": "linearicons"
+    },
+    {
+      "uid": "b75af8c5ac556bc6953f343d3ff5986b",
+      "css": "user",
+      "code": 59434,
+      "src": "linearicons"
+    },
+    {
+      "uid": "cdf7270e5dcec27c452fb33f334f8284",
+      "css": "list",
+      "code": 59506,
+      "src": "linearicons"
+    },
+    {
+      "uid": "296392e01d0f9a84f642c06d209a199d",
+      "css": "chart-bars",
+      "code": 59459,
+      "src": "linearicons"
+    },
+    {
+      "uid": "b083f07f47053abe90ffddbbc94bae42",
+      "css": "cog",
+      "code": 59408,
+      "src": "linearicons"
+    }
+  ]
+}

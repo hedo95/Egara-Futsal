@@ -1,32 +1,14 @@
-import 'dart:async';
-import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
+import 'dart:io';
+
 import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
-import 'package:egaradefinitiu/screens/Clasificacion.dart';
-import 'package:egaradefinitiu/screens/Jornadas.dart';
-import 'package:egaradefinitiu/screens/PlayerView.dart';
-import 'package:egaradefinitiu/screens/TeamView.dart';
-import 'package:egaradefinitiu/style/Theme.dart';
-import 'package:egaradefinitiu/subscreens/Graficos_jugadoras.dart';
-import 'package:egaradefinitiu/widgets/BottomMenu.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:egaradefinitiu/logic/Logic/Providers/GameProvider.dart';
-import 'package:egaradefinitiu/logic/Logic/Providers/TeamProvider.dart';
-import 'package:egaradefinitiu/logic/Logic/Providers/PlayerProvider.dart';
-import 'dart:io';
-import 'package:flutter/foundation.dart';
-import 'package:sentry/sentry.dart';
+
 import 'logic/Logic/BO/EgaraBO.dart';
 import 'logic/Logic/Model/Player.dart';
-import 'package:sentry/sentry.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sortedmap/sortedmap.dart';
-
-
-
 
 /*
 // Prueba provider con menú real
@@ -436,20 +418,14 @@ class _MyAppState extends State<MyApp> {
 
 */
 
-
-
-
-
-
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
-    if (kReleaseMode)
-      exit(1);
+    if (kReleaseMode) exit(1);
   };
   runApp(MyApp());
 }
-  
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -457,37 +433,38 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   get bottomNavBarIndex => null;
-  var db = new FirebaseContext(); // Mi class Firebase 
+  var db = new FirebaseContext(); // Mi class Firebase
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Game>>( // First StreamBuilder to load games
-      stream: db.loadGames(),
-      builder: (context, snapshot1) {
-        return StreamBuilder<List<Team>>( // Second StreamBuilder to load teams
-          stream: db.loadTeams(),
-          builder: (context, snapshot2) {
-            if(!snapshot1.hasData || !snapshot2.hasData){
-              return Center(child: CircularProgressIndicator());
-            }else if(snapshot1.hasError || snapshot2.hasError){
-              return Center(child: Text('Error reading data!'));
-            }else{
-              return MultiProvider(
-                providers: [
-                  Provider<List<Game>>.value(value: snapshot1.data),
-                  Provider<List<Team>>.value(value: snapshot2.data),
-                  Provider<List<Player>>.value(value: getAllPlayers(snapshot1.data))
-                ], 
-                child: MaterialApp( // Empieza la App.
-                  title: 'Welcome to Flutter',
-                  home: PantallaPrueba(),
-                )
-              );
-            }
-          }
-       );
-      }
-    );
+    return StreamBuilder<List<Game>>(
+        // First StreamBuilder to load games
+        stream: db.loadGames(),
+        builder: (context, snapshot1) {
+          return StreamBuilder<List<Team>>(
+              // Second StreamBuilder to load teams
+              stream: db.loadTeams(),
+              builder: (context, snapshot2) {
+                if (!snapshot1.hasData || !snapshot2.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot1.hasError || snapshot2.hasError) {
+                  return Center(child: Text('Error reading data!'));
+                } else {
+                  return MultiProvider(
+                      providers: [
+                        Provider<List<Game>>.value(value: snapshot1.data),
+                        Provider<List<Team>>.value(value: snapshot2.data),
+                        Provider<List<Player>>.value(
+                            value: getAllPlayers(snapshot1.data))
+                      ],
+                      child: MaterialApp(
+                        // Empieza la App.
+                        title: 'Welcome to Flutter',
+                        home: PantallaPrueba(),
+                      ));
+                }
+              });
+        });
   }
 }
 
@@ -507,29 +484,27 @@ class PantallaPrueba extends StatelessWidget {
         title: Text('Welcome to Flutter'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
             IconButton(
-              icon: Icon(Icons.add),
-              color: Colors.blue[500],
-              onPressed: () {
-                // Get the value of each provider (List<Object>) and print the first item of them all
-                print('Partido ${games[0].id}');
-                print('${players[0].name} ${players[0].surname}');
-                print('${teams[0].name}');
-                print('Firebase -> StreamBuilder -> Multiprovider -> Consumer ');
-              }
-            ),
-            Text('Press me',
+                icon: Icon(Icons.add),
+                color: Colors.blue[500],
+                onPressed: () {
+                  // Get the value of each provider (List<Object>) and print the first item of them all
+                  print('Partido ${games[0].id}');
+                  print('${players[0].name} ${players[0].surname}');
+                  print('${teams[0].name}');
+                  print(
+                      'Firebase -> StreamBuilder -> Multiprovider -> Consumer ');
+                }),
+            Text(
+              'Press me',
             )
-          ]
-        )
-      ),
+          ])),
     );
   }
 }
-
 
 /*
 
@@ -558,9 +533,3 @@ class MyApp extends StatelessWidget {
 
 
 */
-
-
-
-
-
-

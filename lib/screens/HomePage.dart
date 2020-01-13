@@ -1,9 +1,7 @@
-
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,7 +12,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       color: Color(0xFF3D006A),
       child: SafeArea(
         child: Stack(
@@ -263,8 +260,7 @@ class _HomePageState extends State<HomePage> {
                   height: 40,
                 ),
                 GestureDetector(
-                  onTap: (){
-                    
+                  onTap: () {
                     Provider.of<ValueNotifier<int>>(context).value = 2;
                   },
                   child: Padding(

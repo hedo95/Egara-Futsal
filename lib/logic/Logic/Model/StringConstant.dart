@@ -1,11 +1,6 @@
-import 'dart:convert';
-import 'dart:ffi';
-import 'dart:io' show File;
-import 'dart:convert' show json;
-import 'dart:io';
 
-class StringConstant
-{
+
+class StringConstant {
   static const String table = "Clasificación";
   static const String nextgame = "Siguiente partido";
   static const String local = "Local";

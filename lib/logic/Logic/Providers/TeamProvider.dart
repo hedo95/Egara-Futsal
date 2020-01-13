@@ -1,12 +1,10 @@
-
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:flutter/material.dart';
 
-class TeamProvider with ChangeNotifier{
-
+class TeamProvider with ChangeNotifier {
   List<Team> _teams;
 
-  TeamProvider(List<Team> items){
+  TeamProvider(List<Team> items) {
     this.teams = items;
   }
 
@@ -14,9 +12,8 @@ class TeamProvider with ChangeNotifier{
     return _teams;
   }
 
-  set teams(List<Team> teams){
+  set teams(List<Team> teams) {
     this._teams = teams;
     notifyListeners();
   }
-
 }

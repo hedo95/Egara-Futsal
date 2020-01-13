@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class Jugadora extends StatefulWidget {
@@ -10,16 +9,14 @@ class _JugadoraState extends State<Jugadora> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
-          child: Container(
+      child: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                color: Colors.white38,
-                borderRadius: BorderRadius.circular(50)
-              ),
+                  color: Colors.white38,
+                  borderRadius: BorderRadius.circular(50)),
               padding: EdgeInsets.all(2),
               child: Container(
                 decoration: BoxDecoration(
@@ -48,4 +45,3 @@ class _JugadoraState extends State<Jugadora> {
     );
   }
 }
-
