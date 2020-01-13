@@ -24,6 +24,7 @@ dependencies:
   sentry: ^3.0.0+1
   google_maps_flutter: ^0.5.21+15
   sortedmap: ^0.4.2
+  firebase_storage: ^3.1.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -54,8 +55,28 @@ flutter:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
+<<<<<<< HEAD
   # assets:
   #   - assets
+=======
+  assets:
+    - assets/Data/Games.json
+    - assets/Data/Players.json
+    - assets/Data/Teams.json
+
+    - assets/escudos/20000.png
+    - assets/escudos/20001.png
+    - assets/escudos/20002.png
+    - assets/escudos/20003.png
+    - assets/escudos/20004.png
+    - assets/escudos/20005.png
+    - assets/escudos/20006.png
+    - assets/escudos/20007.png
+    - assets/escudos/20008.png
+    - assets/escudos/20009.png
+    - assets/escudos/20010.png
+    - assets/escudos/20011.png    
+>>>>>>> 0802e763ef89d2e1fe0b3c90b66eeedb1cb05580
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

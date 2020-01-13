@@ -1,11 +1,8 @@
-import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter/src/rendering/box.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,6 +26,7 @@ class MyApp extends StatelessWidget {
 class PlayerView extends StatelessWidget {
   final Player player;
   final List<Game> games = getAllGamesFromFile();
+
   PlayerView(this.player);
 
   @override
@@ -57,8 +55,10 @@ class PlayerView extends StatelessWidget {
 
 class Games extends StatefulWidget {
   final int playedgames, totalgames, goals, yellowcards, redcards;
+
   Games(this.playedgames, this.totalgames, this.goals, this.yellowcards,
       this.redcards);
+
   _GamesState createState() => _GamesState(this.playedgames, this.totalgames,
       this.goals, this.yellowcards, this.redcards);
 }
@@ -66,6 +66,7 @@ class Games extends StatefulWidget {
 class _GamesState extends State<Games> {
   List<charts.Series<GoalandCards, String>> _seriesEventsData;
   final int playedgames, totalgames, goals, yellowcards, redcards;
+
   _GamesState(this.playedgames, this.totalgames, this.goals, this.yellowcards,
       this.redcards);
 

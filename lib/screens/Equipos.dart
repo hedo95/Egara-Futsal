@@ -1,13 +1,7 @@
-
-
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:egaradefinitiu/widgets/Jugadora.dart';
 import 'package:flutter/material.dart';
-
-
-
-
 
 class Equipos extends StatefulWidget {
   @override
@@ -18,8 +12,10 @@ class _EquiposState extends State<Equipos> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-          onTap: (){Navigator.of(context).pushNamed('/Graficos_jugadoras');},
-          child: Container(
+      onTap: () {
+        Navigator.of(context).pushNamed('/Graficos_jugadoras');
+      },
+      child: Container(
         color: Color(0xFF3D006A),
         child: SafeArea(
           child: ListView(

@@ -1,15 +1,9 @@
-import 'dart:async';
-import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
+import 'dart:io';
+
 import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
-import 'package:egaradefinitiu/screens/Clasificacion.dart';
-import 'package:egaradefinitiu/screens/Jornadas.dart';
-import 'package:egaradefinitiu/screens/PlayerView.dart';
-import 'package:egaradefinitiu/screens/TeamView.dart';
-import 'package:egaradefinitiu/style/Theme.dart';
-import 'package:egaradefinitiu/subscreens/Graficos_jugadoras.dart';
-import 'package:egaradefinitiu/widgets/BottomMenu.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
@@ -17,13 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:sentry/sentry.dart';
 import 'logic/Logic/BO/EgaraBO.dart';
 import 'logic/Logic/Model/Player.dart';
-import 'package:sentry/sentry.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sortedmap/sortedmap.dart';
-
-
-
+import 'widgets/BottomMenu.dart';
 
 /*
 // Prueba provider con menú real
@@ -381,12 +369,11 @@ class MyApp extends StatelessWidget {
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
-    if (kReleaseMode)
-      exit(1);
+    if (kReleaseMode) exit(1);
   };
   runApp(MyApp());
 }
-  
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -394,11 +381,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   get bottomNavBarIndex => null;
-  var db = new FirebaseContext(); // Mi class Firebase 
+  var db = new FirebaseContext(); // Mi class Firebase
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Game>>( // First StreamBuilder to load games
+    return StreamBuilder<List<Game>>(
+      // First StreamBuilder to load games
       stream: db.loadGames(),
       builder: (context, snapshot1) {
         if(!snapshot1.hasData){
@@ -450,9 +438,9 @@ class PantallaPrueba extends StatelessWidget {
         title: Text('Welcome to Flutter'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
             IconButton(
               icon: Icon(Icons.add),
               color: Colors.blue[500],
@@ -466,13 +454,10 @@ class PantallaPrueba extends StatelessWidget {
             ),
             Text('Press me',
             )
-          ]
-        )
-      ),
+          ])),
     );
   }
 }
-
 
 
 

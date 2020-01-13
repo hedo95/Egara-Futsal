@@ -1,12 +1,11 @@
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
 import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter/src/rendering/box.dart';
 
 import 'PlayerView.dart';
 
@@ -36,6 +35,7 @@ class _MyAppState extends State<MyApp> {
 
 class TeamView extends StatefulWidget {
   final Team team;
+
   TeamView(this.team);
 
   @override
@@ -63,17 +63,11 @@ class _TeamViewState extends State<TeamView> {
               Tab(
                   icon:
                       Icon(FontAwesomeIcons.chartPie, color: Colors.pink[200])),
-              Tab(
-                  icon: Icon(Icons.group,
-                      color: Colors.pink[200])),
-              Tab(
-                  icon: Icon(Icons.room,
-                      color: Colors.pink[200]))
+              Tab(icon: Icon(Icons.group, color: Colors.pink[200])),
+              Tab(icon: Icon(Icons.room, color: Colors.pink[200]))
             ],
           ),
-          title: Text(this.widget.team.name,
-            style: TextStyle(fontSize: 18)
-          ),
+          title: Text(this.widget.team.name, style: TextStyle(fontSize: 18)),
         ),
         body: Games(
             widget.team,
@@ -100,8 +94,10 @@ class Games extends StatefulWidget {
       goals,
       concededgoals;
   final Team team;
-  Games(this.team,this.position, this.points, this.playedgames, this.wongames,
+
+  Games(this.team, this.position, this.points, this.playedgames, this.wongames,
       this.drawngames, this.lostgames, this.goals, this.concededgoals);
+
   _GamesState createState() => _GamesState(
       this.team,
       this.position,
@@ -128,11 +124,20 @@ class _GamesState extends State<Games> {
       goals,
       concededgoals,
       position;
-  _GamesState(this.team,this.position, this.points, this.playedgames, this.wongames,
-      this.drawngames, this.lostgames, this.goals, this.concededgoals){
-        players = getAllPlayersFromAteam(team, games);
-        players.sort((b,a) => a.goals(games).compareTo(b.goals(games)));
-      }
+
+  _GamesState(
+      this.team,
+      this.position,
+      this.points,
+      this.playedgames,
+      this.wongames,
+      this.drawngames,
+      this.lostgames,
+      this.goals,
+      this.concededgoals) {
+    players = getAllPlayersFromAteam(team, games);
+    players.sort((b, a) => a.goals(games).compareTo(b.goals(games)));
+  }
 
   _generateData() {
     var eventsData = [
@@ -143,7 +148,6 @@ class _GamesState extends State<Games> {
           'Partidos empatados', 'PE', this.drawngames, Colors.yellow[700]),
       new GamesData('Partidos perdidos', 'PP', this.lostgames, Colors.red[800]),
     ];
-
 
     _seriesEventsData.add(charts.Series(
         data: eventsData,
@@ -160,7 +164,6 @@ class _GamesState extends State<Games> {
       new Task('A favor', this.goals, Colors.purple[900]),
       new Task('En contra', this.concededgoals, Colors.pink[200]),
     ];
-
 
     _seriesPieData.add(
       charts.Series(
@@ -204,7 +207,7 @@ class _GamesState extends State<Games> {
               ),
               SizedBox(height: 20.0),
               Expanded(
-                child: charts.BarChart(
+                  child: charts.BarChart(
                 _seriesEventsData,
                 animate: true,
                 barGroupingType: charts.BarGroupingType.grouped,
@@ -227,7 +230,7 @@ class _GamesState extends State<Games> {
         Padding(
             padding: EdgeInsets.all(8.0),
             child: Container(
-             child: Center(
+                child: Center(
               child: Column(
                 children: <Widget>[
                   Text(
@@ -269,71 +272,56 @@ class _GamesState extends State<Games> {
                   ))
                 ],
               ),
-            )
-          )
-        ),
+            ))),
         Padding(
-          padding: EdgeInsets.all(2),
-          child: Scrollbar(
-            child: GridView.builder(
+            padding: EdgeInsets.all(2),
+            child: Scrollbar(
+                child: GridView.builder(
               padding: EdgeInsets.all(22),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Columnas
-                childAspectRatio: 1, // H/W
-                crossAxisSpacing: 60, // separacion vertical entre items
-                mainAxisSpacing: 50 // Separacion horiontal entre items
-              ),
+                  crossAxisCount: 2, // Columnas
+                  childAspectRatio: 1, // H/W
+                  crossAxisSpacing: 60, // separacion vertical entre items
+                  mainAxisSpacing: 50 // Separacion horiontal entre items
+                  ),
               itemCount: players.length,
-              itemBuilder: (context,index){
+              itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.all(5),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => PlayerView(players[index])
-                            ));
-                        },
-                        child: Container(
-                          alignment: Alignment.topCenter,
-                          child: Text(players[index].dorsal.toString(),
-                            style: TextStyle(
-                              color: Colors.purple[900],
-                              fontSize: 75
-                            )
-                          )
+                    padding: EdgeInsets.all(5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      PlayerView(players[index])));
+                            },
+                            child: Container(
+                                alignment: Alignment.topCenter,
+                                child: Text(players[index].dorsal.toString(),
+                                    style: TextStyle(
+                                        color: Colors.purple[900],
+                                        fontSize: 75)))),
+                        Text(
+                          players[index].name,
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.purple[900], fontSize: 15),
                         )
-                      ),
-                      Text(players[index].name,
-                        maxLines: 2,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.purple[900],
-                          fontSize:15
-                        ),
-                      )
-                    ],
-                  )
-                );
+                      ],
+                    ));
               },
-            )
-          )
-        ),
+            ))),
         Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Center(
-            child: Text(' Insertar \n\ Información del equipo  \n\            + \n\ Google Maps',
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.purple[900]
-              )
-            ),
-          )
-        )
+            padding: EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                  ' Insertar \n\ Información del equipo  \n\            + \n\ Google Maps',
+                  style: TextStyle(fontSize: 30, color: Colors.purple[900])),
+            ))
       ],
     );
   }

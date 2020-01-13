@@ -8,8 +8,6 @@ class LoginLayout extends StatefulWidget {
 class _LoginLayoutState extends State<LoginLayout> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return Container();
   }
 }

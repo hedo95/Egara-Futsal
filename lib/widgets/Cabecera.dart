@@ -1,7 +1,5 @@
-
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:flutter/material.dart';
-
 
 class Cabecera extends StatelessWidget {
   const Cabecera({

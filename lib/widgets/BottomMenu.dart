@@ -7,9 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-
-
-
 class BottomMenu extends StatefulWidget {
   @override
   _BottomMenuState createState() => _BottomMenuState();
