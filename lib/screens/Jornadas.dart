@@ -6,16 +6,16 @@ import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
 
 class Jornadas extends StatefulWidget {
-  // final List<Game> games = getAllGamesFromFile();
+   final List<Game> games = getAllGamesFromFile();
   int journey;
 
-  /*Jornadas({int journey}) {
+  Jornadas({int journey}) {
     if (journey == null) {
       this.journey = currentJourney(games);
     } else {
       this.journey = journey;
     }
-  }*/
+  }
 
   @override
   _JornadasState createState() => _JornadasState(this.journey);

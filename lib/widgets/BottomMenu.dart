@@ -1,6 +1,7 @@
 import 'package:egaradefinitiu/screens/Clasificacion.dart';
 import 'package:egaradefinitiu/screens/Equipos.dart';
 import 'package:egaradefinitiu/screens/HomePage.dart';
+import 'package:egaradefinitiu/screens/Jornadas.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,7 +21,7 @@ class _BottomMenuState extends State<BottomMenu> {
       HomePage(),
       Equipos(),
       Clasificacion(),
-      //Jornadas(),
+      Jornadas(),
     ];
     // 1. Necessitem un ValueNotifier perquè l'índex de la pantalla canviarà i volem que es notifiquin els canvis
     // 2. Volem que aquest índex el vegin tots els widgets de sota de BottomNavigationBar (ChangeNotifierProvider)

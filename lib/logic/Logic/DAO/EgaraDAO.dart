@@ -7,7 +7,7 @@ import '../Model/Game.dart';
 import '../Model/Player.dart';
 import '../Model/Team.dart';
 
-String path = 'Egara-Futsal/assets/Data',
+String path = 'assets/Data',
     playersfile = path + '/Players.json',
     teamsfile = path + '/Teams.json',
     gamesfile = path + '/Games.json';

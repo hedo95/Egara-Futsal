@@ -29,7 +29,7 @@ class Player {
         .where((item) =>
             item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam)
         .toList();
-    ;
+    
     int ycards = 0;
     for (var game in games) {
       for (MapEntry<Player, List<int>> map in game.yellowCards.entries) {
@@ -46,7 +46,7 @@ class Player {
         .where((item) =>
             item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam)
         .toList();
-    ;
+    
     int rcards = 0;
     for (var game in games) {
       for (MapEntry<Player, List<int>> map in game.redCards.entries) {
@@ -63,7 +63,7 @@ class Player {
         .where((item) =>
             item.localTeam.id == this.idteam || item.awayTeam.id == this.idteam)
         .toList();
-    ;
+    
     int played = 0;
     for (var game in games) {
       if (game.localSquad.any((item) => item.dorsal == this.dorsal) ||
