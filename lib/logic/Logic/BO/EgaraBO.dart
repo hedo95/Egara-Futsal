@@ -275,9 +275,8 @@ String add0(int digit) {
   }
 }
 
-String getJourneyResult(Game game) {
-  if (game.localSquad.isEmpty || game.awaySquad.isEmpty) {
-    Map<int, String> weekdaysMap = {};
+String givmeDaWeeklyDay(int n){
+  Map<int, String> weekdaysMap = {};
     weekdaysMap[1] = 'L';
     weekdaysMap[2] = 'M';
     weekdaysMap[3] = 'X';
@@ -285,14 +284,22 @@ String getJourneyResult(Game game) {
     weekdaysMap[5] = 'V';
     weekdaysMap[6] = 'S';
     weekdaysMap[7] = 'D';
-    return '${weekdaysMap[game.date.weekday]} ${add0(game.date.hour)}:${add0(game.date.minute)}';
+    if(n > 0 && n <= 12){
+      return '${weekdaysMap[n]}';
+    }else{
+      return 'None';
+    }
+}
+
+String getJourneyResult(Game game) {
+  if (game.localSquad.isEmpty || game.awaySquad.isEmpty) {
+    return '${givmeDaWeeklyDay(game.date.weekday)} ${add0(game.date.hour)}:${add0(game.date.minute)}';
   } else {
     return '${game.localGoals}-${game.awayGoals}';
   }
 }
 
-String getJourneyDate(List<Game> journeyGames) {
-  journeyGames.sort((a, b) => a.date.compareTo(b.date));
+String givmeDaMonth(int n){
   Map<int, String> months = {};
   months[1] = 'Enero';
   months[2] = 'Febrero';
@@ -306,107 +313,22 @@ String getJourneyDate(List<Game> journeyGames) {
   months[10] = 'Octubre';
   months[11] = 'Noviembre';
   months[12] = 'Diciembre';
+  if(n > 0 && n <= 12){
+    return '${months[n]}';
+  }else{
+    return 'None';
+  }
+}
+
+String getJourneyDate(List<Game> journeyGames) {
+  journeyGames.sort((a, b) => a.date.compareTo(b.date));
   DateTime startDate = journeyGames[0].date;
   DateTime endDate = journeyGames[journeyGames.length - 1].date;
   if (endDate.difference(startDate).inDays > 1) {
     // Por si contiene algún partido jugado en otra fecha, le sumamos un dia a la fecha inicial.
     DateTime endDate = startDate.add(new Duration(days: 1));
-    return '${add0(startDate.day)}-${add0(endDate.day)} ${months[endDate.month]}';
+    return '${add0(startDate.day)}-${add0(endDate.day)} ${givmeDaMonth(endDate.month)}';
   } else {
-    return '${add0(startDate.day)}-${add0(endDate.day)} ${months[endDate.month]}';
-  }
-}
-
-Player createUpdatePlayer({int id, Player player}) {
-  if (id == null && player == null) {
-    return createUpdatePlayer(player: new Player.def());
-  } else if (id != null && player == null) {
-    try {
-      Player foundPlayer = getAllPlayersFromFile().firstWhere((item) =>
-          item.idteam == player.idteam && item.dorsal == player.dorsal);
-      return createUpdatePlayer(player: foundPlayer);
-    } catch (Exception) {
-      return Exception('No se ha encontrado el modelo con id: $id' + '\n');
-    }
-  } else {
-    var data = getAllPlayersFromFile();
-    if (data.any((item) =>
-        item.idteam == player.idteam && item.dorsal == player.dorsal)) {
-      int index = data.indexWhere((item) =>
-          item.idteam == player.idteam && item.dorsal == player.dorsal);
-      data.removeAt(index);
-      data.add(player);
-      exportPlayersData(data);
-      return player;
-    } else {
-      data.add(player);
-      exportPlayersData(data);
-      return player;
-    }
-  }
-}
-
-Team createUpdateTeam({int id, Team team}) {
-  if (id == null && team == null) {
-    return createUpdateTeam(team: new Team.def());
-  } else if (id != null && team == null) {
-    try {
-      Team foundTeam =
-          getAllTeamsFromFile().firstWhere((item) => item.id == id);
-      return createUpdateTeam(team: foundTeam);
-    } catch (Exception) {
-      return Exception(
-          'No se ha encontrado el equipo con id: ' + id.toString() + '\n');
-    }
-  } else {
-    var data = getAllTeamsFromFile();
-    if (data.any((item) => item.id == team.id)) {
-      int index = data.indexWhere((item) => item.id == team.id);
-      data.removeAt(index);
-      data.add(team);
-      exportTeamsData(data);
-      return team;
-    } else {
-      data.add(team);
-      exportTeamsData(data);
-      return team;
-    }
-  }
-}
-
-bool deletePlayer(Player player) {
-  var data = getAllPlayersFromFile();
-  try {
-    Player item = data.firstWhere(
-        (item) => item.idteam == player.idteam && item.dorsal == player.dorsal);
-    data.remove(item);
-    exportPlayersData(data);
-    return true;
-  } catch (Exception) {
-    return false;
-  }
-}
-
-bool deleteTeam(Team team) {
-  var data = getAllTeamsFromFile();
-  try {
-    Team item = data.firstWhere((item) => item.id == team.id);
-    data.remove(item);
-    exportTeamsData(data);
-    return true;
-  } catch (Exception) {
-    return false;
-  }
-}
-
-bool deleteGame(Game match) {
-  var data = getAllGamesFromFile();
-  try {
-    Game item = data.firstWhere((item) => item.id == match.id);
-    data.remove(item);
-    exportGamesData(data);
-    return true;
-  } catch (Exception) {
-    return false;
+    return '${add0(startDate.day)}-${add0(endDate.day)} ${givmeDaMonth(endDate.month)}';
   }
 }
