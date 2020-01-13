@@ -76,11 +76,7 @@ flutter:
     - assets/escudos/20008.png
     - assets/escudos/20009.png
     - assets/escudos/20010.png
-<<<<<<< HEAD
     - assets/escudos/20011.png
-=======
-    - assets/escudos/20011.png    
->>>>>>> 1c3c731333724256cd9fbdf1bc97db177a578ba3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
