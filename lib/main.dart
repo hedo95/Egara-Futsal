@@ -364,12 +364,14 @@ class MyApp extends StatelessWidget {
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized(); 
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
     if (kReleaseMode) exit(1);
   };
   runApp(MyApp());
 }
+
 
 
 class MyApp extends StatelessWidget {
@@ -424,7 +426,7 @@ class PantallaPrueba extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Game> games = Provider.of<List<Game>>(context);
     List<Player> players = Provider.of<List<Player>>(context);
-    List<Team> teams = getAllTeamsFromFile();
+    List<Team> teams = Provider.of<List<Team>>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome to Flutter'),
@@ -437,14 +439,12 @@ class PantallaPrueba extends StatelessWidget {
               icon: Icon(Icons.add),
               color: Colors.blue[500],
               onPressed: () {
-                // Get the value of each provider (List<Object>) and print the first item of them all
+                //Get the value of each provider (List<Object>) and print the first item of them all
+                print(catchArrow(teams, games));
                 // print('Partido ${games[0].id}');
                 // print('${players[0].name} ${players[0].surname}');
-                // print('${teams[0].name}');
+                // print('${teams[0].shortname}');
                 // print('Firestore -> StreamBuilder -> Multiprovider -> Any child -> Console ');
-                print('${teams[0].shortname}');
-                print('${teams[0].wifi}');
-                print('${teams[0].bar}');
               }
             ),
             Text('Press me',
