@@ -30,6 +30,16 @@ TextStyle titulocabecera = TextStyle(
   fontStyle: FontStyle.italic,
 );
 
+TextStyle estiloLetraContainer = TextStyle(
+  fontSize: 20.0,
+  color: containerDestacado,
+);
+
+BoxDecoration estiloContenedorDestacado = BoxDecoration(
+  color: Color(0xFF381254),
+  borderRadius: BorderRadius.circular(20.0),
+);
+
 BoxDecoration estiloContenedor = BoxDecoration(
   color: Color(0xFF4b1a77),
   borderRadius: BorderRadius.circular(30),
@@ -52,7 +62,9 @@ class MyFlutterApp {
   static const IconData cog = const IconData(0xe810, fontFamily: _kFontFam);
   static const IconData user = const IconData(0xe82a, fontFamily: _kFontFam);
   static const IconData soccer = const IconData(0xe837, fontFamily: _kFontFam);
-  static const IconData chart_bars = const IconData(0xe843, fontFamily: _kFontFam);
+  static const IconData chart_bars =
+      const IconData(0xe843, fontFamily: _kFontFam);
   static const IconData list = const IconData(0xe872, fontFamily: _kFontFam);
-  static const IconData chevron_left = const IconData(0xe875, fontFamily: _kFontFam);
+  static const IconData chevron_left =
+      const IconData(0xe875, fontFamily: _kFontFam);
 }
