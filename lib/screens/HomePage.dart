@@ -1,3 +1,6 @@
+import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +9,10 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<Game> games = Provider.of<List<Game>>(context);
+    List<Player> players = Provider.of<List<Player>>(context);
+    List<Team> teams = Provider.of<List<Team>>(context);
+
     return Container(
       color: backgroundColor,
       child: SafeArea(
@@ -23,13 +30,30 @@ class HomePage extends StatelessWidget {
                       width: 400,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right:200),
-                      child: Image.asset('assets/escudos/Egara_escudo.png'),
-                    )
+                      padding: EdgeInsets.only(right: 200),
+                      child: Image.asset('assets/escudos/20008.png'),
+                    ),
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(left: 130, top: 20),
+                            child: Text(
+                              'Egara F.C',
+                              style: TextStyle(
+                                fontSize: 50.0,
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
