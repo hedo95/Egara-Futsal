@@ -8,6 +8,7 @@ import 'Player.dart';
 class Team {
   int id;
   String name,
+      shortname,
       shield,
       address,
       location,
@@ -17,7 +18,7 @@ class Team {
       fieldtype,
       documentID;
   List<double> coordinates;
-  bool parking;
+  bool parking, wifi, bar;
 
   // Nos interesa coger los puntos y posición de las dos ultimas jornadas, para el container de la vista Principal.
   int currentPoints(List<Game> games) {
@@ -197,21 +198,7 @@ class Team {
   Team(
       this.id,
       this.name,
-      this.shield,
-      this.address,
-      this.location,
-      this.zipcode,
-      this.province,
-      List<dynamic> coordinates,
-      this.fieldname,
-      this.fieldtype,
-      this.parking) {
-    this.coordinates = coordinates.cast<double>();
-  }
-
-  Team.db(
-      this.id,
-      this.name,
+      this.shortname,
       this.shield,
       this.address,
       this.location,
@@ -221,6 +208,26 @@ class Team {
       this.fieldname,
       this.fieldtype,
       this.parking,
+      this.wifi,
+      this.bar) {
+    this.coordinates = coordinates.cast<double>();
+  }
+
+  Team.db(
+      this.id,
+      this.name,
+      this.shortname,
+      this.shield,
+      this.address,
+      this.location,
+      this.zipcode,
+      this.province,
+      List<dynamic> coordinates,
+      this.fieldname,
+      this.fieldtype,
+      this.parking,
+      this.wifi,
+      this.bar,
       this.documentID) {
     this.coordinates = coordinates.cast<double>();
   }
@@ -241,6 +248,7 @@ class Team {
     return {
       'id': this.id,
       'name': this.name,
+      'shortname': this.shortname,
       'shield': this.shield,
       'address': this.address,
       'location': this.location,
@@ -249,7 +257,9 @@ class Team {
       'coordinates': coordinates,
       'fieldname': this.fieldname,
       'fieldtype': this.fieldtype,
-      'parking': this.parking
+      'parking': this.parking,
+      'wifi': this.wifi,
+      'bar': this.bar
     };
   }
 
@@ -257,6 +267,7 @@ class Team {
     return {
       'id': this.id,
       'name': this.name,
+      'shortname':this.shortname,
       'shield': this.shield,
       'address': this.address,
       'location': this.location,
@@ -265,7 +276,9 @@ class Team {
       'coordinates': this.coordinates.cast<dynamic>(),
       'fieldname': this.fieldname,
       'fieldtype': this.fieldtype,
-      'parking': this.parking
+      'parking': this.parking,
+      'wifi': this.wifi,
+      'bar': this.bar
     };
   }
 
@@ -286,13 +299,6 @@ class Team {
         this.currentConcededGoals.toString() +
         ' conceded goals. ' +
         "\n");
-    //print("Address: " + this.address + "\n");
-    //print("Location: " + this.location + "\n");
-    // print("Zipcode: " + this.zipcode + "\n");
-    // print("Province: " + this.province + "\n");
-    // print("Fieldname: " + this.fieldname + "\n");
-    // print("Fieldtype: " + this.fieldtype + "\n");
-    // print("Players: " + "\n");
     print(' ');
   }
 
@@ -300,6 +306,7 @@ class Team {
     return new Team(
         json['id'] as int,
         json['name'] as String,
+        json['shortname'] as String,
         json['shield'] as String,
         json['address'] as String,
         json['location'] as String,
@@ -308,13 +315,16 @@ class Team {
         json['coordinates'] as List<dynamic>,
         json['fieldname'] as String,
         json['fieldtype'] as String,
-        json['parking'] as bool);
+        json['parking'] as bool,
+        json['wifi'] as bool,
+        json['bar'] as bool);
   }
 
   static Team fromSnapshot(DocumentSnapshot snap) {
     return new Team.db(
         snap['id'] as int,
         snap['name'] as String,
+        snap['shortname'] as String,
         snap['shield'] as String,
         snap['address'] as String,
         snap['location'] as String,
@@ -324,6 +334,8 @@ class Team {
         snap['fieldname'] as String,
         snap['fieldtype'] as String,
         snap['parking'] as bool,
+        snap['wifi'] as bool,
+        snap['bar'] as bool,
         snap.documentID);
   }
 }

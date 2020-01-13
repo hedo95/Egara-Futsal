@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
@@ -7,9 +7,6 @@ import 'package:egaradefinitiu/screens/HomePage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:io';
-import 'package:flutter/foundation.dart';
-import 'package:sentry/sentry.dart';
 import 'logic/Logic/BO/EgaraBO.dart';
 import 'logic/Logic/Model/Player.dart';
 import 'widgets/BottomMenu.dart';
@@ -368,6 +365,7 @@ class MyApp extends StatelessWidget {
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized(); 
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
     if (kReleaseMode) exit(1);
@@ -375,12 +373,9 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
 
-class _MyAppState extends State<MyApp> {
+
+class MyApp extends StatelessWidget {
   get bottomNavBarIndex => null;
   var db = new FirebaseContext(); // Mi class Firebase
 
@@ -400,7 +395,7 @@ class _MyAppState extends State<MyApp> {
             builder: (context, snapshot2) {
               if(!snapshot2.hasData){
                 return Center(child:CircularProgressIndicator(backgroundColor: Colors.red[300]),);
-              }else if(snapshot1.hasError || snapshot2.hasError){
+              }else if(snapshot2.hasError){
                 return Center(child: Text(snapshot2.error));
               }else{
                 return MultiProvider(
@@ -435,7 +430,6 @@ class PantallaPrueba extends StatelessWidget {
     List<Game> games = Provider.of<List<Game>>(context);
     List<Player> players = Provider.of<List<Player>>(context);
     List<Team> teams = Provider.of<List<Team>>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome to Flutter'),
@@ -448,11 +442,12 @@ class PantallaPrueba extends StatelessWidget {
               icon: Icon(Icons.add),
               color: Colors.blue[500],
               onPressed: () {
-                // Get the value of each provider (List<Object>) and print the first item of them all
-                print('Partido ${games[0].id}');
-                print('${players[0].name} ${players[0].surname}');
-                print('${teams[0].name}');
-                print('Firestore -> StreamBuilder -> Multiprovider -> Any child -> Console ');
+                //Get the value of each provider (List<Object>) and print the first item of them all
+                print(catchArrow(teams, games));
+                // print('Partido ${games[0].id}');
+                // print('${players[0].name} ${players[0].surname}');
+                // print('${teams[0].shortname}');
+                // print('Firestore -> StreamBuilder -> Multiprovider -> Any child -> Console ');
               }
             ),
             Text('Press me',
