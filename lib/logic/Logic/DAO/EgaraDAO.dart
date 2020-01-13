@@ -8,7 +8,7 @@ import '../Model/Player.dart';
 import '../Model/Team.dart';
 
 
-String path = '/Users/jesushedo/Flutter/Egara-Futsal/assets/Data',
+String path = '/Users/xavi/UPC/PrimerQuatri4t/Android/Projectes Flutter/Egara-Futsal/assets/Data',
        playersfile = path + '/Players.json',
        teamsfile = path + '/Teams.json',
        gamesfile = path + '/Games.json';
