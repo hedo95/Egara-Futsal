@@ -55,19 +55,18 @@ flutter:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
   assets:
-    - assets/escudos/Egara_escudo.png
-    - assets/escudos/escudo_castellar.png
-    - assets/escudos/escudo_castellbisbal.png
-    - assets/escudos/escudo_cerdanyola_fc.png
-    - assets/escudos/escudo_franciscans_sabadell.png
-    - assets/escudos/escudo_maristes_rubi.png
-    - assets/escudos/escudo_oar_gracia_sbd.png
-    - assets/escudos/escudo_ripollet.png
-    - assets/escudos/escudo_rubi_cefs.png
-    - assets/escudos/escudo_sant_joan.png
-    - assets/escudos/Escudo_Terrassa_FC.png
-    - assets/escudos/escudo_terrassa_lessaveurs.png
-    - assets/escudos/escudo_unio_terrassa.png
+    - assets/escudos/20000.png
+    - assets/escudos/20001.png
+    - assets/escudos/20002.png
+    - assets/escudos/20003.png
+    - assets/escudos/20004.png
+    - assets/escudos/20005.png
+    - assets/escudos/20006.png
+    - assets/escudos/20007.png
+    - assets/escudos/20008.png
+    - assets/escudos/20009.png
+    - assets/escudos/20010.png
+    - assets/escudos/20011.png    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
