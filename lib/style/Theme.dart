@@ -10,8 +10,8 @@ LinearGradient colorGradiente = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
   colors: [
-    Colors.red[100],
-    Colors.blue[100],
+    Colors.purple[100],
+    Colors.white,
   ],
 );
 
@@ -39,6 +39,7 @@ BoxDecoration estiloContenedor = BoxDecoration(
       offset: Offset(-10, 10),
     ),
   ],
+  gradient: colorGradiente,
 );
 
 class MyFlutterApp {

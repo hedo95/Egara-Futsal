@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import 'logic/Logic/BO/EgaraBO.dart';
 import 'logic/Logic/Model/Player.dart';
+import 'widgets/BottomMenu.dart';
 
 /*
 // Prueba provider con menú real
@@ -438,33 +439,38 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Game>>(
-        // First StreamBuilder to load games
-        stream: db.loadGames(),
-        builder: (context, snapshot1) {
-          return StreamBuilder<List<Team>>(
-              // Second StreamBuilder to load teams
-              stream: db.loadTeams(),
-              builder: (context, snapshot2) {
-                if (!snapshot1.hasData || !snapshot2.hasData) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot1.hasError || snapshot2.hasError) {
-                  return Center(child: Text('Error reading data!'));
-                } else {
-                  return MultiProvider(
-                      providers: [
-                        Provider<List<Game>>.value(value: snapshot1.data),
-                        Provider<List<Team>>.value(value: snapshot2.data),
-                        Provider<List<Player>>.value(
-                            value: getAllPlayers(snapshot1.data))
-                      ],
-                      child: MaterialApp(
-                        // Empieza la App.
-                        title: 'Welcome to Flutter',
-                        home: PantallaPrueba(),
-                      ));
-                }
-              });
-        });
+      // First StreamBuilder to load games
+      stream: db.loadGames(),
+      builder: (context, snapshot1) {
+        return StreamBuilder<List<Team>>(
+          // Second StreamBuilder to load teams
+          stream: db.loadTeams(),
+          builder: (context, snapshot2) {
+            if (!snapshot1.hasData || !snapshot2.hasData) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot1.hasError || snapshot2.hasError) {
+              return Center(child: Text('Error reading data!'));
+            } else {
+              return MultiProvider(
+                providers: [
+                  Provider<List<Game>>.value(value: snapshot1.data),
+                  Provider<List<Team>>.value(value: snapshot2.data),
+                  Provider<List<Player>>.value(
+                      value: getAllPlayers(snapshot1.data))
+                ],
+                child: MaterialApp(
+                  // Empieza la App.
+                  initialRoute: '/',
+                  routes: {
+                    '/': (_) => BottomMenu(),
+                  },
+                ),
+              );
+            }
+          },
+        );
+      },
+    );
   }
 }
 
