@@ -4,12 +4,13 @@ import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Jornadas extends StatefulWidget {
-   final List<Game> games = getAllGamesFromFile();
+  final List<Game> games;
   int journey;
 
-  Jornadas({int journey}) {
+  Jornadas(this.games, {int journey}) {
     if (journey == null) {
       this.journey = currentJourney(games);
     } else {
@@ -23,7 +24,7 @@ class Jornadas extends StatefulWidget {
 
 class _JornadasState extends State<Jornadas> {
   int currentJourney;
-  final List<Game> games = getAllGamesFromFile();
+  final List<Game> games = [];
   List<Game> journeyGames = [];
 
   _JornadasState(this.currentJourney) {
