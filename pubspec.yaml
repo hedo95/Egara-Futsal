@@ -59,7 +59,6 @@ flutter:
     - assets/Data/Games.json
     - assets/Data/Players.json
     - assets/Data/Teams.json
-
     - assets/escudos/20000.png
     - assets/escudos/20001.png
     - assets/escudos/20002.png

@@ -424,6 +424,7 @@ void main() {
     FlutterError.dumpErrorToConsole(details);
     if (kReleaseMode) exit(1);
   };
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
