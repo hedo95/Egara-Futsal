@@ -103,9 +103,6 @@ class EntryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var teams = Provider.of<List<Team>>(context);
-    var games = Provider.of<List<Game>>(context);
-    var tableTeams = getOrderedTable(teams,games);
     return _buildTiles(entry);
   }
 }

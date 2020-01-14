@@ -14,7 +14,7 @@ class BottomMenu extends StatefulWidget {
 }
 
 class _BottomMenuState extends State<BottomMenu> {
-  ValueNotifier<int> _currentIndex = new ValueNotifier(0);
+  ValueNotifier<int> _currentIndex = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
