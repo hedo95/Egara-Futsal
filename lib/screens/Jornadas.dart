@@ -19,15 +19,15 @@ class Jornadas extends StatefulWidget {
   }
 
   @override
-  _JornadasState createState() => _JornadasState(this.journey);
+  _JornadasState createState() => _JornadasState(this.games, this.journey);
 }
 
 class _JornadasState extends State<Jornadas> {
   int currentJourney;
-  final List<Game> games = [];
+  List<Game> games;
   List<Game> journeyGames = [];
 
-  _JornadasState(this.currentJourney) {
+  _JornadasState(this.games, this.currentJourney) {
     this.journeyGames = getCalendar(games)
         .firstWhere((item) => item.journey == this.currentJourney)
         .games;

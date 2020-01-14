@@ -5,24 +5,6 @@ import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
-  @override
-  Widget build(BuildContext context) {
-    Player player;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Animated Charts App',
-      theme: ThemeData(
-        primaryColor: Colors.purple[900],
-      ),
-      home: PlayerView(player),
-    );
-  }
-}
 
 class PlayerView extends StatelessWidget {
   final Player player;

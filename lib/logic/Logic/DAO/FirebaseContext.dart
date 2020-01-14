@@ -87,8 +87,6 @@ class FirebaseContext {
     });
   }
 
-
-
   Future<void> exportTeamsToLocal() async {
     try {
       loadTeams().listen((onValue) {
