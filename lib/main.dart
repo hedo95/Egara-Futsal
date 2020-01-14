@@ -3,6 +3,7 @@ import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
+import 'package:egaradefinitiu/screens/HomePage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -404,8 +405,10 @@ class MyApp extends StatelessWidget {
                     Provider<List<Player>>.value(value: getAllPlayers(snapshot1.data))
                   ], 
                   child: MaterialApp( // Empieza la App.
-                    title: 'Welcome to Flutter',
-                    home: PantallaPrueba(),
+                    initialRoute: '/',
+                    routes: {
+                      '/': (_) => BottomMenu(),
+                    }
                   )
                 );
               }

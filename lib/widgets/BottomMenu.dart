@@ -48,12 +48,12 @@ class _BottomMenuState extends State<BottomMenu> {
                     shaderCallback: (Rect bounds) {
                       return RadialGradient(
                         center: Alignment.bottomCenter,
-                        radius: 2,
+                        radius: 1,
                         colors: <Color>[
+                          Colors.blue,
                           Colors.red,
-                          Colors.purple,
                         ],
-                        tileMode: TileMode.repeated,
+                        tileMode: TileMode.mirror,
                       ).createShader(bounds);
                     },
                     child: Icon(MyFlutterApp.home),
