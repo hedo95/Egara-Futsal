@@ -1,4 +1,8 @@
+import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
+import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Clasificacion extends StatefulWidget {
   @override
@@ -6,8 +10,28 @@ class Clasificacion extends StatefulWidget {
 }
 
 class _ClasificacionState extends State<Clasificacion> {
+  final List<Entry> data = [];
+
   @override
   Widget build(BuildContext context) {
+    var teams = Provider.of<List<Team>>(context);
+    var games = Provider.of<List<Game>>(context);
+    var tableTeams = getOrderedTable(teams,games);
+    for(int n = 0; n < tableTeams.length; n++){
+      data.add(new Entry(
+        '${n+1}    '+tableTeams[n].shortname,
+        tableTeams[n].currentPoints(games).toString() + ' pts',
+        <Entry>[
+          Entry('              Partidos jugados:',tableTeams[n].totalGames(games).toString()),
+          Entry('              Partidos ganados:',tableTeams[n].wonGames(games).toString()),
+          Entry('              Partidos empatados:',tableTeams[n].drawnGames(games).toString()),
+          Entry('              Partidos perdidos:', tableTeams[n].lostGames(games).toString()),
+          Entry('              Goles a favor:', tableTeams[n].currentGoals(games).toString()),
+          Entry('              Goles en contra:',tableTeams[n].currentConcededGoals(games).toString()),
+        ]
+      ));
+    }
+
     return Container(
       color: Color(0xFF3D006A),
       child: ListView.builder(
@@ -22,54 +46,19 @@ class _ClasificacionState extends State<Clasificacion> {
 
 // One entry in the multilevel list displayed by this app.
 class Entry {
-  Entry(this.title, [this.children = const <Entry>[]]);
+  Entry(this.title, this.value,
+   [this.children = const <Entry>[]]);
 
   final String title;
+  final String value;
   final List<Entry> children;
 }
 
-// The entire multilevel list displayed by this app.
-final List<Entry> data = <Entry>[
-  Entry(
-    '1. Egara futsal',
-    <Entry>[
-      Entry('partidos jugados:'),
-      Entry('Partidos ganados:'),
-      Entry('Partidos empatados:'),
-      Entry('Partidos perdidos:'),
-      Entry('Goles a favor:'),
-      Entry('Goles en contra:'),
-    ],
-  ),
-  Entry(
-    '2. Premiá ',
-    <Entry>[
-      Entry('partidos jugados:'),
-      Entry('Partidos ganados:'),
-      Entry('Partidos empatados:'),
-      Entry('Partidos perdidos:'),
-      Entry('Goles a favor:'),
-      Entry('Goles en contra:'),
-    ],
-  ),
-  Entry(
-    '3. Terrassa F.C',
-    <Entry>[
-      Entry('partidos jugados:'),
-      Entry('Partidos ganados:'),
-      Entry('Partidos empatados:'),
-      Entry('Partidos perdidos:'),
-      Entry('Goles a favor:'),
-      Entry('Goles en contra:'),
-    ],
-  ),
-];
 
 // Displays one Entry. If the entry has children then it's displayed
 // with an ExpansionTile.
 class EntryItem extends StatelessWidget {
   const EntryItem(this.entry);
-
   final Entry entry;
 
   Widget _buildTiles(Entry root) {
@@ -84,7 +73,7 @@ class EntryItem extends StatelessWidget {
         ),
         dense: true,
         trailing: Text(
-          "2",
+          root.value.toString(),
           style: TextStyle(
             fontSize: 20,
             color: Colors.white60,
@@ -102,7 +91,7 @@ class EntryItem extends StatelessWidget {
       ),
       leading: Icon(Icons.add_circle),
       trailing: Text(
-        "23pts",
+        root.value.toString(),
         style: TextStyle(
           fontSize: 20,
           color: Colors.white38,
@@ -114,6 +103,9 @@ class EntryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var teams = Provider.of<List<Team>>(context);
+    var games = Provider.of<List<Game>>(context);
+    var tableTeams = getOrderedTable(teams,games);
     return _buildTiles(entry);
   }
 }

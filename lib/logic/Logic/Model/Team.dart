@@ -42,7 +42,6 @@ class Team {
   }
 
   int currentPosition(List<Team> teams, List<Game> games) {
-    List<Team> teams = getAllTeamsFromFile();
     teams.sort(
         (b, a) => a.currentPoints(games).compareTo(b.currentPoints(games)));
     var team = teams.firstWhere((item) => item.id == this.id);
