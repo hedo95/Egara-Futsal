@@ -32,7 +32,7 @@ int catchArrow(List<Team> teams,
 {
   Team egara = teams.firstWhere((item) => item.id == 20008);
   int currentPosition = egara.currentPosition(teams, games);
-  int lastPosition = egara.lastCurrentPosition(teams, games);
+  int lastPosition = egara.weekAgoPosition(teams, games);
   return lastPosition - currentPosition;
 }
 
@@ -275,20 +275,20 @@ String add0(int digit) {
   }
 }
 
-String givmeDaWeeklyDay(int n){
+String givmeDaWeeklyDay(int n) {
   Map<int, String> weekdaysMap = {};
-    weekdaysMap[1] = 'L';
-    weekdaysMap[2] = 'M';
-    weekdaysMap[3] = 'X';
-    weekdaysMap[4] = 'J';
-    weekdaysMap[5] = 'V';
-    weekdaysMap[6] = 'S';
-    weekdaysMap[7] = 'D';
-    if(n > 0 && n <= 12){
-      return '${weekdaysMap[n]}';
-    }else{
-      return 'None';
-    }
+  weekdaysMap[1] = 'L';
+  weekdaysMap[2] = 'M';
+  weekdaysMap[3] = 'X';
+  weekdaysMap[4] = 'J';
+  weekdaysMap[5] = 'V';
+  weekdaysMap[6] = 'S';
+  weekdaysMap[7] = 'D';
+  if (n > 0 && n <= 12) {
+    return '${weekdaysMap[n]}';
+  } else {
+    return 'None';
+  }
 }
 
 String getJourneyResult(Game game) {
@@ -299,7 +299,7 @@ String getJourneyResult(Game game) {
   }
 }
 
-String givmeDaMonth(int n){
+String givmeDaMonth(int n) {
   Map<int, String> months = {};
   months[1] = 'Enero';
   months[2] = 'Febrero';
@@ -313,9 +313,9 @@ String givmeDaMonth(int n){
   months[10] = 'Octubre';
   months[11] = 'Noviembre';
   months[12] = 'Diciembre';
-  if(n > 0 && n <= 12){
+  if (n > 0 && n <= 12) {
     return '${months[n]}';
-  }else{
+  } else {
     return 'None';
   }
 }
@@ -331,4 +331,18 @@ String getJourneyDate(List<Game> journeyGames) {
   } else {
     return '${add0(startDate.day)}-${add0(endDate.day)} ${givmeDaMonth(endDate.month)}';
   }
+}
+
+Game getNextMatch(List<Game> games, Team team) {
+  games.sort((a, b) => a.id.compareTo(b.id));
+  return games.firstWhere((item) =>
+      (item.localTeam.id == team.id || item.awayTeam.id == team.id) &&
+      (item.localSquad.isEmpty || item.awaySquad.isEmpty));
+}
+
+Game getLastMatch(List<Game> games, Team team) {
+  games.sort((a, b) => a.id.compareTo(b.id));
+  return games.lastWhere((item) =>
+      (item.localTeam.id == team.id || item.awayTeam.id == team.id) &&
+      (item.localSquad.isNotEmpty || item.awaySquad.isNotEmpty));
 }
