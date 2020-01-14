@@ -27,8 +27,10 @@ class _HomePageState extends State<HomePage> {
     List<Game> games = Provider.of<List<Game>>(context);
     List<Player> players = Provider.of<List<Player>>(context);
     List<Team> teams = Provider.of<List<Team>>(context);
+    
     Team egara = teams.firstWhere((item) => item.id == 20008);
     int journey = currentJourney(games);
+    Game lastMatch = getLastMatch(games, egara);
     int x = catchArrow(teams, games);
 
     Widget flecha(int x) {

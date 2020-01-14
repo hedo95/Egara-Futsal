@@ -1,7 +1,13 @@
+import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:egaradefinitiu/widgets/Jugadora.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:provider/provider.dart';
+
 
 class Equipos extends StatefulWidget {
   @override
@@ -9,8 +15,15 @@ class Equipos extends StatefulWidget {
 }
 
 class _EquiposState extends State<Equipos> {
+
   @override
+  
   Widget build(BuildContext context) {
+
+    List<Game> games = Provider.of<List<Game>>(context);
+    List<Player> players = Provider.of<List<Player>>(context);
+    List<Team> teams = Provider.of<List<Team>>(context);
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed('/Graficos_jugadoras');
@@ -46,14 +59,14 @@ class _EquiposState extends State<Equipos> {
                       crossAxisSpacing: 10,
                     ),
                     children: <Widget>[
-                      Jugadora(),
-                      Jugadora(),
-                      Jugadora(),
-                      Jugadora(),
-                      Jugadora(),
-                      Jugadora(),
-                      Jugadora(),
-                      Jugadora(),
+                      Jugadora(nombreJugadora: 'Pepita', dorsal: '20'),
+                      Jugadora(nombreJugadora: 'Pepita', dorsal: '40'),
+                      Jugadora(nombreJugadora: 'Pepita', dorsal: '40'),
+                      Jugadora(nombreJugadora: 'Pepita', dorsal: '40'),
+                      Jugadora(nombreJugadora: 'Pepita', dorsal: '40'),
+                      Jugadora(nombreJugadora: 'Pepita', dorsal: '40'),
+                      Jugadora(nombreJugadora: 'Pepita', dorsal: '40'),
+                      Jugadora(nombreJugadora: 'Pepita', dorsal: '40'),
                     ],
                   ),
                 ),
