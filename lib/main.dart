@@ -405,9 +405,11 @@ class MyApp extends StatelessWidget {
                     Provider<List<Player>>.value(value: getAllPlayers(snapshot1.data))
                   ], 
                   child: MaterialApp( // Empieza la App.
+                    debugShowCheckedModeBanner: false,
                     initialRoute: '/',
                     routes: {
                       '/': (_) => BottomMenu(),
+                      
                     }
                   )
                 );

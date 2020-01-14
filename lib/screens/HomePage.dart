@@ -29,12 +29,32 @@ class _HomePageState extends State<HomePage> {
     List<Team> teams = Provider.of<List<Team>>(context);
     Team egara = teams.firstWhere((item) => item.id == 20008);
     int journey = currentJourney(games);
+    int x = catchArrow(teams, games);
 
-    bool flecha() {
-      if (catchArrow(teams, games) > 0) {
-        return true;
-      } else
-        return false;
+    Widget flecha(int x) {
+      if (x > 0) {
+        return Icon(
+          Icons.arrow_drop_up,
+          color: Colors.green,
+          size: 40.0,
+        );
+      } else if (x < 0) {
+        return Icon(
+          Icons.arrow_drop_down,
+          color: Colors.red,
+          size: 40.0,
+        );
+      } else  {
+        return Container(
+          height: 40,
+          width: 40,
+          child: Icon(
+            Icons.drag_handle,
+            color: Colors.blue[200],
+            size: 25.0,
+          ),
+        );
+      }
     }
 
 /*
@@ -47,7 +67,7 @@ class _HomePageState extends State<HomePage> {
     }
 */
     return Scaffold(
-          body: Container(
+      body: Container(
         color: backgroundColor,
         child: SafeArea(
           child: ListView(
@@ -73,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               padding: EdgeInsets.only(left: 150, top: 20),
                               child: Text(
-                                teams[5].name,
+                                egara.name,
                                 style: TextStyle(
                                   fontSize: 25.0,
                                   color: Colors.black,
@@ -91,17 +111,7 @@ class _HomePageState extends State<HomePage> {
                                     children: <Widget>[
                                       Row(
                                         children: <Widget>[
-                                          flecha()
-                                              ? Icon(
-                                                  Icons.arrow_drop_up,
-                                                  color: Colors.green,
-                                                  size: 40.0,
-                                                )
-                                              : Icon(
-                                                  Icons.arrow_drop_down,
-                                                  color: Colors.red,
-                                                  size: 40.0,
-                                                ),
+                                          flecha(x),
                                           Text(
                                             egara
                                                 .currentPosition(teams, games)
@@ -139,14 +149,15 @@ class _HomePageState extends State<HomePage> {
                                             '2-0',
                                             style: TextStyle(
                                               color: Colors.white38,
-                                              fontSize: 30,
+                                              fontSize: 20,
                                             ),
                                           ),
                                           SizedBox(width: 10),
                                           Container(
                                             height: 50,
                                             width: 50,
-                                            padding: EdgeInsets.only(bottom: 10),
+                                            padding:
+                                                EdgeInsets.only(bottom: 10),
                                             child: Image.asset(
                                                 'assets/escudos/20003.png'),
                                           ),
@@ -157,6 +168,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
+                            SizedBox(height: 10),
                           ],
                         ),
                       ),
@@ -245,7 +257,15 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 40),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                child: Text(
+                  'Clasificación',
+                  style: titulocabecera,
+                ),
+              ),
+              SizedBox(height: 40),
               GestureDetector(
                 onTap: () {
                   Provider.of<ValueNotifier<int>>(context).value = 2;
@@ -281,7 +301,8 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text(
                                     '7.',
@@ -291,7 +312,9 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   Container(
-                                      height: 40, width: 40, color: Colors.black),
+                                      height: 40,
+                                      width: 40,
+                                      color: Colors.black),
                                   Text(
                                     'hola',
                                     style: TextStyle(
@@ -317,7 +340,8 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text('7.',
                                       style: TextStyle(
@@ -325,7 +349,9 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 20,
                                       )),
                                   Container(
-                                      height: 40, width: 40, color: Colors.black),
+                                      height: 40,
+                                      width: 40,
+                                      color: Colors.black),
                                   Text(
                                     'hola',
                                     style: TextStyle(
@@ -350,7 +376,8 @@ class _HomePageState extends State<HomePage> {
                                   color: Color(0xFF270049),
                                   borderRadius: BorderRadius.circular(20)),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text('7.',
                                       style: TextStyle(
@@ -358,7 +385,9 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 20,
                                       )),
                                   Container(
-                                      height: 40, width: 40, color: Colors.black),
+                                      height: 40,
+                                      width: 40,
+                                      color: Colors.black),
                                   Text(
                                     'hola',
                                     style: TextStyle(

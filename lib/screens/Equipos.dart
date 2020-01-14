@@ -46,78 +46,14 @@ class _EquiposState extends State<Equipos> {
                       crossAxisSpacing: 10,
                     ),
                     children: <Widget>[
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF270049),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Jugadora(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF270049),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Jugadora(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF270049),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Jugadora(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF270049),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Jugadora(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF270049),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Jugadora(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF270049),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Jugadora(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF270049),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Jugadora(),
-                      ),
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF270049),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Jugadora(),
-                      ),
+                      Jugadora(),
+                      Jugadora(),
+                      Jugadora(),
+                      Jugadora(),
+                      Jugadora(),
+                      Jugadora(),
+                      Jugadora(),
+                      Jugadora(),
                     ],
                   ),
                 ),
@@ -129,3 +65,5 @@ class _EquiposState extends State<Equipos> {
     );
   }
 }
+
+
