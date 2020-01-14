@@ -410,7 +410,6 @@ class MyApp extends StatelessWidget {
                     initialRoute: '/',
                     routes: {
                       '/': (_) => BottomMenu(),
-              
                     }
                   )
                 );
@@ -431,7 +430,6 @@ class PantallaPrueba extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Game> games = Provider.of<List<Game>>(context);
-    List<Player> players = Provider.of<List<Player>>(context);
     List<Team> teams = Provider.of<List<Team>>(context);
     return Scaffold(
       appBar: AppBar(
@@ -661,10 +659,11 @@ class PantallaPrueba extends StatelessWidget {
 //                                   // var games = Provider.of<GameProvider>(context).games;
 //                                   // var teams = Provider.of<TeamProvider>(context).teams;
 //                                   // var players = Provider.of<PlayerProvider>(context).players;
-                                  
-//                                   db.loadTeams().listen((onData){
-//                                     onData.forEach((item) => print(item.id.toString()));
-//                                   });
+//                                   List<Game> games = getAllGamesFromFile();
+//                                   db.addAllGames(games);
+//                                   // db.loadTeams().listen((onData){
+//                                   //   onData.forEach((item) => print(item.id.toString()));
+//                                   // });
 //                                 }
 //                               ),
 //                               Text('hola Mundo',

@@ -225,19 +225,6 @@ Map<String,dynamic> putPlayersToJson(Map<Player,List<int>> players){
   return result;
 }
 
-Map<String,dynamic> putPlayersToSnapshot(Map<Player,List<int>> players){
-  Map<dynamic, dynamic> result = {};
-  for (MapEntry<Player, List<int>> map in players.entries) {
-    if (map.key.surname.isEmpty) {
-      String name = map.key.name;
-      result[name] = map.value;
-    } else {
-      String name = map.key.surname + ', ' + map.key.name;
-      result[name] = map.value;
-    }
-  }
-  return result;
-}
 
 int getDorsal(String fullname) {
   int index = fullname.indexOf(' ');
@@ -406,9 +393,12 @@ String getJourneyDate(List<Game> journeyGames) {
 
 Game getNextMatch(List<Game> games, Team team) {
   games.sort((a, b) => a.id.compareTo(b.id));
-  return games.firstWhere((item) =>
+  DateTime now = new DateTime.now();
+  List<Game> gamesNotPlayed = games.where((item) =>
       (item.localTeam.id == team.id || item.awayTeam.id == team.id) &&
-      (item.localSquad.isEmpty || item.awaySquad.isEmpty));
+      (item.localSquad.isEmpty || item.awaySquad.isEmpty)).toList();
+  gamesNotPlayed.sort((a,b) => a.date.compareTo(b.date));
+  return gamesNotPlayed.firstWhere((item) => item.date.compareTo(now) == 1);
 }
 
 Game getLastMatch(List<Game> games, Team team) {
