@@ -1,10 +1,15 @@
+import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:flutter/material.dart';
 
 class Jugadora extends StatelessWidget {
   final String nombreJugadora, dorsal;
 
-  const Jugadora({Key key, this.nombreJugadora, this.dorsal}) : super(key: key);
-  
+  const Jugadora({
+    Key key,
+    @required this.nombreJugadora,
+    @required this.dorsal,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,29 +19,32 @@ class Jugadora extends StatelessWidget {
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                  color: Colors.white38,
+                  color: Colors.black,
                   borderRadius: BorderRadius.circular(50)),
               padding: EdgeInsets.all(2),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Colors.black,
+                  color: Color(0xFF270049),
                 ),
                 height: 100,
                 width: 100,
-                child: Icon(
-                  Icons.photo,
-                  color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Text(
+                    this.dorsal,
+                    style: TextStyle(
+                      fontSize: 60,
+                      color: Colors.white38,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
             Text(
-              'Jugadora',
-              style: TextStyle(color: Colors.white38, fontSize: 20),
-            ),
-            Text(
-              'edad, posición',
-              style: TextStyle(color: Colors.white38, fontSize: 15),
+              this.nombreJugadora,
+              style: TextStyle(color: containerDestacado, fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 2),
             ),
           ],
         ),

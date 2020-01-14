@@ -9,15 +9,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'PlayerView.dart';
 
-void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
+
+class Teams extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  _TeamsState createState() => _TeamsState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _TeamsState extends State<Teams> {
   List<Team> teams = getAllTeamsFromFile();
 
   @override
