@@ -102,7 +102,7 @@ class EntryItem extends StatelessWidget {
       ),
       leading: Icon(Icons.add_circle),
       trailing: Text(
-        "23pts",
+        "23 pts",
         style: TextStyle(
           fontSize: 20,
           color: Colors.white38,

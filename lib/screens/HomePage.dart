@@ -216,13 +216,13 @@ class _HomePageState extends State<HomePage> {
                                 Container(
                                   height: 50,
                                   width: 50,
-                                  color: Colors.black,
+                                  child: Image.asset("assets/escudos/20008.png"),
                                 ),
                                 SizedBox(width: 10),
                                 Container(
                                   height: 50,
                                   width: 50,
-                                  color: Colors.black,
+                                  child: Image.asset("assets/escudos/20001.png")
                                 ),
                                 Text(
                                   'Visitante',
