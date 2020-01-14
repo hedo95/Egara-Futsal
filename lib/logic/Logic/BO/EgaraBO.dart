@@ -346,3 +346,15 @@ Game getLastMatch(List<Game> games, Team team) {
       (item.localTeam.id == team.id || item.awayTeam.id == team.id) &&
       (item.localSquad.isNotEmpty || item.awaySquad.isNotEmpty));
 }
+
+Team getLastRival(List<Game> games, Team team){
+  List<Game> teamGames = games.where((item) => (item.localSquad.isNotEmpty || item.awaySquad.isNotEmpty) &&
+  item.localTeam.id == team.id || item.awayTeam.id == team.id).toList();
+  teamGames.sort((a,b) => a.id.compareTo(b.id));
+  Game game = teamGames[teamGames.length - 2];
+  if(game.awayTeam.id == team.id){
+    return game.localTeam;
+  }else{
+    return game.awayTeam;
+  }
+}
