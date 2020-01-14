@@ -28,7 +28,7 @@ class _TeamsState extends State<Teams> {
           primaryColor: Colors.purple[900],
         ),
         home: TeamView(
-            teams.firstWhere((item) => item.id == 20010)));
+            teams.firstWhere((item) => item.id == 20008)));
   }
 }
 
@@ -45,7 +45,6 @@ class _TeamViewState extends State<TeamView> {
   @override
   Widget build(BuildContext context) {
     List<Game> games = Provider.of<List<Game>>(context);
-    List<Player> players = Provider.of<List<Player>>(context);
     List<Team> teams = Provider.of<List<Team>>(context);
 
     return MaterialApp(

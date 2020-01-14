@@ -25,7 +25,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     List<Game> games = Provider.of<List<Game>>(context);
-    List<Player> players = Provider.of<List<Player>>(context);
     List<Team> teams = Provider.of<List<Team>>(context);
 
     Team egara = teams.firstWhere((item) => item.id == 20008);

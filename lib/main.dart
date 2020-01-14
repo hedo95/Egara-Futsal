@@ -403,7 +403,7 @@ class MyApp extends StatelessWidget {
                   providers: [
                     Provider<List<Game>>.value(value: makingGamesReal(snapshot1.data, snapshot2.data)),
                     Provider<List<Team>>.value(value: snapshot2.data),
-                    Provider<List<Player>>.value(value: getAllPlayers(makingGamesReal(snapshot1.data, snapshot2.data)))
+                    /*Provider<List<Player>>.value(value: getAllPlayers(makingGamesReal(snapshot1.data, snapshot2.data)))*/
                   ], 
                   child: MaterialApp( // Empieza la App.
                     debugShowCheckedModeBanner: false,
