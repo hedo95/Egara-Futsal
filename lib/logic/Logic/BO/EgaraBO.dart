@@ -337,8 +337,7 @@ Game getNextMatch(List<Game> games, Team team) {
   games.sort((a, b) => a.id.compareTo(b.id));
   return games.firstWhere((item) =>
       (item.localTeam.id == team.id || item.awayTeam.id == team.id) &&
-      (item.localSquad.isEmpty || item.awaySquad.isEmpty) &&
-      (item.localTeam.id == team.id || item.awayTeam.id == team.id));
+      (item.localSquad.isEmpty || item.awaySquad.isEmpty));
 }
 
 Game getLastMatch(List<Game> games, Team team) {
