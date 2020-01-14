@@ -6,6 +6,29 @@ import '../Model/Journey.dart';
 import '../Model/Player.dart';
 import '../Model/Team.dart';
 
+List<Game> makingTeamsReal(List<Game> games, List<Team> teams){
+  for(int n = 0; n < games.length; n++){
+    Team localteam = teams.firstWhere((item) => item.name == games[n].localTeam.name);
+    games[n].localTeam = new Team.makingReal(localteam);
+    Team awayteam = teams.firstWhere((item) => item.name == games[n].awayTeam.name);
+    games[n].awayTeam = new Team.makingReal(awayteam);
+  }
+  return games;
+}
+
+List<Game> makingPlayersReal(List<Game> games){
+  for(int n = 0; n < games.length; n++){
+    games[n].localSquad.forEach((item) => item.idteam = games[n].localTeam.id);
+    games[n].awaySquad.forEach((item) => item.idteam = games[n].awayTeam.id);
+  }
+  return games;
+}
+
+List<Game> makingGamesReal(List<Game> games, List<Team> teams){
+  List<Game> result = makingPlayersReal(makingTeamsReal(games,teams));
+  return result;
+}
+
 List<Player> getAllPlayers(List<Game> games) {
   List<Player> allplayers = [];
   for (var game in games) {
@@ -114,6 +137,7 @@ String whosWinner(int localGoals, int awayGoals) {
   }
 }
 
+// Firestore
 Map<Player, List<int>> mappingDataFromMaps2(Map<dynamic, dynamic> obj,
     List<Player> localsquad, List<Player> awaysquad) {
   Map<Player, List<int>> result = {};
@@ -135,6 +159,7 @@ Map<Player, List<int>> mappingDataFromMaps2(Map<dynamic, dynamic> obj,
   return result;
 }
 
+// Json
 Map<Player, List<int>> mappingDataFromMaps(
     Map<String, dynamic> obj, List<Player> localsquad, List<Player> awaysquad) {
   Map<Player, List<int>> result = {};
@@ -165,6 +190,52 @@ List<Player> mappingDataFromSquad(List<dynamic> squad, Team team) {
     result.add(new Player(idteam, name, surname, dorsal));
   }
 
+  return result;
+}
+
+List<dynamic> putSquadTodynamic(List<Player> players){
+  List<dynamic> result = [];
+  for (int n = 0; n < players.length; n++) {
+    if (players[n].surname == '') {
+      result.add('${players[n].dorsal}' +
+          ' ' +
+          '${players[n].name}');
+    } else {
+      result.add('${players[n].dorsal}' +
+          ' ' +
+          '${players[n].surname}' +
+          ', ' +
+          '${players[n].name}');
+    }
+  }
+  return result;
+}
+
+Map<String,dynamic> putPlayersToJson(Map<Player,List<int>> players){
+  Map<String, dynamic> result = {};
+  for (MapEntry<Player, List<int>> map in players.entries) {
+    if (map.key.surname.isEmpty) {
+      String name = map.key.name;
+      result[name] = map.value;
+    } else {
+      String name = map.key.surname + ', ' + map.key.name;
+      result[name] = map.value;
+    }
+  }
+  return result;
+}
+
+Map<String,dynamic> putPlayersToSnapshot(Map<Player,List<int>> players){
+  Map<dynamic, dynamic> result = {};
+  for (MapEntry<Player, List<int>> map in players.entries) {
+    if (map.key.surname.isEmpty) {
+      String name = map.key.name;
+      result[name] = map.value;
+    } else {
+      String name = map.key.surname + ', ' + map.key.name;
+      result[name] = map.value;
+    }
+  }
   return result;
 }
 

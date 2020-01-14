@@ -402,7 +402,7 @@ class MyApp extends StatelessWidget {
               }else{
                 return MultiProvider(
                   providers: [
-                    Provider<List<Game>>.value(value: snapshot1.data),
+                    Provider<List<Game>>.value(value: makingGamesReal(snapshot1.data, snapshot2.data)),
                     Provider<List<Team>>.value(value: snapshot2.data),
                     Provider<List<Player>>.value(value: getAllPlayers(snapshot1.data))
                   ], 

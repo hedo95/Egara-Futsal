@@ -213,6 +213,40 @@ class Team {
     this.coordinates = coordinates.cast<double>();
   }
 
+  Team.game(String name){
+    this.id = -1;
+    this.name = name;
+    this.shortname = "";
+    this.shield = "";
+    this.address = "";
+    this.location = "";
+    this..zipcode = "";
+    this.province = "";
+    this.coordinates = [];
+    this.fieldname = "";
+    this.fieldtype = "";
+    this.parking = false;
+    this.bar = false;
+    this.wifi = false;
+  }
+  
+  Team.makingReal(Team team){
+    this.id = team.id;
+    this.name = this.name;
+    this.shortname = team.shortname;
+    this.shield = team.shield;
+    this.address = team.address;
+    this.location = team.location;
+    this..zipcode = team.zipcode;
+    this.province = team.province;
+    this.coordinates = team.coordinates;
+    this.fieldname = team.fieldname;
+    this.fieldtype = team.fieldtype;
+    this.parking = team.parking;
+    this.bar = team.bar;
+    this.wifi = team.wifi;
+  }
+
   toDocument() {
     return {
       'id': this.id,

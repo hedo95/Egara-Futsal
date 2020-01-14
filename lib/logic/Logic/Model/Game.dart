@@ -1,7 +1,6 @@
 import 'dart:core';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import '../BO/EgaraBO.dart';
 import '../DAO/EgaraDAO.dart';
 import 'Player.dart';
@@ -17,6 +16,7 @@ class Game {
   Map<Player, List<int>> redCards;
   List<Player> localSquad, awaySquad;
   String documentID;
+  FirebaseContext db;
 
   Game(
       List<dynamic> season,
@@ -33,15 +33,12 @@ class Game {
       List<dynamic> awaysquad,
       [this.id,
       this.documentID]) {
-    season.forEach((item) => this.season.add(item));
-    //this.season = new List<int>.from(season.whereType<List<dynamic>>()).toList();
+    this.season = season.cast<int>();
     this.localSquad = [];
     this.awaySquad = [];
 
-    this.localTeam =
-        getAllTeamsFromFile().firstWhere((item) => item.name == localteam);
-    this.awayTeam =
-        getAllTeamsFromFile().firstWhere((item) => item.name == awayteam);
+    this.localTeam = new Team.game(localteam);
+    this.awayTeam = new Team.game(awayteam);
 
     this.localSquad = mappingDataFromSquad(localsquad, localTeam);
     this.awaySquad = mappingDataFromSquad(awaysquad, awayTeam);
@@ -73,10 +70,8 @@ class Game {
     this.localSquad = [];
     this.awaySquad = [];
 
-    this.localTeam =
-        getAllTeamsFromFile().firstWhere((item) => item.name == localteam);
-    this.awayTeam =
-        getAllTeamsFromFile().firstWhere((item) => item.name == awayteam);
+    this.localTeam = new Team.game(localteam);
+    this.awayTeam = new Team.game(awayteam);
 
     this.localSquad = mappingDataFromSquad(localsquad, localTeam);
     this.awaySquad = mappingDataFromSquad(awaysquad, awayTeam);
@@ -90,68 +85,11 @@ class Game {
   }
 
   toJson() {
-    List<dynamic> localsq = [];
-    List<dynamic> awaysq = [];
-    for (int n = 0; n < this.localSquad.length; n++) {
-      if (this.localSquad[n].surname == '') {
-        localsq.add('${this.localSquad[n].dorsal}' +
-            ' ' +
-            '${this.localSquad[n].name}');
-      } else {
-        localsq.add('${this.localSquad[n].dorsal}' +
-            ' ' +
-            '${this.localSquad[n].surname}' +
-            ', ' +
-            '${this.localSquad[n].name}');
-      }
-    }
-
-    for (int n = 0; n < this.awaySquad.length; n++) {
-      if (this.awaySquad[n].surname == '') {
-        awaysq.add(
-            '${this.awaySquad[n].dorsal}' + ' ' + '${this.awaySquad[n].name}');
-      } else {
-        awaysq.add('${this.awaySquad[n].dorsal}' +
-            ' ' +
-            '${this.awaySquad[n].surname}' +
-            ', ' +
-            '${this.awaySquad[n].name}');
-      }
-    }
-
-    Map<String, dynamic> goalscorers = {};
-    for (MapEntry<Player, List<int>> map in this.goalScorers.entries) {
-      if (map.key.surname.isEmpty) {
-        String name = map.key.name;
-        goalscorers[name] = map.value;
-      } else {
-        String name = map.key.surname + ', ' + map.key.name;
-        goalscorers[name] = map.value;
-      }
-    }
-
-    Map<String, dynamic> yellowc = {};
-    for (MapEntry<Player, List<int>> map in this.yellowCards.entries) {
-      if (map.key.surname.isEmpty) {
-        String name = map.key.name;
-        yellowc[name] = map.value;
-      } else {
-        String name = map.key.surname + ', ' + map.key.name;
-        yellowc[name] = map.value;
-      }
-    }
-
-    Map<String, dynamic> redc = {};
-    for (MapEntry<Player, List<int>> map in this.redCards.entries) {
-      if (map.key.surname.isEmpty) {
-        String name = map.key.name;
-        redc[name] = map.value;
-      } else {
-        String name = map.key.surname + ', ' + map.key.name;
-        redc[name] = map.value;
-      }
-    }
-
+    List<dynamic> localsq = putSquadTodynamic(this.localSquad);
+    List<dynamic> awaysq = putSquadTodynamic(this.awaySquad);
+    Map<String, dynamic> goalscorers = putPlayersToJson(this.goalScorers);
+    Map<String, dynamic> yellowc = putPlayersToJson(this.yellowCards);
+    Map<String, dynamic> redc = putPlayersToJson(this.redCards);
     return {
       'id': this.id,
       'season': this.season,
@@ -170,68 +108,11 @@ class Game {
   }
 
   toDocument() {
-    List<dynamic> localsq = [];
-    List<dynamic> awaysq = [];
-    for (int n = 0; n < this.localSquad.length; n++) {
-      if (this.localSquad[n].surname == '') {
-        localsq.add('${this.localSquad[n].dorsal}' +
-            ' ' +
-            '${this.localSquad[n].name}');
-      } else {
-        localsq.add('${this.localSquad[n].dorsal}' +
-            ' ' +
-            '${this.localSquad[n].surname}' +
-            ', ' +
-            '${this.localSquad[n].name}');
-      }
-    }
-
-    for (int n = 0; n < this.awaySquad.length; n++) {
-      if (this.awaySquad[n].surname == '') {
-        awaysq.add(
-            '${this.awaySquad[n].dorsal}' + ' ' + '${this.awaySquad[n].name}');
-      } else {
-        awaysq.add('${this.awaySquad[n].dorsal}' +
-            ' ' +
-            '${this.awaySquad[n].surname}' +
-            ', ' +
-            '${this.awaySquad[n].name}');
-      }
-    }
-
-    Map<dynamic, dynamic> goalscorers = {};
-    for (MapEntry<Player, List<int>> map in this.goalScorers.entries) {
-      if (map.key.surname.isEmpty) {
-        String name = map.key.name;
-        goalscorers[name] = map.value;
-      } else {
-        String name = map.key.surname + ', ' + map.key.name;
-        goalscorers[name] = map.value;
-      }
-    }
-
-    Map<dynamic, dynamic> yellowc = {};
-    for (MapEntry<Player, List<int>> map in this.yellowCards.entries) {
-      if (map.key.surname.isEmpty) {
-        String name = map.key.name;
-        yellowc[name] = map.value;
-      } else {
-        String name = map.key.surname + ', ' + map.key.name;
-        yellowc[name] = map.value;
-      }
-    }
-
-    Map<dynamic, dynamic> redc = {};
-    for (MapEntry<Player, List<int>> map in this.redCards.entries) {
-      if (map.key.surname.isEmpty) {
-        String name = map.key.name;
-        redc[name] = map.value;
-      } else {
-        String name = map.key.surname + ', ' + map.key.name;
-        redc[name] = map.value;
-      }
-    }
-
+    List<dynamic> localsq = putSquadTodynamic(this.localSquad);
+    List<dynamic> awaysq = putSquadTodynamic(this.awaySquad);
+    Map<dynamic, dynamic> goalscorers = putPlayersToSnapshot(this.goalScorers);
+    Map<dynamic, dynamic> yellowc = putPlayersToSnapshot(this.yellowCards);
+    Map<dynamic, dynamic> redc = putPlayersToSnapshot(this.redCards);
     return {
       'id': this.id,
       'season': this.season,
