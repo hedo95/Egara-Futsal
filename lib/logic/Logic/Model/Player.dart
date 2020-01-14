@@ -8,7 +8,7 @@ class Player {
   String name, surname;
   int idteam, dorsal;
 
-  /*goals , yellowcards, redcards, playedGames; */
+  Player(this.idteam, this.name, this.surname, this.dorsal);
 
   int goals(List<Game> games) {
     games = games
@@ -86,48 +86,4 @@ class Player {
         .length;
   }
 
-  Player(this.idteam, this.name, this.surname, this.dorsal);
-
-  Player.def() {
-    this.idteam = -1;
-    this.name = "";
-    this.surname = "";
-    this.dorsal = 0;
-  }
-
-  toJson() {
-    return {
-      'idteam': this.idteam,
-      'name': this.name,
-      'surname': this.surname,
-      'dorsal': this.dorsal,
-    };
-  }
-
-  toPrint() {
-    String teamName =
-        getAllTeamsFromFile().firstWhere((item) => item.id == this.idteam).name;
-    {
-      print("Name: " + this.name + "\n");
-      print("Surname: " + this.surname + "\n");
-      print("Team: " + teamName + '\n');
-      print("Dorsal: " + this.dorsal.toString() + "\n");
-      print("Goals: " + this.goals.toString() + "\n");
-      print("Yellow cards: " + this.ycards.toString() + "\n");
-      print("Red cards: " + this.rcards.toString() + "\n");
-      print("Played games: " + this.playedgames.toString() + "\n");
-      print('');
-    }
-  }
-
-  //Convert from Json to Object
-  factory Player.fromJson(Map<String, dynamic> json) {
-    return new Player(
-      json['idteam'] as int,
-      json['name'] as String,
-      json['surname'] as String,
-      json['dorsal'] as int,
-      // json['totalgames'] as int
-    );
-  }
 }
