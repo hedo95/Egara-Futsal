@@ -2,6 +2,7 @@
   {
     "id": 20000,
     "name": "Gadex Club Esportiu, A",
+    "shortname": "Gadex",
     "shield": "",
     "address": "C/ de Sol i Pedrís, 59",
     "location": "Sabadell",
@@ -13,11 +14,14 @@
     ],
     "fieldname": "Pabellón municipal de Sabadell",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": false,
+    "bar": true,
+    "wifi": false
   },
   {
     "id": 20001,
     "name": "Pou Escorial, A",
+    "shortname": "Escorial",
     "shield": "",
     "address": "Ronda de Collsalarca, 4",
     "location": "Sabadell",
@@ -29,11 +33,14 @@
     ],
     "fieldname": "Pabellón Municipal Norte",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": true,
+    "bar": true,
+    "wifi": true
   },
   {
     "id": 20002,
     "name": "Fundació Terrassa FC 1906, A",
+    "shortname": "Terrassa",
     "shield": "",
     "address": "C/ Sardenya, 32",
     "location": "Terrassa",
@@ -45,11 +52,14 @@
     ],
     "fieldname": "Pabellón municipal La Maurina",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": true,
+    "bar": true,
+    "wifi": false
   },
   {
     "id": 20003,
     "name": "Escola Pia Sabadell, C.E, A",
+    "shortname": "Escola Pia",
     "shield": "",
     "address": "C/ de Garcilaso, 98",
     "location": "Sabadell",
@@ -61,11 +71,14 @@
     ],
     "fieldname": "Pabellón Escola Pia Sabadell",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": true,
+    "bar": true,
+    "wifi": true
   },
   {
     "id": 20004,
     "name": "Futsal Terrassa Les Saveurs Club Esportiu, A",
+    "shortname": "Les saveurs",
     "shield": "",
     "address": "C/ Sierra Nevada, 57",
     "location": "Terrassa",
@@ -77,11 +90,14 @@
     ],
     "fieldname": "Pista municipal de Les Arenes (2)",
     "fieldtype": "Pista",
-    "parking": true
+    "parking": true,
+    "bar": true,
+    "wifi": true
   },
   {
     "id": 20005,
     "name": "Oar Gràcia Sbd, E.F., A",
+    "shortname": "Oar",
     "shield": "",
     "address": "C/ Boccaccio, 62",
     "location": "Sabadell",
@@ -93,11 +109,14 @@
     ],
     "fieldname": "Pabellón municipal Oar Gràcia Sabadell",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": true,
+    "bar": true,
+    "wifi": true
   },
   {
     "id": 20006,
     "name": "Horta Futbol Sala Club, A",
+    "shortname": "Horta",
     "shield": "",
     "address": "C/ d'Olympe de Gouges, s/n",
     "location": "Barcelona",
@@ -109,11 +128,14 @@
     "province": "Barcelona",
     "fieldname": "Pabellón CEM Mundet",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": false,
+    "bar": true,
+    "wifi": false
   },
   {
     "id": 20007,
     "name": "Acció Sant Martí, A",
+    "shortname": "Sant Martí",
     "shield": "",
     "address": "C/ de la Costa Daurada, 7",
     "location": "Barcelona",
@@ -125,11 +147,14 @@
     ],
     "fieldname": "Pabellón CEM Bon Pastor",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": true,
+    "bar": true,
+    "wifi": false
   },
   {
     "id": 20008,
     "name": "Egara Futsal 2019, C.F. SALA",
+    "shortname": "Egara",
     "shield": "",
     "address": "C/ Jacint Badiella, 5",
     "location": "Terrassa",
@@ -141,11 +166,14 @@
     ],
     "fieldname": "Pabellón Club Egara Hockey",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": true,
+    "bar": true,
+    "wifi": true
   },
   {
     "id": 20009,
     "name": "Penya Barça Barbera del Valles",
+    "shortname": "Penya Barça",
     "shield": "",
     "address": "Ronda de l'Est, 29",
     "location": "Barberà del Vallès",
@@ -157,11 +185,14 @@
     ],
     "fieldname": "Pabellón municipal Elisa Badia",
     "fieldtype": "",
-    "parking": true
+    "parking": true,
+    "bar": true,
+    "wifi": true
   },
   {
     "id": 20010,
     "name": "CFS Les Glòries 2014, B",
+    "shortname": "Glòries",
     "shield": "",
     "address": "C/ d'Hondures, 24",
     "location": "Barcelona",
@@ -173,11 +204,14 @@
     ],
     "fieldname": "Pista cubierta municipal La Segrera",
     "fieldtype": "Polideportivo",
-    "parking": true
+    "parking": false,
+    "bar": false,
+    "wifi": false
   },
   {
     "id": 20011,
     "name": "Castellbisbal, F.S, B",
+    "shortname": "Castellbisbal",
     "shield": "",
     "address": "C/ Agricultura, 8",
     "location": "Castellbisbal",
@@ -189,6 +223,8 @@
     ],
     "fieldname": "Pabellón municipal de Castellbisbal",
     "fieldtype": "Pabellón",
-    "parking": true
+    "parking": false,
+    "bar": true,
+    "wifi": false
   }
 ]

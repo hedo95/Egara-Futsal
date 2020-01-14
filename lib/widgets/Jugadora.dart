@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Jugadora extends StatefulWidget {
-  @override
-  _JugadoraState createState() => _JugadoraState();
-}
+class Jugadora extends StatelessWidget {
+  final String nombreJugadora, dorsal;
 
-class _JugadoraState extends State<Jugadora> {
+  const Jugadora({Key key, this.nombreJugadora, this.dorsal}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Container(

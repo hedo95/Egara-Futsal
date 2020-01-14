@@ -7,8 +7,12 @@ import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart';
+import 'package:sentry/sentry.dart';
+import 'package:sentry/sentry.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-// Prueba StreamProvider
 
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {

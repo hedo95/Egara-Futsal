@@ -7,12 +7,14 @@ import '../Model/Game.dart';
 import '../Model/Player.dart';
 import '../Model/Team.dart';
 
-String path = 'assets/Data',
-    playersfile = path + '/Players.json',
-    teamsfile = path + '/Teams.json',
-    gamesfile = path + '/Games.json';
 
-List<Player> getAllPlayersFromFile() {
+String path = '/Users/xavi/UPC/PrimerQuatri4t/Android/Projectes Flutter/Egara-Futsal/assets/Data',
+       playersfile = path + '/Players.json',
+       teamsfile = path + '/Teams.json',
+       gamesfile = path + '/Games.json';
+
+List<Player> getAllPlayersFromFile()
+{
   exportPlayersFromGames();
   var jsonString = File(playersfile).readAsStringSync();
   List jsonData = json.decode(jsonString);

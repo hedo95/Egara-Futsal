@@ -8,6 +8,7 @@ import 'Player.dart';
 class Team {
   int id;
   String name,
+      shortname,
       shield,
       address,
       location,
@@ -17,7 +18,7 @@ class Team {
       fieldtype,
       documentID;
   List<double> coordinates;
-  bool parking;
+  bool parking, wifi, bar;
 
   // Nos interesa coger los puntos y posición de las dos ultimas jornadas, para el container de la vista Principal.
   int currentPoints(List<Game> games) {
@@ -48,7 +49,7 @@ class Team {
     return teams.indexOf(team) + 1;
   }
 
-  int lastCurrentPoints(List<Game> games) {
+  int weekAgoPoints(List<Game> games) {
     int points = 0;
     int journeyWanted =
         games.lastWhere((item) => item.localSquad.isNotEmpty).journey - 1;
@@ -71,9 +72,9 @@ class Team {
     return points;
   }
 
-  int lastCurrentPosition(List<Team> teams, List<Game> games) {
+  int weekAgoPosition(List<Team> teams, List<Game> games) {
     teams.sort((b, a) =>
-        a.lastCurrentPoints(games).compareTo(b.lastCurrentPoints(games)));
+        a.weekAgoPoints(games).compareTo(b.weekAgoPoints(games)));
     var team = teams.firstWhere((item) => item.id == this.id);
     return teams.indexOf(team) + 1;
   }
@@ -197,21 +198,7 @@ class Team {
   Team(
       this.id,
       this.name,
-      this.shield,
-      this.address,
-      this.location,
-      this.zipcode,
-      this.province,
-      List<dynamic> coordinates,
-      this.fieldname,
-      this.fieldtype,
-      this.parking) {
-    this.coordinates = coordinates.cast<double>();
-  }
-
-  Team.db(
-      this.id,
-      this.name,
+      this.shortname,
       this.shield,
       this.address,
       this.location,
@@ -221,42 +208,17 @@ class Team {
       this.fieldname,
       this.fieldtype,
       this.parking,
-      this.documentID) {
+      this.wifi,
+      this.bar,
+      [this.documentID]) {
     this.coordinates = coordinates.cast<double>();
-  }
-
-  Team.def() {
-    this.id = getAllTeamsFromFile()[getAllTeamsFromFile().length - 1].id + 1;
-    this.name = "";
-    this.shield = "";
-    this.address = "";
-    this.location = "";
-    this.zipcode = "";
-    this.province = "";
-    this.fieldname = "";
-    this.fieldtype = "";
-  }
-
-  toJson() {
-    return {
-      'id': this.id,
-      'name': this.name,
-      'shield': this.shield,
-      'address': this.address,
-      'location': this.location,
-      'zipcode': this.zipcode,
-      'province': this.province,
-      'coordinates': coordinates,
-      'fieldname': this.fieldname,
-      'fieldtype': this.fieldtype,
-      'parking': this.parking
-    };
   }
 
   toDocument() {
     return {
       'id': this.id,
       'name': this.name,
+      'shortname':this.shortname,
       'shield': this.shield,
       'address': this.address,
       'location': this.location,
@@ -265,41 +227,50 @@ class Team {
       'coordinates': this.coordinates.cast<dynamic>(),
       'fieldname': this.fieldname,
       'fieldtype': this.fieldtype,
-      'parking': this.parking
+      'parking': this.parking,
+      'wifi': this.wifi,
+      'bar': this.bar
     };
   }
 
+  toJson() => toDocument();
+
   toPrint() {
-    //print("Id: " + this.id.toString() + "\n");
-    print(this.name +
-        ' => ' +
-        this.currentPoints.toString() +
-        ' points, ' +
-        this.wonGames.toString() +
-        ' won games, ' +
-        this.lostGames.toString() +
-        ' lost games, ' +
-        this.drawnGames.toString() +
-        ' drawn games, ' +
-        this.currentGoals.toString() +
-        ' goals and ' +
-        this.currentConcededGoals.toString() +
-        ' conceded goals. ' +
-        "\n");
-    //print("Address: " + this.address + "\n");
-    //print("Location: " + this.location + "\n");
-    // print("Zipcode: " + this.zipcode + "\n");
-    // print("Province: " + this.province + "\n");
-    // print("Fieldname: " + this.fieldname + "\n");
-    // print("Fieldtype: " + this.fieldtype + "\n");
-    // print("Players: " + "\n");
-    print(' ');
+    print('Id: ${this.id}');
+    print('Name: ${this.name}');
+    print('Shortname: ${this.shortname}');
+    print('Address: ${this.address}');
+    print('Location: ${this.location}');
+    print('Zipcode: ${this.zipcode}');
+    print('Province: ${this.province}');
+    print('Coordinates: [${this.coordinates[0]}, ${this.coordinates[1]}]');
+    print('Field name: ${this.fieldname}');
+    print('Field type: ${this.fieldtype}');
+    print('Parking: ${this.parking}');
+    print('Wifi: ${this.wifi}');
+    print('Bar: ${this.bar}');
+  }
+
+  toPrintMethods(List<Team> teams, List<Game> games){
+    print('Current points: ${currentPoints(games)}');
+    print('Current position: ${currentPosition(teams,games)}');
+    print('Points from last journey: ${weekAgoPoints(games)}');
+    print('Position from last journey: ${weekAgoPosition(teams,games)}');
+    print('Current goals: ${currentGoals(games)}');
+    print('Current conceded goals: ${currentConcededGoals(games)}');
+    print('Current yellow cards: ${currentYcards(games)}');
+    print('Current red cards: ${currentRcards(games)}');
+    print('Total games: ${totalGames(games)}');
+    print('Won games: ${wonGames(games)}');
+    print('Drawn games: ${drawnGames(games)}');
+    print('Lost games: ${lostGames(games)}');
   }
 
   factory Team.fromJson(Map<String, dynamic> json) {
     return new Team(
         json['id'] as int,
         json['name'] as String,
+        json['shortname'] as String,
         json['shield'] as String,
         json['address'] as String,
         json['location'] as String,
@@ -308,13 +279,16 @@ class Team {
         json['coordinates'] as List<dynamic>,
         json['fieldname'] as String,
         json['fieldtype'] as String,
-        json['parking'] as bool);
+        json['parking'] as bool,
+        json['wifi'] as bool,
+        json['bar'] as bool);
   }
 
   static Team fromSnapshot(DocumentSnapshot snap) {
-    return new Team.db(
+    return new Team(
         snap['id'] as int,
         snap['name'] as String,
+        snap['shortname'] as String,
         snap['shield'] as String,
         snap['address'] as String,
         snap['location'] as String,
@@ -324,6 +298,8 @@ class Team {
         snap['fieldname'] as String,
         snap['fieldtype'] as String,
         snap['parking'] as bool,
+        snap['wifi'] as bool,
+        snap['bar'] as bool,
         snap.documentID);
   }
 }

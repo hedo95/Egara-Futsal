@@ -30,6 +30,16 @@ TextStyle titulocabecera = TextStyle(
   fontStyle: FontStyle.italic,
 );
 
+TextStyle estiloLetraContainer = TextStyle(
+  fontSize: 20.0,
+  color: containerDestacado,
+);
+
+BoxDecoration estiloContenedorDestacado = BoxDecoration(
+  color: Color(0xFF381254),
+  borderRadius: BorderRadius.circular(20.0),
+);
+
 BoxDecoration estiloContenedor = BoxDecoration(
   color: Color(0xFF4b1a77),
   borderRadius: BorderRadius.circular(30),
