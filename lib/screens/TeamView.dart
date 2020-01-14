@@ -18,10 +18,9 @@ class Teams extends StatefulWidget {
 }
 
 class _TeamsState extends State<Teams> {
-  List<Team> teams = getAllTeamsFromFile();
-
   @override
   Widget build(BuildContext context) {
+    List<Team> teams = Provider.of<List<Team>>(context);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Animated Charts App',
@@ -29,7 +28,7 @@ class _TeamsState extends State<Teams> {
           primaryColor: Colors.purple[900],
         ),
         home: TeamView(
-            getAllTeamsFromFile().firstWhere((item) => item.id == 20010)));
+            teams.firstWhere((item) => item.id == 20010)));
   }
 }
 
@@ -93,7 +92,8 @@ class _TeamViewState extends State<TeamView> {
               widget.team.drawnGames(games),
               widget.team.lostGames(games),
               widget.team.currentGoals(games),
-              widget.team.currentConcededGoals(games)),
+              widget.team.currentConcededGoals(games),
+              games, teams),
         ),
       ),
     );
@@ -101,6 +101,9 @@ class _TeamViewState extends State<TeamView> {
 }
 
 class Games extends StatefulWidget {
+  final List<Game> games;
+  final List<Team> teams;
+  List<Player> playersFromTeam = [];
   final int position,
       points,
       playedgames,
@@ -112,7 +115,10 @@ class Games extends StatefulWidget {
   final Team team;
 
   Games(this.team, this.position, this.points, this.playedgames, this.wongames,
-      this.drawngames, this.lostgames, this.goals, this.concededgoals);
+      this.drawngames, this.lostgames, this.goals, this.concededgoals,
+      this.games, this.teams){
+        playersFromTeam = getAllPlayersFromAteam(team, games);
+      }
 
   _GamesState createState() => _GamesState(
       this.team,
@@ -123,14 +129,15 @@ class Games extends StatefulWidget {
       this.drawngames,
       this.lostgames,
       this.goals,
-      this.concededgoals);
+      this.concededgoals,
+      games, playersFromTeam);
 }
 
 class _GamesState extends State<Games> {
   List<charts.Series<Task, String>> _seriesPieData;
   List<charts.Series<GamesData, String>> _seriesEventsData;
-  List<Player> players = [];
-  final List<Game> games = getAllGamesFromFile();
+  final List<Player> players;
+  final List<Game> games;
   final Team team;
   final int points,
       playedgames,
@@ -150,10 +157,8 @@ class _GamesState extends State<Games> {
       this.drawngames,
       this.lostgames,
       this.goals,
-      this.concededgoals) {
-    players = getAllPlayersFromAteam(team, games);
-    players.sort((b, a) => a.goals(games).compareTo(b.goals(games)));
-  }
+      this.concededgoals,
+      this.games, this.players);
 
   _generateData() {
     var eventsData = [

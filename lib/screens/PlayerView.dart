@@ -3,6 +3,7 @@ import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,26 +12,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Player player;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Animated Charts App',
       theme: ThemeData(
         primaryColor: Colors.purple[900],
       ),
-      home: PlayerView(getAllPlayersFromFile()
-          .firstWhere((item) => item.dorsal == 7 && item.idteam == 20008)),
+      home: PlayerView(player),
     );
   }
 }
 
 class PlayerView extends StatelessWidget {
   final Player player;
-  final List<Game> games = getAllGamesFromFile();
 
   PlayerView(this.player);
 
   @override
   Widget build(BuildContext context) {
+    List<Game> games = Provider.of<List<Game>>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[900],
