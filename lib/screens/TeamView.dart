@@ -3,13 +3,13 @@ import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
 import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
+import 'package:provider/provider.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
+import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'PlayerView.dart';
-
-
 
 class Teams extends StatefulWidget {
   // This widget is the root of your application.
@@ -43,44 +43,60 @@ class TeamView extends StatefulWidget {
 }
 
 class _TeamViewState extends State<TeamView> {
-  final List<Game> games = getAllGamesFromFile();
-  List<Team> teams = getAllTeamsFromFile();
-
   @override
   Widget build(BuildContext context) {
+    List<Game> games = Provider.of<List<Game>>(context);
+    List<Player> players = Provider.of<List<Player>>(context);
+    List<Team> teams = Provider.of<List<Team>>(context);
+
     return MaterialApp(
-        home: DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.purple[900],
-          bottom: TabBar(
-            indicatorColor: Colors.pink[200],
-            tabs: [
-              Tab(
-                  icon: Icon(FontAwesomeIcons.solidChartBar,
-                      color: Colors.pink[200])),
-              Tab(
-                  icon:
-                      Icon(FontAwesomeIcons.chartPie, color: Colors.pink[200])),
-              Tab(icon: Icon(Icons.group, color: Colors.pink[200])),
-              Tab(icon: Icon(Icons.room, color: Colors.pink[200]))
-            ],
+      home: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: backgroundColor,
+            bottom: TabBar(
+              unselectedLabelColor: Color(0xFF4e1a96),
+              indicatorColor: Colors.pink[200],
+              labelColor: Colors.pink[200],
+              tabs: [
+                Tab(
+                  icon: Icon(
+                    FontAwesomeIcons.solidChartBar,
+                  ),
+                ),
+                Tab(
+                  icon: Icon(
+                    FontAwesomeIcons.chartPie,
+                  ),
+                ),
+                Tab(
+                  icon: Icon(
+                    Icons.group,
+                  ),
+                ),
+                Tab(
+                  icon: Icon(
+                    Icons.room,
+                  ),
+                ),
+              ],
+            ),
+            title: Text(this.widget.team.name, style: TextStyle(fontSize: 18)),
           ),
-          title: Text(this.widget.team.name, style: TextStyle(fontSize: 18)),
+          body: Games(
+              widget.team,
+              widget.team.currentPosition(teams, games),
+              widget.team.currentPoints(games),
+              widget.team.totalGames(games),
+              widget.team.wonGames(games),
+              widget.team.drawnGames(games),
+              widget.team.lostGames(games),
+              widget.team.currentGoals(games),
+              widget.team.currentConcededGoals(games)),
         ),
-        body: Games(
-            widget.team,
-            widget.team.currentPosition(teams, games),
-            widget.team.currentPoints(games),
-            widget.team.totalGames(games),
-            widget.team.wonGames(games),
-            widget.team.drawnGames(games),
-            widget.team.lostGames(games),
-            widget.team.currentGoals(games),
-            widget.team.currentConcededGoals(games)),
       ),
-    ));
+    );
   }
 }
 
@@ -190,131 +206,233 @@ class _GamesState extends State<Games> {
     return TabBarView(
       children: [
         Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Container(
-                child: Center(
-                    child: Column(children: <Widget>[
-              Text(
-                'Puntos: ' +
-                    this.points.toString() +
-                    '       ' +
-                    'Posición: ' +
-                    this.position.toString(),
-                style: TextStyle(
-                    color: Colors.purple[900],
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20.0),
-              Expanded(
-                  child: charts.BarChart(
-                _seriesEventsData,
-                animate: true,
-                barGroupingType: charts.BarGroupingType.grouped,
-                animationDuration: Duration(seconds: 2),
-                behaviors: [
-                  new charts.DatumLegend(
-                    outsideJustification:
-                        charts.OutsideJustification.endDrawArea,
-                    horizontalFirst: false,
-                    desiredMaxRows: 1,
-                    cellPadding: new EdgeInsets.only(right: 40.0),
-                    entryTextStyle: charts.TextStyleSpec(
-                        color: charts.MaterialPalette.purple.shadeDefault,
-                        fontFamily: 'Georgia',
-                        fontSize: 15),
-                  )
-                ],
-              ))
-            ])))),
-        Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Container(
-                child: Center(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    'Goles',
-                    style: TextStyle(
-                        color: Colors.purple[900],
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 20.0),
-                  Expanded(
-                      child: charts.PieChart(
-                    _seriesPieData,
-                    animate: true,
-                    animationDuration: Duration(seconds: 2),
-                    behaviors: [
-                      new charts.DatumLegend(
-                        outsideJustification:
-                            charts.OutsideJustification.endDrawArea,
-                        horizontalFirst: false,
-                        desiredMaxRows: 1,
-                        cellPadding: new EdgeInsets.only(right: 60.0),
-                        entryTextStyle: charts.TextStyleSpec(
-                            color: charts.MaterialPalette.purple.shadeDefault,
-                            fontFamily: 'Georgia',
-                            fontSize: 19),
-                      )
-                    ],
-                    defaultRenderer: new charts.ArcRendererConfig(
-                      arcWidth: 100,
-                      arcRendererDecorators: [
-                        new charts.ArcLabelDecorator(
-                            labelPosition: charts.ArcLabelPosition.inside,
-                            insideLabelStyleSpec: new charts.TextStyleSpec(
-                                fontSize: 25,
-                                color: charts.MaterialPalette.white))
-                      ],
+          padding: EdgeInsets.all(0),
+          child: Container(
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(gradient: colorGradiente),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: <Widget>[
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.ideographic,
+                            children: <Widget>[
+                              Text(
+                                'Puntos:',
+                                style: TextStyle(
+                                  color: Colors.purple[900],
+                                  fontSize: 20.0,
+                                  letterSpacing: 2,
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              Text(
+                                this.points.toString(),
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.purple[900],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.ideographic,
+                            children: <Widget>[
+                              Text(
+                                'Posición:',
+                                style: TextStyle(
+                                  color: Colors.purple[900],
+                                  fontSize: 20.0,
+                                  letterSpacing: 2,
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              Text(
+                                this.position.toString(),
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.purple[900],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ))
-                ],
+                    SizedBox(height: 20.0),
+                    Expanded(
+                      child: charts.BarChart(
+                        _seriesEventsData,
+                        animate: true,
+                        barGroupingType: charts.BarGroupingType.grouped,
+                        animationDuration: Duration(seconds: 2),
+                        behaviors: [
+                          new charts.DatumLegend(
+                            outsideJustification:
+                                charts.OutsideJustification.endDrawArea,
+                            horizontalFirst: false,
+                            desiredMaxRows: 1,
+                            cellPadding: new EdgeInsets.only(right: 40.0),
+                            entryTextStyle: charts.TextStyleSpec(
+                              color: charts.MaterialPalette.purple.shadeDefault,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ))),
+            ),
+          ),
+        ),
         Padding(
+          padding: EdgeInsets.all(0),
+          child: Container(
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(gradient: colorGradiente),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'Goles',
+                        style: TextStyle(
+                          color: Colors.purple[900],
+                          fontSize: 30.0,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                      SizedBox(height: 20.0),
+                      Expanded(
+                          child: charts.PieChart(
+                        _seriesPieData,
+                        animate: true,
+                        animationDuration: Duration(seconds: 2),
+                        behaviors: [
+                          new charts.DatumLegend(
+                            outsideJustification:
+                                charts.OutsideJustification.endDrawArea,
+                            horizontalFirst: false,
+                            desiredMaxRows: 1,
+                            cellPadding: new EdgeInsets.only(right: 60.0),
+                            entryTextStyle: charts.TextStyleSpec(
+                                color:
+                                    charts.MaterialPalette.purple.shadeDefault,
+                                //fontFamily: 'Georgia',
+                                fontSize: 19),
+                          )
+                        ],
+                        defaultRenderer: new charts.ArcRendererConfig(
+                          arcWidth: 100,
+                          arcRendererDecorators: [
+                            new charts.ArcLabelDecorator(
+                                labelPosition: charts.ArcLabelPosition.inside,
+                                insideLabelStyleSpec: new charts.TextStyleSpec(
+                                    fontSize: 25,
+                                    color: charts.MaterialPalette.white))
+                          ],
+                        ),
+                      ))
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            gradient: colorGradiente,
+          ),
+          child: Padding(
             padding: EdgeInsets.all(2),
             child: Scrollbar(
-                child: GridView.builder(
-              padding: EdgeInsets.all(22),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Columnas
-                  childAspectRatio: 1, // H/W
-                  crossAxisSpacing: 60, // separacion vertical entre items
-                  mainAxisSpacing: 50 // Separacion horiontal entre items
-                  ),
-              itemCount: players.length,
-              itemBuilder: (context, index) {
-                return Padding(
+              child: GridView.builder(
+                padding: EdgeInsets.all(22),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Columnas
+                    childAspectRatio: 1, // H/W
+                    crossAxisSpacing: 60, // separacion vertical entre items
+                    mainAxisSpacing: 50 // Separacion horiontal entre items
+                    ),
+                itemCount: players.length,
+                itemBuilder: (context, index) {
+                  return Padding(
                     padding: EdgeInsets.all(5),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        GestureDetector(
+                        Container(
+                          child: GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      PlayerView(players[index])));
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => PlayerView(
+                                    players[index],
+                                  ),
+                                ),
+                              );
                             },
                             child: Container(
-                                alignment: Alignment.topCenter,
-                                child: Text(players[index].dorsal.toString(),
-                                    style: TextStyle(
-                                        color: Colors.purple[900],
-                                        fontSize: 75)))),
+                              alignment: Alignment.topCenter,
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                              
+                                borderRadius: BorderRadius.circular(80),
+                                //border:
+                                    //Border.all(color: Colors.white38, width: 1),
+                                //gradient: colorGradiente,
+                                color: Color(0xFF381254),
+                                //boxShadow: [
+                                  //BoxShadow(
+                                  //  color: Color(0xFF270049),
+                                  //  offset: Offset(-4, 4),
+                                  //),
+                                //],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Text(
+                                  players[index].dorsal.toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 75,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
                         Text(
                           players[index].name,
                           maxLines: 2,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.purple[900], fontSize: 15),
-                        )
+                        ),
                       ],
-                    ));
-              },
-            ))),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
         Padding(
             padding: EdgeInsets.all(8.0),
             child: Center(

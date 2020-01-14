@@ -52,6 +52,16 @@ BoxDecoration estiloContenedor = BoxDecoration(
   gradient: colorGradiente,
 );
 
+TextStyle letra3Equipos = TextStyle(
+  color: Colors.white38,
+  fontSize: 20,
+);
+
+TextStyle letra3EquiposEgara = TextStyle(
+  color: Colors.red,
+  fontSize: 20,
+);
+
 class MyFlutterApp {
   MyFlutterApp._();
 
