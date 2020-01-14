@@ -27,11 +27,12 @@ class _HomePageState extends State<HomePage> {
     List<Game> games = Provider.of<List<Game>>(context);
     List<Player> players = Provider.of<List<Player>>(context);
     List<Team> teams = Provider.of<List<Team>>(context);
-    
+
     Team egara = teams.firstWhere((item) => item.id == 20008);
     int journey = currentJourney(games);
     Game lastMatch = getLastMatch(games, egara);
     int x = catchArrow(teams, games);
+    List<Team> tresEquipos = getHomepageLeagueContainer(teams, games);
 
     Widget flecha(int x) {
       if (x > 0) {
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.red,
           size: 40.0,
         );
-      } else  {
+      } else {
         return Container(
           height: 40,
           width: 40,
@@ -216,14 +217,15 @@ class _HomePageState extends State<HomePage> {
                                 Container(
                                   height: 50,
                                   width: 50,
-                                  child: Image.asset("assets/escudos/20008.png"),
+                                  child:
+                                      Image.asset("assets/escudos/20008.png"),
                                 ),
                                 SizedBox(width: 10),
                                 Container(
-                                  height: 50,
-                                  width: 50,
-                                  child: Image.asset("assets/escudos/20001.png")
-                                ),
+                                    height: 50,
+                                    width: 50,
+                                    child: Image.asset(
+                                        "assets/escudos/20001.png")),
                                 Text(
                                   'Visitante',
                                   style: TextStyle(
@@ -307,29 +309,26 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text(
-                                    '7.',
-                                    style: TextStyle(
-                                      color: Colors.white38,
-                                      fontSize: 20,
-                                    ),
+                                    tresEquipos[0]
+                                        .currentPosition(teams, games)
+                                        .toString(),
+                                    style: letra3Equipos,
                                   ),
                                   Container(
-                                      height: 40,
-                                      width: 40,
-                                      color: Colors.black),
+                                      height: 35,
+                                      width: 35,
+                                      child: Image.asset(
+                                          "assets/escudos/${tresEquipos[0].id}.png")),
                                   Text(
-                                    'hola',
-                                    style: TextStyle(
-                                      color: Colors.white38,
-                                    ),
+                                    tresEquipos[0].shortname,
+                                    style: letra3Equipos,
                                   ),
-                                  SizedBox(width: 40),
                                   Text(
-                                    '26 pts',
-                                    style: TextStyle(
-                                      color: Colors.white38,
-                                    ),
-                                  ),
+                                      tresEquipos[0]
+                                              .currentPoints(games)
+                                              .toString() +
+                                          " pts",
+                                      style: letra3Equipos),
                                 ],
                               ),
                             ),
@@ -345,27 +344,24 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  Text('7.',
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 20,
-                                      )),
+                                  Text(
+                                      tresEquipos[1]
+                                          .currentPosition(teams, games)
+                                          .toString(),
+                                      style: letra3EquiposEgara),
                                   Container(
                                       height: 40,
                                       width: 40,
-                                      color: Colors.black),
+                                      child: Image.asset(
+                                          "assets/escudos/${egara.id}.png")),
                                   Text(
-                                    'hola',
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                    ),
+                                    egara.shortname,
+                                    style: letra3EquiposEgara,
                                   ),
-                                  SizedBox(width: 40),
                                   Text(
-                                    '26 pts',
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                    ),
+                                    egara.currentPoints(games).toString() +
+                                        " pts",
+                                    style: letra3EquiposEgara,
                                   ),
                                 ],
                               ),
@@ -381,27 +377,24 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  Text('7.',
-                                      style: TextStyle(
-                                        color: Colors.white38,
-                                        fontSize: 20,
-                                      )),
+                                  Text(
+                                    tresEquipos[2]
+                                        .currentPosition(teams, games)
+                                        .toString(),
+                                    style: letra3Equipos,
+                                  ),
                                   Container(
                                       height: 40,
                                       width: 40,
-                                      color: Colors.black),
+                                      child: Image.asset("assets/escudos/${tresEquipos[2].id}.png")),
                                   Text(
-                                    'hola',
-                                    style: TextStyle(
-                                      color: Colors.white38,
-                                    ),
+                                    tresEquipos[2].shortname,
+                                    style: letra3Equipos,
                                   ),
-                                  SizedBox(width: 40),
+                                  
                                   Text(
-                                    '26 pts',
-                                    style: TextStyle(
-                                      color: Colors.white38,
-                                    ),
+                                    tresEquipos[2].currentPoints(games).toString() + " pts",
+                                    style: letra3Equipos,
                                   ),
                                 ],
                               ),

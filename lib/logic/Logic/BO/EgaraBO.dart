@@ -364,6 +364,6 @@ Team getLastRival(List<Game> games, Team team) {
 }
 
 List<Team> getOrderedTable(List<Team> teams, List<Game> games){
-  teams.sort((b,a) => a.currentPosition(teams, games).compareTo(b.currentPosition(teams, games)));
+  teams.sort((a,b) => a.currentPosition(teams, games).compareTo(b.currentPosition(teams, games)));
   return teams;
 }
