@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'dart:convert' show json;
 import 'dart:io' show File;
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../Model/Game.dart';
 import '../Model/Team.dart';
 
@@ -88,6 +86,8 @@ class FirebaseContext {
       return snapshot.documents.map((team) => Team.fromSnapshot(team)).toList();
     });
   }
+
+
 
   Future<void> exportTeamsToLocal() async {
     try {
