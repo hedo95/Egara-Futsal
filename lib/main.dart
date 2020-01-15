@@ -378,7 +378,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   get bottomNavBarIndex => null;
-  var db = new FirebaseContext(); // Mi class Firebase
+  final db = new FirebaseContext(); // Mi class Firebase
 
   @override
   Widget build(BuildContext context) {
@@ -387,7 +387,15 @@ class MyApp extends StatelessWidget {
       stream: db.loadGames(),
       builder: (context, snapshot1) {
         if(!snapshot1.hasData){
-          return Center(child: CircularProgressIndicator(backgroundColor: Colors.green[300]));
+          return Center(
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CircularProgressIndicator(backgroundColor: Colors.green[200]),
+                SizedBox(height: 10),
+                Text('Loading Games..', style: TextStyle(color: Colors.green[200], fontSize: 18), textDirection: TextDirection.ltr)
+              ],
+          ));
         }else if(snapshot1.hasError){
           return Center(child: Text(snapshot1.error));
         }else{
@@ -395,7 +403,15 @@ class MyApp extends StatelessWidget {
             stream: db.loadTeams(),
             builder: (context, snapshot2) {
               if(!snapshot2.hasData){
-                return Center(child:CircularProgressIndicator(backgroundColor: Colors.red[300]));
+                return Center(
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CircularProgressIndicator(backgroundColor: Colors.red[800]),
+                SizedBox(height: 10),
+                Text('Loading Teams..', style: TextStyle(color: Colors.red[800], fontSize: 18), textDirection: TextDirection.ltr)
+              ],
+          ));
               }else if(snapshot2.hasError){
                 return Center(child: Text(snapshot2.error));
               }else{
@@ -403,7 +419,6 @@ class MyApp extends StatelessWidget {
                   providers: [
                     Provider<List<Game>>.value(value: makingGamesReal(snapshot1.data, snapshot2.data)),
                     Provider<List<Team>>.value(value: snapshot2.data),
-                    /*Provider<List<Player>>.value(value: getAllPlayers(makingGamesReal(snapshot1.data, snapshot2.data)))*/
                   ], 
                   child: MaterialApp( // Empieza la App.
                     debugShowCheckedModeBanner: false,
