@@ -24,6 +24,7 @@ class Jornadas extends StatefulWidget {
 
 class _JornadasState extends State<Jornadas> {
   int currentJourney;
+  int maxJourney;
   List<Game> games;
   List<Game> journeyGames = [];
 
@@ -31,6 +32,7 @@ class _JornadasState extends State<Jornadas> {
     this.journeyGames = getCalendar(games)
         .firstWhere((item) => item.journey == this.currentJourney)
         .games;
+    this.maxJourney = getCalendar(games).length;
   }
 
   @override
@@ -136,6 +138,7 @@ class _JornadasState extends State<Jornadas> {
                                 .firstWhere((item) =>
                                     item.journey == this.currentJourney)
                                 .games;
+                            this.maxJourney = getCalendar(games).length;
                           });
                         }
                       },
@@ -152,7 +155,7 @@ class _JornadasState extends State<Jornadas> {
                       iconSize: 30,
                       color: Colors.white38,
                       onPressed: () {
-                        if (currentJourney < 9) {
+                        if (currentJourney < maxJourney) {
                           setState(
                             () {
                               this.currentJourney++;
@@ -160,6 +163,7 @@ class _JornadasState extends State<Jornadas> {
                                   .firstWhere((item) =>
                                       item.journey == this.currentJourney)
                                   .games;
+                              this.maxJourney = getCalendar(games).length;
                             },
                           );
                         }

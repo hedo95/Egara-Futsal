@@ -9,7 +9,6 @@ import '../Model/Team.dart';
 class FirebaseContext {
   final gamesCollection = Firestore.instance.collection('Games');
   final teamsCollection = Firestore.instance.collection('Teams');
-  final playersCollection = Firestore.instance.collection('Players');
 
   Future<void> addNewGame(Game item) async {
     try {
