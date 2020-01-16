@@ -1,6 +1,7 @@
 import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
 import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
@@ -136,11 +137,13 @@ class _JornadasState extends State<Jornadas> {
 
 class JornadaContainer extends StatelessWidget {
   final Game game;
-
   JornadaContainer(this.game);
 
   @override
   Widget build(BuildContext context) {
+    List<Team> teams = Provider.of<List<Team>>(context);
+    String localTeamshortname = teams.firstWhere((item) => item.name == game.localTeam.name).shortname;
+    String awayTeamshortname = teams.firstWhere((item) => item.name == game.awayTeam.name).shortname;
     return Padding(
       padding: EdgeInsets.all(4.0),
       child: GestureDetector(
@@ -161,7 +164,7 @@ class JornadaContainer extends StatelessWidget {
                 Container(
                   color: Colors.black,
                   child: Text(
-                    'Equipo 1',
+                    '$localTeamshortname',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -175,7 +178,7 @@ class JornadaContainer extends StatelessWidget {
                 Container(
                   color: Colors.black,
                   child: Text(
-                    'Equipo 2',
+                    '$awayTeamshortname',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

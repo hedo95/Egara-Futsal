@@ -30,8 +30,30 @@ class _HomePageState extends State<HomePage> {
     Team egara = teams.firstWhere((item) => item.id == 20008);
     int journey = currentJourney(games);
     Game lastMatch = getLastMatch(games, egara);
+    Team lastRival;
+    if(lastMatch.localTeam.id == egara.id){
+      lastRival = teams.firstWhere((item) => item.id == lastMatch.awayTeam.id);
+    }else{
+      lastRival = teams.firstWhere((item) => item.id == lastMatch.localTeam.id);
+    }
+    Game nextGame = getNextMatch(games, egara);
+    Team localTeamfromNextGame = teams.firstWhere((item) => item.id == nextGame.localTeam.id);
     int x = catchArrow(teams, games);
     List<Team> tresEquipos = getHomepageLeagueContainer(teams, games);
+    List<dynamic> tresEstilos = [];
+    if(tresEquipos[0].id == egara.id){
+      tresEstilos.add(letra3EquiposEgara);
+      tresEstilos.add(letra3Equipos);
+      tresEstilos.add(letra3Equipos);
+    }else if(tresEquipos[1].id == egara.id){
+      tresEstilos.add(letra3Equipos);
+      tresEstilos.add(letra3EquiposEgara);
+      tresEstilos.add(letra3Equipos);
+    }else{
+      tresEstilos.add(letra3Equipos);
+      tresEstilos.add(letra3Equipos);
+      tresEstilos.add(letra3EquiposEgara);
+    }
 
     Widget flecha(int x) {
       if (x > 0) {
@@ -114,10 +136,7 @@ class _HomePageState extends State<HomePage> {
                                       Row(
                                         children: <Widget>[
                                           flecha(x),
-                                          Text(
-                                            egara
-                                                .currentPosition(teams, games)
-                                                .toString(),
+                                          Text( '${egara.currentPosition(teams, games)}',
                                             style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.white38,
@@ -148,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                           SizedBox(width: 20),
                                           Text(
-                                            '2-0',
+                                            '${lastMatch.localGoals}-${lastMatch.awayGoals}',
                                             style: TextStyle(
                                               color: Colors.white38,
                                               fontSize: 20,
@@ -161,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                                             padding:
                                                 EdgeInsets.only(bottom: 10),
                                             child: Image.asset(
-                                                'assets/escudos/20003.png'),
+                                                'assets/escudos/${lastRival.id}.png'),
                                           ),
                                         ],
                                       ),
@@ -217,14 +236,14 @@ class _HomePageState extends State<HomePage> {
                                   height: 50,
                                   width: 50,
                                   child:
-                                      Image.asset("assets/escudos/20008.png"),
+                                      Image.asset("assets/escudos/${nextGame.localTeam.id}.png"),
                                 ),
                                 SizedBox(width: 10),
                                 Container(
                                     height: 50,
                                     width: 50,
                                     child: Image.asset(
-                                        "assets/escudos/20001.png")),
+                                        "assets/escudos/${nextGame.awayTeam.id}.png")),
                                 Text(
                                   'Visitante',
                                   style: TextStyle(
@@ -237,19 +256,19 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Text('21/12/2019', style: estiloLetraContainer),
+                                Text('${nextGame.date.day}/${nextGame.date.month}/${nextGame.date.year}', style: estiloLetraContainer),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text(
-                                  '19:00 h',
+                                  '${add0(nextGame.date.hour)}:${add0(nextGame.date.minute)} h',
                                   style: estiloLetraContainer,
                                 ),
                               ],
                             ),
                             Row(
                               children: <Widget>[
-                                Text('Camp Nou,   Barcelona',
+                                Text(' ${localTeamfromNextGame.fieldname}, \n\ ${localTeamfromNextGame.location}',
                                     style: estiloLetraContainer),
                               ],
                             ),
@@ -327,7 +346,7 @@ class _HomePageState extends State<HomePage> {
                                               .currentPoints(games)
                                               .toString() +
                                           " pts",
-                                      style: letra3Equipos),
+                                      style: tresEstilos[0]),
                                 ],
                               ),
                             ),
@@ -352,15 +371,15 @@ class _HomePageState extends State<HomePage> {
                                       height: 40,
                                       width: 40,
                                       child: Image.asset(
-                                          "assets/escudos/${egara.id}.png")),
+                                          "assets/escudos/${tresEquipos[1].id}.png")),
                                   Text(
-                                    egara.shortname,
+                                    tresEquipos[1].shortname,
                                     style: letra3EquiposEgara,
                                   ),
                                   Text(
-                                    egara.currentPoints(games).toString() +
+                                    tresEquipos[1].currentPoints(games).toString() +
                                         " pts",
-                                    style: letra3EquiposEgara,
+                                    style: tresEstilos[1],
                                   ),
                                 ],
                               ),
@@ -388,7 +407,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Image.asset("assets/escudos/${tresEquipos[2].id}.png")),
                                   Text(
                                     tresEquipos[2].shortname,
-                                    style: letra3Equipos,
+                                    style: tresEstilos[2],
                                   ),
                                   
                                   Text(

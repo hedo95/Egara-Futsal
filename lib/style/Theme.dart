@@ -58,7 +58,7 @@ TextStyle letra3Equipos = TextStyle(
 );
 
 TextStyle letra3EquiposEgara = TextStyle(
-  color: Colors.red,
+  color: Colors.greenAccent,
   fontSize: 20,
 );
 
