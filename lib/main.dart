@@ -372,6 +372,7 @@ void main() {
     FlutterError.dumpErrorToConsole(details);
     if (kReleaseMode) exit(1);
   };
+
   runApp(MyApp());
 }
 
