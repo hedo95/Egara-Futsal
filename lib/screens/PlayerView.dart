@@ -2,6 +2,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
+import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -83,46 +84,47 @@ class _GamesState extends State<Games> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Container(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Text(
-                'Eventos de los partidos',
-                style: TextStyle(
-                    color: Colors.purple[900],
-                    fontSize: 34.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20.0),
-              Expanded(
-                child: charts.BarChart(
-                  _seriesEventsData,
-                  animate: true,
-                  barGroupingType: charts.BarGroupingType.grouped,
-                  animationDuration: Duration(seconds: 2),
-                  behaviors: [
-                    new charts.DatumLegend(
-                      outsideJustification:
-                          charts.OutsideJustification.endDrawArea,
-                      horizontalFirst: false,
-                      desiredMaxRows: 2,
-                      cellPadding: new EdgeInsets.only(right: 20.0),
-                      entryTextStyle: charts.TextStyleSpec(
-                          color: charts.MaterialPalette.purple.shadeDefault,
-                          fontFamily: 'Georgia',
-                          fontSize: 15),
-                    )
-                  ],
+    return Container(
+        decoration: BoxDecoration(gradient: colorGradiente),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'Eventos de los partidos',
+                  style: TextStyle(
+                      color: Colors.purple[900],
+                      fontSize: 34.0,
+                      fontWeight: FontWeight.bold),
                 ),
-              ),
-            ],
+                SizedBox(height: 20.0),
+                Expanded(
+                  child: charts.BarChart(
+                    _seriesEventsData,
+                    animate: true,
+                    barGroupingType: charts.BarGroupingType.grouped,
+                    animationDuration: Duration(seconds: 2),
+                    behaviors: [
+                      new charts.DatumLegend(
+                        outsideJustification:
+                            charts.OutsideJustification.endDrawArea,
+                        horizontalFirst: false,
+                        desiredMaxRows: 2,
+                        cellPadding: new EdgeInsets.only(right: 20.0),
+                        entryTextStyle: charts.TextStyleSpec(
+                            color: charts.MaterialPalette.purple.shadeDefault,
+                            fontFamily: 'Georgia',
+                            fontSize: 15),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
 

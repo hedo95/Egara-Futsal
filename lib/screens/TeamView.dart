@@ -113,20 +113,12 @@ class Games extends StatefulWidget {
       concededgoals;
   final Team team;
 
-  Games(
-      this.team,
-      this.position,
-      this.points,
-      this.playedgames,
-      this.wongames,
-      this.drawngames,
-      this.lostgames,
-      this.goals,
-      this.concededgoals,
-      this.games,
-      this.teams) {
-    playersFromTeam = getAllPlayersFromAteam(team, games);
-  }
+  Games(this.team, this.position, this.points, this.playedgames, this.wongames,
+      this.drawngames, this.lostgames, this.goals, this.concededgoals,
+      this.games, this.teams){
+        playersFromTeam = getAllPlayersFromAteam(team, games);
+        playersFromTeam.sort((b,a) => a.goals(games).compareTo(b.goals(games)));
+      }
 
   _GamesState createState() => _GamesState(
       this.team,

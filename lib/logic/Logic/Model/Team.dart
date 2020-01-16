@@ -232,7 +232,7 @@ class Team {
   
   Team.makingReal(Team team){
     this.id = team.id;
-    this.name = this.name;
+    this.name = team.name;
     this.shortname = team.shortname;
     this.shield = team.shield;
     this.address = team.address;
