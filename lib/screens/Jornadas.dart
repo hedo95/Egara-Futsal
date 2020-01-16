@@ -41,105 +41,106 @@ class _JornadasState extends State<Jornadas> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color(0xFF3D006A),
-      child: SafeArea(
-        child: ListView(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(left: 20),
-              child: Text(
-                'Jornadas',
-                style: titulocabecera,
-              ),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Container(
-                decoration: estiloContenedor,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.chevron_left),
-                      iconSize: 30,
-                      color: containerDestacado,
-                      onPressed: () {
-                        if (currentJourney > 1) {
-                          setState(() {
-                            this.currentJourney--;
-                            this.journeyGames = getCalendar(games)
-                                .firstWhere((item) =>
-                                    item.journey == this.currentJourney)
-                                .games;
-                            //this.maxJourney = getCalendar(games).length;
-                          });
-                        }
-                      },
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.ideographic,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF270049),
+        title: Text('Jornadas', style: titulocabecera),
+      ),
+      body: Container(
+        color: Color(0xFF3D006A),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 12.0),
+          child: SafeArea(
+            child: ListView(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Container(
+                    decoration: estiloContenedor,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          'J$currentJourney',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: containerDestacado,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        IconButton(
+                          icon: Icon(Icons.chevron_left),
+                          iconSize: 30,
+                          color: containerDestacado,
+                          onPressed: () {
+                            if (currentJourney > 1) {
+                              setState(() {
+                                this.currentJourney--;
+                                this.journeyGames = getCalendar(games)
+                                    .firstWhere((item) =>
+                                        item.journey == this.currentJourney)
+                                    .games;
+                                //this.maxJourney = getCalendar(games).length;
+                              });
+                            }
+                          },
                         ),
-                        SizedBox(width: 10),
-                        Text(
-                          '${getJourneyDate(journeyGames)}',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            color: containerDestacado,
-                          ),
-                        )
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.ideographic,
+                          children: <Widget>[
+                            Text(
+                              'J$currentJourney',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: containerDestacado,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              '${getJourneyDate(journeyGames)}',
+                              style: TextStyle(
+                                fontSize: 15.0,
+                                color: containerDestacado,
+                              ),
+                            )
+                          ],
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.chevron_right),
+                          iconSize: 30,
+                          color: containerDestacado,
+                          onPressed: () {
+                            if (currentJourney < maxJourney) {
+                              setState(
+                                () {
+                                  this.currentJourney++;
+                                  this.journeyGames = getCalendar(games)
+                                      .firstWhere((item) =>
+                                          item.journey == this.currentJourney)
+                                      .games;
+                                  //this.maxJourney = getCalendar(games).length;
+                                },
+                              );
+                            }
+                          },
+                        ),
                       ],
                     ),
-                    IconButton(
-                      icon: Icon(Icons.chevron_right),
-                      iconSize: 30,
-                      color: containerDestacado,
-                      onPressed: () {
-                        if (currentJourney < maxJourney) {
-                          setState(
-                            () {
-                              this.currentJourney++;
-                              this.journeyGames = getCalendar(games)
-                                  .firstWhere((item) =>
-                                      item.journey == this.currentJourney)
-                                  .games;
-                              //this.maxJourney = getCalendar(games).length;
-                            },
-                          );
-                        }
-                      },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Container(
+                    decoration: estiloContenedor,
+                    child: Column(
+                      children: <Widget>[
+                        JornadaContainer(this.journeyGames[0]),
+                        JornadaContainer(this.journeyGames[1]),
+                        JornadaContainer(this.journeyGames[2]),
+                        JornadaContainer(this.journeyGames[3]),
+                        JornadaContainer(this.journeyGames[4]),
+                        JornadaContainer(this.journeyGames[5]),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                )
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Container(
-                decoration: estiloContenedor,
-                child: Column(
-                  children: <Widget>[
-                    JornadaContainer(this.journeyGames[0]),
-                    JornadaContainer(this.journeyGames[1]),
-                    JornadaContainer(this.journeyGames[2]),
-                    JornadaContainer(this.journeyGames[3]),
-                    JornadaContainer(this.journeyGames[4]),
-                    JornadaContainer(this.journeyGames[5]),
-                  ],
-                ),
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );
