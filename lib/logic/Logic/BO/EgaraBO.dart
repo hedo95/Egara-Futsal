@@ -225,6 +225,19 @@ Map<String,dynamic> putPlayersToJson(Map<Player,List<int>> players){
   return result;
 }
 
+Map<dynamic,dynamic> putPlayersToDocument(Map<Player,List<int>> players){
+  Map<dynamic, dynamic> result = {};
+  for (MapEntry<Player, List<int>> map in players.entries) {
+    if (map.key.surname.isEmpty) {
+      String name = map.key.name;
+      result[name] = map.value;
+    } else {
+      String name = map.key.surname + ', ' + map.key.name;
+      result[name] = map.value;
+    }
+  }
+  return result;
+}
 
 int getDorsal(String fullname) {
   int index = fullname.indexOf(' ');

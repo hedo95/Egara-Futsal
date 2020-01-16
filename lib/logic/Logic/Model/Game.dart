@@ -107,8 +107,28 @@ class Game {
     };
   }
 
-  toDocument() => toJson();
-
+  toDocument() {
+    List<dynamic> localsq = putSquadTodynamic(this.localSquad);
+    List<dynamic> awaysq = putSquadTodynamic(this.awaySquad);
+    Map<dynamic, dynamic> goalscorers = putPlayersToDocument(this.goalScorers);
+    Map<dynamic, dynamic> yellowc = putPlayersToDocument(this.yellowCards);
+    Map<dynamic, dynamic> redc = putPlayersToDocument(this.redCards);
+    return {
+      'id': this.id,
+      'season': this.season,
+      'journey': this.journey,
+      'date': this.date,
+      'localTeam': this.localTeam.name,
+      'awayTeam': this.awayTeam.name,
+      'localGoals': this.localGoals,
+      'awayGoals': this.awayGoals,
+      'goalScorers': goalscorers,
+      'yellowcards': yellowc,
+      'redcards': redc,
+      'localsquad': localsq,
+      'awaysquad': awaysq
+    };
+  }
   factory Game.fromJson(Map<String, dynamic> json) {
     return new Game(
         json['season'] as List<dynamic>,

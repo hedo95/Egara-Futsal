@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'logic/Logic/BO/EgaraBO.dart';
+import 'logic/Logic/DAO/EgaraDAO.dart';
 import 'logic/Logic/Model/Player.dart';
 import 'widgets/BottomMenu.dart';
 
@@ -376,14 +377,18 @@ void main() {
 
 
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   get bottomNavBarIndex => null;
-  final db = new FirebaseContext(); // Mi class Firebase
+  final db = new FirebaseContext(); 
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Game>>(
-      // First StreamBuilder to load games
       stream: db.loadGames(),
       builder: (context, snapshot1) {
         if(!snapshot1.hasData){
@@ -399,7 +404,7 @@ class MyApp extends StatelessWidget {
         }else if(snapshot1.hasError){
           return Center(child: Text(snapshot1.error));
         }else{
-          return StreamBuilder<List<Team>>( // Second StreamBuilder to load teams
+          return StreamBuilder<List<Team>>( 
             stream: db.loadTeams(),
             builder: (context, snapshot2) {
               if(!snapshot2.hasData){
@@ -631,7 +636,7 @@ class PantallaPrueba extends StatelessWidget {
 
 
 
-// Prueba provider
+//Prueba provider
 
 // void main() {
 //   FlutterError.onError = (FlutterErrorDetails details) {
@@ -674,8 +679,10 @@ class PantallaPrueba extends StatelessWidget {
 //                                   // var games = Provider.of<GameProvider>(context).games;
 //                                   // var teams = Provider.of<TeamProvider>(context).teams;
 //                                   // var players = Provider.of<PlayerProvider>(context).players;
-//                                   List<Game> games = getAllGamesFromFile();
-//                                   db.addAllGames(games);
+//                                   // List<Game> games = getAllGamesFromFile();
+//                                   db.loadGames().listen((list){
+//                                     list.forEach((item) => print('${item.id}'));
+//                                   });
 //                                   // db.loadTeams().listen((onData){
 //                                   //   onData.forEach((item) => print(item.id.toString()));
 //                                   // });
