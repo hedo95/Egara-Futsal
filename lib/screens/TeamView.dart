@@ -27,8 +27,7 @@ class _TeamsState extends State<Teams> {
         theme: ThemeData(
           primaryColor: Colors.purple[900],
         ),
-        home: TeamView(
-            teams.firstWhere((item) => item.id == 20008)));
+        home: TeamView(teams.firstWhere((item) => item.id == 20008)));
   }
 }
 
@@ -92,7 +91,8 @@ class _TeamViewState extends State<TeamView> {
               widget.team.lostGames(games),
               widget.team.currentGoals(games),
               widget.team.currentConcededGoals(games),
-              games, teams),
+              games,
+              teams),
         ),
       ),
     );
@@ -113,11 +113,20 @@ class Games extends StatefulWidget {
       concededgoals;
   final Team team;
 
-  Games(this.team, this.position, this.points, this.playedgames, this.wongames,
-      this.drawngames, this.lostgames, this.goals, this.concededgoals,
-      this.games, this.teams){
-        playersFromTeam = getAllPlayersFromAteam(team, games);
-      }
+  Games(
+      this.team,
+      this.position,
+      this.points,
+      this.playedgames,
+      this.wongames,
+      this.drawngames,
+      this.lostgames,
+      this.goals,
+      this.concededgoals,
+      this.games,
+      this.teams) {
+    playersFromTeam = getAllPlayersFromAteam(team, games);
+  }
 
   _GamesState createState() => _GamesState(
       this.team,
@@ -129,7 +138,8 @@ class Games extends StatefulWidget {
       this.lostgames,
       this.goals,
       this.concededgoals,
-      games, playersFromTeam);
+      games,
+      playersFromTeam);
 }
 
 class _GamesState extends State<Games> {
@@ -157,7 +167,8 @@ class _GamesState extends State<Games> {
       this.lostgames,
       this.goals,
       this.concededgoals,
-      this.games, this.players);
+      this.games,
+      this.players);
 
   _generateData() {
     var eventsData = [
@@ -394,17 +405,16 @@ class _GamesState extends State<Games> {
                               height: 100,
                               width: 100,
                               decoration: BoxDecoration(
-                              
                                 borderRadius: BorderRadius.circular(80),
                                 //border:
-                                    //Border.all(color: Colors.white38, width: 1),
+                                //Border.all(color: Colors.white38, width: 1),
                                 //gradient: colorGradiente,
                                 color: Color(0xFF381254),
                                 //boxShadow: [
-                                  //BoxShadow(
-                                  //  color: Color(0xFF270049),
-                                  //  offset: Offset(-4, 4),
-                                  //),
+                                //BoxShadow(
+                                //  color: Color(0xFF270049),
+                                //  offset: Offset(-4, 4),
+                                //),
                                 //],
                               ),
                               child: Padding(
@@ -441,8 +451,12 @@ class _GamesState extends State<Games> {
             padding: EdgeInsets.all(8.0),
             child: Center(
               child: Text(
-                  ' Insertar \n\ Información del equipo  \n\            + \n\ Google Maps',
-                  style: TextStyle(fontSize: 30, color: Colors.purple[900])),
+                ' Insertar \n\ Información del equipo  \n\            + \n\ Google Maps',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.purple[900],
+                ),
+              ),
             ))
       ],
     );

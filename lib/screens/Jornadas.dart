@@ -42,7 +42,6 @@ class _JornadasState extends State<Jornadas> {
 
   @override
   Widget build(BuildContext context) {
-  
     return Container(
       color: Color(0xFF3D006A),
       child: SafeArea(
@@ -67,7 +66,7 @@ class _JornadasState extends State<Jornadas> {
                     IconButton(
                       icon: Icon(Icons.chevron_left),
                       iconSize: 30,
-                      color: Colors.white38,
+                      color: containerDestacado,
                       onPressed: () {
                         if (currentJourney > 1) {
                           setState(() {
@@ -81,17 +80,32 @@ class _JornadasState extends State<Jornadas> {
                         }
                       },
                     ),
-                    Text(
-                      'J$currentJourney ${getJourneyDate(journeyGames)}',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white38,
-                      ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.ideographic,
+                      children: <Widget>[
+                        Text(
+                          'J$currentJourney',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: containerDestacado,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          '${getJourneyDate(journeyGames)}',
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            color: containerDestacado,
+                          ),
+                        )
+                      ],
                     ),
                     IconButton(
                       icon: Icon(Icons.chevron_right),
                       iconSize: 30,
-                      color: Colors.white38,
+                      color: containerDestacado,
                       onPressed: () {
                         if (currentJourney < maxJourney) {
                           setState(
@@ -139,6 +153,40 @@ class JornadaContainer extends StatelessWidget {
 
   JornadaContainer(this.game);
 
+  Widget displayJourneyResult(game) {
+    var x = getJourneyResult(game);
+    if (x.length > 4) {
+      return Container(
+        color: shadowColor,
+        height: 60,
+        width: 80,
+        padding: EdgeInsets.only(top: 17),
+        child: Text(
+          x,
+          style: TextStyle(
+            color: Colors.white38,
+            fontSize: 20,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      );
+    } else
+      return Container(
+        color: shadowColor,
+        height: 60,
+        width: 80,
+        padding: EdgeInsets.only(top: 12),
+        child: Text(
+          x,
+          style: TextStyle(
+            color: Colors.greenAccent,
+            fontSize: 30,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -151,7 +199,7 @@ class JornadaContainer extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8.0, right: 8.0),
           child: Container(
             decoration: BoxDecoration(
-              color: Color(0xFF270049),
+              color: backgroundColor,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -161,21 +209,15 @@ class JornadaContainer extends StatelessWidget {
                 Container(
                   color: Colors.black,
                   child: Text(
-                    'Equipo 1',
+                    game.localTeam.toString(),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                Text(
-                  getJourneyResult(this.game),
-                  style: TextStyle(
-                    color: Colors.white38,
-                    fontSize: 30,
-                  ),
-                ),
+                displayJourneyResult(this.game),
                 Container(
                   color: Colors.black,
                   child: Text(
-                    'Equipo 2',
+                    game.awayTeam.toString(),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
