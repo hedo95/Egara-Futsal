@@ -152,17 +152,18 @@ class JornadaContainer extends StatelessWidget {
 
   Widget displayJourneyResult(game) {
     var x = getJourneyResult(game);
+
     if (x.length > 4) {
       return Container(
         color: shadowColor,
         height: 60,
-        width: 80,
-        padding: EdgeInsets.only(top: 17),
+        width: 60,
+        padding: EdgeInsets.only(top: 20),
         child: Text(
           x,
           style: TextStyle(
             color: Colors.white38,
-            fontSize: 20,
+            fontSize: 15,
           ),
           textAlign: TextAlign.center,
         ),
@@ -171,13 +172,13 @@ class JornadaContainer extends StatelessWidget {
       return Container(
         color: shadowColor,
         height: 60,
-        width: 80,
-        padding: EdgeInsets.only(top: 12),
+        width: 60,
+        padding: EdgeInsets.only(top: 17),
         child: Text(
           x,
           style: TextStyle(
             color: Colors.greenAccent,
-            fontSize: 30,
+            fontSize: 20,
           ),
           textAlign: TextAlign.center,
         ),
@@ -203,29 +204,31 @@ class JornadaContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SizedBox(width: 0.8),
+                
                 Container(
                   height:40,
-                  width: 80,
+                  width: 100,
                   padding: EdgeInsets.only(top: 10),
                   child: Text(
                     '$localTeamshortname',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: 17),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 displayJourneyResult(this.game),
                 Container(
                   height:40,
-                  width: 80,
+                  width: 100,
                   padding: EdgeInsets.only(top: 10),
                   child: Text(
                     '$awayTeamshortname',
-                    style: TextStyle(color: Colors.white, fontSize: 12),
+                    style: TextStyle(color: Colors.white, fontSize: 17),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(width: 0.8),
+                
               ],
             ),
           ),
