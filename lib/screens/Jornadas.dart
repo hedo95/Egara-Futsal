@@ -42,69 +42,7 @@ class _JornadasState extends State<Jornadas> {
 
   @override
   Widget build(BuildContext context) {
-    /*
-    return Padding(
-      padding: EdgeInsets.all(10),
-      child: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.skip_previous),
-                  color: Colors.purple[900],
-                  iconSize: 30,
-                  onPressed: (){
-                    if(currentJourney > 1){
-                      setState(() {
-                        this.currentJourney--;
-                        this.journeyGames = getCalendar(games).firstWhere((item) => item.journey == this.currentJourney).games;
-                      });
-                    }  
-                  },
-                ),
-                Text(this.currentJourney.toString(),
-                  style: TextStyle(
-                    color: Colors.purple[900],
-                    onPressed: () {
-                      // Cuando el fichero contenga las 22 jornadas del calendario, el if será "< 22"
-                      if (currentJourney < 9) {
-                        setState(() {
-                          this.currentJourney++;
-                          this.journeyGames = getCalendar(games)
-                              .firstWhere(
-                                  (item) => item.journey == this.currentJourney)
-                              .games;
-                        });
-                      }
-                    },
-                  )
-                ],
-              ),
-              Expanded(
-                child: Scrollbar(
-                    child: ListView.builder(
-                  itemCount: journeyGames.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: JornadaContainer(journeyGames[index]));
-                  },
-                )
-              ],
-            ),
-            JornadaContainer(this.journeyGames[0]),
-            JornadaContainer(this.journeyGames[1]),
-            JornadaContainer(this.journeyGames[2]),
-            JornadaContainer(this.journeyGames[3]),
-            JornadaContainer(this.journeyGames[4]),
-            JornadaContainer(this.journeyGames[5]),
-          ],
-        ),
-      )
-    );
-   */
+  
     return Container(
       color: Color(0xFF3D006A),
       child: SafeArea(
@@ -144,7 +82,7 @@ class _JornadasState extends State<Jornadas> {
                       },
                     ),
                     Text(
-                      'Jornada' + ' ' + this.currentJourney.toString(),
+                      'J$currentJourney ${getJourneyDate(journeyGames)}',
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.white38,
@@ -228,9 +166,7 @@ class JornadaContainer extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  game.localGoals.toString() +
-                      ' - ' +
-                      game.awayGoals.toString(),
+                  getJourneyResult(this.game),
                   style: TextStyle(
                     color: Colors.white38,
                     fontSize: 30,

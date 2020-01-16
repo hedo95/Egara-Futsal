@@ -442,41 +442,41 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class PantallaPrueba extends StatelessWidget {
-  const PantallaPrueba({
-    Key key,
-  }) : super(key: key);
+// class PantallaPrueba extends StatelessWidget {
+//   const PantallaPrueba({
+//     Key key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    List<Game> games = Provider.of<List<Game>>(context);
-    List<Team> teams = Provider.of<List<Team>>(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Welcome to Flutter'),
-      ),
-      body: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.add),
-              color: Colors.blue[500],
-              onPressed: () {
-                //Get the value of each provider (List<Object>) and print the first item of them all
-                print(catchArrow(teams, games));
-                // print('Partido ${games[0].id}');
-                // print('${players[0].name} ${players[0].surname}');
-                // print('${teams[0].shortname}');
-                // print('Firestore -> StreamBuilder -> Multiprovider -> Any child -> Console ');
-              }
-            ),
-            Text('Press me',
-            )
-          ])),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     List<Game> games = Provider.of<List<Game>>(context);
+//     List<Team> teams = Provider.of<List<Team>>(context);
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Welcome to Flutter'),
+//       ),
+//       body: Center(
+//           child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: <Widget>[
+//             IconButton(
+//               icon: Icon(Icons.add),
+//               color: Colors.blue[500],
+//               onPressed: () {
+//                 //Get the value of each provider (List<Object>) and print the first item of them all
+//                 print(catchArrow(teams, games));
+//                 // print('Partido ${games[0].id}');
+//                 // print('${players[0].name} ${players[0].surname}');
+//                 // print('${teams[0].shortname}');
+//                 // print('Firestore -> StreamBuilder -> Multiprovider -> Any child -> Console ');
+//               }
+//             ),
+//             Text('Press me',
+//             )
+//           ])),
+//     );
+//   }
+// }
 
 
 
@@ -636,7 +636,7 @@ class PantallaPrueba extends StatelessWidget {
 
 
 
-//Prueba provider
+// //Prueba provider
 
 // void main() {
 //   FlutterError.onError = (FlutterErrorDetails details) {
@@ -680,9 +680,12 @@ class PantallaPrueba extends StatelessWidget {
 //                                   // var teams = Provider.of<TeamProvider>(context).teams;
 //                                   // var players = Provider.of<PlayerProvider>(context).players;
 //                                   // List<Game> games = getAllGamesFromFile();
-//                                   db.loadGames().listen((list){
-//                                     list.forEach((item) => print('${item.id}'));
-//                                   });
+//                                   // db.addAllGames(games);
+//                                   //print(games.length);
+//                                   // db.loadGames().listen((list){
+//                                   //   list.sort((a,b) => a.id.compareTo(b.id));
+//                                   //   list.forEach((item) => print('${item.id}'));
+//                                   // });
 //                                   // db.loadTeams().listen((onData){
 //                                   //   onData.forEach((item) => print(item.id.toString()));
 //                                   // });
