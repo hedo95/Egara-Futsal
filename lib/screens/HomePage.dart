@@ -410,6 +410,147 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              SizedBox(height: 40),
+               Container(
+                padding: EdgeInsets.only(left: 20),
+                child: Text(
+                  'Top Goleadores',
+                  style: titulocabecera,
+                ),
+              ),
+              SizedBox(height: 40),
+              Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 200,
+                        width: 400,
+                        decoration: BoxDecoration(
+                          color: Color(0xFF4b1a77),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xFF270049),
+                              offset: Offset(-10, 10),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: 300,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF270049),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    tresEquipos[0]
+                                        .currentPosition(teams, games)
+                                        .toString(),
+                                    style: letra3Equipos,
+                                  ),
+                                  Container(
+                                      height: 35,
+                                      width: 35,
+                                      child: Image.asset(
+                                          "assets/escudos/${tresEquipos[0].id}.png")),
+                                  Text(
+                                    tresEquipos[0].shortname,
+                                    style: letra3Equipos,
+                                  ),
+                                  Text(
+                                      tresEquipos[0]
+                                              .currentPoints(games)
+                                              .toString() +
+                                          " pts",
+                                      style: tresEstilos[0]),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Container(
+                              width: 300,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF270049),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                      tresEquipos[1]
+                                          .currentPosition(teams, games)
+                                          .toString(),
+                                      style: letra3EquiposEgara),
+                                  Container(
+                                      height: 40,
+                                      width: 40,
+                                      child: Image.asset(
+                                          "assets/escudos/${tresEquipos[1].id}.png")),
+                                  Text(
+                                    tresEquipos[1].shortname,
+                                    style: letra3EquiposEgara,
+                                  ),
+                                  Text(
+                                    tresEquipos[1].currentPoints(games).toString() +
+                                        " pts",
+                                    style: tresEstilos[1],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Container(
+                              width: 300,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: Color(0xFF270049),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    tresEquipos[2]
+                                        .currentPosition(teams, games)
+                                        .toString(),
+                                    style: letra3Equipos,
+                                  ),
+                                  Container(
+                                      height: 40,
+                                      width: 40,
+                                      child: Image.asset("assets/escudos/${tresEquipos[2].id}.png")),
+                                  Text(
+                                    tresEquipos[2].shortname,
+                                    style: tresEstilos[2],
+                                  ),
+                                  
+                                  Text(
+                                    tresEquipos[2].currentPoints(games).toString() + " pts",
+                                    style: letra3Equipos,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
             ],
           ),
         ),
