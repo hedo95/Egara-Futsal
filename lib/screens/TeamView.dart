@@ -148,6 +148,7 @@ class _GamesState extends State<Games> {
   final List<Player> players;
   final List<Game> games;
   final Team team;
+
   final int points,
       playedgames,
       wongames,
@@ -448,16 +449,76 @@ class _GamesState extends State<Games> {
           ),
         ),
         Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                ' Insertar \n\ Información del equipo  \n\            + \n\ Google Maps',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.purple[900],
-                ),
+          padding: EdgeInsets.all(0),
+          child: Container(
+            color: shadowColor,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 40),
+                  Container(
+                    height: 178,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          team.fieldname,
+                          style: TextStyle(
+                            color: Colors.white38,
+                            fontSize: 30,
+                          ),
+                        ),
+                        SizedBox(height: 40),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.ideographic,
+                          children: <Widget>[
+                            Text(
+                              team.location + ',  ',
+                              style: TextStyle(
+                                color: Colors.white38,
+                                fontSize: 25,
+                              ),
+                            ),
+                            Text(
+                              team.zipcode,
+                              style: TextStyle(
+                                color: Colors.white38,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 40),
+                        Text(
+                          team.province,
+                          style: TextStyle(
+                            color: Colors.white38,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 40),
+                  Container(
+                    padding: EdgeInsets.only(left: 64),
+                    child: Row(
+                      children: <Widget>[
+                        Image.asset(
+                          "assets/escudos/${team.id}.png",
+                          scale: 0.6
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ))
+            ),
+          ),
+        ),
       ],
     );
   }
