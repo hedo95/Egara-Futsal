@@ -1,0 +1,830 @@
+[
+  {
+    "idteam": 20000,
+    "name": "ALBA",
+    "surname": "SANTISTEBAN CLARET",
+    "dorsal": 3
+  },
+  {
+    "idteam": 20000,
+    "name": "PAULA",
+    "surname": "SANCHEZ CHANA",
+    "dorsal": 8
+  },
+  {
+    "idteam": 20000,
+    "name": "CRISTINA",
+    "surname": "GARCIA SANCHEZ",
+    "dorsal": 9
+  },
+  {
+    "idteam": 20000,
+    "name": "LAURA",
+    "surname": "CRUZ CORDON",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20000,
+    "name": "JUDIT",
+    "surname": "CASAS OLIVER",
+    "dorsal": 13
+  },
+  {
+    "idteam": 20000,
+    "name": "SARA",
+    "surname": "MESTRE SINUES",
+    "dorsal": 11
+  },
+  {
+    "idteam": 20000,
+    "name": "ROCIO",
+    "surname": "RUIZ DENGRA",
+    "dorsal": 14
+  },
+  {
+    "idteam": 20000,
+    "name": "LAIA",
+    "surname": "FERNANDEZ ORELLANA",
+    "dorsal": 22
+  },
+  {
+    "idteam": 20000,
+    "name": "CRISTINA",
+    "surname": "RODRIGUEZ GOMEZ",
+    "dorsal": 23
+  },
+  {
+    "idteam": 20001,
+    "name": "ISABEL",
+    "surname": "ARDILA GARCIA",
+    "dorsal": 70
+  },
+  {
+    "idteam": 20001,
+    "name": "BERTA",
+    "surname": "ALFONSO ESPINOSA",
+    "dorsal": 4
+  },
+  {
+    "idteam": 20001,
+    "name": "ANA MARIA",
+    "surname": "PINERO ORTIZ",
+    "dorsal": 7
+  },
+  {
+    "idteam": 20001,
+    "name": "CRISTINA",
+    "surname": "TAUSTE SABALETE",
+    "dorsal": 8
+  },
+  {
+    "idteam": 20001,
+    "name": "LORENA",
+    "surname": "CAMARGO ALCAIDE",
+    "dorsal": 13
+  },
+  {
+    "idteam": 20001,
+    "name": "RAQUEL",
+    "surname": "GARCIA NICOLAS",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20001,
+    "name": "CORINA",
+    "surname": "MARIN REINA",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20001,
+    "name": "PATRICIA",
+    "surname": "GARCIA ARMENTEROS",
+    "dorsal": 15
+  },
+  {
+    "idteam": 20001,
+    "name": "SILVIA",
+    "surname": "",
+    "dorsal": 11
+  },
+  {
+    "idteam": 20001,
+    "name": "ALEJANDRA",
+    "surname": "BARRENA IGLESIAS",
+    "dorsal": 16
+  },
+  {
+    "idteam": 20001,
+    "name": "CLARA ISABEL",
+    "surname": "ALFONSO ESPINOSA",
+    "dorsal": 18
+  },
+  {
+    "idteam": 20001,
+    "name": "ANA ISABEL",
+    "surname": "VIGARA CUENCA",
+    "dorsal": 88
+  },
+  {
+    "idteam": 20001,
+    "name": "LADY ALEXANDRA",
+    "surname": "VASQUEZ RUEDA",
+    "dorsal": 6
+  },
+  {
+    "idteam": 20002,
+    "name": "ANA",
+    "surname": "GONZALEZ MARTINEZ",
+    "dorsal": 9
+  },
+  {
+    "idteam": 20002,
+    "name": "JUDIT",
+    "surname": "RUIZ MATA",
+    "dorsal": 4
+  },
+  {
+    "idteam": 20002,
+    "name": "JENNIFER",
+    "surname": "RAMIREZ PORRAS",
+    "dorsal": 6
+  },
+  {
+    "idteam": 20002,
+    "name": "ANDREA",
+    "surname": "SÁNCHEZ MUÑIZ",
+    "dorsal": 8
+  },
+  {
+    "idteam": 20002,
+    "name": "ANA",
+    "surname": "NUÑEZ JAIME",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20002,
+    "name": "SARA",
+    "surname": "BAEZA FERRÓN",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20002,
+    "name": "ANABEL",
+    "surname": "ALCAYDE GUZMAN",
+    "dorsal": 7
+  },
+  {
+    "idteam": 20002,
+    "name": "LAILA",
+    "surname": "FETIAN BEN TAQUIT",
+    "dorsal": 11
+  },
+  {
+    "idteam": 20002,
+    "name": "ANNA",
+    "surname": "COLOMER COMELLAS",
+    "dorsal": 28
+  },
+  {
+    "idteam": 20002,
+    "name": "ANDREA",
+    "surname": "SANCHEZ MUÑIZ",
+    "dorsal": 8
+  },
+  {
+    "idteam": 20002,
+    "name": "NÚRIA",
+    "surname": "ALBAREDA MARCO",
+    "dorsal": 2
+  },
+  {
+    "idteam": 20003,
+    "name": "LAURA",
+    "surname": "MARINEL-LO GOMEZ",
+    "dorsal": 8
+  },
+  {
+    "idteam": 20003,
+    "name": "GEORGINA",
+    "surname": "PUJOL GIMENEZ",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20003,
+    "name": "ANDREA",
+    "surname": "COZAR MAYORAL",
+    "dorsal": 11
+  },
+  {
+    "idteam": 20003,
+    "name": "SILVIA",
+    "surname": "CORBERA CASAS",
+    "dorsal": 13
+  },
+  {
+    "idteam": 20003,
+    "name": "LLUNA",
+    "surname": "CLARA FERNANDEZ",
+    "dorsal": 4
+  },
+  {
+    "idteam": 20003,
+    "name": "MIREIA",
+    "surname": "BITRIÁN SAN PABLO",
+    "dorsal": 6
+  },
+  {
+    "idteam": 20003,
+    "name": "SONIA",
+    "surname": "BENITEZ OLIVARES",
+    "dorsal": 14
+  },
+  {
+    "idteam": 20003,
+    "name": "LAIA",
+    "surname": "AGUAVIVA VILA",
+    "dorsal": 7
+  },
+  {
+    "idteam": 20003,
+    "name": "MIREIA",
+    "surname": "BITRIAN SAN PABLO",
+    "dorsal": 6
+  },
+  {
+    "idteam": 20003,
+    "name": "ANNA",
+    "surname": "COMAS SALA",
+    "dorsal": 3
+  },
+  {
+    "idteam": 20003,
+    "name": "ANDREA",
+    "surname": "GARCIA BAHAMONDE",
+    "dorsal": 1
+  },
+  {
+    "idteam": 20003,
+    "name": "LAURA",
+    "surname": "SENSARRICH VIAPLANA",
+    "dorsal": 2
+  },
+  {
+    "idteam": 20004,
+    "name": "DAYLI IVON",
+    "surname": "PARADA MENDEZ",
+    "dorsal": 13
+  },
+  {
+    "idteam": 20004,
+    "name": "NOELIA DE JESUS",
+    "surname": "SANTIN ROMERO",
+    "dorsal": 15
+  },
+  {
+    "idteam": 20004,
+    "name": "ARIADNA",
+    "surname": "POZO GARCIA RAYO",
+    "dorsal": 21
+  },
+  {
+    "idteam": 20004,
+    "name": "ALTAIR JIN",
+    "surname": "GALINDO BACH",
+    "dorsal": 3
+  },
+  {
+    "idteam": 20004,
+    "name": "LIDIA",
+    "surname": "TELLEZ MERINO",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20004,
+    "name": "ANDREA",
+    "surname": "GONZALEZ CABALLERO",
+    "dorsal": 8
+  },
+  {
+    "idteam": 20004,
+    "name": "JASMINE",
+    "surname": "VACHOR LARA",
+    "dorsal": 7
+  },
+  {
+    "idteam": 20004,
+    "name": "ELISABET",
+    "surname": "ROZAS MORENO",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20004,
+    "name": "CINTIA",
+    "surname": "LATORRE CAMACHO",
+    "dorsal": 11
+  },
+  {
+    "idteam": 20004,
+    "name": "MARIA",
+    "surname": "ALONSO BADIA",
+    "dorsal": 1
+  },
+  {
+    "idteam": 20005,
+    "name": "ANDREA",
+    "surname": "MARCO BOADA",
+    "dorsal": 95
+  },
+  {
+    "idteam": 20005,
+    "name": "NEREA",
+    "surname": "MARTINEZ COSTA",
+    "dorsal": 25
+  },
+  {
+    "idteam": 20005,
+    "name": "MIREIA",
+    "surname": "FLORES SAFONT",
+    "dorsal": 93
+  },
+  {
+    "idteam": 20005,
+    "name": "CLAUDIA",
+    "surname": "ROSA LOPEZ",
+    "dorsal": 97
+  },
+  {
+    "idteam": 20005,
+    "name": "JARA",
+    "surname": "TRALLERO ROLDAN",
+    "dorsal": 99
+  },
+  {
+    "idteam": 20005,
+    "name": "ANDREA",
+    "surname": "MARTINEZ COSTA",
+    "dorsal": 61
+  },
+  {
+    "idteam": 20005,
+    "name": "QUERALT",
+    "surname": "PEY NASARRE",
+    "dorsal": 77
+  },
+  {
+    "idteam": 20005,
+    "name": "GEMMA",
+    "surname": "FONT BURRULL",
+    "dorsal": 51
+  },
+  {
+    "idteam": 20005,
+    "name": "GEMMA",
+    "surname": "FONT BURRULL",
+    "dorsal": 67
+  },
+  {
+    "idteam": 20005,
+    "name": "GALA",
+    "surname": "SANCHEZ HUGUET",
+    "dorsal": 33
+  },
+  {
+    "idteam": 20006,
+    "name": "AINARA",
+    "surname": "AINZUA ISTURIZ",
+    "dorsal": 13
+  },
+  {
+    "idteam": 20006,
+    "name": "IRINA",
+    "surname": "LOPEZ SANCHEZ",
+    "dorsal": 14
+  },
+  {
+    "idteam": 20006,
+    "name": "IRIS",
+    "surname": "LOPEZ LECHUGA",
+    "dorsal": 4
+  },
+  {
+    "idteam": 20006,
+    "name": "ANDREA",
+    "surname": "CANALES BAECHLER",
+    "dorsal": 1
+  },
+  {
+    "idteam": 20006,
+    "name": "IOANA",
+    "surname": "ESCALER PENELLA",
+    "dorsal": 3
+  },
+  {
+    "idteam": 20006,
+    "name": "ANDREA",
+    "surname": "GARCIA RODRIGUEZ",
+    "dorsal": 17
+  },
+  {
+    "idteam": 20006,
+    "name": "ANNA",
+    "surname": "RUBIO RODRIGUEZ",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20006,
+    "name": "ARIADNA",
+    "surname": "TARRASON LARA",
+    "dorsal": 9
+  },
+  {
+    "idteam": 20006,
+    "name": "JUDIT",
+    "surname": "RUBIO RODRIGUEZ",
+    "dorsal": 11
+  },
+  {
+    "idteam": 20006,
+    "name": "LUCIA",
+    "surname": "PARDO SANTOS",
+    "dorsal": 23
+  },
+  {
+    "idteam": 20006,
+    "name": "CRISTINA",
+    "surname": "ALCALDE CARRERAS",
+    "dorsal": 7
+  },
+  {
+    "idteam": 20006,
+    "name": "BERTA",
+    "surname": "FOLCH GUILLEN",
+    "dorsal": 22
+  },
+  {
+    "idteam": 20006,
+    "name": "NOEMI",
+    "surname": "HERRANDO SPALACCI",
+    "dorsal": 19
+  },
+  {
+    "idteam": 20006,
+    "name": "LAURA",
+    "surname": "PRAT MATIFOLL",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20006,
+    "name": "ROSA MARIA",
+    "surname": "PAREDES MARTINEZ",
+    "dorsal": 1
+  },
+  {
+    "idteam": 20007,
+    "name": "SONIA",
+    "surname": "TABERO FUENTES",
+    "dorsal": 14
+  },
+  {
+    "idteam": 20007,
+    "name": "MELANIA",
+    "surname": "CABELLO HERMOSILLA",
+    "dorsal": 7
+  },
+  {
+    "idteam": 20007,
+    "name": "ANA ROCIO",
+    "surname": "MOYA MARTINEZ",
+    "dorsal": 16
+  },
+  {
+    "idteam": 20007,
+    "name": "PATRICIA",
+    "surname": "ANTONIO AGUILA",
+    "dorsal": 11
+  },
+  {
+    "idteam": 20007,
+    "name": "AMAL",
+    "surname": "KHATIB LEDO",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20007,
+    "name": "MIREIA",
+    "surname": "GALLARDO ARCHS",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20007,
+    "name": "ROCIO",
+    "surname": "ZAMBRANA GONZALEZ",
+    "dorsal": 99
+  },
+  {
+    "idteam": 20007,
+    "name": "MIRIAM",
+    "surname": "MARQUEZ GONZALEZ",
+    "dorsal": 17
+  },
+  {
+    "idteam": 20008,
+    "name": "MIREYA",
+    "surname": "TASCONES CASELLAS",
+    "dorsal": 4
+  },
+  {
+    "idteam": 20008,
+    "name": "LUCIA",
+    "surname": "MONTCUSI ARCOS",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20008,
+    "name": "SOFIA NOEMI",
+    "surname": "GARCIA",
+    "dorsal": 8
+  },
+  {
+    "idteam": 20008,
+    "name": "FATIMA",
+    "surname": "EL KARIA",
+    "dorsal": 6
+  },
+  {
+    "idteam": 20008,
+    "name": "DOUNIA",
+    "surname": "AL KAHIAL",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20008,
+    "name": "SARA",
+    "surname": "MONTCUSI ARCOS",
+    "dorsal": 7
+  },
+  {
+    "idteam": 20008,
+    "name": "ABIR",
+    "surname": "EL FILALI",
+    "dorsal": 9
+  },
+  {
+    "idteam": 20008,
+    "name": "MARIA ANGELES",
+    "surname": "EXPÓSITO MARTÍNEZ",
+    "dorsal": 1
+  },
+  {
+    "idteam": 20008,
+    "name": "NEREA",
+    "surname": "GALVEZ LOZANO",
+    "dorsal": 15
+  },
+  {
+    "idteam": 20008,
+    "name": "ANDREA",
+    "surname": "SALVADOR GOMEZ",
+    "dorsal": 13
+  },
+  {
+    "idteam": 20008,
+    "name": "OUMAIMA",
+    "surname": "BEDDOUH",
+    "dorsal": 3
+  },
+  {
+    "idteam": 20009,
+    "name": "AMALIA",
+    "surname": "ZAMORANO ALCAUT",
+    "dorsal": 1
+  },
+  {
+    "idteam": 20009,
+    "name": "LAIA",
+    "surname": "SANTMARTI SELLE",
+    "dorsal": 4
+  },
+  {
+    "idteam": 20009,
+    "name": "MONICA",
+    "surname": "OLIETE TRAPERO",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20009,
+    "name": "MARTA",
+    "surname": "ORTIGOSA CARRASQUER",
+    "dorsal": 6
+  },
+  {
+    "idteam": 20009,
+    "name": "ANDREA",
+    "surname": "GASCÓN RUIZ",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20009,
+    "name": "NATALIA",
+    "surname": "GARCIA CERVERA",
+    "dorsal": 2
+  },
+  {
+    "idteam": 20009,
+    "name": "JASMINE",
+    "surname": "ALVAREZ MERINO",
+    "dorsal": 9
+  },
+  {
+    "idteam": 20010,
+    "name": "ÀGATA",
+    "surname": "JULIÀ I ROSELL",
+    "dorsal": 19
+  },
+  {
+    "idteam": 20010,
+    "name": "ALBA",
+    "surname": "FADURDO MODESTO",
+    "dorsal": 13
+  },
+  {
+    "idteam": 20010,
+    "name": "JULIA",
+    "surname": "ALONSO PEREZ",
+    "dorsal": 7
+  },
+  {
+    "idteam": 20010,
+    "name": "CLÀUDIA",
+    "surname": "JOVÉ AMOR",
+    "dorsal": 4
+  },
+  {
+    "idteam": 20010,
+    "name": "MARTA",
+    "surname": "VERGÉS UBACH",
+    "dorsal": 1
+  },
+  {
+    "idteam": 20010,
+    "name": "MARIA",
+    "surname": "LOPEZ GOMEZ",
+    "dorsal": 28
+  },
+  {
+    "idteam": 20010,
+    "name": "JESSIE",
+    "surname": "STARRENBURG",
+    "dorsal": 8
+  },
+  {
+    "idteam": 20010,
+    "name": "CRISTINA",
+    "surname": "SABATÉ LLECHA",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20010,
+    "name": "SUSANA",
+    "surname": "VAZQUEZ CEDILLO",
+    "dorsal": 18
+  },
+  {
+    "idteam": 20010,
+    "name": "MARIA",
+    "surname": "ROVIRA PIBERNAT",
+    "dorsal": 14
+  },
+  {
+    "idteam": 20010,
+    "name": "SANDRA",
+    "surname": "LABORDA DEL TORO",
+    "dorsal": 6
+  },
+  {
+    "idteam": 20010,
+    "name": "LAIA",
+    "surname": "DE LA CALLE ARGELES",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20010,
+    "name": "SARA",
+    "surname": "VILLAR MUÑOZ",
+    "dorsal": 12
+  },
+  {
+    "idteam": 20010,
+    "name": "LLUM",
+    "surname": "PARDELL SALLERAS",
+    "dorsal": 1
+  },
+  {
+    "idteam": 20010,
+    "name": "LAURA",
+    "surname": "VIURA SALAS",
+    "dorsal": 17
+  },
+  {
+    "idteam": 20011,
+    "name": "ANNI AINO MARGARETA",
+    "surname": "LAHTI",
+    "dorsal": 20
+  },
+  {
+    "idteam": 20011,
+    "name": "MARINA",
+    "surname": "LAO MATA",
+    "dorsal": 4
+  },
+  {
+    "idteam": 20011,
+    "name": "NURIA",
+    "surname": "OLIVER PALOL",
+    "dorsal": 10
+  },
+  {
+    "idteam": 20011,
+    "name": "MAR",
+    "surname": "AREGALL VENTURA",
+    "dorsal": 17
+  },
+  {
+    "idteam": 20011,
+    "name": "JUDIT",
+    "surname": "",
+    "dorsal": 14
+  },
+  {
+    "idteam": 20011,
+    "name": "MARTINA",
+    "surname": "BELMONTE CARMONA",
+    "dorsal": 14
+  },
+  {
+    "idteam": 20011,
+    "name": "ISABEL",
+    "surname": "",
+    "dorsal": 5
+  },
+  {
+    "idteam": 20011,
+    "name": "JESSICA",
+    "surname": "BRAVO CARRASCO",
+    "dorsal": 20
+  },
+  {
+    "idteam": 20011,
+    "name": "RAQUEL",
+    "surname": "GRAGERA HERMOSO",
+    "dorsal": 2
+  },
+  {
+    "idteam": 20011,
+    "name": "ELENA",
+    "surname": "AGUILERA SUBIRANA",
+    "dorsal": 20
+  },
+  {
+    "idteam": 20011,
+    "name": "ESTER",
+    "surname": "FERNANDEZ COCOA",
+    "dorsal": 32
+  },
+  {
+    "idteam": 20011,
+    "name": "VERONICA",
+    "surname": "MARIN GONZALEZ",
+    "dorsal": 3
+  },
+  {
+    "idteam": 20011,
+    "name": "MONICA ",
+    "surname": "NERVÁEZ MARTOS",
+    "dorsal": 15
+  },
+  {
+    "idteam": 20011,
+    "name": "MARTA",
+    "surname": "GAYA BANUS",
+    "dorsal": 13
+  },
+  {
+    "idteam": 20011,
+    "name": "AGATA",
+    "surname": "FUENTES GUTIERREZ",
+    "dorsal": 11
+  },
+  {
+    "idteam": 20011,
+    "name": "MONICA",
+    "surname": "NARVÁEZ MARTOS",
+    "dorsal": 9
+  },
+  {
+    "idteam": 20011,
+    "name": "LAIA",
+    "surname": "JUARROS MENÉNDEZ",
+    "dorsal": 22
+  }
+]
