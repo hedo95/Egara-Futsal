@@ -96,7 +96,6 @@ class _HomePageState extends State<HomePage> {
         child: SafeArea(
           child: ListView(
             children: <Widget>[
-              Cabecera(),
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: Container(

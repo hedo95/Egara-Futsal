@@ -48,7 +48,6 @@ class _JornadasState extends State<Jornadas> {
       child: SafeArea(
         child: ListView(
           children: <Widget>[
-            Cabecera(),
             Container(
               padding: EdgeInsets.only(left: 20),
               child: Text(
@@ -210,7 +209,9 @@ class JornadaContainer extends StatelessWidget {
               children: <Widget>[
                 SizedBox(width: 0.8),
                 Container(
-                  color: Colors.black,
+                  height:40,
+                  width: 80,
+                  padding: EdgeInsets.only(top: 10),
                   child: Text(
                     '$localTeamshortname',
                     style: TextStyle(color: Colors.white),
@@ -218,10 +219,12 @@ class JornadaContainer extends StatelessWidget {
                 ),
                 displayJourneyResult(this.game),
                 Container(
-                  color: Colors.black,
+                  height:40,
+                  width: 80,
+                  padding: EdgeInsets.only(top: 10),
                   child: Text(
                     '$awayTeamshortname',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
                 SizedBox(width: 0.8),
