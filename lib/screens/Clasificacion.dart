@@ -39,15 +39,21 @@ class _ClasificacionState extends State<Clasificacion> {
           '${tableTeams[n].id}'));
     }
 
-    return Container(
-      color: Color(0xFF3D006A),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: ListView.builder(
-          itemBuilder: (BuildContext context, int index) => EntryItem(
-            data[index],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF270049),
+        title: Text('Clasificación', style: titulocabecera),
+      ),
+      body: Container(
+        color: Color(0xFF3D006A),
+        child: Padding(
+          padding: const EdgeInsets.all(14.0),
+          child: ListView.builder(
+            itemBuilder: (BuildContext context, int index) => EntryItem(
+              data[index],
+            ),
+            itemCount: data.length,
           ),
-          itemCount: data.length,
         ),
       ),
     );

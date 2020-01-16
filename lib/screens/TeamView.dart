@@ -25,7 +25,7 @@ class _TeamsState extends State<Teams> {
         theme: ThemeData(
           primaryColor: Colors.purple[900],
         ),
-        home: TeamView(teams.firstWhere((item) => item.id == 20008)));
+        home: TeamView(teams.firstWhere((item) => item.id == 20004)));
   }
 }
 
@@ -49,7 +49,7 @@ class _TeamViewState extends State<TeamView> {
         length: 4,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor:  Color(0xFF270049),
             bottom: TabBar(
               unselectedLabelColor: Color(0xFF4e1a96),
               indicatorColor: Colors.pink[200],
@@ -161,6 +161,24 @@ class _GamesState extends State<Games> {
       this.games,
       this.players);
 
+  _boolsToStrings(){
+    var strs = [];
+    if(team.parking){
+      strs.add('Si');
+    }else{
+      strs.add('No');
+    }if(team.bar){
+      strs.add('Si');
+    }else{
+      strs.add('No');
+    }if(team.wifi){
+      strs.add('Si');
+    }else{
+      strs.add('No');
+    }
+    return strs;
+  }
+
   _generateData() {
     var eventsData = [
       new GamesData(
@@ -205,6 +223,7 @@ class _GamesState extends State<Games> {
     _seriesPieData = List<charts.Series<Task, String>>();
     _seriesEventsData = List<charts.Series<GamesData, String>>();
     _generateData();
+    _boolsToStrings();
   }
 
   @override
@@ -429,75 +448,106 @@ class _GamesState extends State<Games> {
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.all(0),
-          child: Container(
-            color: shadowColor,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16.0),
+        Container(
+          decoration: BoxDecoration(
+          gradient: colorGradiente,),
+          child: Padding(
+            padding: const EdgeInsets.all(26.0),
+            child: SingleChildScrollView(
               child: Column(
-                children: <Widget>[
-                  SizedBox(height: 40),
-                  Container(
-                    height: 178,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          team.fieldname,
-                          style: TextStyle(
-                            color: Colors.white38,
-                            fontSize: 30,
-                          ),
-                        ),
-                        SizedBox(height: 40),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.ideographic,
-                          children: <Widget>[
-                            Text(
-                              team.location + ',  ',
-                              style: TextStyle(
-                                color: Colors.white38,
-                                fontSize: 25,
-                              ),
-                            ),
-                            Text(
-                              team.zipcode,
-                              style: TextStyle(
-                                color: Colors.white38,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 40),
-                        Text(
-                          team.province,
-                          style: TextStyle(
-                            color: Colors.white38,
-                            fontSize: 25,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 40),
-                  Container(
-                    padding: EdgeInsets.only(left: 64),
-                    child: Row(
-                      children: <Widget>[
-                        Image.asset(
-                          "assets/escudos/${team.id}.png",
-                          scale: 0.6
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('Equipo', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${team.name}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Dirección', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${team.address}, ${team.location}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Código postal', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${team.zipcode}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Provincia', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${team.province}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Coordenadas', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${team.coordinates[0]}, ${team.coordinates[1]}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Estadio', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${team.fieldname}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Tipo de pista', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${team.fieldtype}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Parking', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${_boolsToStrings()[0]}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Bar', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${_boolsToStrings()[1]}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                Text(''),
+                Text('Wifi', style: TextStyle(color: Colors.purple[900], fontSize: 17)),
+                Text('${_boolsToStrings()[2]}', style: TextStyle(color: Color(0xFF270049), fontSize: 20)),
+                      // Container(
+                      //   height: 178,
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     children: <Widget>[
+                      //       Text(
+                      //         team.fieldname,
+                      //         style: TextStyle(
+                      //           color: Colors.white38,
+                      //           fontSize: 30,
+                      //         ),
+                      //       ),
+                      //       SizedBox(height: 40),
+                      //       Row(
+                      //         crossAxisAlignment: CrossAxisAlignment.baseline,
+                      //         textBaseline: TextBaseline.ideographic,
+                      //         children: <Widget>[
+                      //           Text(
+                      //             team.location + ',  ',
+                      //             style: TextStyle(
+                      //               color: Colors.white38,
+                      //               fontSize: 25,
+                      //             ),
+                      //           ),
+                      //           Text(
+                      //             team.zipcode,
+                      //             style: TextStyle(
+                      //               color: Colors.white38,
+                      //               fontSize: 15,
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //       SizedBox(height: 40),
+                      //       Text(
+                      //         team.province,
+                      //         style: TextStyle(
+                      //           color: Colors.white38,
+                      //           fontSize: 25,
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      // SizedBox(height: 40),
+                      // Container(
+                      //   padding: EdgeInsets.only(left: 64),
+                      //   child: Row(
+                      //     children: <Widget>[
+                      //       Image.asset(
+                      //         "assets/escudos/${team.id}.png",
+                      //         scale: 0.6
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                    ],
+                ),
+                 ),
           ),
         ),
       ],
