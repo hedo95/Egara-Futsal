@@ -76,15 +76,6 @@ class _HomePageState extends State<HomePage> {
       }
     }
 
-/*
-    StorageReference photo = FirebaseStorage.instance.ref().child('images');
-
-  
-
-    getImage(){
-      photo.child("${teams[_index].id}.png")
-    }
-*/
     return Scaffold(
       body: Container(
         color: backgroundColor,

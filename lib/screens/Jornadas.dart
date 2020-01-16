@@ -31,7 +31,7 @@ class _JornadasState extends State<Jornadas> {
     this.journeyGames = getCalendar(games)
         .firstWhere((item) => item.journey == this.currentJourney)
         .games;
-    //this.maxJourney = getCalendar(games).length;
+   
   }
 
   @override
@@ -72,7 +72,7 @@ class _JornadasState extends State<Jornadas> {
                                     .firstWhere((item) =>
                                         item.journey == this.currentJourney)
                                     .games;
-                                //this.maxJourney = getCalendar(games).length;
+                                
                               });
                             }
                           },
@@ -112,7 +112,7 @@ class _JornadasState extends State<Jornadas> {
                                       .firstWhere((item) =>
                                           item.journey == this.currentJourney)
                                       .games;
-                                  //this.maxJourney = getCalendar(games).length;
+                                  
                                 },
                               );
                             }
