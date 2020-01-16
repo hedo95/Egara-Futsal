@@ -1,16 +1,13 @@
 import 'dart:io';
-import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
+
 import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
-import 'package:egaradefinitiu/screens/HomePage.dart';
-import 'package:egaradefinitiu/screens/PlayerView.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'logic/Logic/BO/EgaraBO.dart';
-import 'logic/Logic/DAO/EgaraDAO.dart';
-import 'logic/Logic/Model/Player.dart';
 import 'widgets/BottomMenu.dart';
 
 /*

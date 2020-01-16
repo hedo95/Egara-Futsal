@@ -1,9 +1,7 @@
 import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
-import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
-import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

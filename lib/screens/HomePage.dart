@@ -1,14 +1,9 @@
 import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
-import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
-import 'package:egaradefinitiu/widgets/Cabecera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class HomePage extends StatefulWidget {
   int _index;

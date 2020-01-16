@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../BO/EgaraBO.dart';
-import '../DAO/EgaraDAO.dart';
 import 'Game.dart';
 import 'Player.dart';
 

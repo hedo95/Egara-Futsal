@@ -1,6 +1,5 @@
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/screens/Clasificacion.dart';
-import 'package:egaradefinitiu/screens/Equipos.dart';
 import 'package:egaradefinitiu/screens/HomePage.dart';
 import 'package:egaradefinitiu/screens/Jornadas.dart';
 import 'package:egaradefinitiu/screens/TeamView.dart';

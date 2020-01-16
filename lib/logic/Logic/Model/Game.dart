@@ -2,7 +2,6 @@ import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:egaradefinitiu/logic/Logic/DAO/FirebaseContext.dart';
 import '../BO/EgaraBO.dart';
-import '../DAO/EgaraDAO.dart';
 import 'Player.dart';
 import 'Team.dart';
 

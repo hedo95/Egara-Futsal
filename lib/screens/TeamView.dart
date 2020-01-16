@@ -1,6 +1,5 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
-import 'package:egaradefinitiu/logic/Logic/DAO/EgaraDAO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +7,6 @@ import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'PlayerView.dart';
 
 class Teams extends StatefulWidget {
@@ -398,17 +396,8 @@ class _GamesState extends State<Games> {
                               height: 100,
                               width: 100,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(80),
-                                //border:
-                                //Border.all(color: Colors.white38, width: 1),
-                                //gradient: colorGradiente,
-                                color: Color(0xFF381254),
-                                //boxShadow: [
-                                //BoxShadow(
-                                //  color: Color(0xFF270049),
-                                //  offset: Offset(-4, 4),
-                                //),
-                                //],
+                                borderRadius: BorderRadius.circular(80),                                
+                                color: Color(0xFF381254),                                
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(2.0),
