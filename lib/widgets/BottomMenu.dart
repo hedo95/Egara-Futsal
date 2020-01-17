@@ -1,5 +1,6 @@
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
 import 'package:egaradefinitiu/screens/Clasificacion.dart';
+import 'package:egaradefinitiu/screens/GridViewEquipos.dart';
 import 'package:egaradefinitiu/screens/HomePage.dart';
 import 'package:egaradefinitiu/screens/Jornadas.dart';
 import 'package:egaradefinitiu/screens/TeamView.dart';
@@ -21,7 +22,7 @@ class _BottomMenuState extends State<BottomMenu> {
     final List<Game> games = Provider.of<List<Game>>(context);
     final List<Widget> _children = [
       HomePage(),
-      Teams(),
+      Equipos(),
       Clasificacion(),
       Jornadas(games),
     ];

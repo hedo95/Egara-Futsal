@@ -15,7 +15,7 @@ class PlayerView extends StatelessWidget {
     List<Game> games = Provider.of<List<Game>>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[900],
+        backgroundColor: Color(0xFF270049),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(

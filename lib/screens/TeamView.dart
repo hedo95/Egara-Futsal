@@ -9,25 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'PlayerView.dart';
 
-class Teams extends StatefulWidget {
-  // This widget is the root of your application.
-  @override
-  _TeamsState createState() => _TeamsState();
-}
-
-class _TeamsState extends State<Teams> {
-  @override
-  Widget build(BuildContext context) {
-    List<Team> teams = Provider.of<List<Team>>(context);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Animated Charts App',
-        theme: ThemeData(
-          primaryColor: Colors.purple[900],
-        ),
-        home: TeamView(teams.firstWhere((item) => item.id == 20004)));
-  }
-}
 
 class TeamView extends StatefulWidget {
   final Team team;
@@ -50,6 +31,17 @@ class _TeamViewState extends State<TeamView> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor:  Color(0xFF270049),
+            leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              );
+            },
+          ),
             bottom: TabBar(
               unselectedLabelColor: Color(0xFF4e1a96),
               indicatorColor: Colors.pink[200],
