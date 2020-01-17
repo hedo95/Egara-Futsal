@@ -32,16 +32,16 @@ class _TeamViewState extends State<TeamView> {
           appBar: AppBar(
             backgroundColor:  Color(0xFF270049),
             leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: Icon(Icons.arrow_back_ios),
-                color: Colors.white,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              );
-            },
-          ),
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                );
+              },
+            ),
             bottom: TabBar(
               unselectedLabelColor: Color(0xFF4e1a96),
               indicatorColor: Colors.pink[200],

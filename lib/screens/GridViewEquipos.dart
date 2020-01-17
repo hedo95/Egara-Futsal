@@ -21,9 +21,10 @@ class Equipos extends StatelessWidget{
         title: Text('Equipos', style: titulocabecera),
       ),
           body: Container(
-            decoration: BoxDecoration(
-              gradient: colorGradiente,
-            ),
+            // decoration: BoxDecoration(
+            //   gradient: colorGradiente,
+            // ),
+            color: Color(0xFF3D006A),
             child: Padding(
               padding: EdgeInsets.all(2),
               child: Scrollbar(
@@ -75,7 +76,7 @@ class Equipos extends StatelessWidget{
                             maxLines: 2,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.purple[900], fontSize: 15),
+                                color: Colors.greenAccent, fontSize: 20),
                           ),
                         ],
                       ),
