@@ -4,6 +4,9 @@ import '../Model/Journey.dart';
 import '../Model/Player.dart';
 import '../Model/Team.dart';
 
+
+// Esta función, convierte el objeto Equipo (Casi vacio todo) de los partidos en un Objeto Equipo Real
+// Porque lo hcemos así? porque la info del equipo la tiene el provider de equipo, no lo partidos.
 List<Game> makingTeamsReal(List<Game> games, List<Team> teams){
   for(int n = 0; n < games.length; n++){
     Team localteam = teams.firstWhere((item) => item.name == games[n].localTeam.name);
@@ -14,6 +17,7 @@ List<Game> makingTeamsReal(List<Game> games, List<Team> teams){
   return games;
 }
 
+// Lo mismo sucede con Jugadoras
 List<Game> makingPlayersReal(List<Game> games){
   for(int n = 0; n < games.length; n++){
     games[n].localSquad.forEach((item) => item.idteam = games[n].localTeam.id);
@@ -22,11 +26,13 @@ List<Game> makingPlayersReal(List<Game> games){
   return games;
 }
 
+// Union de las dos funciones anteriores, para completar partidos
 List<Game> makingGamesReal(List<Game> games, List<Team> teams){
   List<Game> result = makingPlayersReal(makingTeamsReal(games,teams));
   return result;
 }
 
+// Funcion que nos da todas las jugadoras de la liga
 List<Player> getAllPlayers(List<Game> games) {
   List<Player> allplayers = [];
   for (var game in games) {
@@ -48,6 +54,7 @@ List<Player> getAllPlayers(List<Game> games) {
   return allplayers;
 }
 
+// Flecha de HomePage(), en plan, si has ganado flecha verde para arriba etc
 int catchArrow(List<Team> teams,
     List<Game> games) // Devuelve cuantas pos ha subido o bajado
 {
@@ -57,29 +64,22 @@ int catchArrow(List<Team> teams,
   return lastPosition - currentPosition;
 }
 
+// Jornada vigente
 int currentJourney(List<Game> games) {
-  List<Journey> journeys = getCalendar(games);
-  int result = journeys
-          .lastWhere((journey) => !journey.games.any(
-              (game) => (game.localSquad.isEmpty || game.awaySquad.isEmpty)))
-          .journey +
-      1;
-  return result;
+  DateTime now = new DateTime.now();
+  List<Game> gamesNotPlayed = games.where((item) =>
+      (item.localSquad.isEmpty || item.awaySquad.isEmpty)).toList();
+  gamesNotPlayed.sort((a,b) => a.date.compareTo(b.date));
+  return gamesNotPlayed.firstWhere((item) => item.date.compareTo(now) == 1).journey;
 }
 
+// Jugadores de un equipo
 List<Player> getAllPlayersFromAteam(Team team, List<Game> games) {
   return getAllPlayers(games).where((item) => item.idteam == team.id).toList();
 }
 
-// Funciona
-int maxPlayedJourney(List<Game> games) {
-  games.sort((a, b) => a.id.compareTo(b.id));
-  return games
-      .lastWhere(
-          (item) => item.localSquad.isNotEmpty && item.awaySquad.isNotEmpty)
-      .journey;
-}
 
+// Maximos goleadores de 3 maximos goles distintos, ordenados de mayor a menor
 Map<Player, int> topScorers(List<Game> games) {
   Map<Player, int> result = {};
   for (var game in games) {
@@ -177,6 +177,7 @@ Map<Player, List<int>> mappingDataFromMaps(
   return result;
 }
 
+// Entra una lista de strings, y los convertimos en objeto jugador.
 List<Player> mappingDataFromSquad(List<dynamic> squad, Team team) {
   List<Player> result = [];
 
@@ -191,6 +192,7 @@ List<Player> mappingDataFromSquad(List<dynamic> squad, Team team) {
   return result;
 }
 
+// To save data in firestore
 List<dynamic> putSquadTodynamic(List<Player> players){
   List<dynamic> result = [];
   for (int n = 0; n < players.length; n++) {
@@ -209,6 +211,7 @@ List<dynamic> putSquadTodynamic(List<Player> players){
   return result;
 }
 
+// To save data in json
 Map<String,dynamic> putPlayersToJson(Map<Player,List<int>> players){
   Map<String, dynamic> result = {};
   for (MapEntry<Player, List<int>> map in players.entries) {
@@ -237,11 +240,13 @@ Map<dynamic,dynamic> putPlayersToDocument(Map<Player,List<int>> players){
   return result;
 }
 
+// Cogemos dorsal del nombre string del dato del partido original para mapearlo al objeto jugador
 int getDorsal(String fullname) {
   int index = fullname.indexOf(' ');
   return int.parse(fullname.substring(0, index));
 }
 
+// Cogemos nombre y apellidos
 List<String> getNamesFromMap(String fullname) {
   List<String> result = [];
   int index = fullname.indexOf(',');
@@ -258,6 +263,7 @@ List<String> getNamesFromMap(String fullname) {
   return result;
 }
 
+// Cogemo nombre y apellidos
 List<String> getNamesSurnamesFromSquad(String fullname) {
   List<String> result = [];
 
@@ -279,6 +285,7 @@ List<String> getNamesSurnamesFromSquad(String fullname) {
   return result;
 }
 
+// Container del HomePage();
 List<Team> getHomepageLeagueContainer(List<Team> teams, List<Game> games) {
   Team egara = teams.firstWhere((item) => item.id == 20008);
   int pos = egara.currentPosition(teams, games);
@@ -304,6 +311,7 @@ List<Team> getHomepageLeagueContainer(List<Team> teams, List<Game> games) {
   }
 }
 
+// Cogemos los ultimos 5 resultados (Se ha quedado pendiente este widget :( )
 List<int> getlast5results(List<Game> games) {
   List<int> list = [];
   List<Game> egaraGames = games
@@ -336,6 +344,7 @@ List<int> getlast5results(List<Game> games) {
   return list;
 }
 
+// Añadimos un 0 al digito que sea mas pequeño de 10 para horas por ejemplo..
 String add0(int digit) {
   if (digit < 10 && digit > -10) {
     return '0$digit';
@@ -344,6 +353,7 @@ String add0(int digit) {
   }
 }
 
+// Le damos un 1, y da la 'L' de lunes
 String givmeDaWeeklyDay(int n) {
   Map<int, String> weekdaysMap = {};
   weekdaysMap[1] = 'L';
@@ -360,6 +370,7 @@ String givmeDaWeeklyDay(int n) {
   }
 }
 
+// Da el resultado de la jornada, si se ha jugado el marcador, sino 'S 21:00' (S de Sabado)
 String getJourneyResult(Game game) {
   if (game.localSquad.isEmpty || game.awaySquad.isEmpty) {
     return '${givmeDaWeeklyDay(game.date.weekday)} ${add0(game.date.hour)}:${add0(game.date.minute)}';
@@ -368,6 +379,7 @@ String getJourneyResult(Game game) {
   }
 }
 
+// Dame el mes, te doy un 1 y me das Enero
 String givmeDaMonth(int n) {
   Map<int, String> months = {};
   months[1] = 'Enero';
@@ -389,6 +401,7 @@ String givmeDaMonth(int n) {
   }
 }
 
+// Dame la fecha d la jornada, para la cabecera de la vista de jornads.
 String getJourneyDate(List<Game> journeyGames) {
   journeyGames.sort((a, b) => a.date.compareTo(b.date));
   DateTime startDate = journeyGames[0].date;
@@ -402,6 +415,8 @@ String getJourneyDate(List<Game> journeyGames) {
   }
 }
 
+
+// Dime el siguiente partido, para HomePage() continer
 Game getNextMatch(List<Game> games, Team team) {
   games.sort((a, b) => a.id.compareTo(b.id));
   DateTime now = new DateTime.now();
@@ -412,6 +427,7 @@ Game getNextMatch(List<Game> games, Team team) {
   return gamesNotPlayed.firstWhere((item) => item.date.compareTo(now) == 1);
 }
 
+// Dame el ultimo partido, para ver como hemos quedado. 
 Game getLastMatch(List<Game> games, Team team) {
   games.sort((a, b) => a.id.compareTo(b.id));
   return games.lastWhere((item) =>
@@ -419,6 +435,7 @@ Game getLastMatch(List<Game> games, Team team) {
       (item.localSquad.isNotEmpty || item.awaySquad.isNotEmpty));
 }
 
+// Dime mi ultimo rival para HOmePAge()
 Team getLastRival(List<Game> games, Team team) {
   List<Game> teamGames = games
       .where((item) =>
@@ -435,6 +452,7 @@ Team getLastRival(List<Game> games, Team team) {
   }
 }
 
+//Dame la tabla de la liga ordenada de mayor a menor por puntos. 
 List<Team> getOrderedTable(List<Team> teams, List<Game> games){
   teams.sort((a,b) => a.currentPosition(teams, games).compareTo(b.currentPosition(teams, games)));
   return teams;

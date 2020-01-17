@@ -25,8 +25,7 @@ class _TeamViewState extends State<TeamView> {
     List<Game> games = Provider.of<List<Game>>(context);
     List<Team> teams = Provider.of<List<Team>>(context);
 
-    return MaterialApp(
-      home: DefaultTabController(
+    return DefaultTabController(
         length: 4,
         child: Scaffold(
           appBar: AppBar(
@@ -36,8 +35,8 @@ class _TeamViewState extends State<TeamView> {
                 return IconButton(
                   icon: Icon(Icons.arrow_back_ios),
                   color: Colors.white,
-                  onPressed: () {
-                    Navigator.pop(context);
+                  onPressed: (){
+                    Navigator.of(context).pop();
                   },
                 );
               },
@@ -84,8 +83,7 @@ class _TeamViewState extends State<TeamView> {
               games,
               teams),
         ),
-      ),
-    );
+      );
   }
 }
 
