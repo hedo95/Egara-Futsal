@@ -1,5 +1,6 @@
 import 'package:egaradefinitiu/logic/Logic/BO/EgaraBO.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Game.dart';
+import 'package:egaradefinitiu/logic/Logic/Model/Player.dart';
 import 'package:egaradefinitiu/logic/Logic/Model/Team.dart';
 import 'package:egaradefinitiu/style/Theme.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,17 @@ class _HomePageState extends State<HomePage> {
       tresEstilos.add(letra3Equipos);
       tresEstilos.add(letra3Equipos);
       tresEstilos.add(letra3EquiposEgara);
+    }
+
+    List<Player> goleadores = topScorers(games).keys.toList();
+    List<int> goles = topScorers(games).values.toList();
+    List<dynamic> tresEstilos2 = [];
+    for(var player in goleadores){
+      if(player.idteam == 20008){
+        tresEstilos2.add(letra3EquiposEgara);
+      }else{
+        tresEstilos2.add(letra3Equipos);
+      }
     }
 
     Widget flecha(int x) {
@@ -315,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                                     tresEquipos[0]
                                         .currentPosition(teams, games)
                                         .toString(),
-                                    style: letra3Equipos,
+                                    style: tresEstilos[0],
                                   ),
                                   Container(
                                       height: 35,
@@ -324,7 +336,7 @@ class _HomePageState extends State<HomePage> {
                                           "assets/escudos/${tresEquipos[0].id}.png")),
                                   Text(
                                     tresEquipos[0].shortname,
-                                    style: letra3Equipos,
+                                    style: tresEstilos[0],
                                   ),
                                   Text(
                                       tresEquipos[0]
@@ -351,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                                       tresEquipos[1]
                                           .currentPosition(teams, games)
                                           .toString(),
-                                      style: letra3EquiposEgara),
+                                      style: tresEstilos[1]),
                                   Container(
                                       height: 40,
                                       width: 40,
@@ -359,7 +371,7 @@ class _HomePageState extends State<HomePage> {
                                           "assets/escudos/${tresEquipos[1].id}.png")),
                                   Text(
                                     tresEquipos[1].shortname,
-                                    style: letra3EquiposEgara,
+                                    style: tresEstilos[1],
                                   ),
                                   Text(
                                     tresEquipos[1].currentPoints(games).toString() +
@@ -384,7 +396,7 @@ class _HomePageState extends State<HomePage> {
                                     tresEquipos[2]
                                         .currentPosition(teams, games)
                                         .toString(),
-                                    style: letra3Equipos,
+                                    style: tresEstilos[2],
                                   ),
                                   Container(
                                       height: 40,
@@ -397,12 +409,12 @@ class _HomePageState extends State<HomePage> {
                                   
                                   Text(
                                     tresEquipos[2].currentPoints(games).toString() + " pts",
-                                    style: letra3Equipos,
+                                    style: tresEstilos[2],
                                   ),
                                 ],
                               ),
                             ),
-                            SizedBox(height: 10),              
+                            SizedBox(height: 10),
                           ],
                         ),
                       ),
@@ -410,6 +422,139 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              SizedBox(height: 40),
+               Container(
+                padding: EdgeInsets.only(left: 20),
+                child: Text(
+                  'Top Goleadores',
+                  style: titulocabecera,
+                ),
+              ),
+              SizedBox(height: 40),
+              Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 200,
+                        width: 400,
+                        decoration: BoxDecoration(
+                          color: Color(0xFF4b1a77),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xFF270049),
+                              offset: Offset(-10, 10),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: 300,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF270049),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    '1',
+                                    style: tresEstilos2[0],
+                                  ),
+                                  Container(
+                                      height: 35,
+                                      width: 35,
+                                      child: Image.asset(
+                                          "assets/escudos/${goleadores[0].idteam}.png")),
+                                  Text(
+                                    goleadores[0].name,
+                                    style: tresEstilos2[0],
+                                  ),
+                                  Text(
+                                      goles[0].toString()+
+                                          " goles",
+                                      style: tresEstilos2[0]),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Container(
+                              width: 300,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF270049),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                      '2',
+                                      style: tresEstilos2[1]),
+                                  Container(
+                                      height: 35,
+                                      width: 35,
+                                      child: Image.asset(
+                                          "assets/escudos/${goleadores[1].idteam}.png")),
+                                  Text(
+                                    goleadores[1].name,
+                                    style: tresEstilos2[1],
+                                  ),
+                                  Text(
+                                    goles[1].toString() +
+                                        " goles",
+                                    style: tresEstilos2[1],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Container(
+                              width: 300,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: Color(0xFF270049),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    '3',
+                                    style: tresEstilos2[2],
+                                  ),
+                                  Container(
+                                      height: 35,
+                                      width: 35,
+                                      child: Image.asset("assets/escudos/${goleadores[2].idteam}.png")),
+                                  Text(
+                                    goleadores[2].name,
+                                    style: tresEstilos2[2],
+                                  ),
+                                  
+                                  Text(
+                                    goles[2].toString() + ' goles',
+                                    style: tresEstilos2[2],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
             ],
           ),
         ),
