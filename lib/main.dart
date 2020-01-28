@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'logic/Logic/BO/EgaraBO.dart';
+import 'logic/Logic/DAO/EgaraDAO.dart';
+import 'logic/Logic/Model/Player.dart';
 import 'widgets/BottomMenu.dart';
 
 void main() {
@@ -138,10 +140,10 @@ class _MyAppState extends State<MyApp> {
 //                                   // List<Game> games = getAllGamesFromFile();
 //                                   // db.addAllGames(games);
 //                                   //print(games.length);
-//                                   // db.loadGames().listen((list){
-//                                   //   list.sort((a,b) => a.id.compareTo(b.id));
-//                                   //   list.forEach((item) => print('${item.id}'));
-//                                   // });
+//                                   db.loadGames().listen((list){
+//                                     list.sort((a,b) => a.id.compareTo(b.id));
+//                                     print(list.length);
+//                                    });
 //                                   // db.loadTeams().listen((onData){
 //                                   //   onData.forEach((item) => print(item.id.toString()));
 //                                   // });

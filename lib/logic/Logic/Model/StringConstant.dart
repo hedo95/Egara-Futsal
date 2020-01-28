@@ -1,4 +1,6 @@
 
+// Clase para tener los strings concentrados de la App, ya que así es mas fácil para traducir aplicaciones. 
+// Tarea por cierto pendiente de realizar.
 
 class StringConstant {
   static const String table = "Clasificación";
